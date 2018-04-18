@@ -9,7 +9,7 @@ package Domain;
  *
  * @author Peter
  */
-public class Case {
+public class Case {   // Mangler at logge
     private int ID;
     private CaseRequest caseReq;
     private boolean patientIsInformed;
@@ -40,11 +40,9 @@ public int getID() {
 
 public CaseRequest getCaseReq() {
     return caseReq;
+    
 }
 
-public Case getEditCase(){
-  return this;
-}
 
 public boolean isPatientIsInformed(){
     return this.patientIsInformed;
