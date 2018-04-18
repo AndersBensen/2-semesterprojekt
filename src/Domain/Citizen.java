@@ -12,25 +12,25 @@ import java.util.Date;
  * @author ander
  */
 public class Citizen {
-    private int cpr; 
+    private long cpr; 
     private String name;
-    private String sex;
-    private Date birthDate; 
+    private char gender;
+    private String birthDate; 
     private String address; 
     private int phoneNumber; 
     private String mail; 
 
-    public Citizen(int cpr, String name, String sex, Date birthDate, String address, int phoneNumber, String mail) {
+    public Citizen(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail) {
         this.cpr = cpr;
         this.name = name;
-        this.sex = sex;
+        this.gender = gender;
         this.birthDate = birthDate;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.mail = mail;
     }
 
-    public int getCpr() {
+    public long getCpr() {
         return cpr;
     }
 
@@ -38,11 +38,11 @@ public class Citizen {
         return name;
     }
 
-    public String getSex() {
-        return sex;
+    public char getGender() {
+        return gender;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
@@ -66,11 +66,11 @@ public class Citizen {
         this.name = name;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(char gender) {
+        this.gender = gender;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
