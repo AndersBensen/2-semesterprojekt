@@ -9,7 +9,7 @@ package Domain;
  *
  * @author Peter
  */
-public class Case {   // Mangler at logge
+public class Case implements ICase {   // Mangler at logge
     private int ID;
     private CaseRequest caseReq;
     private boolean patientIsInformed;
@@ -33,12 +33,14 @@ this.caseReq = caseReq;
 }
 
 
-public int getID() {
+    @Override
+    public int getID() {
   return ID;
 }
 
 
-public CaseRequest getCaseReq() {
+    @Override
+    public CaseRequest getCaseReq() {
     return caseReq;
     
 }
@@ -48,20 +50,24 @@ public boolean isPatientIsInformed(){
     return this.patientIsInformed;
 }
 
-public String getPatientRepresentation(){
+    @Override
+    public String getPatientRepresentation(){
     return this.patientRepresentation;
 }
 
 
-public String getNextAppointment() {
+    @Override
+    public String getNextAppointment() {
     return nextAppointment;
 }
 
-public String getGuardianship() {
+    @Override
+    public String getGuardianship() {
     return guardianship;
 }
 
-public String getPersonalHelper() {
+    @Override
+    public String getPersonalHelper() {
     return personalHelper;
 }
 
@@ -69,7 +75,8 @@ public boolean isPersonalHelperPowerOfAttorney() {
     return personalHelperPowerOfAttorney;
 }
 
-public String getCitizenRights() {
+    @Override
+    public String getCitizenRights() {
     return citizenRights;
 }
 
@@ -81,19 +88,23 @@ public boolean hasConsent() {
     return consent;
 }
 
-public String getConsentType() {
+    @Override
+    public String getConsentType() {
     return consentType;
 }
 
-public String[] getCollectPatientInfo() {
+    @Override
+    public String[] getCollectPatientInfo() {
     return collectPatientInfo;
 }
 
-public String getSpecialCircumstances() {
+    @Override
+    public String getSpecialCircumstances() {
     return specialCircumstances;
 }
 
-public String getDifferentCommune() {
+    @Override
+    public String getDifferentCommune() {
     return differentCommune;
 }
 
