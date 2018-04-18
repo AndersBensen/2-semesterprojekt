@@ -20,6 +20,8 @@ public class Main {
         
         PersistanceContact pc = new PersistanceContact();
         
+        // IWriter writer = "anders og josef"
+      //  pc.injectWriter(writer);
         
         Admin a = new Admin(0000, "Loc Hansen", "M", new Date(), "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password", 3);
         

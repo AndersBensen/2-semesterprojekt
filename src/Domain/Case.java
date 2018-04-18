@@ -28,7 +28,7 @@ public class Case implements ICase {   // Mangler at logge
     private String differentCommune;
 
     public Case(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
+        this.caseRequest = caseReq;
 
     }
 //getters

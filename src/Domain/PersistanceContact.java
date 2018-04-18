@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Domain;
-
+import Domain.Case;
 /**
  *
  * @author Peter
@@ -36,8 +36,8 @@ public class PersistanceContact {
         this.caseRequest = caseRequest;
     }
     
-    public String saveCase(int ID){ 
-        return "your case has been saved" + ID;
+    public String saveCase(Case c){ 
+        return "your case has been saved with the ID: " + c.getID();
     }
     
     
