@@ -16,23 +16,23 @@ import java.util.List;
 public class Admin extends Employee{
     ArrayList<Employee> al = new ArrayList<>();
     
-    public Admin(int cpr, String name, String sex, Date birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
-        super(cpr, name, sex, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
+    public Admin(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
+        super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
     }
     
-    public void addEmployee(int cpr, String name, String sex, Date birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
+    public void addEmployee(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
         Employee e;
         switch (securityLevel) {
             case 1:
-                e = new Secretary(cpr, name, sex, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
+                e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
                 al.add(e);
                 break;
             case 2:
-                e = new SocialWorker(cpr, name, sex, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
+                e = new SocialWorker(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
                 al.add(e);
                 break;
             case 3:
-                e = new Admin(cpr, name, sex, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
+                e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
                 al.add(e);
                 break;
             default:
@@ -64,7 +64,7 @@ public class Admin extends Employee{
             s += al.get(i).getPassWord()+ "\n";
             s +=al.get(i).getPhoneNumber()+ "\n";
             s += al.get(i).getSecurityLevel()+ "\n";
-            s += al.get(i).getSex()+ "\n";
+            s += al.get(i).getGender()+ "\n";
             s += al.get(i).getUserName()+ "\n";
         }
         return s; 
