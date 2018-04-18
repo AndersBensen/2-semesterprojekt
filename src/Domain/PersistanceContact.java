@@ -5,6 +5,8 @@
  */
 package Domain;
 import Domain.Case;
+import Persistence.IReader;
+import Persistence.IWriter;
 /**
  *
  * @author Peter
@@ -28,7 +30,7 @@ public class PersistanceContact {
         this.writer = writer;
     }
     
-     public void injectWriter(IReader reader){
+     public void injectReader(IReader reader){
         this.reader = reader;
     }
     
