@@ -17,6 +17,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        PersistanceContact pc = new PersistanceContact();
+        
+        
         Admin a = new Admin(0000, "Loc Hansen", "M", new Date(), "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password", 3);
         
         a.addEmployee(1123, "Peter Hansen", "M", new Date(), "Munkevej 16, 5000 Odense N", 20010204, "peter@mail.dk", 2, "PH02", "password", 2);

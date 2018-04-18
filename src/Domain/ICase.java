@@ -11,7 +11,7 @@ package Domain;
  */
 public interface ICase {
 
-    CaseRequest getCaseReq();
+    CaseRequest getCaseRequest();
 
     String getCitizenRights();
 
