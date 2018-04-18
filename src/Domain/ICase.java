@@ -32,5 +32,5 @@ public interface ICase {
     String getPersonalHelper();
 
     String getSpecialCircumstances();
-    
+
 }
