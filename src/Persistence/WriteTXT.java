@@ -5,11 +5,16 @@
  */
 package Persistence;
 
+import Domain.Admin;
+import Domain.Employee;
 import Domain.IEmployee;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 /**
  *
@@ -62,8 +67,33 @@ public class WriteTXT implements IWriter{
             System.out.println("Error loading the file: " + file);
             System.exit(0);
         }
-        outputStream.println("\n" + sb);
+        outputStream.print("\n" + sb);
         outputStream.close();
         System.out.println("employee was written to: " + file);
+    }
+    
+    @Override
+    public void deleteEmployee(int id) {
+        try {
+            BufferedReader brFile = new BufferedReader(new FileReader(file));
+            String line;
+            String input = ""; 
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(";" + id + ";")) {
+                    line = "";
+                    System.out.println("Line deleteed");
+                }
+                else {
+                    line = line + '\n';
+                }
+                input += line;
+            }
+            FileOutputStream fosFile = new FileOutputStream(file);
+            fosFile.write(input.getBytes());
+            brFile.close();
+            fosFile.close();
+        } catch (Exception e) {
+            System.out.println("Problems reading");
+        }
     }
 }

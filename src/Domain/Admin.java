@@ -16,11 +16,11 @@ import java.util.List;
 public class Admin extends Employee{
     ArrayList<Employee> al = new ArrayList<>();
     
-    public Admin(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
+    public Admin(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
-    public void addEmployee(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
+    public void addEmployee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
         Employee e;
         switch (securityLevel) {
             case 1:
