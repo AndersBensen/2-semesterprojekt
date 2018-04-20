@@ -11,13 +11,13 @@ public interface ICaseRequest {
     public boolean isMessageClear();
     public boolean isCarePackageRequested();
     public boolean isRehousingPackageRequested();
-    public String getRequestCreator();
+    public String getRequestPerson();
     public boolean isCitizenInformed();
-    public long getPatientCPR();
-    public String getPatientName();
-    public char getPatientGender();
-    public Date getPatientBirthdate();
-    public String getPatientAddress();
-    public int getPatientPhoneNr();
-    public String getPatientMail();
+    public long getCitizenCPR();
+    public String getCitizenName();
+    public char getCitizenGender();
+    public Date getCitizenBirthdate();
+    public String getCitizenAddress();
+    public int getCitizenPhoneNr();
+    public String getCitizenMail();
 }

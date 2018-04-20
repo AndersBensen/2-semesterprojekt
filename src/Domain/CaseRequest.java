@@ -12,29 +12,29 @@ public class CaseRequest implements ICaseRequest {
     private boolean MessageClear;
     private boolean CarePackageRequested;
     private boolean RehousingPackageRequested;
-    private String requestCreator;
+    private String requestPerson;
     private boolean CitizenInformed;
-    //PatientAttributes
-    private final long patientCPR;
-    private String patientName;
-    private char patientGender;
-    private Date patientBirthdate;
-    private String patientAddress;
-    private int patientPhoneNr;
-    private String patientMail;
+    //CitizenAttributes
+    private final long citizenCPR;
+    private String citizenName;
+    private char citizenGender;
+    private Date citizenBirthdate;
+    private String citizenAddress;
+    private int citizenPhoneNr;
+    private String citizenMail;
     
-    CaseRequest(int ID, int employeeID, long patientCPR) {
+    CaseRequest(int ID, int employeeID, long citizenCPR) {
         this.ID = ID;
         this.employeeID = employeeID;
-        this.patientCPR = patientCPR;
+        this.citizenCPR = citizenCPR;
     }
 
-    public void connectPatient(long CPR, String name, char gender, Date birthdate, String address) {
-        if(CPR == this.patientCPR) {
-        this.patientName = name;
-        this.patientGender = gender;
-        this.patientBirthdate = birthdate;
-        this.patientAddress = address;    
+    public void connectCitizen(long CPR, String name, char gender, Date birthdate, String address) {
+        if(CPR == this.citizenCPR) {
+        this.citizenName = name;
+        this.citizenGender = gender;
+        this.citizenBirthdate = birthdate;
+        this.citizenAddress = address;    
         }
     }
     
@@ -55,8 +55,8 @@ public class CaseRequest implements ICaseRequest {
         this.RehousingPackageRequested = RehousingPackageRequested;
     }
 
-    public void setRequestCreator(String requestCreator) {
-        this.requestCreator = requestCreator;
+    public void setRequestPerson(String requestPerson) {
+        this.requestPerson = requestPerson;
     }
 
     public void setCitizenInformed(boolean CitizenInformed) {
@@ -95,8 +95,8 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public String getRequestCreator() {
-        return requestCreator;
+    public String getRequestPerson() {
+        return requestPerson;
     }
 
     @Override
@@ -105,37 +105,37 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public long getPatientCPR() {
-        return patientCPR;
+    public long getCitizenCPR() {
+        return citizenCPR;
     }
 
     @Override
-    public String getPatientName() {
-        return patientName;
+    public String getCitizenName() {
+        return citizenName;
     }
 
     @Override
-    public char getPatientGender() {
-        return patientGender;
+    public char getCitizenGender() {
+        return citizenGender;
     }
 
     @Override
-    public Date getPatientBirthdate() {
-        return patientBirthdate;
+    public Date getCitizenBirthdate() {
+        return citizenBirthdate;
     }
 
     @Override
-    public String getPatientAddress() {
-        return patientAddress;
+    public String getCitizenAddress() {
+        return citizenAddress;
     }
 
     @Override
-    public int getPatientPhoneNr() {
-        return patientPhoneNr;
+    public int getCitizenPhoneNr() {
+        return citizenPhoneNr;
     }
 
     @Override
-    public String getPatientMail() {
-        return patientMail;
+    public String getCitizenMail() {
+        return citizenMail;
     }
 }
