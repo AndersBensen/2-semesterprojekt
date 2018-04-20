@@ -26,6 +26,7 @@ public class Main {
         PersistanceContact pc = new PersistanceContact();
         
 
+
          IReader reader = new ReadTXT();
          IWriter writer = new WriteTXT();
          
@@ -51,8 +52,14 @@ public class Main {
          
 /*
         Admin a = new Admin(0000, "Loc Hansen", 'M', "15-09-1998", "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password", 3);
+
+        // IWriter writer = "anders og josef"
+        //  pc.injectWriter(writer);
+
+        Admin a = new Admin(0000, "Loc Hansen", 'M', "15-09-1998", "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password");
+
         
-        a.addEmployee(1123, "Peter Hansen", 'M', "16-10-1998", "Munkevej 16, 5000 Odense N", 20010204, "peter@mail.dk", 2, "PH02", "password", 2);
+        a.addEmployee(1123, "Peter Hansen", 'M', "16-10-1998", "Munkevej 16, 5000 Odense N", 20010204, "peter@mail.dk", 2, "PH02", "password", 3);
 
         System.out.println(a.toString());
         a.deleteEmployee(2);
