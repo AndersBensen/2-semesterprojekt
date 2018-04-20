@@ -27,7 +27,7 @@ public interface ICase {
 
     String getNextAppointment();
 
-    String getPatientRepresentation();
+    String getCitizentRepresentation();
 
     String getPersonalHelper();
 
