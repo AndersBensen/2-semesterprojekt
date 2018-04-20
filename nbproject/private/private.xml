@@ -2,6 +2,26 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/PersistanceContact.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/LogAction.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Persistence/ReadTXT.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/ICase.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/CPRRegister.txt</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Main.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Persistence/IWriter.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Citizen.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Persistence/WriteTXT.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/ICaseRequest.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Admin.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Case.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Secretary.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/Employee.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Presentation/Sem02_Semesterprojekt_SensumUdred.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/IEmployee.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Domain/SocialWorker.java</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/Employees.txt</file>
+            <file>file:/C:/NetBeansProjects/Sem02_Semesterprojekt_SensumUdred/src/Persistence/IReader.java</file>
+        </group>
     </open-files>
 </project-private>
