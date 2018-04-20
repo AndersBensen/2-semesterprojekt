@@ -1,10 +1,7 @@
 package Domain;
 
-
-import java.util.Date;
-
-
 public class CaseRequest implements ICaseRequest {
+
     //CaseAttributes
     private final int ID;
     private final int employeeID;
@@ -18,26 +15,17 @@ public class CaseRequest implements ICaseRequest {
     private final long citizenCPR;
     private String citizenName;
     private char citizenGender;
-    private Date citizenBirthdate;
+    private String citizenBirthdate;
     private String citizenAddress;
-    private int citizenPhoneNr;
+    private Integer citizenPhoneNr;
     private String citizenMail;
-    
+
     CaseRequest(int ID, int employeeID, long citizenCPR) {
         this.ID = ID;
         this.employeeID = employeeID;
         this.citizenCPR = citizenCPR;
     }
 
-    public void connectCitizen(long CPR, String name, char gender, Date birthdate, String address) {
-        if(CPR == this.citizenCPR) {
-        this.citizenName = name;
-        this.citizenGender = gender;
-        this.citizenBirthdate = birthdate;
-        this.citizenAddress = address;    
-        }
-    }
-    
     //Setter methods
     public void setDescription(String description) {
         this.description = description;
@@ -61,6 +49,23 @@ public class CaseRequest implements ICaseRequest {
 
     public void setCitizenInformed(boolean CitizenInformed) {
         this.CitizenInformed = CitizenInformed;
+    }
+
+    public void connectCitizen(long CPR, String name, char gender, String birthdate, String address) {
+        if (CPR == this.citizenCPR) {
+            this.citizenName = name;
+            this.citizenGender = gender;
+            this.citizenBirthdate = birthdate;
+            this.citizenAddress = address;
+        }
+    }
+    
+    public void setCitizenPhoneNr(Integer number) {
+        this.citizenPhoneNr = number;
+    }
+    
+    public void setCitizenMail(String mail) {
+        this.citizenMail = mail;
     }
 
     //Getter methods
@@ -120,7 +125,7 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public Date getCitizenBirthdate() {
+    public String getCitizenBirthdate() {
         return citizenBirthdate;
     }
 
@@ -130,7 +135,7 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public int getCitizenPhoneNr() {
+    public Integer getCitizenPhoneNr() {
         return citizenPhoneNr;
     }
 

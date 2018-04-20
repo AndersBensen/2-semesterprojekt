@@ -16,8 +16,8 @@ public interface ICaseRequest {
     public long getCitizenCPR();
     public String getCitizenName();
     public char getCitizenGender();
-    public Date getCitizenBirthdate();
+    public String getCitizenBirthdate();
     public String getCitizenAddress();
-    public int getCitizenPhoneNr();
+    public Integer getCitizenPhoneNr();
     public String getCitizenMail();
 }

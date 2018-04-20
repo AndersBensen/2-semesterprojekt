@@ -2,8 +2,11 @@ package Domain;
 
 
 public interface IDomainContact {
-    public boolean saveCaseRequest(int citizenID, String desc, boolean isMessageClear, 
-            boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed);
+    
+    public boolean saveCaseRequest(long citizenCPR, String desc, boolean isMessageClear, 
+            boolean isCarePackage, boolean isRehousingPackage, String requestPerson, 
+            boolean isCitizenInformed, String citizenName, char citizenGender, 
+            String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail);
     
     public String saveCase(int ID, CaseRequest caseRequest, boolean citizenIsInformed, 
             String citizenRepresentation, String nextAppointment, String guardianship, 

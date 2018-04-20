@@ -7,11 +7,13 @@ import java.util.Scanner;
 
 public final class TextInputer {
     
-    List<String> information;
-    Scanner input;
+    private List<String> information;
+    private Scanner input;
+    private CommandConverter CC;
     
     public TextInputer() {
         input = new Scanner(System.in);
+        CC = new CommandConverter();
         start();
     }
     
@@ -36,7 +38,7 @@ public final class TextInputer {
                     askQuestion("Is rehousing package requested? (Y/N)");
                     askQuestion("Who is responsible for the case request?");
                     askQuestion("Is the citizen informed of the case request? (Y/N)");
-                    //TODO: Save information to DB
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "case":
                     break;
