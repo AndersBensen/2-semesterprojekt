@@ -42,6 +42,14 @@ public class PersistanceContact {
         return "your case has been saved with the ID: " + c.getID();
     }
     
+    public IReader getReader(){
+        return this.reader;
+    }
+    
+    public IWriter getWriter(){
+        return this.writer;
+    }
+    
     
     
     
