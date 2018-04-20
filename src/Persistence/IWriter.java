@@ -5,6 +5,7 @@
  */
 package Persistence;
 
+import Domain.ICase;
 import Domain.IEmployee;
 
 /**
@@ -13,4 +14,5 @@ import Domain.IEmployee;
  */
 public interface IWriter {
     public void writeEmployee(IEmployee employee);
+    public void writeCase(ICase cases);
 }
