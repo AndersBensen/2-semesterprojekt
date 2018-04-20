@@ -1,10 +1,11 @@
 package Domain;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class CaseRequest implements ICaseRequest {
+public class CaseRequest implements ICaseRequest, Serializable {
     //CaseAttributes
     private final int ID;
     private final int employeeID;

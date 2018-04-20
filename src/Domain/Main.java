@@ -32,9 +32,26 @@ public class Main {
          
          pc.injectReader(reader);
          pc.injectWriter(writer);
+                  
+         ICaseRequest c = new CaseRequest(123, 123, 123);
+         ICase ca = new Case((CaseRequest) c);
+         ca.setID(55);
+         System.out.println(pc.saveCase((Case) ca));
+         int k = 0;
+         for(int i = 0; i < PersistanceContact.caseList.size(); i++){
+             if (ca.getID() == PersistanceContact.caseList.get(i))
+             k = i;
+         }
+        
+         Case caa = (Case) pc.getReader().getCase(k);
          
+         
+         System.out.println(caa.getCaseRequest().getCitizenCPR());
+         
+         
+         /*
         String[] p = pc.getReader().getEmployee(1);
-        for (int i = 0; i<9; i++){
+        for (int i = 0; i<8; i++){
           
             System.out.println(p[i]);
         }
@@ -44,10 +61,12 @@ public class Main {
          pc.getWriter().writeEmployee(e);
          
           String[] p1 = pc.getReader().getEmployee(6);
-        for (int i = 0; i<9; i++){
+        for (int i = 0; i<8; i++){
           
             System.out.println(p1[i]);
         }
+        */
+
          
          
 /*

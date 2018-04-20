@@ -5,11 +5,13 @@
  */
 package Domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Peter
  */
-public class Case implements ICase {   // Mangler at logge
+public class Case implements ICase, Serializable {   // Mangler at logge
 
     private int ID;
     private CaseRequest caseRequest;

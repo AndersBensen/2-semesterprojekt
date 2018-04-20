@@ -7,6 +7,7 @@ package Domain;
 import Domain.Case;
 import Persistence.IReader;
 import Persistence.IWriter;
+import java.util.ArrayList;
 /**
  *
  * @author Peter
@@ -14,6 +15,7 @@ import Persistence.IWriter;
 public class PersistanceContact {
     
     private static PersistanceContact instance = null;
+    public static ArrayList<Integer> caseList = new ArrayList<>();
     private IWriter writer;
     private IReader reader;
     private CaseRequest caseRequest;
@@ -39,10 +41,14 @@ public class PersistanceContact {
     }
     
     public String saveCase(Case c){ 
+        System.out.println("trying to write case: " + c.getID());
+        caseList.add(Integer.parseInt(c.getID()+""));
+        writer.writeCase(c);
         return "your case has been saved with the ID: " + c.getID();
     }
     
     public IReader getReader(){
+        
         return this.reader;
     }
     

@@ -5,6 +5,8 @@
  */
 package Persistence;
 
+import Domain.ICase;
+
 /**
  *
  * @author ander
@@ -12,4 +14,5 @@ package Persistence;
 public interface IReader {    
     public String[] getPatient(long cpr);
     public String[] getEmployee(int id);
+    public ICase getCase(int index);
 }
