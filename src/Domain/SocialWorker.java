@@ -5,8 +5,6 @@
  */
 package Domain;
 
-import java.util.Date;
-
 /**
  *
  * @author ander
@@ -17,8 +15,11 @@ public class SocialWorker extends CaseEmployee{
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
-    @Override
-    public void createCaseRequest() {
-        super.createCaseRequest(); //To change body of generated methods, choose Tools | Templates.
+    public void createCase() {
+        
+    }
+    
+    public void editCase() {
+        
     }
 }
