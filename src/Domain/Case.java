@@ -118,7 +118,7 @@ public class Case implements ICase {   // Mangler at logge
         this.citizenIsInformed = citizenIsInformed;
     }
 
-    public void setCitizenRepresentation(String CitizenRepresentation) {
+    public void setCitizenRepresentation(String citizenRepresentation) {
         this.citizenRepresentation = citizenRepresentation;
     }
 
