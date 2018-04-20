@@ -32,14 +32,9 @@ public interface IEmployee {
     
     public String getPassWord();
     
-    public int getSecurityLevel();
-    
     public void setId(int id);
     
     public void setUserName(String userName);
     
     public void setPassword(String password);
-    
-    public void setSecurityLevel(int securityLevel);
-            
 }

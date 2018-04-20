@@ -11,10 +11,14 @@ import java.util.Date;
  *
  * @author ander
  */
-public class SocialWorker extends Employee{
+public class SocialWorker extends CaseEmployee{
     
-    public SocialWorker(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
-        super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password, securityLevel);
+    public SocialWorker(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
+        super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
+    @Override
+    public void createCaseRequest() {
+        super.createCaseRequest(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
