@@ -13,8 +13,8 @@ public class Case implements ICase {   // Mangler at logge
 
     private int ID;
     private CaseRequest caseRequest;
-    private boolean patientIsInformed;
-    private String patientRepresentation;
+    private boolean citizenIsInformed;
+    private String citizenRepresentation;
     private String nextAppointment;
     private String guardianship;
     private String personalHelper;
@@ -23,7 +23,7 @@ public class Case implements ICase {   // Mangler at logge
     private boolean citizenInformedElectronic;
     private boolean consent;
     private String consentType; // can be oral or written
-    private String[] collectPatientInfo;
+    private String[] collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
 
@@ -44,13 +44,13 @@ public class Case implements ICase {   // Mangler at logge
 
     }
 
-    public boolean isPatientIsInformed() {
-        return this.patientIsInformed;
+    public boolean isCitizenIsInformed() {
+        return this.citizenIsInformed;
     }
 
     @Override
-    public String getPatientRepresentation() {
-        return this.patientRepresentation;
+    public String getCitizenRepresentation() {
+        return this.citizenRepresentation;
     }
 
     @Override
@@ -91,8 +91,8 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public String[] getCollectPatientInfo() {
-        return collectPatientInfo;
+    public String[] getCollectCitizenInfo() {
+        return collectCitizenInfo;
     }
 
     @Override
@@ -114,12 +114,12 @@ public class Case implements ICase {   // Mangler at logge
         this.caseRequest = caseRequest;
     }
 
-    public void setPatientIsInformed(boolean patientIsInformed) {
-        this.patientIsInformed = patientIsInformed;
+    public void setCitizenIsInformed(boolean citizenIsInformed) {
+        this.citizenIsInformed = citizenIsInformed;
     }
 
-    public void setPatientRepresentation(String patientRepresentation) {
-        this.patientRepresentation = patientRepresentation;
+    public void setCitizenRepresentation(String CitizenRepresentation) {
+        this.citizenRepresentation = citizenRepresentation;
     }
 
     public void setNextAppointment(String nextAppointment) {
@@ -154,8 +154,8 @@ public class Case implements ICase {   // Mangler at logge
         this.consentType = consentType;
     }
 
-    public void setCollectPatientInfo(String[] collectPatientInfo) {
-        this.collectPatientInfo = collectPatientInfo;
+    public void setCollectCitizenInfo(String[] collectCitizenInfo) {
+        this.collectCitizenInfo = collectCitizenInfo;
     }
 
     public void setSpecialCircumstances(String specialCircumstances) {
