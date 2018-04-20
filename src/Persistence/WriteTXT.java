@@ -30,7 +30,6 @@ public class WriteTXT implements IWriter{
         String id = Integer.toString(employee.getId());
         String userName = employee.getUserName();
         String password = employee.getPassWord();
-        String securityLevel = Integer.toString(employee.getSecurityLevel());
         
         StringBuilder sb = new StringBuilder();
         sb.append(cpr);
@@ -52,8 +51,6 @@ public class WriteTXT implements IWriter{
         sb.append(userName);
         sb.append(";");
         sb.append(password);
-        sb.append(";");
-        sb.append(securityLevel);
         System.out.println(sb);  
         
         PrintWriter outputStream = null;
