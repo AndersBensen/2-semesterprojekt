@@ -98,44 +98,55 @@ public class WriteTXT implements IWriter{
     
     
     
+    @Override
      public void writeCase(ICase cases) {
-    int ID;
-    CaseRequest caseRequest = cases.getCaseRequest();
-    boolean citizenIsInformed = cases.isCitizenIsInformed();
+    String ID = Integer.toString(cases.getID());
+    String caseRequestID = Integer.toString(cases.getCaseRequestID());
+    String citizenIsInformed = Boolean.toString(cases.isCitizenIsInformed());
     String citizenRepresentation = cases.getCitizenRepresentation();
     String nextAppointment = cases.getNextAppointment();
     String guardianship = cases.getGuardianship();
     String personalHelper = cases.getPersonalHelper();
-    boolean personalHelperPowerOfAttorney;
-    String citizenRights;
-    boolean citizenInformedElectronic;
-    boolean consent;
-    String consentType; // can be oral or written
-    String[] collectCitizenInfo;
-    String specialCircumstances;
-    String differentCommune;
+    String personalHelperPowerOfAttorney = Boolean.toString(cases.isPersonalHelperPowerOfAttorney());
+    String citizenRights = cases.getCitizenRights();
+    String citizenInformedElectronic = Boolean.toString(cases.isCitizenInformedElectronic());
+    String consent = Boolean.toString(cases.hasConsent());
+    String consentType = cases.getConsentType(); // can be oral or written
+    String[] collectCitizenInfo = cases.getCollectCitizenInfo();
+    String specialCircumstances = cases.getSpecialCircumstances();
+    String differentCommune = cases.getDifferentCommune();
    
         
         StringBuilder sb = new StringBuilder();
-        sb.append(cpr);
+        sb.append(ID+"");
         sb.append(";");
-        sb.append(name);
+        sb.append(caseRequestID);
         sb.append(";");
-        sb.append(gender);
+        sb.append(citizenIsInformed);
         sb.append(";");
-        sb.append(date);
+        sb.append(citizenRepresentation);
         sb.append(";");
-        sb.append(address);
+        sb.append(nextAppointment);
         sb.append(";");
-        sb.append(phoneNumber);
+        sb.append(guardianship);
         sb.append(";");
-        sb.append(mail);
+        sb.append(personalHelper);
         sb.append(";");
-        sb.append(id);
+        sb.append(personalHelperPowerOfAttorney);
         sb.append(";");
-        sb.append(userName);
+        sb.append(citizenRights);
         sb.append(";");
-        sb.append(password);
+        sb.append(citizenInformedElectronic);
+        sb.append(";");
+        sb.append(consent);
+        sb.append(";");
+        sb.append(consentType);
+        sb.append(";");
+        sb.append(collectCitizenInfo);
+        sb.append(";");
+        sb.append(specialCircumstances);
+        sb.append(";");
+        sb.append(differentCommune);
         System.out.println(sb);  
         
         PrintWriter outputStream = null;

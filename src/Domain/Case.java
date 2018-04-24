@@ -12,7 +12,7 @@ package Domain;
 public class Case implements ICase {   // Mangler at logge
 
     private int ID;
-    private CaseRequest caseRequest;
+    private int caseRequestID;
     private boolean citizenIsInformed;
     private String citizenRepresentation;
     private String nextAppointment;
@@ -27,8 +27,8 @@ public class Case implements ICase {   // Mangler at logge
     private String specialCircumstances;
     private String differentCommune;
 
-    public Case(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
+    public Case(int caseRequestID) {
+        this.caseRequestID = caseRequestID;
 
     }
 //getters
@@ -39,8 +39,8 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public CaseRequest getCaseRequest() {
-        return caseRequest;
+    public int getCaseRequestID() {
+        return caseRequestID;
 
     }
 
@@ -113,8 +113,8 @@ public class Case implements ICase {   // Mangler at logge
         this.ID = ID;
     }
 
-    public void setCaseReq(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
+    public void setCaseRequestID(int caseRequestID) {
+        this.caseRequestID = caseRequestID;
     }
 
     public void setCitizenIsInformed(boolean citizenIsInformed) {
