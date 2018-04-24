@@ -3,8 +3,3 @@
 1001760011;Jeppe Olsen;M;10-01-1976;Birkeparken 230, 5240 Odense NV;23242323;jeppe@awesomemail.dk;3;jeppedrengen;megetHemmelig
 0202860100;Signe Gade;F;02-02-1986;Torpvej 38, 5260 Odense S;23232424;signe@awesomemail.dk;4;signepigen;megetHemmelig
 1111830101;Markus Larsen;M;11-11-1983;Bangs Alle 4, 5250 Odense SV;24232323;markus@awesomemail.dk;5;markusmanden;megetHemmelig
-1509962000;anders;m;15-09-1979;odensevej 3, 5000 odense N;20506070;anders@mail.dk;6;AH02;password
-
-1509962000;anders;m;15-09-1979;odensevej 3, 5000 odense N;20506070;anders@mail.dk;6;AH02;password
-
-1509962000;anders;m;15-09-1979;odensevej 3, 5000 odense N;20506070;anders@mail.dk;6;AH02;password
