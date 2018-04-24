@@ -7,6 +7,7 @@ package Persistence;
 
 import Domain.CaseRequest;
 import Domain.ICase;
+import Domain.ICaseRequest;
 import Domain.IEmployee;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,6 +23,7 @@ import java.io.PrintWriter;
 public class WriteTXT implements IWriter{
     private File file = new File("Employees.txt");
     private File caseFile = new File("Cases.txt");
+    private File caseRequestsFile = new File("CaseRequests.txt");
     
     @Override
     public void writeEmployee(IEmployee employee) {
@@ -163,4 +165,73 @@ public class WriteTXT implements IWriter{
         outputStream.close();
         System.out.println("employee was written to: " + caseFile);
     }
+     
+     public void writeCaseRequest(ICaseRequest caseRequests){
+      String ID = Integer.toString(caseRequests.getID());
+      String employeeID = Integer.toString(caseRequests.getEmployeeID());
+      String description = caseRequests.getDescription();
+      String MessageClear = Boolean.toString(caseRequests.isMessageClear());
+      String CarePackageRequested = Boolean.toString(caseRequests.isCarePackageRequested());
+      String RehousingPackageRequested = Boolean.toString(caseRequests.isRehousingPackageRequested());
+      String requestPerson = caseRequests.getRequestPerson();
+      String CitizenInformed = Boolean.toString(caseRequests.isCitizenInformed());
+     //CitizenAttributes
+      String citizenCPR = Long.toString(caseRequests.getCitizenCPR());
+      String citizenName = caseRequests.getCitizenName();
+      String citizenGender = caseRequests.getCitizenGender() + "";
+      String citizenBirthdate = caseRequests.getCitizenBirthdate().toString();
+      String citizenAddress = caseRequests.getCitizenAddress();
+      String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
+      String citizenMail = caseRequests.getCitizenMail();
+      
+      
+      StringBuilder sb = new StringBuilder();
+        sb.append(ID);
+        sb.append(";");
+        sb.append(employeeID);
+        sb.append(";");
+        sb.append(description);
+        sb.append(";");
+        sb.append(MessageClear);
+        sb.append(";");
+        sb.append(CarePackageRequested);
+        sb.append(";");
+        sb.append(RehousingPackageRequested);
+        sb.append(";");
+        sb.append(requestPerson);
+        sb.append(";");
+        sb.append(CitizenInformed);
+        sb.append(";");
+        sb.append(citizenCPR);
+        sb.append(";");
+        sb.append(citizenName);
+        System.out.println(sb);  
+        sb.append(citizenGender);
+        sb.append(";");
+        sb.append(citizenBirthdate);
+        sb.append(";");
+        sb.append(citizenAddress);
+        System.out.println(sb); 
+        sb.append(citizenPhoneNr);
+        sb.append(";");
+        sb.append(citizenMail);
+       
+        
+        PrintWriter outputStream = null;
+        try { 
+            //outputStream = new PrintWriter(fileName);
+            outputStream = new PrintWriter(new FileOutputStream(caseRequestsFile, true));
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("Error loading the file: " + caseRequestsFile);
+            System.exit(0);
+        }
+        outputStream.println("\n" + sb);
+        outputStream.close();
+        System.out.println("Case request was written to: " + caseRequestsFile);
+         
+     }
 }
+     
+     
+
