@@ -11,11 +11,11 @@ package Domain;
  */
 public interface ICase {
 
-    CaseRequest getCaseRequest();
+    int getCaseRequestID();
 
     String getCitizenRights();
 
-    String[] getCollectCitizenInfo();
+    String getCollectCitizenInfo();
 
     String getConsentType();
 
@@ -32,5 +32,13 @@ public interface ICase {
     String getPersonalHelper();
 
     String getSpecialCircumstances();
+    
+    boolean hasConsent();
+    
+    boolean isCitizenInformedElectronic();
+    
+    boolean isPersonalHelperPowerOfAttorney();
+    
+    boolean isCitizenIsInformed();
 
 }
