@@ -11,17 +11,17 @@ public final class TextInputer {
     private Scanner input;
     private CommandConverter CC;
     
-    public TextInputer() {
+    public TextInputer(CommandConverter CC) {
         input = new Scanner(System.in);
-        CC = new CommandConverter();
+        this.CC = CC;
         start();
     }
     
     public void start() {
         while(true) {
             information = new LinkedList();
-            String command = input.next().toLowerCase();
-            information.add(command);
+            System.out.println("\nEnter a valid command:\n");
+            String command = input.nextLine().toLowerCase();
             
             switch(command) {
                 case "caserequest":

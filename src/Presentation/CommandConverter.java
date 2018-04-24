@@ -15,18 +15,19 @@ public class CommandConverter {
             case "caserequest":
                 try {
                 long citizenCPR = Long.parseLong(args[0]);
-                String desc = args[1];
-                boolean messageClear = getBooleanFromInput(args[2]);
-                boolean carePackageRequested = getBooleanFromInput(args[3]);
-                boolean rehousingPackageRequested = getBooleanFromInput(args[4]);
-                String requestPerson = args[5];
-                boolean citizenInformed = getBooleanFromInput(args[6]);
-                String citizenName = args[7];
-                char citizenGender = args[8].charAt(0);
-                String citizenBirthdate = args[9];
-                String citizenAddress = args[10];
-                Integer citizenPhoneNr = Integer.parseInt(args[11]);
-                String citizenMail = args[12];
+                String citizenName = args[1];
+                char citizenGender = args[2].charAt(0);
+                String citizenBirthdate = args[3];
+                String citizenAddress = args[4];
+                Integer citizenPhoneNr = Integer.parseInt(args[5]);
+                String citizenMail = args[6];
+                String desc = args[7];
+                boolean messageClear = getBooleanFromInput(args[8]);
+                boolean carePackageRequested = getBooleanFromInput(args[9]);
+                boolean rehousingPackageRequested = getBooleanFromInput(args[10]);
+                String requestPerson = args[11];
+                boolean citizenInformed = getBooleanFromInput(args[12]);
+                
                 domainContact.saveCaseRequest(citizenCPR, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
                 } catch (NumberFormatException e) {
                 e.printStackTrace();
