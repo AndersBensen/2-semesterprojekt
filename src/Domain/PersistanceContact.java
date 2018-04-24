@@ -36,6 +36,7 @@ public class PersistanceContact {
     
     public void saveCaseRequest(CaseRequest caseRequest){
         this.caseRequest = caseRequest;
+        System.out.println("Case request have been saved!");
     }
     
     public String saveCase(Case c){ 
