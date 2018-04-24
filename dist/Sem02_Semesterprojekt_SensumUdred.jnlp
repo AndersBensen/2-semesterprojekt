@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Sem02_Semesterprojekt_SensumUdred.jar" size="18140" download="eager" />
+    <jar href="Sem02_Semesterprojekt_SensumUdred.jar" size="21064" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Sem02_Semesterprojekt_SensumUdred" >
     <param name="requiredFXVersion" value="8.0+"/>

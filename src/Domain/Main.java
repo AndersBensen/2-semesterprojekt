@@ -41,8 +41,8 @@ public class Main {
          cr.setRehousingPackageRequested(false);
          cr.setRequestPerson("mommy");
          
-         Case c = new Case(cr.getID());
-       
+         Case c = new Case(1000, cr.getID());
+         c.setCaseRequestID(300);
          
          writer.writeCase(c);
          writer.writeCaseRequest(cr);
