@@ -21,6 +21,7 @@ import java.io.PrintWriter;
  */
 public class WriteTXT implements IWriter{
     private File file = new File("Employees.txt");
+    private File caseFile = new File("Cases.txt");
     
     @Override
     public void writeEmployee(IEmployee employee) {
@@ -152,14 +153,14 @@ public class WriteTXT implements IWriter{
         PrintWriter outputStream = null;
         try { 
             //outputStream = new PrintWriter(fileName);
-            outputStream = new PrintWriter(new FileOutputStream(file, true));
+            outputStream = new PrintWriter(new FileOutputStream(caseFile, true));
         } 
         catch (FileNotFoundException e) {
-            System.out.println("Error loading the file: " + file);
+            System.out.println("Error loading the file: " + caseFile);
             System.exit(0);
         }
         outputStream.println("\n" + sb);
         outputStream.close();
-        System.out.println("employee was written to: " + file);
+        System.out.println("employee was written to: " + caseFile);
     }
 }

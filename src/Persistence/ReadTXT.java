@@ -69,5 +69,29 @@ public class ReadTXT implements IReader{
             System.out.println("NUMBER FORMAT EXCEPTION");
         }
         return employee; 
-    }   
+    }
+    
+    @Override
+    public String[] getCase(int id) {
+        String[] tokens = new String[5]; 
+        String[] employee = new String[10];
+        String word;
+        try (Scanner input = new Scanner(file2)){
+            while (input.hasNextLine()) {
+                word = input.nextLine();
+                tokens = word.split(";");
+                if (Integer.parseInt(tokens[7]) == id) {
+                    employee = word.split(";");
+                }     
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("FILE NOT FOUND EXCEPTION");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("NUMBER FORMAT EXCEPTION");
+        }
+        return employee; 
+    }
+    
 }
