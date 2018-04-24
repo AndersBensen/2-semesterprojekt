@@ -7,6 +7,7 @@ package Starter;
 
 import Domain.DomainContact;
 import Domain.Employee;
+import Domain.IDomainContact;
 import Domain.IEmployee;
 import Domain.PersistanceContact;
 import Persistence.IReader;
@@ -26,22 +27,19 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        PersistanceContact PC = PersistanceContact.getInstance();
+
+        IReader reader = new ReadTXT();
+        IWriter writer = new WriteTXT();
+
+        PC.injectReader(reader);
+        PC.injectWriter(writer);
+        
         CommandConverter CC = new CommandConverter();
-        CC.injectDomainContact(DomainContact.getInstance());
-        TextInputer TI = new TextInputer(CC);
-        TI.injectDomainContact(DomainContact.getInstance());
+        IDomainContact IDC = DomainContact.getInstance();
+        CC.injectDomainContact(IDC);
+        TextInputer TI = new TextInputer(CC, IDC);
         TI.start();
-        
-        
-//        PersistanceContact pc = new PersistanceContact();
-//        
-//
-//
-//         IReader reader = new ReadTXT();
-//         IWriter writer = new WriteTXT();
-//         
-//         pc.injectReader(reader);
-//         pc.injectWriter(writer);
 //         
 //        String[] p = pc.getReader().getEmployee(1);
 //        for (int i = 0; i<9; i++){
@@ -58,9 +56,8 @@ public class Main {
 //          
 //            System.out.println(p1[i]);
 //        }
-         
-         
-/*
+
+        /*
         Admin a = new Admin(0000, "Loc Hansen", 'M', "15-09-1998", "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password", 3);
 
         // IWriter writer = "anders og josef"
@@ -74,7 +71,7 @@ public class Main {
         System.out.println(a.toString());
         a.deleteEmployee(2);
         System.out.println(a.toString());
-*/
+         */
     }
 
 }

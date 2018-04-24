@@ -14,14 +14,11 @@ public final class TextInputer {
     private CommandConverter CC;
     private IDomainContact IDC;
     
-    public TextInputer(CommandConverter CC) {
+    public TextInputer(CommandConverter CC, IDomainContact IDC) {
         input = new Scanner(System.in);
         this.CC = CC;
+        this.IDC = IDC;
         start();
-    }
-    
-    public void injectDomainContact(IDomainContact domainContact) {
-        this.IDC = domainContact;
     }
     
     public void start() {

@@ -42,7 +42,11 @@ public class DomainContact implements IDomainContact {
 
     @Override
     public IPerson getPerson(long CPR) {
-        //TODO getPerson from PersistanceContact
-        return null;
+        PersistanceContact PS = PersistanceContact.getInstance();
+        return PS.getPerson(CPR);
+    }
+    
+    public Employee getCurrentUser() {
+        return currentUser;
     }
 }
