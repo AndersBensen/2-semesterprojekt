@@ -45,9 +45,13 @@ public class PersistanceContact {
         return "your case has been saved with the ID: " + c.getID();
     }
     
+    
+    
+    
+    
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
-       Person person = new Person(Long.getLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.getInteger(p[5]), p[6]);
+       Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.parseInt(p[5]), p[6]);
        return person;
     }
     
