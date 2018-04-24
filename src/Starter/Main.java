@@ -26,10 +26,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         CommandConverter CC = new CommandConverter();
         CC.injectDomainContact(DomainContact.getInstance());
         TextInputer TI = new TextInputer(CC);
+        TI.injectDomainContact(DomainContact.getInstance());
         TI.start();
         
         

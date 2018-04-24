@@ -1,5 +1,7 @@
 package Presentation;
 
+import Domain.IDomainContact;
+import Domain.IPerson;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +12,16 @@ public final class TextInputer {
     private List<String> information;
     private Scanner input;
     private CommandConverter CC;
+    private IDomainContact IDC;
     
     public TextInputer(CommandConverter CC) {
         input = new Scanner(System.in);
         this.CC = CC;
         start();
+    }
+    
+    public void injectDomainContact(IDomainContact domainContact) {
+        this.IDC = domainContact;
     }
     
     public void start() {
@@ -26,10 +33,19 @@ public final class TextInputer {
             switch(command) {
                 case "caserequest":
                     askQuestion("CPR number of the patient?");
+                    IPerson person = IDC.getPerson(Long.parseLong(information.get(0)));
+                    if(person != null) {
+                        information.add(person.getName());
+                        information.add(Character.toString(person.getGender()));
+                        information.add(person.getBirthDate());
+                        information.add(person.getAddress());
+                    }
+                    else {
                     askQuestion("Name of the patient?");
                     askQuestion("Gender of the patient?");
                     askQuestion("Birthdate of the patient?");
                     askQuestion("Address of the patient?");
+                    }
                     askQuestion("Phone number of the patient?");
                     askQuestion("Email of the patient?");
                     askQuestion("Description of the case request");
