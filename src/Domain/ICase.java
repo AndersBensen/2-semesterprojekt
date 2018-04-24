@@ -32,5 +32,13 @@ public interface ICase {
     String getPersonalHelper();
 
     String getSpecialCircumstances();
+    
+    boolean hasConsent();
+    
+    boolean isCitizenInformedElectronic();
+    
+    boolean isPersonalHelperPowerOfAttorney();
+    
+    boolean isCitizenIsInformed();
 
 }

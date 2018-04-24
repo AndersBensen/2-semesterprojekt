@@ -44,6 +44,7 @@ public class Case implements ICase {   // Mangler at logge
 
     }
 
+    @Override
     public boolean isCitizenIsInformed() {
         return this.citizenIsInformed;
     }
@@ -77,10 +78,12 @@ public class Case implements ICase {   // Mangler at logge
         return citizenRights;
     }
 
+    @Override
     public boolean isCitizenInformedElectronic() {
         return citizenInformedElectronic;
     }
 
+    @Override
     public boolean hasConsent() {
         return consent;
     }
