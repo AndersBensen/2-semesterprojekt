@@ -14,7 +14,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -119,6 +122,29 @@ public class WriteTXT implements IWriter{
     String specialCircumstances = cases.getSpecialCircumstances();
     String differentCommune = cases.getDifferentCommune();
    
+    try {
+            BufferedReader brFile = new BufferedReader(new FileReader(caseFile));
+            String line;
+            String input = ""; 
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(cases.getID() + ";")) {
+                    line = "";
+                    System.out.println("Line deleteed");
+                }
+                else {
+                    line = line + '\n';
+                }
+                input += line;
+            }
+            FileOutputStream fosFile = new FileOutputStream(caseFile);
+            fosFile.write(input.getBytes());
+            brFile.close();
+            fosFile.close();
+        } catch (Exception e) {
+            System.out.println("Problems reading");
+        }
+    
+    
         
         StringBuilder sb = new StringBuilder();
         sb.append(ID+"");
@@ -163,7 +189,8 @@ public class WriteTXT implements IWriter{
         }
         outputStream.println("\n" + sb);
         outputStream.close();
-        System.out.println("employee was written to: " + caseFile);
+        System.out.println("case was written to: " + caseFile);
+
     }
      
     @Override
@@ -185,6 +212,27 @@ public class WriteTXT implements IWriter{
       String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
       String citizenMail = caseRequests.getCitizenMail();
       
+       try {
+            BufferedReader brFile = new BufferedReader(new FileReader(caseRequestsFile));
+            String line;
+            String input = ""; 
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(caseRequests.getID() + ";")) {
+                    line = "";
+                    System.out.println("Line deleteed");
+                }
+                else {
+                    line = line + '\n';
+                }
+                input += line;
+            }
+            FileOutputStream fosFile = new FileOutputStream(caseRequestsFile);
+            fosFile.write(input.getBytes());
+            brFile.close();
+            fosFile.close();
+        } catch (Exception e) {
+            System.out.println("Problems reading");
+        }
       
       StringBuilder sb = new StringBuilder();
         sb.append(ID);

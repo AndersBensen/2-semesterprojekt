@@ -27,7 +27,8 @@ public class Case implements ICase {   // Mangler at logge
     private String specialCircumstances;
     private String differentCommune;
 
-    public Case(int caseRequestID) {
+    public Case(int caseID, int caseRequestID) {
+        this.ID = caseID;
         this.caseRequestID = caseRequestID;
 
     }
@@ -108,10 +109,6 @@ public class Case implements ICase {   // Mangler at logge
         return differentCommune;
     }
 //setters
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public void setCaseRequestID(int caseRequestID) {
         this.caseRequestID = caseRequestID;
