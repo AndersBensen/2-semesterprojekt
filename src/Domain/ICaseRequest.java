@@ -18,6 +18,6 @@ public interface ICaseRequest {
     public char getCitizenGender();
     public String getCitizenBirthdate();
     public String getCitizenAddress();
-    public int getCitizenPhoneNr();
+    public Integer getCitizenPhoneNr();
     public String getCitizenMail();
 }

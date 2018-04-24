@@ -15,8 +15,20 @@ public class CaseEmployee extends Employee{
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
-    public void  createCaseRequest() {
-        
+    public void createCaseRequest(int caseRequestID, int EmployeeID, long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
+        CaseRequest CR = new CaseRequest(caseRequestID, EmployeeID, citizenCPR);
+        CR.setDescription(desc);
+        CR.setMessageClear(isMessageClear);
+        CR.setCarePackageRequested(isCarePackage);
+        CR.setRehousingPackageRequested(isRehousingPackage);
+        CR.setCitizenInformed(isCitizenInformed);
+        CR.connectCitizen(citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress);
+        if(citizenPhoneNr != null) {
+            CR.setCitizenPhoneNr(citizenPhoneNr);
+        }
+        if(citizenMail != null) {
+            CR.setCitizenMail(citizenMail);
+        }
+        PersistanceContact.getInstance().saveCaseRequest(CR);
     }
-    
 }
