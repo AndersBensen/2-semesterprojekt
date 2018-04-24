@@ -64,22 +64,23 @@ public class Admin extends Employee{
         switch (positionNumber) {
             case 1: 
                 e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.getWriter().writeEmployee(e);
+                ps.saveEmployee(e);
                 break;
             case 2:
                 e = new SocialWorker(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.getWriter().writeEmployee(e);
+                ps.saveEmployee(e);
                 break;
             case 3:
                 e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.getWriter().writeEmployee(e);
+                ps.saveEmployee(e);
                 break;
             default: 
                 System.out.println("Please enter a number between 1 and 3");
         }
+        ps.logAction(2, LogAction.SAVE_EMPLOYEE, "Added employee to persistance layer");
     }
     
     public void deleteEmployee(int id) {
-        ps.getWriter().deleteEmployee(id);
+        ps.deleteEmployee(id);
     }
 }

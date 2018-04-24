@@ -9,6 +9,7 @@ import Domain.CaseRequest;
 import Domain.ICase;
 import Domain.ICaseRequest;
 import Domain.IEmployee;
+import Domain.ILog;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,9 +25,41 @@ import java.util.logging.Logger;
  * @author ander
  */
 public class WriteTXT implements IWriter{
-    private File file = new File("Employees.txt");
+    private File logFile = new File("log.txt");
+    private File employeeFile = new File("Employees.txt");
     private File caseFile = new File("Cases.txt");
     private File caseRequestsFile = new File("CaseRequests.txt");
+    
+    @Override
+    public void writeLog(ILog log) {
+        String employeeID = Integer.toString(log.getEmployeeID());
+        String action = log.getAction().toString();
+        String desc = log.getDesc();
+        String date = log.getDate().toString();
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(employeeID);
+        sb.append(";");
+        sb.append(action);
+        sb.append(";");
+        sb.append(desc);
+        sb.append(";");
+        sb.append(date);
+         
+        
+        PrintWriter outputStream = null;
+        try { 
+            //outputStream = new PrintWriter(fileName);
+            outputStream = new PrintWriter(new FileOutputStream(logFile, true));
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("Error loading the file: " + logFile);
+            System.exit(0);
+        }
+        outputStream.println("\n" + sb);
+        outputStream.close();
+        System.out.println("employee was written to: " + logFile);
+    }
     
     @Override
     public void writeEmployee(IEmployee employee) {
@@ -66,21 +99,21 @@ public class WriteTXT implements IWriter{
         PrintWriter outputStream = null;
         try { 
             //outputStream = new PrintWriter(fileName);
-            outputStream = new PrintWriter(new FileOutputStream(file, true));
+            outputStream = new PrintWriter(new FileOutputStream(employeeFile, true));
         } 
         catch (FileNotFoundException e) {
-            System.out.println("Error loading the file: " + file);
+            System.out.println("Error loading the file: " + employeeFile);
             System.exit(0);
         }
         outputStream.println("\n" + sb);
         outputStream.close();
-        System.out.println("employee was written to: " + file);
+        System.out.println("employee was written to: " + employeeFile);
     }
     
     @Override
     public void deleteEmployee(int id) {
         try {
-            BufferedReader brFile = new BufferedReader(new FileReader(file));
+            BufferedReader brFile = new BufferedReader(new FileReader(employeeFile));
             String line;
             String input = ""; 
             while ((line = brFile.readLine()) != null) {
@@ -93,7 +126,7 @@ public class WriteTXT implements IWriter{
                 }
                 input += line;
             }
-            FileOutputStream fosFile = new FileOutputStream(file);
+            FileOutputStream fosFile = new FileOutputStream(employeeFile);
             fosFile.write(input.getBytes());
             brFile.close();
             fosFile.close();
@@ -101,8 +134,6 @@ public class WriteTXT implements IWriter{
             System.out.println("Problems reading");
         }
     }
-    
-    
     
     @Override
      public void writeCase(ICase cases) {

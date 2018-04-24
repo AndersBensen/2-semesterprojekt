@@ -8,6 +8,7 @@ package Persistence;
 import Domain.ICase;
 import Domain.ICaseRequest;
 import Domain.IEmployee;
+import Domain.ILog;
 
 /**
  *
@@ -18,4 +19,5 @@ public interface IWriter {
     public void deleteEmployee(int id); 
     public void writeCase(ICase cases);
     public void writeCaseRequest(ICaseRequest ICR);
+    public void writeLog(ILog log); 
 }
