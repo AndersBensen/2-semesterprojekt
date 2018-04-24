@@ -12,7 +12,7 @@ package Domain;
 public class Case implements ICase {   // Mangler at logge
 
     private int ID;
-    private CaseRequest caseRequest;
+    private int caseRequestID;
     private boolean citizenIsInformed;
     private String citizenRepresentation;
     private String nextAppointment;
@@ -23,12 +23,12 @@ public class Case implements ICase {   // Mangler at logge
     private boolean citizenInformedElectronic;
     private boolean consent;
     private String consentType; // can be oral or written
-    private String[] collectCitizenInfo;
+    private String collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
 
-    public Case(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
+    public Case(int caseRequestID) {
+        this.caseRequestID = caseRequestID;
 
     }
 //getters
@@ -39,11 +39,12 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public CaseRequest getCaseRequest() {
-        return caseRequest;
+    public int getCaseRequestID() {
+        return caseRequestID;
 
     }
 
+    @Override
     public boolean isCitizenIsInformed() {
         return this.citizenIsInformed;
     }
@@ -77,10 +78,12 @@ public class Case implements ICase {   // Mangler at logge
         return citizenRights;
     }
 
+    @Override
     public boolean isCitizenInformedElectronic() {
         return citizenInformedElectronic;
     }
 
+    @Override
     public boolean hasConsent() {
         return consent;
     }
@@ -91,7 +94,7 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public String[] getCollectCitizenInfo() {
+    public String getCollectCitizenInfo() {
         return collectCitizenInfo;
     }
 
@@ -110,8 +113,8 @@ public class Case implements ICase {   // Mangler at logge
         this.ID = ID;
     }
 
-    public void setCaseReq(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
+    public void setCaseRequestID(int caseRequestID) {
+        this.caseRequestID = caseRequestID;
     }
 
     public void setCitizenIsInformed(boolean citizenIsInformed) {
@@ -154,7 +157,7 @@ public class Case implements ICase {   // Mangler at logge
         this.consentType = consentType;
     }
 
-    public void setCollectCitizenInfo(String[] collectCitizenInfo) {
+    public void setCollectCitizenInfo(String collectCitizenInfo) {
         this.collectCitizenInfo = collectCitizenInfo;
     }
 

@@ -33,6 +33,35 @@ public class Main {
          pc.injectReader(reader);
          pc.injectWriter(writer);
          
+         CaseRequest cr = new CaseRequest(100, 1, 1007951010);
+         cr.setCarePackageRequested(true);
+         cr.setCitizenInformed(true);
+         cr.setDescription("Descri");
+         cr.setMessageClear(true);
+         cr.setRehousingPackageRequested(false);
+         cr.setRequestPerson("mommy");
+         
+         Case c = new Case(cr.getID());
+       
+         
+         writer.writeCase(c);
+         writer.writeCaseRequest(cr);
+         
+         String[] casess = reader.getCase(500);
+         String[] crs = reader.getCaseRequest(100);
+         int i = 0;
+         for(String s : casess){
+             System.out.println(s + " " + i++);
+         }
+         System.out.println("-------------");
+         i =0;
+          for(String s : crs){
+             System.out.println(s+ " " + i++);
+         }
+         
+         
+         
+         /*
         String[] p = pc.getReader().getEmployee(1);
         for (int i = 0; i<9; i++){
           
@@ -48,7 +77,7 @@ public class Main {
           
             System.out.println(p1[i]);
         }
-         
+         */
          
 /*
         Admin a = new Admin(0000, "Loc Hansen", 'M', "15-09-1998", "Munkevej 15, 5000 Odense N", 20010203, "loc@mail.dk", 1, "LH01", "password", 3);

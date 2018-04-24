@@ -1,0 +1,12 @@
+
+500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+
+500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+
+500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+
+500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+
+500;100;false;null;null;null;null;false;null;false;false;null;Hej ,Hej ,Hej ,Hej ,Hej ,null,null,null,null,null,;null;null
+
+0;100;false;null;null;null;null;false;null;false;false;null;null;null;null

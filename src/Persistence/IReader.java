@@ -12,4 +12,6 @@ package Persistence;
 public interface IReader {    
     public String[] getPerson(long cpr);
     public String[] getEmployee(int id);
+    public String[] getCase(int id);
+    public String[] getCaseRequest(int id);
 }
