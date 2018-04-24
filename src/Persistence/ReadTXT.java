@@ -26,7 +26,7 @@ public class ReadTXT implements IReader{
      * @return
      */
     @Override
-    public String[] getPatient(long cpr) {
+    public String[] getPerson(long cpr) {
         String[] tokens = new String[5]; 
         String[] patient = new String[5];
         String word;

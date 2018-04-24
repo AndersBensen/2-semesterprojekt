@@ -5,67 +5,81 @@
  */
 package Domain;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 /**
  *
  * @author ander
  */
 public class Admin extends Employee{
-    ArrayList<Employee> al = new ArrayList<>();
+    private PersistanceContact ps;
     
-    public Admin(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
+    public Admin(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
+        ps = PersistanceContact.getInstance();
     }
     
-    public void addEmployee(int cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int securityLevel) {
-        Employee e;
-        switch (securityLevel) {
-            case 1:
+    /**
+     * The method below belongs in the presentation layer. 
+     * @param cpr
+     * @param name
+     * @param gender
+     * @param birthDate
+     * @param address
+     * @param phoneNumber
+     * @param mail
+     * @param id
+     * @param userName
+     * @param password
+     * @param positionNumber 
+     */
+//    public void findPerson(long cpr) {
+//        String[] person = ps.getReader().getPerson(cpr); 
+//        long cprFromPerson = Long.parseLong(person[0]);
+//        String nameFromPerson = person[1];
+//        char genderFromPerson = person[2].charAt(0);
+//        String birthDateFromPerson = person[3];
+//        String addressFromPerson = person[4];
+//        
+//        System.out.println("CPR: " + cprFromPerson + ", name: " + nameFromPerson + ", gender: " + genderFromPerson + ", birthdate: " + birthDateFromPerson + ", address: " + addressFromPerson);
+//        
+//        Scanner input = new Scanner(System.in);
+//        
+//        System.out.println("Please enter the employees phonenumber: ");
+//        int phoneNumber = input.nextInt();
+//        System.out.println("Please enter the employees mail: ");
+//        String mail = input.nextLine();
+//        System.out.println("Please enter the employees id: ");
+//        int id = input.nextInt();
+//        System.out.println("Please enter the employees user name: ");
+//        String userName = input.nextLine();
+//        System.out.println("Please enter the employees password: ");
+//        String password = input.nextLine();
+//        System.out.println("Is the employee a Secretary (press 1), Social worker (press 2) or a Admin? (press 3)");
+//        int positionNumber = input.nextInt();
+//        
+//        addEmployee(cprFromPerson, nameFromPerson, genderFromPerson, birthDateFromPerson, addressFromPerson, phoneNumber, mail, id, userName, password, positionNumber);
+//    }
+    
+    public void addEmployee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
+        IEmployee e;
+        switch (positionNumber) {
+            case 1: 
                 e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                al.add(e);
+                ps.getWriter().writeEmployee(e);
                 break;
             case 2:
                 e = new SocialWorker(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                al.add(e);
+                ps.getWriter().writeEmployee(e);
                 break;
             case 3:
                 e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                al.add(e);
+                ps.getWriter().writeEmployee(e);
                 break;
-            default:
-                System.out.println("Security level must be between 1 and 3.");
-                break;
+            default: 
+                System.out.println("Please enter a number between 1 and 3");
         }
     }
     
     public void deleteEmployee(int id) {
-        List<Employee> toRemove = new ArrayList<>();
-        for (Employee employee : al) {
-            if (id == employee.getId()) {
-                toRemove.add(employee);
-            }
-        }
-        al.removeAll(toRemove);
-    }
-    
-    @Override
-    public String toString() {
-        String s = "";
-        for(int i = 0; i < al.size(); i++) {
-            s += al.get(i).getAddress() + "\n";
-            s += al.get(i).getBirthDate() + "\n";
-            s += al.get(i).getCpr()+ "\n";
-            s += al.get(i).getId()+ "\n";
-            s += al.get(i).getMail()+ "\n";
-            s +=  al.get(i).getName()+ "\n";
-            s += al.get(i).getPassWord()+ "\n";
-            s +=al.get(i).getPhoneNumber()+ "\n";
-            s += al.get(i).getGender()+ "\n";
-            s += al.get(i).getUserName()+ "\n";
-        }
-        return s; 
+        ps.getWriter().deleteEmployee(id);
     }
 }

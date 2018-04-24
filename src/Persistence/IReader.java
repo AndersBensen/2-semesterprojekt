@@ -10,6 +10,6 @@ package Persistence;
  * @author ander
  */
 public interface IReader {    
-    public String[] getPatient(long cpr);
+    public String[] getPerson(long cpr);
     public String[] getEmployee(int id);
 }
