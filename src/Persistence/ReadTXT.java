@@ -19,7 +19,8 @@ import java.util.Scanner;
 public class ReadTXT implements IReader{
     private File file1 = new File("CPRRegister.txt");
     private File file2 = new File("Employees.txt");
-    
+    private File caseFile = new File("Cases.txt");
+    private File caseRequestFile = new File("CaseRequests.txt");
     /**
      *
      * @param cpr
@@ -73,14 +74,38 @@ public class ReadTXT implements IReader{
     
     @Override
     public String[] getCase(int id) {
-        String[] tokens = new String[5]; 
-        String[] employee = new String[10];
+        String[] tokens = new String[16]; 
+        String[] cases = new String[16];
         String word;
-        try (Scanner input = new Scanner(file2)){
+        try (Scanner input = new Scanner(caseFile)){
             while (input.hasNextLine()) {
                 word = input.nextLine();
                 tokens = word.split(";");
-                if (Integer.parseInt(tokens[7]) == id) {
+                if (Integer.parseInt(tokens[0]) == id) {
+                    cases = word.split(";");
+                }     
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("FILE NOT FOUND EXCEPTION");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("NUMBER FORMAT EXCEPTION");
+        }
+        return cases; 
+    }
+    
+    
+    @Override
+    public String[] getCaseRequest(int id) {
+        String[] tokens = new String[13]; 
+        String[] employee = new String[13];
+        String word;
+        try (Scanner input = new Scanner(caseFile)){
+            while (input.hasNextLine()) {
+                word = input.nextLine();
+                tokens = word.split(";");
+                if (Integer.parseInt(tokens[0]) == id) {
                     employee = word.split(";");
                 }     
             }

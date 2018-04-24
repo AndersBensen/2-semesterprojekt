@@ -18,7 +18,7 @@ public class CaseRequest implements ICaseRequest {
     private final long citizenCPR;
     private String citizenName;
     private char citizenGender;
-    private Date citizenBirthdate;
+    private String citizenBirthdate;
     private String citizenAddress;
     private int citizenPhoneNr;
     private String citizenMail;
@@ -29,7 +29,7 @@ public class CaseRequest implements ICaseRequest {
         this.citizenCPR = citizenCPR;
     }
 
-    public void connectCitizen(long CPR, String name, char gender, Date birthdate, String address) {
+    public void connectCitizen(long CPR, String name, char gender, String birthdate, String address) {
         if(CPR == this.citizenCPR) {
         this.citizenName = name;
         this.citizenGender = gender;
@@ -120,7 +120,7 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public Date getCitizenBirthdate() {
+    public String getCitizenBirthdate() {
         return citizenBirthdate;
     }
 

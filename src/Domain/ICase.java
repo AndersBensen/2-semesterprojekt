@@ -15,7 +15,7 @@ public interface ICase {
 
     String getCitizenRights();
 
-    String[] getCollectCitizenInfo();
+    String getCollectCitizenInfo();
 
     String getConsentType();
 

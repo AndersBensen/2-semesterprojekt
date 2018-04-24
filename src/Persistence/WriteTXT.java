@@ -115,7 +115,7 @@ public class WriteTXT implements IWriter{
     String citizenInformedElectronic = Boolean.toString(cases.isCitizenInformedElectronic());
     String consent = Boolean.toString(cases.hasConsent());
     String consentType = cases.getConsentType(); // can be oral or written
-    String[] collectCitizenInfo = cases.getCollectCitizenInfo();
+    String collectCitizenInfo = cases.getCollectCitizenInfo();
     String specialCircumstances = cases.getSpecialCircumstances();
     String differentCommune = cases.getDifferentCommune();
    
@@ -166,6 +166,7 @@ public class WriteTXT implements IWriter{
         System.out.println("employee was written to: " + caseFile);
     }
      
+    @Override
      public void writeCaseRequest(ICaseRequest caseRequests){
       String ID = Integer.toString(caseRequests.getID());
       String employeeID = Integer.toString(caseRequests.getEmployeeID());
@@ -179,7 +180,7 @@ public class WriteTXT implements IWriter{
       String citizenCPR = Long.toString(caseRequests.getCitizenCPR());
       String citizenName = caseRequests.getCitizenName();
       String citizenGender = caseRequests.getCitizenGender() + "";
-      String citizenBirthdate = caseRequests.getCitizenBirthdate().toString();
+      String citizenBirthdate = caseRequests.getCitizenBirthdate();
       String citizenAddress = caseRequests.getCitizenAddress();
       String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
       String citizenMail = caseRequests.getCitizenMail();
