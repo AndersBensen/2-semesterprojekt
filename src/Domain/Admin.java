@@ -74,6 +74,8 @@ public class Admin extends Employee{
                 e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
                 ps.getWriter().writeEmployee(e);
                 break;
+            default: 
+                System.out.println("Please enter a number between 1 and 3");
         }
     }
     
