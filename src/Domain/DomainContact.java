@@ -14,6 +14,8 @@ public class DomainContact implements IDomainContact {
 
     private DomainContact() {
         this.currentUser = new Secretary(1000950000, "Morten", 'M', "10-01-0000", "Hejsavej", 88888888, "hej@nal.mail", 6, "Loc", "1234567");
+        PersistanceContact PS = PersistanceContact.getInstance();
+        PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User logged in");
     }
 
     @Override
@@ -53,6 +55,7 @@ public class DomainContact implements IDomainContact {
     @Override
     public IPerson getPerson(long CPR) {
         PersistanceContact PS = PersistanceContact.getInstance();
+        PS.logAction(currentUser.getId(), LogAction.GET_EMPLOYEE, "User requested for a person with CPR: " + CPR);
         return PS.getPerson(CPR);
     }
     

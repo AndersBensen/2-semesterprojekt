@@ -84,6 +84,10 @@ public class PersistanceContact {
     
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
+       if(p[0].equals(null)){
+           System.out.println("Person wasnt found");
+           return null;
+       }
        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.parseInt(p[5]), p[6]);
        return person;
     }
@@ -91,6 +95,10 @@ public class PersistanceContact {
     public Employee getEmployee(int id) {
         String[] e = reader.getEmployee(id);
         Employee employee = null; 
+        if(e[0].equals(null)){
+            System.out.println("Employee wasn't found");
+            return null;
+        }
         
         if (e[10].equals("1")) {
             employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
@@ -142,7 +150,10 @@ public class PersistanceContact {
     
     public Case getCase(int ID){
         String[] c = reader.getCase(ID);
-        System.out.println("Prøver at lave en case med: " + (c[0]) + " og " + (c[1]));
+        if(c[0].equals(null)){
+            System.out.println("Case wasn't found");
+            return null;
+        }
         Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
         
         currentCase.setNextAppointment(c[2]);
@@ -164,6 +175,11 @@ public class PersistanceContact {
     
     public CaseRequest getCaseRequest(int caseRequestID){
         String[]cr = reader.getCaseRequest(caseRequestID);
+        
+        if(cr[0].equals(null)){
+            System.out.println("CaseRequest wasn't found");
+            return null;
+        }
         
         long l = Long.parseLong(cr[8]);     //CPR
         int i1 = Integer.parseInt(cr[0]);   //EmployeeID
