@@ -6,9 +6,7 @@
 package Starter;
 
 import Domain.DomainContact;
-import Domain.Employee;
 import Domain.IDomainContact;
-import Domain.IEmployee;
 import Domain.PersistanceContact;
 import Persistence.IReader;
 import Persistence.IWriter;
