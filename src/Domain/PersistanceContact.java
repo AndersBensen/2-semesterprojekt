@@ -45,15 +45,30 @@ public class PersistanceContact {
         return "your case has been saved with the ID: " + c.getID();
     }
     
-    
-    
-    
-    
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.parseInt(p[5]), p[6]);
        return person;
     }
+    
+    public Employee getEmployee(int id) {
+        String[] e = reader.getEmployee(id);
+        Employee employee = new Employee(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+        return employee;
+    }
+    
+    public void saveEmployee(IEmployee employee) {
+        writer.writeEmployee(employee);
+    }
+    
+    public void deleteEmployee(int id) {
+        writer.deleteEmployee(id);
+    }
+            
+    public void logAction(int employeeID, LogAction action, String desc) {
+        Log log = new Log(employeeID, action, desc);
+        writer.writeLog(log);
+    }  
     
     public IReader getReader(){
         return this.reader;
