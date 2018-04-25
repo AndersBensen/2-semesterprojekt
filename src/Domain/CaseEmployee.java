@@ -16,6 +16,9 @@ public class CaseEmployee extends Employee{
     }
     
     public void createCaseRequest(int caseRequestID, int EmployeeID, long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance(); 
+        
         CaseRequest CR = new CaseRequest(caseRequestID, EmployeeID, citizenCPR);
         CR.setDescription(desc);
         CR.setMessageClear(isMessageClear);

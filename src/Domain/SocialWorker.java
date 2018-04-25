@@ -16,11 +16,15 @@ public class SocialWorker extends CaseEmployee{
     }
     
     public void createCase() {
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance(); 
         // TO DO CREATE CASE 
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
     }
     
     public void editCase() {
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance(); 
         // TO DO EDIT CASE
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Edited a case");
     }

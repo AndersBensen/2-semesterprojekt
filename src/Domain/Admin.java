@@ -59,6 +59,8 @@ public class Admin extends Employee{
     
     public void addEmployee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
         IEmployee e;
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance(); 
         switch (positionNumber) {
             case 1: 
                 e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
@@ -79,6 +81,8 @@ public class Admin extends Employee{
     }
     
     public void deleteEmployee(int id) {
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance(); 
         pc.deleteEmployee(id);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.DELETE_EMPLOYEE, "Deleted employee with id: " + id + " from persistence.");
     }
