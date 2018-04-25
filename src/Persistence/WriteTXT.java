@@ -29,6 +29,7 @@ public class WriteTXT implements IWriter{
     private File employeeFile = new File("Employees.txt");
     private File caseFile = new File("Cases.txt");
     private File caseRequestsFile = new File("CaseRequests.txt");
+    private File currentIDs = new File("IDfile.txt");
     
     @Override
     public void writeLog(ILog log) {
@@ -62,7 +63,7 @@ public class WriteTXT implements IWriter{
     }
     
     @Override
-    public void writeEmployee(IEmployee employee) {
+    public void writeEmployee(IEmployee employee, int position) {
         String cpr = Long.toString(employee.getCpr());
         String name = employee.getName();
         String gender = Character.toString(employee.getGender());
@@ -94,6 +95,8 @@ public class WriteTXT implements IWriter{
         sb.append(userName);
         sb.append(";");
         sb.append(password);
+        sb.append(";");
+        sb.append(Integer.toString(position));
         System.out.println(sb);  
         
         PrintWriter outputStream = null;
@@ -218,6 +221,9 @@ public class WriteTXT implements IWriter{
 
     }
      
+     
+   
+     
     @Override
      public void writeCaseRequest(ICaseRequest caseRequests){
       String ID = Integer.toString(caseRequests.getID());
@@ -304,6 +310,31 @@ public class WriteTXT implements IWriter{
         outputStream.close();
         System.out.println("Case request was written to: " + caseRequestsFile);
          
+     }
+     
+      @Override
+     public void writeIDs(int currentCaseID, int currentCaseRequestID, int currentEmployeeID){
+        StringBuilder sb = new StringBuilder();
+        sb.append(Integer.toString(currentCaseID));
+        sb.append(";");
+        sb.append(Integer.toString(currentCaseRequestID));
+        sb.append(";");
+        sb.append(Integer.toString(currentEmployeeID));
+        System.out.println(sb);  
+        
+        PrintWriter outputStream = null;
+        try { 
+            //outputStream = new PrintWriter(fileName);
+            outputStream = new PrintWriter(new FileOutputStream(currentIDs, false));
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("Error loading the file: " + currentIDs);
+            System.exit(0);
+        }
+        outputStream.println("\n" + sb);
+        outputStream.close();
+        System.out.println("new IDs were written to: " + currentIDs);
+    
      }
 }
      

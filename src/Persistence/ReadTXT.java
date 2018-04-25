@@ -17,10 +17,11 @@ import java.util.Scanner;
  * @author ander
  */
 public class ReadTXT implements IReader{
-    private File cprFile = new File("CPRRegister.txt");
-    private File employeeFile = new File("Employees.txt");
-    private File caseFile = new File("Cases.txt");
-    private File caseRequestFile = new File("CaseRequests.txt");
+    private final File cprFile = new File("CPRRegister.txt");
+    private final File employeeFile = new File("Employees.txt");
+    private final File caseFile = new File("Cases.txt");
+    private final File caseRequestFile = new File("CaseRequests.txt");
+    private final File currentIDsFile = new File("IDfile.txt");
     /**
      *
      * @param cpr
@@ -52,7 +53,7 @@ public class ReadTXT implements IReader{
     @Override
     public String[] getEmployee(int id) {
         String[] tokens = new String[5]; 
-        String[] employee = new String[10];
+        String[] employee = new String[11];
         String word;
         try (Scanner input = new Scanner(employeeFile)){
             while (input.hasNextLine()) {
@@ -74,8 +75,13 @@ public class ReadTXT implements IReader{
     
     @Override
     public String[] getCase(int id) {
+<<<<<<< HEAD
         String[] tokens = new String[14]; 
         String[] cases = new String[14];
+=======
+        String[] tokens = new String[16]; 
+        String[] cases = new String[17];
+>>>>>>> master
         String word;
         try (Scanner input = new Scanner(caseFile)){
             while (input.hasNextLine()) {
@@ -99,14 +105,14 @@ public class ReadTXT implements IReader{
     @Override
     public String[] getCaseRequest(int id) {
         String[] tokens = new String[13]; 
-        String[] employee = new String[13];
+        String[] caseRequest = new String[13];
         String word;
         try (Scanner input = new Scanner(caseFile)){
             while (input.hasNextLine()) {
                 word = input.nextLine();
                 tokens = word.split(";");
                 if (Integer.parseInt(tokens[0]) == id) {
-                    employee = word.split(";");
+                    caseRequest = word.split(";");
                 }     
             }
         }
@@ -116,7 +122,31 @@ public class ReadTXT implements IReader{
         catch (NumberFormatException e) {
             System.out.println("NUMBER FORMAT EXCEPTION");
         }
-        return employee; 
+        return caseRequest; 
+    }
+    
+    
+    @Override
+    public int[] getCurrentIDs(){
+        int[] ids = new int[3];
+        String[] s = new String[3];
+        String word;
+        try (Scanner input = new Scanner(currentIDsFile)){
+            while (input.hasNextLine()) {
+                word = input.nextLine();
+                s = word.split(";");
+            }
+            for(int i = 0; i < 2; i++){
+                ids[i] = Integer.parseInt(s[i]);
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("FILE NOT FOUND EXCEPTION");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("NUMBER FORMAT EXCEPTION");
+        }
+        return ids; 
     }
     
 }

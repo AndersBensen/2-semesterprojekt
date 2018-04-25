@@ -77,7 +77,7 @@ public class Admin extends Employee{
             default: 
                 System.out.println("Please enter a number between 1 and 3");
         }
-        ps.logAction(2, LogAction.SAVE_EMPLOYEE, "Added employee to persistance layer");
+        ps.logAction(0, LogAction.SAVE_EMPLOYEE, "Added employee with id: " + id + " to persistence.");
     }
     
     public void deleteEmployee(int id) {
