@@ -28,25 +28,42 @@ public class PersistanceContact {
         return instance;
     }
     
+    /**
+     * Gets a case ID for a new case.
+     * @return int currentCaseID 
+     */
     public int getCurrentCaseID(){
         currentCaseID++;
         writeCurrentIDs();
     return currentCaseID;
     }
     
-    
+    /**
+     * Gets a case request ID for a new case request.
+     * @return int currentCaseRequestID
+     */
     public int getCurrentCaseRequestID(){
         currentCaseRequestID++;
         writeCurrentIDs();
     return currentCaseRequestID;
     }
      
+    
+    /**
+     * Gets a employee ID for a new employee.
+     * @return int currentEmployeeID
+     */
     public int getCurrentEmployeeID(){
         currentEmployeeID++;
         writeCurrentIDs();
     return currentEmployeeID;
     }
       
+    
+    /**
+     * Method is used to set the fields in PersistenceContact. 
+     * This method is called when a reader is injected to PersistanceContant.
+     */
     private void readCurrentIDs(){
         int[] ids = reader.getCurrentIDs();
         this.currentCaseID = ids[0];
@@ -56,30 +73,51 @@ public class PersistanceContact {
         
     }
     
-    public void writeCurrentIDs(){
+    /**
+     * Writes the current IDs to the database.
+     * This method is called whenever there is a change in those fields.
+     */
+    private void writeCurrentIDs(){
         writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
     
-    
+    /**
+     * Injects a writer to the PersistanceContact.
+     * @param writer 
+     */
     public void injectWriter(IWriter writer){
         this.writer = writer;
     }
     
+    /**
+     * Injects a reader to the PersistanceContact.
+     * @param reader 
+     */
      public void injectReader(IReader reader){
         this.reader = reader;
         readCurrentIDs();
     }
     
+     /**
+      * Saves the case request. 
+      * @param caseRequest 
+      */
     public void saveCaseRequest(CaseRequest caseRequest){
         this.caseRequest = caseRequest;
         writer.writeCaseRequest(caseRequest);
         System.out.println("Case request have been saved!");
     }
     
+    /**
+     * Saves the case
+     * @param c
+     * @return String for the user.
+     */
     public String saveCase(Case c){ 
         writer.writeCase(c);
         return "your case has been saved with the ID: " + c.getID();
     }
+    
     
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
@@ -147,6 +185,12 @@ public class PersistanceContact {
         return this.writer;
     }
     
+    
+    /**
+     * Gets the case based on the case ID
+     * @param ID
+     * @return Case
+     */
     public Case getCase(int ID){
         String[] c = reader.getCase(ID);
         if(c[0].equals(null)){
@@ -174,6 +218,11 @@ public class PersistanceContact {
         
     }
     
+    /**
+     * Gets the case request based on the case request ID
+     * @param caseRequestID
+     * @return CaseRequest
+     */
     public CaseRequest getCaseRequest(int caseRequestID){
         String[]cr = reader.getCaseRequest(caseRequestID);
         
