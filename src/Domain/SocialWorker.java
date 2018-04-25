@@ -28,4 +28,22 @@ public class SocialWorker extends CaseEmployee{
         // TO DO EDIT CASE
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Edited a case");
     }
+    
+    
+       
+    public Case editCase(int caseID) {
+        // TO DO EDIT CASE
+       DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance();
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.GET_CASE, "Viewed a case with rights to edit");
+         return pc.getCase(caseID);
+    }
+    
+    public void saveCase(Case c){
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance();
+        pc.saveCase(c);
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Saved an edited case");
+        
+    }
 }
