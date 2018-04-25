@@ -12,7 +12,6 @@ public final class TextInputer {
     private Scanner input;
     private CommandConverter CC;
     private IDomainContact IDC;
-    StringBuilder SB = new StringBuilder();
 
     public TextInputer(CommandConverter CC, IDomainContact IDC) {
         input = new Scanner(System.in);
@@ -24,7 +23,7 @@ public final class TextInputer {
     public void start() {
         while (true) {
             information = new LinkedList();
-            System.out.println("\nEnter a valid command:\n");
+            System.out.println("\nEnter a valid system command (caserequest | case | editcase | addemployee | deleteemployee):\n");
             String command = input.nextLine().toLowerCase();
 
             switch (command) {
@@ -55,8 +54,8 @@ public final class TextInputer {
                 case "case":
                     askQuestion("Which case request ID are you looking for?");
                     askQuestion("When is the next appointment?");
-                    askQuestion("Enter type of guardianship (5, 6, 7) - if any");
-                    if (information.get(1).equalsIgnoreCase("5") || information.get(1).equalsIgnoreCase("6") || information.get(1).equalsIgnoreCase("7")) {
+                    askQuestion("Enter type of guardianship (§5, §6, §7) - if any");
+                    if (information.get(2).equalsIgnoreCase("5") || information.get(2).equalsIgnoreCase("6") || information.get(2).equalsIgnoreCase("7")) {
                         askQuestion("Enter the guardians contact information");
                         askQuestion("Descripe the correlation between guardian and citizen");
                     } else {
@@ -66,16 +65,17 @@ public final class TextInputer {
                     askQuestion("Is the citizen informed of his/her rights?");
                     askQuestion("Is the citizen informed electronically? (Y/N)");
                     askQuestion("Is it relevent for the citizen to give his/her consent? (Y/N)");
-                    if (information.get(6).equalsIgnoreCase("Y")) {
+                    if (information.get(7).equalsIgnoreCase("Y")) {
                         askQuestion("Which type of consent?");
                     } else {
                         information.add("");
                     }
                     askForFurtherInfo();
-                    information.add(SB.toString());
                     askQuestion("Any special circumstances?");
                     askQuestion("Is the citizen from a different commune?");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
+                    break;
+                case "editcase":
                     break;
                 case "addemployee":
                     break;
@@ -92,13 +92,18 @@ public final class TextInputer {
 
     private void askForFurtherInfo() {
         String answer = "";
+        StringBuilder SB = new StringBuilder();
         while (!answer.equalsIgnoreCase("x")) {
             System.out.println("Who has provided information? (write x to exit)");
             answer = input.nextLine();
+            System.out.println(answer);
             if (!answer.equalsIgnoreCase("x")) {
                 SB.append(answer);
                 SB.append("|");
             }
         }
+        SB.deleteCharAt(SB.length() - 1);
+        System.out.println(SB.toString());
+        information.add(SB.toString());
     }
 }

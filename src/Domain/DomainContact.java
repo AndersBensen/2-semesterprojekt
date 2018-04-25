@@ -13,7 +13,7 @@ public class DomainContact implements IDomainContact {
     }
 
     private DomainContact() {
-        this.currentUser = new Secretary(1000950000, "Morten", 'M', "10-01-0000", "Hejsavej", 88888888, "hej@nal.mail", 6, "Loc", "1234567");
+        this.currentUser = new SocialWorker(1000950000, "Morten", 'M', "10-01-0000", "Hejsavej", 88888888, "hej@nal.mail", 6, "Loc", "1234567");
         PersistanceContact PS = PersistanceContact.getInstance();
         PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User logged in");
     }
@@ -24,22 +24,28 @@ public class DomainContact implements IDomainContact {
             CaseEmployee caseUser = (CaseEmployee) currentUser;
             caseUser.createCaseRequest(0, currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
         }
+        else
+            System.out.println("User not allowed to perform command: createCaseRequest");
     }
 
     @Override
     public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
         if (currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.createCase();
+            socialWorker.saveCase(PersistanceContact.getInstance().getCurrentCaseID(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
+        else
+            System.out.println("User not allowed to perform command: createCase");
     }
     
     @Override
-    public void saveEditedCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+    public void saveEditedCase(int caseID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
         if (currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            
+            socialWorker.saveCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
+        else
+            System.out.println("User not allowed to perform command: saveEditedCase");
     }
 
     @Override

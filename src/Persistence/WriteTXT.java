@@ -201,9 +201,7 @@ public class WriteTXT implements IWriter{
         sb.append(";");
         for (String string : collectCitizenInfo) {
             sb.append(string);
-            sb.append("|");
         }
-        sb.deleteCharAt(sb.length() - 1);
         sb.append(";");
         sb.append(specialCircumstances);
         sb.append(";");

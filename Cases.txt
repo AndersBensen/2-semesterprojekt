@@ -33,3 +33,13 @@
 17;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
 18;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+
+20;1234;monday;6;;;yes;true;false;oral;m|o|r||;no;nope
+
+21;1234;sa;5;sdfhj;asdfg;y;true;false;;;n;y
+
+
+23;123;213;5;123;123;213;true;true;y;m|o|r|||f|a|r||;y;y
+
+24;123;y;;;;ye;true;false;;mor|far;y;y
