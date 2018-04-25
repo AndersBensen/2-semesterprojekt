@@ -15,22 +15,16 @@ public class SocialWorker extends CaseEmployee{
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
-    public void createCase() {
+    public int createCase(int caseRequestID) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance(); 
         // TO DO CREATE CASE 
+        Case c = new Case(pc.getCurrentCaseID(), caseRequestID);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
+        return c.getID();
     }
+
     
-    public void editCase() {
-        DomainContact dc = DomainContact.getInstance();
-        PersistanceContact pc = PersistanceContact.getInstance(); 
-        // TO DO EDIT CASE
-        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Edited a case");
-    }
-    
-    
-       
     public Case editCase(int caseID) {
         // TO DO EDIT CASE
        DomainContact dc = DomainContact.getInstance();
@@ -44,6 +38,6 @@ public class SocialWorker extends CaseEmployee{
         PersistanceContact pc = PersistanceContact.getInstance();
         pc.saveCase(c);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Saved an edited case");
-        
     }
+    
 }
