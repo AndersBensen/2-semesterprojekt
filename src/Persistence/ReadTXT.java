@@ -17,8 +17,8 @@ import java.util.Scanner;
  * @author ander
  */
 public class ReadTXT implements IReader{
-    private File file1 = new File("CPRRegister.txt");
-    private File file2 = new File("Employees.txt");
+    private File cprFile = new File("CPRRegister.txt");
+    private File employeeFile = new File("Employees.txt");
     private File caseFile = new File("Cases.txt");
     private File caseRequestFile = new File("CaseRequests.txt");
     /**
@@ -31,7 +31,7 @@ public class ReadTXT implements IReader{
         String[] tokens = new String[7]; 
         String[] patient = new String[7];
         String word;
-        try (Scanner input = new Scanner(file1)){
+        try (Scanner input = new Scanner(cprFile)){
             while (input.hasNextLine()) {
                 word = input.nextLine();
                 tokens = word.split(";");
@@ -54,7 +54,7 @@ public class ReadTXT implements IReader{
         String[] tokens = new String[5]; 
         String[] employee = new String[10];
         String word;
-        try (Scanner input = new Scanner(file2)){
+        try (Scanner input = new Scanner(employeeFile)){
             while (input.hasNextLine()) {
                 word = input.nextLine();
                 tokens = word.split(";");
