@@ -62,7 +62,7 @@ public class WriteTXT implements IWriter{
     }
     
     @Override
-    public void writeEmployee(IEmployee employee) {
+    public void writeEmployee(IEmployee employee, int position) {
         String cpr = Long.toString(employee.getCpr());
         String name = employee.getName();
         String gender = Character.toString(employee.getGender());
@@ -94,6 +94,8 @@ public class WriteTXT implements IWriter{
         sb.append(userName);
         sb.append(";");
         sb.append(password);
+        sb.append(";");
+        sb.append(Integer.toString(position));
         System.out.println(sb);  
         
         PrintWriter outputStream = null;

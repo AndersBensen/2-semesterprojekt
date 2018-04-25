@@ -53,12 +53,37 @@ public class PersistanceContact {
     
     public Employee getEmployee(int id) {
         String[] e = reader.getEmployee(id);
-        Employee employee = new Employee(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+        Employee employee = null; 
+        
+        if (e[10].equals("1")) {
+            employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+        }
+        else if (e[10].equals("2")) {
+            employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+        }
+        else if (e[10].equals("3")) {
+            employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+        }
+        else {
+            System.out.println("Wrong position number retrieved.");
+        }
+        
         return employee;
     }
     
     public void saveEmployee(IEmployee employee) {
-        writer.writeEmployee(employee);
+        if (employee instanceof Secretary) {
+            writer.writeEmployee(employee, 1);
+        }
+        else if (employee instanceof SocialWorker) {
+            writer.writeEmployee(employee, 2);
+        }
+        else if (employee instanceof Admin) {
+            writer.writeEmployee(employee, 3);
+        }
+        else {
+            System.out.println("Illegal position number.");
+        }
     }
     
     public void deleteEmployee(int id) {
