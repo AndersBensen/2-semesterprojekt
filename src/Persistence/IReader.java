@@ -14,4 +14,5 @@ public interface IReader {
     public String[] getEmployee(int id);
     public String[] getCase(int id);
     public String[] getCaseRequest(int id);
+    public int[] getCurrentIDs();
 }
