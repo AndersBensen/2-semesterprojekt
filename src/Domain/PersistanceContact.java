@@ -82,19 +82,17 @@ public class PersistanceContact {
         String[] c = reader.getCase(ID);
         Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
         
-        currentCase.setCitizenIsInformed(Boolean.parseBoolean(c[2]));
-        currentCase.setCitizenRepresentation(c[3]);
-        currentCase.setNextAppointment(c[4]);
-        currentCase.setGuardianship(c[5]);
-        currentCase.setPersonalHelper(c[6]);
-        currentCase.setPersonalHelperPowerOfAttorney(Boolean.parseBoolean(c[7]));
-        currentCase.setCitizenRights(c[8]);
-        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[9]));
-        currentCase.setConsent(Boolean.parseBoolean(c[10]));
-        currentCase.setConsentType(c[11]);
-        currentCase.setCollectCitizenInfo(c[12]);
-        currentCase.setSpecialCircumstances(c[3]);
-        currentCase.setDifferentCommune(c[14]);
+        currentCase.setNextAppointment(c[2]);
+        currentCase.setGuardianship(c[3]);
+        currentCase.setPersonalHelper(c[4]);
+        currentCase.setPersonalHelperPowerOfAttorney(c[5]);
+        currentCase.setCitizenRights(c[6]);
+        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[7]));
+        currentCase.setConsent(Boolean.parseBoolean(c[8]));
+        currentCase.setConsentType(c[9]);
+        currentCase.setCollectCitizenInfo(c[10]);
+        currentCase.setSpecialCircumstances(c[11]);
+        currentCase.setDifferentCommune(c[12]);
         
         
         return currentCase;

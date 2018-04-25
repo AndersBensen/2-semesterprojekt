@@ -139,12 +139,10 @@ public class WriteTXT implements IWriter{
      public void writeCase(ICase cases) {
     String ID = Integer.toString(cases.getID());
     String caseRequestID = Integer.toString(cases.getCaseRequestID());
-    String citizenIsInformed = Boolean.toString(cases.isCitizenIsInformed());
-    String citizenRepresentation = cases.getCitizenRepresentation();
     String nextAppointment = cases.getNextAppointment();
     String guardianship = cases.getGuardianship();
     String personalHelper = cases.getPersonalHelper();
-    String personalHelperPowerOfAttorney = Boolean.toString(cases.isPersonalHelperPowerOfAttorney());
+    String personalHelperPowerOfAttorney = cases.getPersonalHelperPowerOfAttorney();
     String citizenRights = cases.getCitizenRights();
     String citizenInformedElectronic = Boolean.toString(cases.isCitizenInformedElectronic());
     String consent = Boolean.toString(cases.hasConsent());
@@ -181,10 +179,6 @@ public class WriteTXT implements IWriter{
         sb.append(ID+"");
         sb.append(";");
         sb.append(caseRequestID);
-        sb.append(";");
-        sb.append(citizenIsInformed);
-        sb.append(";");
-        sb.append(citizenRepresentation);
         sb.append(";");
         sb.append(nextAppointment);
         sb.append(";");

@@ -54,6 +54,28 @@ public final class TextInputer {
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "case":
+                    askQuestion("When is the next appointment?");
+                    askQuestion("Enter type of guardianship (5, 6, 7) - if any");
+                    if(information.get(1).equalsIgnoreCase("5") || information.get(1).equalsIgnoreCase("6") || information.get(1).equalsIgnoreCase("7")) {
+                        askQuestion("Enter the guardians contact information");
+                        askQuestion("Descripe the correlation between guardian and citizen");
+                    }
+                    else {
+                        information.add("");
+                        information.add("");
+                    }
+                    askQuestion("Is the citizen informed of his/her rights?");
+                    askQuestion("Is the citizen informed electronically? (Y/N)");
+                    askQuestion("Is it relevent for the citizen to give his/her consent? (Y/N)");
+                    if (information.get(6).equalsIgnoreCase("Y")) {
+                        askQuestion("Which type of consent?");
+                    }
+                    else {
+                        information.add("");
+                    }
+                    askQuestion("Who has provided information?");
+                    askQuestion("Any special circumstances?");
+                    askQuestion("Is the citizen from a different commune?");  
                     break;
                 case "addemployee":
                     break;
