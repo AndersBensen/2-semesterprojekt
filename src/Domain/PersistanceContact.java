@@ -106,16 +106,6 @@ public class PersistanceContact {
         currentCaseRequest.setCitizenMail(cr[14]);
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return currentCaseRequest;
         
     }
