@@ -13,6 +13,9 @@ import java.util.Date;
  * @author ander
  */
 public class Employee extends Person implements IEmployee{
+    /**
+     * Below is some attributes that make Employees unique compared to Persons. 
+     */
     private int id; 
     private String userName;
     private String password; 
