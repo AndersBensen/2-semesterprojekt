@@ -17,4 +17,6 @@ public interface IDomainContact {
     public void addEmployee();
     
     public void deleteEmployee();
+    
+    public IPerson getPerson(long CPR);
 }
