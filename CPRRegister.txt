@@ -1,10 +1,10 @@
-1508800001;Hans Christian Andersen;M;15-08-1980;Stationsvej 1, 5000 Odense C
-1609810002;Jane Olsen Horsen;F;16-09-1981;Skolevej 3, 5000 Odense C
-1802790003;Marcus Hansen Voilla;M;18-02-1979;Nyvangsvej 5, 5000 Odense C
-2103760004;Lone Sørensen;F; 21-03-1976;Slotsgade 21B, 5000 Odense C
-2504770005;Loc Nguyen;M;25-04-1977;Middelfartvej 143, 5200 Odense V
-2712780006;Peter Andersen;M;27-12-1978;Brejdervej 112, 5210 Odense NV
-1509860007;Anders Bensen Ottsen;M;15-09-1986; Nyvangsvej 19, 5000 Odense C
-0109810008;Josef Pham;M;01-09-1981;Adamsgade 15, 5000 Odense C
-0805820009;Sigurd Espersen;M;08-05-1982;Vestergade 29, 5000 Odense C
-0311810010;Erik Nielsen;M;03-11-1981;Kongensgade 152, 5000 Odense C
+1508800001;Hans Christian Andersen;M;15-08-1980;Stationsvej 1, 5000 Odense C; null; null
+1609810002;Jane Olsen Horsen;F;16-09-1981;Skolevej 3, 5000 Odense C; null; null
+1802790003;Marcus Hansen Voilla;M;18-02-1979;Nyvangsvej 5, 5000 Odense C; null; null
+2103760004;Lone Sørensen;F; 21-03-1976;Slotsgade 21B, 5000 Odense C; null; null
+2504770005;Loc Nguyen;M;25-04-1977;Middelfartvej 143, 5200 Odense V; null; null
+2712780006;Peter Andersen;M;27-12-1978;Brejdervej 112, 5210 Odense NV; null; null
+1509860007;Anders Bensen Ottsen;M;15-09-1986; Nyvangsvej 19, 5000 Odense C; null; null
+0109810008;Josef Pham;M;01-09-1981;Adamsgade 15, 5000 Odense C; null; null
+0805820009;Sigurd Espersen;M;08-05-1982;Vestergade 29, 5000 Odense C; null; null
+0311810010;Erik Nielsen;M;03-11-1981;Kongensgade 152, 5000 Odense C; null; null
