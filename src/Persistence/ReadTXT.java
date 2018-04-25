@@ -29,8 +29,8 @@ public class ReadTXT implements IReader{
      */
     @Override
     public String[] getPerson(long cpr) {
-        String[] tokens = new String[5]; 
-        String[] patient = new String[5];
+        String[] tokens = new String[7]; 
+        String[] patient = new String[7];
         String word;
         try (Scanner input = new Scanner(cprFile)){
             while (input.hasNextLine()) {
@@ -53,7 +53,7 @@ public class ReadTXT implements IReader{
     @Override
     public String[] getEmployee(int id) {
         String[] tokens = new String[5]; 
-        String[] employee = new String[10];
+        String[] employee = new String[11];
         String word;
         try (Scanner input = new Scanner(employeeFile)){
             while (input.hasNextLine()) {

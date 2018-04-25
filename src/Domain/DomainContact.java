@@ -39,4 +39,14 @@ public class DomainContact implements IDomainContact {
     public void deleteEmployee() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public IPerson getPerson(long CPR) {
+        PersistanceContact PS = PersistanceContact.getInstance();
+        return PS.getPerson(CPR);
+    }
+    
+    public Employee getCurrentUser() {
+        return currentUser;
+    }
 }
