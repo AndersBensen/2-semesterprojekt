@@ -75,13 +75,8 @@ public class ReadTXT implements IReader{
     
     @Override
     public String[] getCase(int id) {
-<<<<<<< HEAD
         String[] tokens = new String[14]; 
         String[] cases = new String[14];
-=======
-        String[] tokens = new String[16]; 
-        String[] cases = new String[17];
->>>>>>> master
         String word;
         try (Scanner input = new Scanner(caseFile)){
             while (input.hasNextLine()) {
