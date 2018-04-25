@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import com.sun.org.apache.bcel.internal.generic.DCMPG;
 import java.util.Date;
 
 /**
@@ -15,12 +16,16 @@ public class Employee extends Person implements IEmployee{
     private int id; 
     private String userName;
     private String password; 
+    protected DomainContact dc;
+    protected PersistanceContact pc; 
     
     public Employee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail);
         this.id = id;
         this.userName = userName;
         this.password = password;
+        dc = DomainContact.getInstance();
+        pc = PersistanceContact.getInstance(); 
     }
     
     @Override

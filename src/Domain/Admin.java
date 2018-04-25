@@ -10,11 +10,9 @@ package Domain;
  * @author ander
  */
 public class Admin extends Employee{
-    private PersistanceContact ps;
     
     public Admin(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-        ps = PersistanceContact.getInstance();
     }
     
     /**
@@ -64,23 +62,24 @@ public class Admin extends Employee{
         switch (positionNumber) {
             case 1: 
                 e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.saveEmployee(e);
+                pc.saveEmployee(e);
                 break;
             case 2:
                 e = new SocialWorker(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.saveEmployee(e);
+                pc.saveEmployee(e);
                 break;
             case 3:
                 e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                ps.saveEmployee(e);
+                pc.saveEmployee(e);
                 break;
             default: 
                 System.out.println("Please enter a number between 1 and 3");
         }
-        ps.logAction(0, LogAction.SAVE_EMPLOYEE, "Added employee with id: " + id + " to persistence.");
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_EMPLOYEE, "Added employee with id: " + id + " to persistence.");
     }
     
     public void deleteEmployee(int id) {
-        ps.deleteEmployee(id);
+        pc.deleteEmployee(id);
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.DELETE_EMPLOYEE, "Deleted employee with id: " + id + " from persistence.");
     }
 }

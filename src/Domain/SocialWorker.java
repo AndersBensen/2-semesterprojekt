@@ -16,10 +16,12 @@ public class SocialWorker extends CaseEmployee{
     }
     
     public void createCase() {
-        
+        // TO DO CREATE CASE 
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
     }
     
     public void editCase() {
-        
+        // TO DO EDIT CASE
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Edited a case");
     }
 }

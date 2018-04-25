@@ -29,6 +29,7 @@ public class CaseEmployee extends Employee{
         if(citizenMail != null) {
             CR.setCitizenMail(citizenMail);
         }
-        PersistanceContact.getInstance().saveCaseRequest(CR);
+        pc.saveCaseRequest(CR);
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE_REQUEST, "Saved a case request");
     }
 }
