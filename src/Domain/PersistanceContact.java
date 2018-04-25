@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Domain;
-import Domain.Case;
 import Persistence.IReader;
 import Persistence.IWriter;
 /**
@@ -17,14 +16,50 @@ public class PersistanceContact {
     private IWriter writer;
     private IReader reader;
     private CaseRequest caseRequest;
+    private int currentCaseID;
+    private int currentCaseRequestID;
+    private int currentEmployeeID;
+    
     
     public static PersistanceContact getInstance()
     {
         if (instance == null)
             instance = new PersistanceContact();
-        
         return instance;
     }
+    
+    public int getCurrentCaseID(){
+        currentCaseID++;
+        writeCurrentIDs();
+    return currentCaseID;
+    }
+    
+    
+    public int getCurrentCaseRequestID(){
+        currentCaseRequestID++;
+        writeCurrentIDs();
+    return currentCaseRequestID;
+    }
+     
+    public int getCurrentEmployeeID(){
+        currentEmployeeID++;
+        writeCurrentIDs();
+    return currentEmployeeID;
+    }
+      
+    private void readCurrentIDs(){
+        int[] ids = reader.getCurrentIDs();
+        this.currentCaseID = ids[0];
+        this.currentCaseRequestID = ids[1];
+        this.currentEmployeeID = ids[2];
+        System.out.println("was read: " + currentCaseID + " " + currentCaseRequestID + " " + currentEmployeeID);
+        
+    }
+    
+    public void writeCurrentIDs(){
+        writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
+    }
+    
     
     public void injectWriter(IWriter writer){
         this.writer = writer;
@@ -32,6 +67,7 @@ public class PersistanceContact {
     
      public void injectReader(IReader reader){
         this.reader = reader;
+        readCurrentIDs();
     }
     
     public void saveCaseRequest(CaseRequest caseRequest){
@@ -80,6 +116,7 @@ public class PersistanceContact {
     
     public Case getCase(int ID){
         String[] c = reader.getCase(ID);
+        System.out.println("Prøver at lave en case med: " + (c[0]) + " og " + (c[1]));
         Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
         
         currentCase.setCitizenIsInformed(Boolean.parseBoolean(c[2]));

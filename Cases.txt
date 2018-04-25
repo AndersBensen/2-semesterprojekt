@@ -1,18 +1,35 @@
+1;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+2;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+3;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+4;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-500;100;false;null;null;null;null;false;null;false;false;null;[Ljava.lang.String;@4e25154f;null;null
+5;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-500;100;false;null;null;null;null;false;null;false;false;null;Hej ,Hej ,Hej ,Hej ,Hej ,null,null,null,null,null,;null;null
+6;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-0;100;false;null;null;null;null;false;null;false;false;null;null;null;null
+7;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
+8;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
+9;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
+10;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
+11;300;false;null;null;null;null;false;null;false;false;null;null;null;null
 
-1000;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+12;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+13;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+14;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+15;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+16;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+17;300;false;null;null;null;null;false;null;false;false;null;null;null;null
+
+18;300;false;null;null;null;null;false;null;false;false;null;null;null;null
