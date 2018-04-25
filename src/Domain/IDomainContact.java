@@ -8,8 +8,7 @@ public interface IDomainContact {
             boolean isCitizenInformed, String citizenName, char citizenGender, 
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail);
     
-    public String saveCase(int ID, CaseRequest caseRequest, boolean citizenIsInformed, 
-            String citizenRepresentation, String nextAppointment, String guardianship, 
+    public String saveCase(int caseRequestID, String nextAppointment, String guardianship, 
             String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, 
             boolean citizenInformedElectronic, boolean consent, String consentType, 
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune);

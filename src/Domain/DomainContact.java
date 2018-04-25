@@ -26,8 +26,12 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public String saveCase(int ID, CaseRequest caseRequest, boolean citizenIsInformed, String citizenRepresentation, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String saveCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+        if (currentUser instanceof SocialWorker) {
+            SocialWorker socialWorker = (SocialWorker) currentUser;
+            socialWorker.createCase();
+        }
+        return "";
     }
 
     @Override

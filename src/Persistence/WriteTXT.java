@@ -150,7 +150,7 @@ public class WriteTXT implements IWriter{
     String citizenInformedElectronic = Boolean.toString(cases.isCitizenInformedElectronic());
     String consent = Boolean.toString(cases.hasConsent());
     String consentType = cases.getConsentType(); // can be oral or written
-    String collectCitizenInfo = cases.getCollectCitizenInfo();
+    String[] collectCitizenInfo = cases.getCollectCitizenInfo();
     String specialCircumstances = cases.getSpecialCircumstances();
     String differentCommune = cases.getDifferentCommune();
    
@@ -199,7 +199,11 @@ public class WriteTXT implements IWriter{
         sb.append(";");
         sb.append(consentType);
         sb.append(";");
-        sb.append(collectCitizenInfo);
+        for (String string : collectCitizenInfo) {
+            sb.append(string);
+            sb.append("|");
+        }
+        sb.deleteCharAt(sb.length() - 1);
         sb.append(";");
         sb.append(specialCircumstances);
         sb.append(";");

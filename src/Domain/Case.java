@@ -21,7 +21,7 @@ public class Case implements ICase {   // Mangler at logge
     private boolean citizenInformedElectronic;
     private boolean consent;
     private String consentType; // can be oral or written
-    private String collectCitizenInfo;
+    private String[] collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
 
@@ -84,7 +84,7 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public String getCollectCitizenInfo() {
+    public String[] getCollectCitizenInfo() {
         return collectCitizenInfo;
     }
 
@@ -135,7 +135,7 @@ public class Case implements ICase {   // Mangler at logge
         this.consentType = consentType;
     }
 
-    public void setCollectCitizenInfo(String collectCitizenInfo) {
+    public void setCollectCitizenInfo(String[] collectCitizenInfo) {
         this.collectCitizenInfo = collectCitizenInfo;
     }
 

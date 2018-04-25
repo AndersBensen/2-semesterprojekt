@@ -6,6 +6,7 @@
 package Domain;
 import Persistence.IReader;
 import Persistence.IWriter;
+import java.util.Arrays;
 /**
  *
  * @author Peter
@@ -152,7 +153,7 @@ public class PersistanceContact {
         currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[7]));
         currentCase.setConsent(Boolean.parseBoolean(c[8]));
         currentCase.setConsentType(c[9]);
-        currentCase.setCollectCitizenInfo(c[10]);
+        currentCase.setCollectCitizenInfo(c[10].split("|"));        
         currentCase.setSpecialCircumstances(c[11]);
         currentCase.setDifferentCommune(c[12]);
         
