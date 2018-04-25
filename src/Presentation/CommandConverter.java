@@ -28,7 +28,7 @@ public class CommandConverter {
                     String requestPerson = args[11];
                     boolean citizenInformed = getBooleanFromInput(args[12]);
 
-                    domainContact.saveCaseRequest(citizenCPR, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
+                    domainContact.createCaseRequest(citizenCPR, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -48,7 +48,7 @@ public class CommandConverter {
                     String specialCircumstances = args[10];
                     String differentCommune = args[11];
                     
-                    domainContact.saveCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
