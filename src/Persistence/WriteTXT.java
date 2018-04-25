@@ -58,7 +58,7 @@ public class WriteTXT implements IWriter{
         }
         outputStream.println("\n" + sb);
         outputStream.close();
-        System.out.println("employee was written to: " + logFile);
+        System.out.println("log was written to: " + logFile);
     }
     
     @Override
