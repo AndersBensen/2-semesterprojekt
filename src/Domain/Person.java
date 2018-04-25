@@ -9,7 +9,7 @@ package Domain;
  *
  * @author ander
  */
-public class Person {
+public class Person implements IPerson {
     private long cpr; 
     private String name;
     private char gender;
@@ -28,30 +28,37 @@ public class Person {
         this.mail = mail;
     }
 
+    @Override
     public long getCpr() {
         return cpr;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public char getGender() {
         return gender;
     }
 
+    @Override
     public String getBirthDate() {
         return birthDate;
     }
 
+    @Override
     public String getAddress() {
         return address;
     }
 
+    @Override
     public int getPhoneNumber() {
         return phoneNumber;
     }
 
+    @Override
     public String getMail() {
         return mail;
     }
