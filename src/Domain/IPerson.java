@@ -21,7 +21,7 @@ public interface IPerson {
 
     public String getAddress();
 
-    public int getPhoneNumber();
+    public Integer getPhoneNumber();
 
     public String getMail();
 }

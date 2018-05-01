@@ -15,7 +15,7 @@ public class Person implements IPerson {
     private char gender;
     private String birthDate; 
     private String address; 
-    private int phoneNumber; 
+    private Integer phoneNumber; 
     private String mail; 
 
     public Person(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail) {
@@ -54,7 +54,7 @@ public class Person implements IPerson {
     }
 
     @Override
-    public int getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -83,7 +83,7 @@ public class Person implements IPerson {
         this.address = address;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
