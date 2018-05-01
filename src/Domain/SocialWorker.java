@@ -15,6 +15,12 @@ public class SocialWorker extends CaseEmployee{
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
+    /**
+     * This method creates a case and logs the activity with a description
+     * with what happened. 
+     * @param caseRequestID
+     * @return int, id of the case creater 
+     */
     public int createCase(int caseRequestID) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance(); 
@@ -24,7 +30,11 @@ public class SocialWorker extends CaseEmployee{
         return c.getID();
     }
 
-    
+    /**
+     * This method edits a case and logs the activity with a description. 
+     * @param caseID
+     * @return Case, the case that was edited
+     */
     public Case editCase(int caseID) {
         // TO DO EDIT CASE
        DomainContact dc = DomainContact.getInstance();
@@ -33,6 +43,11 @@ public class SocialWorker extends CaseEmployee{
          return pc.getCase(caseID);
     }
     
+    /**
+     * This method saves a case after a case has been edited. It also logs
+     * the activity with a description of what happened. 
+     * @param c 
+     */
     public void saveCase(Case c){
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();

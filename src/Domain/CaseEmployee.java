@@ -15,6 +15,28 @@ public class CaseEmployee extends Employee{
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
+    /**
+     * The method createCaseRequest is a method to create a case request.
+     * The method takes the different arguments and creates a case request
+     * and sends it to the PersistanceContact class. It also logs the 
+     * activity that happens when the method is used. 
+     * 
+     * @param caseRequestID
+     * @param EmployeeID
+     * @param citizenCPR
+     * @param desc
+     * @param isMessageClear
+     * @param isCarePackage
+     * @param isRehousingPackage
+     * @param contact
+     * @param isCitizenInformed
+     * @param citizenName
+     * @param citizenGender
+     * @param citizenBirthdate
+     * @param citizenAddress
+     * @param citizenPhoneNr
+     * @param citizenMail 
+     */
     public void createCaseRequest(int caseRequestID, int EmployeeID, long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance(); 
