@@ -29,6 +29,25 @@ public class PersistanceContact {
         return instance;
     }
     
+    private PersistanceContact() {}
+    
+    /**
+     * Injects a writer to the PersistanceContact.
+     * @param writer 
+     */
+    public void injectWriter(IWriter writer){
+        this.writer = writer;
+    }
+    
+    /**
+     * Injects a reader to the PersistanceContact.
+     * @param reader 
+     */
+     public void injectReader(IReader reader){
+        this.reader = reader;
+        readCurrentIDs();
+    }
+    
     /**
      * Gets a case ID for a new case.
      * @return int currentCaseID 
@@ -36,7 +55,7 @@ public class PersistanceContact {
     public int getCurrentCaseID(){
         currentCaseID++;
         writeCurrentIDs();
-    return currentCaseID;
+        return currentCaseID;
     }
     
     /**
@@ -46,7 +65,7 @@ public class PersistanceContact {
     public int getCurrentCaseRequestID(){
         currentCaseRequestID++;
         writeCurrentIDs();
-    return currentCaseRequestID;
+        return currentCaseRequestID;
     }
      
     
@@ -82,23 +101,6 @@ public class PersistanceContact {
         writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
     
-    /**
-     * Injects a writer to the PersistanceContact.
-     * @param writer 
-     */
-    public void injectWriter(IWriter writer){
-        this.writer = writer;
-    }
-    
-    /**
-     * Injects a reader to the PersistanceContact.
-     * @param reader 
-     */
-     public void injectReader(IReader reader){
-        this.reader = reader;
-        readCurrentIDs();
-    }
-    
      /**
       * Saves the case request. 
       * @param caseRequest 
@@ -122,33 +124,38 @@ public class PersistanceContact {
     
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
-       if(p[0].equals(null)){
+       if(p[0] == null){
            System.out.println("Person wasnt found");
            return null;
        }
+       
        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.parseInt(p[5]), p[6]);
+       
        return person;
     }
     
     public Employee getEmployee(int id) {
         String[] e = reader.getEmployee(id);
         Employee employee = null; 
-        if(e[0].equals(null)){
+        if(e[0] == null){
             System.out.println("Employee wasn't found");
             return null;
         }
         
-        if (e[10].equals("1")) {
-            employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
-        }
-        else if (e[10].equals("2")) {
-            employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
-        }
-        else if (e[10].equals("3")) {
-            employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
-        }
-        else {
-            System.out.println("Wrong position number retrieved.");
+        switch (e[10])
+        {
+            case "1":
+                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            case "2":
+                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            case "3":
+                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            default:
+                System.out.println("Wrong position number retrieved.");
+                break;
         }
         
         return employee;
@@ -186,18 +193,18 @@ public class PersistanceContact {
         return this.writer;
     }
     
-    
     /**
      * Gets the case based on the case ID
-     * @param ID
+     * @param ID The id of the Case
      * @return Case
      */
     public Case getCase(int ID){
         String[] c = reader.getCase(ID);
-        if(c[0].equals(null)){
+        if(c[0] == null){
             System.out.println("Case wasn't found");
             return null;
         }
+        
         Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
         
         currentCase.setNextAppointment(c[2]);
@@ -212,29 +219,26 @@ public class PersistanceContact {
         currentCase.setSpecialCircumstances(c[11]);
         currentCase.setDifferentCommune(c[12]);
         
-        
         return currentCase;
-        
     }
     
     /**
      * Gets the case request based on the case request ID
-     * @param caseRequestID
+     * @param ID the id of the CaseRequest
      * @return CaseRequest
      */
-    public CaseRequest getCaseRequest(int caseRequestID){
-        String[]cr = reader.getCaseRequest(caseRequestID);
-        
-        if(cr[0].equals(null)){
+    public CaseRequest getCaseRequest(int ID){
+        String[]cr = reader.getCaseRequest(ID);
+        if(cr[0] == null){
             System.out.println("CaseRequest wasn't found");
             return null;
         }
         
-        long l = Long.parseLong(cr[8]);     //CPR
-        int i1 = Integer.parseInt(cr[0]);   //EmployeeID
-        int i2 = Integer.parseInt(cr[1]);   //CaseReqID
+        long CPR = Long.parseLong(cr[8]);               //CPR
+        int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
+        int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
         
-        CaseRequest currentCaseRequest = new CaseRequest(i1,i2 , l);
+        CaseRequest currentCaseRequest = new CaseRequest(employeeID,caseRequestID, CPR);
         
         currentCaseRequest.setDescription(cr[2]);
         currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
@@ -242,10 +246,9 @@ public class PersistanceContact {
         currentCaseRequest.setRehousingPackageRequested(Boolean.parseBoolean(cr[5]));
         currentCaseRequest.setRequestPerson(cr[6]);
         currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
-        currentCaseRequest.connectCitizen(l, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
+        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
         currentCaseRequest.setCitizenPhoneNr(Integer.parseInt(cr[13]));
         currentCaseRequest.setCitizenMail(cr[14]);
-        
         
         return currentCaseRequest;
         
