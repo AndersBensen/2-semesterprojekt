@@ -31,6 +31,12 @@ public class WriteTXT implements IWriter{
     private File caseRequestsFile = new File("CaseRequests.txt");
     private File currentIDs = new File("IDfile.txt");
     
+    
+    /*
+    *Writes information to a log file.
+    *The information logged is employee, action, description and a date
+    *for when changes were made.
+    */
     @Override
     public void writeLog(ILog log) {
         String employeeID = Integer.toString(log.getEmployeeID());
@@ -62,6 +68,13 @@ public class WriteTXT implements IWriter{
         System.out.println("log was written to: " + logFile);
     }
     
+    
+    /*
+    * Writes an employee to a employee file.
+    * Stores all the relevant information about an employee.
+    * cpr, name gender, date, address, phonenumber, mail, id, username, password
+    * @param employee, position
+    */
     @Override
     public void writeEmployee(IEmployee employee, int position) {
         String cpr = Long.toString(employee.getCpr());
@@ -113,6 +126,13 @@ public class WriteTXT implements IWriter{
         System.out.println("employee was written to: " + employeeFile);
     }
     
+     /*
+    * Deletes an employee to a employee file.
+    * removes all the information about an employee.
+    * cpr, name gender, date, address, phonenumber, mail, id, username, password
+    * @param id
+    */
+    
     @Override
     public void deleteEmployee(int id) {
         try {
@@ -137,6 +157,13 @@ public class WriteTXT implements IWriter{
             System.out.println("Problems reading");
         }
     }
+    
+    
+     /*
+    * Writes a case to a case file.
+    * Stores all the relevant information about a case.
+    * @param cases
+    */
     
     @Override
      public void writeCase(ICase cases) {
@@ -224,7 +251,11 @@ public class WriteTXT implements IWriter{
     }
      
      
-   
+    /*
+    * Writes a case request to a case requests file.
+    * Stores all the relevant information about a case request.
+    * @param caseRequests
+    */
      
     @Override
      public void writeCaseRequest(ICaseRequest caseRequests){
@@ -314,7 +345,13 @@ public class WriteTXT implements IWriter{
          
      }
      
-      @Override
+      /*
+    * Writes all ID's to a id file.
+    * Stores ID's for cases, caserequests, employees
+    * @param currentCaseID, currentCaseRequestID, currentEmployeeID
+    */
+     
+     @Override
      public void writeIDs(int currentCaseID, int currentCaseRequestID, int currentEmployeeID){
         StringBuilder sb = new StringBuilder();
         sb.append(Integer.toString(currentCaseID));

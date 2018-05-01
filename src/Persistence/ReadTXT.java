@@ -22,15 +22,18 @@ public class ReadTXT implements IReader{
     private final File caseFile = new File("Cases.txt");
     private final File caseRequestFile = new File("CaseRequests.txt");
     private final File currentIDsFile = new File("IDfile.txt");
+    
+    
+    
     /**
-     *
+     *Reads all the information about a specific patient
      * @param cpr
-     * @return
+     * @return patient[]
      */
     @Override
     public String[] getPerson(long cpr) {
         String[] tokens = new String[7]; 
-        String[] patient = new String[7];
+        String[] patient = new String[7] ;
         String word;
         try (Scanner input = new Scanner(cprFile)){
             while (input.hasNextLine()) {
@@ -50,6 +53,12 @@ public class ReadTXT implements IReader{
         return patient; 
     }
     
+    
+    /**
+     *Reads all the information about a specific employee
+     * @param id
+     * @return String[] employee
+     */
     @Override
     public String[] getEmployee(int id) {
         String[] tokens = new String[5]; 
@@ -73,6 +82,12 @@ public class ReadTXT implements IReader{
         return employee; 
     }
     
+    
+    /**
+     *Reads all the information about a specific case
+     * @param id
+     * @return String[] cases
+     */
     @Override
     public String[] getCase(int id) {
         String[] tokens = new String[14]; 
@@ -96,6 +111,11 @@ public class ReadTXT implements IReader{
         return cases; 
     }
     
+    /**
+     *Reads all the information about a specific case request
+     * @param id
+     * @return String[] caseRequest
+     */
     
     @Override
     public String[] getCaseRequest(int id) {
@@ -120,6 +140,12 @@ public class ReadTXT implements IReader{
         return caseRequest; 
     }
     
+    /**
+     *Reads all the ID's from the id file, these ids
+     * are caseID, case requestID, employeeID 
+     * @param 
+     * @return int[] ids
+     */
     
     @Override
     public int[] getCurrentIDs(){

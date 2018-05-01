@@ -9,15 +9,35 @@ package Domain;
  *
  * @author ander
  */
-public class SocialWorker extends CaseEmployee{
-    
+public class SocialWorker extends CaseEmployee {
+
     public SocialWorker(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
-    
+
+    /**
+     * This method creates a case and logs the activity with a description with
+     * what happened.
+     *
+     * @param ID
+     * @param caseRequestID
+     * @param nextAppointment
+     * @param guardianship
+     * @param personalHelperPowerOfAttorney
+     * @param personalHelper
+     * @param citizenRights
+     * @param citizenInformedElectronic
+     * @param consent
+     * @param specialCircumstances
+     * @param collectCitizenInfo
+     * @param consentType
+     * @param differentCommune
+     * @return int, id of the case creater
+     */
     public int saveCase(int ID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+
         DomainContact dc = DomainContact.getInstance();
-        PersistanceContact pc = PersistanceContact.getInstance(); 
+        PersistanceContact pc = PersistanceContact.getInstance();
         Case c = new Case(ID, caseRequestID);
         c.setNextAppointment(nextAppointment);
         c.setGuardianship(guardianship);
@@ -35,11 +55,16 @@ public class SocialWorker extends CaseEmployee{
         return c.getID();
     }
 
-    
+    /**
+     * This method edits a case and logs the activity with a description.
+     *
+     * @param caseID
+     * @return Case, the case that was edited
+     */
     public Case editCase(int caseID) {
-       DomainContact dc = DomainContact.getInstance();
+        DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
         pc.logAction(dc.getCurrentUser().getId(), LogAction.GET_CASE, "Viewed a case with rights to edit");
-         return pc.getCase(caseID);
+        return pc.getCase(caseID);
     }
 }
