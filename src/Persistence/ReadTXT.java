@@ -7,6 +7,7 @@ package Persistence;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -106,6 +107,7 @@ public class ReadTXT implements IReader
             {
                 word = input.nextLine();
                 tokens = word.split(";");
+                System.out.println(Arrays.toString(tokens));
                 if (Integer.parseInt(tokens[0]) == id)
                 {
                     cases = word.split(";");

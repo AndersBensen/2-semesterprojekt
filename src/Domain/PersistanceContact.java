@@ -66,7 +66,6 @@ public class PersistanceContact {
         writeCurrentIDs();
         return currentCaseRequestID;
     }
-     
     
     /**
      * Gets a employee ID for a new employee.
@@ -77,7 +76,6 @@ public class PersistanceContact {
         writeCurrentIDs();
     return currentEmployeeID;
     }
-      
     
     /**
      * Method is used to set the fields in PersistenceContact. 
@@ -120,6 +118,29 @@ public class PersistanceContact {
         return "your case has been saved with the ID: " + c.getID();
     }
     
+    public void saveEmployee(IEmployee employee) {
+        if (employee instanceof Secretary) {
+            writer.writeEmployee(employee, 1);
+        }
+        else if (employee instanceof SocialWorker) {
+            writer.writeEmployee(employee, 2);
+        }
+        else if (employee instanceof Admin) {
+            writer.writeEmployee(employee, 3);
+        }
+        else {
+            System.out.println("Illegal position number.");
+        }
+    }
+    
+    public void deleteEmployee(int id) {
+        writer.deleteEmployee(id);
+    }
+            
+    public void logAction(int employeeID, LogAction action, String desc) {
+        Log log = new Log(employeeID, action, desc);
+        writer.writeLog(log);
+    }
     
     public Person getPerson(long CPR){
        String[] p = reader.getPerson(CPR);
@@ -158,31 +179,7 @@ public class PersistanceContact {
         }
         
         return employee;
-    }
-    
-    public void saveEmployee(IEmployee employee) {
-        if (employee instanceof Secretary) {
-            writer.writeEmployee(employee, 1);
-        }
-        else if (employee instanceof SocialWorker) {
-            writer.writeEmployee(employee, 2);
-        }
-        else if (employee instanceof Admin) {
-            writer.writeEmployee(employee, 3);
-        }
-        else {
-            System.out.println("Illegal position number.");
-        }
-    }
-    
-    public void deleteEmployee(int id) {
-        writer.deleteEmployee(id);
-    }
-            
-    public void logAction(int employeeID, LogAction action, String desc) {
-        Log log = new Log(employeeID, action, desc);
-        writer.writeLog(log);
-    }  
+    } 
     
     public IReader getReader(){
         return this.reader;
