@@ -54,10 +54,24 @@ public class CommandConverter {
                 }
                 break;
             case "editcase":
-                Integer caseID = Integer.parseInt(args[0]);
-                System.out.println(domainContact.getCase(caseID) + "\n");
-                Integer selectedField = Integer.parseInt(args[1]);
-                System.out.println();
+                try {
+                    Integer caseRequestID = Integer.parseInt(args[0]);
+                    String nextAppointment = args[1];
+                    String guardianship = args[2];
+                    String personalHelper = args[3];
+                    String personalHelperPowerOfAttorney = args[4];
+                    String citizenRights = args[5];
+                    boolean citizenInformedElectronic = getBooleanFromInput(args[6]);
+                    boolean consent = getBooleanFromInput(args[7]);
+                    String consentType = args[8];
+                    String[] collectCitizenInfo = args[9].split("|");
+                    String specialCircumstances = args[10];
+                    String differentCommune = args[11];
+                    
+                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "addEmployee":
                 break;
@@ -67,9 +81,9 @@ public class CommandConverter {
     }
 
     private boolean getBooleanFromInput(String input) {
-        if (input.equalsIgnoreCase("Y")) {
+        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true")) {
             return true;
-        } else if (input.equalsIgnoreCase("N")) {
+        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")) {
             return false;
         } else {
             throw new Error("Could not convert input to boolean");

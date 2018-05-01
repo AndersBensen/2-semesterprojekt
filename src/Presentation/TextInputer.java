@@ -2,6 +2,7 @@ package Presentation;
 
 import Domain.IDomainContact;
 import Domain.IPerson;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -76,12 +77,22 @@ public final class TextInputer {
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "editcase":
-                    askQuestion("Which case ID are you looking for?");
-                    CC.performCommand(command, information.toArray(new String[information.size()]));
-                    String answer = "";
-                    while(!answer.equalsIgnoreCase("0")) {
-                        System.out.println("Which field should be edited? (1,2...)");
+                    System.out.println("Which case ID are you looking for?");
+                    int ID = input.nextInt();
+                    System.out.println("\n" + IDC.getCase(ID));
+                    reAddInfo(ID);
+                    int fieldNr = 1;
+                    while(fieldNr != 0) {
+                        System.out.println("\nWhich field should be edited? (1,2... or 0 to exit)");
+                        fieldNr = input.nextInt();
+                        if(fieldNr != 0) {
+                        System.out.println("Type in your edit:");
+                        input.nextLine(); //virker ikke uden denne ekstra input linje???
+                        String edit = input.nextLine();
+                        updateField(fieldNr, edit);
+                        }
                     }
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "addemployee":
                     break;
@@ -113,44 +124,68 @@ public final class TextInputer {
         information.add(SB.toString());
     }
     
-    public void selectField(int fieldNr, String updatedInfo) {
-        askQuestion("Which field should be edited? (1,2...)");
-                    askQuestion("Field selected: " + information.get(1));
+    private void updateField(int fieldNr, String updatedInfo) {
         
         switch(fieldNr) {
             case 1:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 2:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 3:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 4:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 5:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 6:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 7:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 8:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 9:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 10:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 11:
                 information.add(fieldNr + 1, updatedInfo);
+                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;    
         } 
+    }
+    
+    private void reAddInfo(int ID) {
+        information.add(Integer.toString(IDC.getCase(ID).getCaseRequestID()));
+        information.add(IDC.getCase(ID).getNextAppointment());
+        information.add(IDC.getCase(ID).getGuardianship());
+        information.add(IDC.getCase(ID).getPersonalHelper());
+        information.add(IDC.getCase(ID).getPersonalHelperPowerOfAttorney());
+        information.add(IDC.getCase(ID).getCitizenRights());
+        information.add(Boolean.toString(IDC.getCase(ID).isCitizenInformedElectronic()));
+        information.add(Boolean.toString(IDC.getCase(ID).hasConsent()));
+        information.add(IDC.getCase(ID).getConsentType());
+        information.add(Arrays.toString(IDC.getCase(ID).getCollectCitizenInfo()));
+        information.add(IDC.getCase(ID).getSpecialCircumstances());
+        information.add(IDC.getCase(ID).getDifferentCommune());
     }
 }
