@@ -40,6 +40,9 @@ public class ReadTXT implements IReader
             while (input.hasNextLine())
             {
                 word = input.nextLine();
+                if (word.equals(""))
+                    continue;
+                
                 tokens = word.split(";");
                 if (Long.parseLong(tokens[0]) == cpr)
                 {
@@ -73,6 +76,9 @@ public class ReadTXT implements IReader
             while (input.hasNextLine())
             {
                 word = input.nextLine();
+                if (word.equals(""))
+                    continue;
+                
                 tokens = word.split(";");
                 if (Integer.parseInt(tokens[7]) == id)
                 {
@@ -106,8 +112,10 @@ public class ReadTXT implements IReader
             while (input.hasNextLine())
             {
                 word = input.nextLine();
+                if (word.equals(""))
+                    continue;
+                
                 tokens = word.split(";");
-                System.out.println(Arrays.toString(tokens));
                 if (Integer.parseInt(tokens[0]) == id)
                 {
                     cases = word.split(";");
@@ -140,6 +148,9 @@ public class ReadTXT implements IReader
             while (input.hasNextLine())
             {
                 word = input.nextLine();
+                if (word.equals(""))
+                    continue;
+                
                 tokens = word.split(";");
                 if (Integer.parseInt(tokens[0]) == id)
                 {
