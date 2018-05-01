@@ -57,6 +57,24 @@ public class Admin extends Employee{
 //        addEmployee(cprFromPerson, nameFromPerson, genderFromPerson, birthDateFromPerson, addressFromPerson, phoneNumber, mail, id, userName, password, positionNumber);
 //    }
     
+    /**
+     * The method addEmployee adds an emplyoee to the persistance layer. 
+     * The method takes the different attributes that a employee needs
+     * and instantitates as either a Secretary, SocialWorker or an Admin
+     * depending n the positionNumber given. It also logs activity 
+     * with a description of the activity. 
+     * @param cpr
+     * @param name
+     * @param gender
+     * @param birthDate
+     * @param address
+     * @param phoneNumber
+     * @param mail
+     * @param id
+     * @param userName
+     * @param password
+     * @param positionNumber 
+     */
     public void addEmployee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
         IEmployee e;
         DomainContact dc = DomainContact.getInstance();
@@ -80,6 +98,11 @@ public class Admin extends Employee{
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_EMPLOYEE, "Added employee with id: " + id + " to persistence.");
     }
     
+    /**
+     * This method deletes an employee with the matching employee id. 
+     * It also logs the activity with a description of what happened. 
+     * @param id 
+     */
     public void deleteEmployee(int id) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance(); 
