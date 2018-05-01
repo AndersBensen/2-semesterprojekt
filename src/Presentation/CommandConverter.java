@@ -56,6 +56,8 @@ public class CommandConverter {
             case "editcase":
                 Integer caseID = Integer.parseInt(args[0]);
                 System.out.println(domainContact.getCase(caseID) + "\n");
+                Integer selectedField = Integer.parseInt(args[1]);
+                System.out.println();
                 break;
             case "addEmployee":
                 break;
