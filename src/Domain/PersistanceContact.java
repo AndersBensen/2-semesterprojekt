@@ -187,6 +187,11 @@ public class PersistanceContact
         return currentCase;
     }
 
+    /**
+     * Gets the person based on a CPR number
+     * @param CPR
+     * @return Person
+     */
     public Person getPerson(long CPR)
     {
         String[] p = reader.getPerson(CPR);
@@ -201,9 +206,14 @@ public class PersistanceContact
         return person;
     }
 
-    public Employee getEmployee(int id)
+    /**
+     * Gets an employee based on the ID
+     * @param ID
+     * @return Employee
+     */
+    public Employee getEmployee(int ID)
     {
-        String[] e = reader.getEmployee(id);
+        String[] e = reader.getEmployee(ID);
         Employee employee = null;
         if (e[0] == null)
         {
