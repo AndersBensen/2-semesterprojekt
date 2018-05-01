@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Peter
@@ -145,5 +147,16 @@ public class Case implements ICase {   // Mangler at logge
 
     public void setDifferentCommune(String differentCommune) {
         this.differentCommune = differentCommune;
+    }
+    
+    @Override
+    public String toString() {
+        return "ID: " + ID + "\nCase request ID: " + caseRequestID + "\n1. Next Appointment: " 
+                + nextAppointment + "\n2. Guardianship: " + guardianship + "\n3. Personal helper: "
+                + personalHelper + "\n4. PHPOA: " + personalHelperPowerOfAttorney + "\n5. Citizen rights: "
+                + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic
+                + "\n7. Consent: " + consent + "\n8. Consent type: " + consentType + "\n9. Collect citizen info: "
+                + Arrays.toString(collectCitizenInfo) + "\n10. Special circumstances: " + specialCircumstances
+                + "\n11. Different commune: " + differentCommune;
     }
 }

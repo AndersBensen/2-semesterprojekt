@@ -53,7 +53,10 @@ public class CommandConverter {
                     e.printStackTrace();
                 }
                 break;
-
+            case "editcase":
+                Integer caseID = Integer.parseInt(args[0]);
+                System.out.println(domainContact.getCase(caseID) + "\n");
+                break;
             case "addEmployee":
                 break;
             case "deleteEmployee":

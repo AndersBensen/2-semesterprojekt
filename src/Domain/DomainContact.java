@@ -22,7 +22,7 @@ public class DomainContact implements IDomainContact {
     public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
         if (currentUser instanceof CaseEmployee) {
             CaseEmployee caseUser = (CaseEmployee) currentUser;
-            caseUser.createCaseRequest(0, currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
+            caseUser.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
         }
         else
             System.out.println("User not allowed to perform command: createCaseRequest");
@@ -32,7 +32,7 @@ public class DomainContact implements IDomainContact {
     public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
         if (currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(PersistanceContact.getInstance().getCurrentCaseID(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
         else
             System.out.println("User not allowed to perform command: createCase");
@@ -67,5 +67,10 @@ public class DomainContact implements IDomainContact {
     
     public Employee getCurrentUser() {
         return currentUser;
+    }
+    
+    @Override
+    public ICase getCase(int caseID) {
+        return PersistanceContact.getInstance().getCase(caseID);
     }
 }

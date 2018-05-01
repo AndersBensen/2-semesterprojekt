@@ -22,4 +22,6 @@ public interface IDomainContact {
     public void deleteEmployee();
 
     public IPerson getPerson(long CPR);
+    
+    public ICase getCase(int caseID);
 }

@@ -76,6 +76,12 @@ public final class TextInputer {
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "editcase":
+                    askQuestion("Which case ID are you looking for?");
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
+                    String answer = "";
+                    while(!answer.equalsIgnoreCase("0")) {
+                        System.out.println("Which field should be edited? (1,2...)");
+                    }
                     break;
                 case "addemployee":
                     break;
@@ -105,5 +111,46 @@ public final class TextInputer {
         SB.deleteCharAt(SB.length() - 1);
         System.out.println(SB.toString());
         information.add(SB.toString());
+    }
+    
+    public void selectField(int fieldNr, String updatedInfo) {
+        askQuestion("Which field should be edited? (1,2...)");
+                    askQuestion("Field selected: " + information.get(1));
+        
+        switch(fieldNr) {
+            case 1:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 2:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 3:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 4:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 5:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 6:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 7:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 8:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 9:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 10:
+                information.add(fieldNr + 1, updatedInfo);
+                break;
+            case 11:
+                information.add(fieldNr + 1, updatedInfo);
+                break;    
+        } 
     }
 }
