@@ -19,7 +19,7 @@ public class SocialWorker extends CaseEmployee{
      * This method creates a case and logs the activity with a description
      * with what happened. 
      * @param caseRequestID
-     * @return int 
+     * @return int, id of the case creater 
      */
     public int createCase(int caseRequestID) {
         DomainContact dc = DomainContact.getInstance();
@@ -31,9 +31,9 @@ public class SocialWorker extends CaseEmployee{
     }
 
     /**
-     * This method edits a case and logs the activity wit ha description. 
+     * This method edits a case and logs the activity with a description. 
      * @param caseID
-     * @return Case
+     * @return Case, the case that was edited
      */
     public Case editCase(int caseID) {
         // TO DO EDIT CASE
@@ -45,7 +45,7 @@ public class SocialWorker extends CaseEmployee{
     
     /**
      * This method saves a case after a case has been edited. It also logs
-     * the activity with a description  of what happened. 
+     * the activity with a description of what happened. 
      * @param c 
      */
     public void saveCase(Case c){
