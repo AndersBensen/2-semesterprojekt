@@ -32,9 +32,7 @@ public class PersistanceContact
         return instance;
     }
 
-    private PersistanceContact()
-    {
-    }
+    private PersistanceContact() {}
 
     /**
      * Injects a writer to the PersistanceContact.
@@ -55,65 +53,6 @@ public class PersistanceContact
     {
         this.reader = reader;
         readCurrentIDs();
-    }
-
-    /**
-     * Gets a case ID for a new case.
-     *
-     * @return int currentCaseID
-     */
-    public int getCurrentCaseID()
-    {
-        currentCaseID++;
-        writeCurrentIDs();
-        return currentCaseID;
-    }
-
-    /**
-     * Gets a case request ID for a new case request.
-     *
-     * @return int currentCaseRequestID
-     */
-    public int getCurrentCaseRequestID()
-    {
-        currentCaseRequestID++;
-        writeCurrentIDs();
-        return currentCaseRequestID;
-    }
-
-    /**
-     * Gets a employee ID for a new employee.
-     *
-     * @return int currentEmployeeID
-     */
-    public int getCurrentEmployeeID()
-    {
-        currentEmployeeID++;
-        writeCurrentIDs();
-        return currentEmployeeID;
-    }
-
-    /**
-     * Method is used to set the fields in PersistenceContact. This method is
-     * called when a reader is injected to PersistanceContant.
-     */
-    private void readCurrentIDs()
-    {
-        int[] ids = reader.getCurrentIDs();
-        this.currentCaseID = ids[0];
-        this.currentCaseRequestID = ids[1];
-        this.currentEmployeeID = ids[2];
-        System.out.println("was read: " + currentCaseID + " " + currentCaseRequestID + " " + currentEmployeeID);
-
-    }
-
-    /**
-     * Writes the current IDs to the database. This method is called whenever
-     * there is a change in those fields.
-     */
-    private void writeCurrentIDs()
-    {
-        writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
 
     /**
@@ -139,7 +78,11 @@ public class PersistanceContact
         writer.writeCase(c);
         return "your case has been saved with the ID: " + c.getID();
     }
-
+    
+    /**
+     * Save the employee to the database
+     * @param employee 
+     */
     public void saveEmployee(IEmployee employee)
     {
         if (employee instanceof Secretary)
@@ -157,15 +100,91 @@ public class PersistanceContact
         }
     }
 
+    /**
+     * Deletes the employee from the database
+     * @param id ID of employee
+     */
     public void deleteEmployee(int id)
     {
         writer.deleteEmployee(id);
     }
-
+    
+    /**
+     * Saves a log of the action performed
+     * @param employeeID
+     * @param action
+     * @param desc
+     */
     public void logAction(int employeeID, LogAction action, String desc)
     {
         Log log = new Log(employeeID, action, desc);
         writer.writeLog(log);
+    }
+
+    /**
+     * Gets the case request based on the case request ID
+     *
+     * @param ID the id of the CaseRequest
+     * @return CaseRequest
+     */
+    public CaseRequest getCaseRequest(int ID)
+    {
+        String[] cr = reader.getCaseRequest(ID);
+        if (cr[0] == null)
+        {
+            System.out.println("CaseRequest wasn't found");
+            return null;
+        }
+
+        long CPR = Long.parseLong(cr[8]);               //CPR
+        int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
+        int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
+
+        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR);
+
+        currentCaseRequest.setDescription(cr[2]);
+        currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
+        currentCaseRequest.setCarePackageRequested(Boolean.parseBoolean(cr[4]));
+        currentCaseRequest.setRehousingPackageRequested(Boolean.parseBoolean(cr[5]));
+        currentCaseRequest.setRequestPerson(cr[6]);
+        currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
+        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
+        currentCaseRequest.setCitizenPhoneNr(Integer.parseInt(cr[13]));
+        currentCaseRequest.setCitizenMail(cr[14]);
+
+        return currentCaseRequest;
+    }
+
+    /**
+     * Gets the case based on the case ID
+     *
+     * @param ID The id of the Case
+     * @return Case
+     */
+    public Case getCase(int ID)
+    {
+        String[] c = reader.getCase(ID);
+        if (c[0] == null)
+        {
+            System.out.println("Case wasn't found");
+            return null;
+        }
+
+        Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
+
+        currentCase.setNextAppointment(c[2]);
+        currentCase.setGuardianship(c[3]);
+        currentCase.setPersonalHelper(c[4]);
+        currentCase.setPersonalHelperPowerOfAttorney(c[5]);
+        currentCase.setCitizenRights(c[6]);
+        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[7]));
+        currentCase.setConsent(Boolean.parseBoolean(c[8]));
+        currentCase.setConsentType(c[9]);
+        currentCase.setCollectCitizenInfo(c[10].split("|"));
+        currentCase.setSpecialCircumstances(c[11]);
+        currentCase.setDifferentCommune(c[12]);
+
+        return currentCase;
     }
 
     public Person getPerson(long CPR)
@@ -211,81 +230,63 @@ public class PersistanceContact
         return employee;
     }
 
-    public IReader getReader()
+    /**
+     * Gets a case request ID for a new case request.
+     *
+     * @return int currentCaseRequestID
+     */
+    public int getNewCaseRequestID()
     {
-        return this.reader;
-    }
-
-    public IWriter getWriter()
-    {
-        return this.writer;
+        currentCaseRequestID++;
+        writeCurrentIDs();
+        return currentCaseRequestID;
     }
 
     /**
-     * Gets the case based on the case ID
+     * Gets a case ID for a new case.
      *
-     * @param ID The id of the Case
-     * @return Case
+     * @return int currentCaseID
      */
-    public Case getCase(int ID)
+    public int getNewCaseID()
     {
-        String[] c = reader.getCase(ID);
-        if (c[0] == null)
-        {
-            System.out.println("Case wasn't found");
-            return null;
-        }
-
-        Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
-
-        currentCase.setNextAppointment(c[2]);
-        currentCase.setGuardianship(c[3]);
-        currentCase.setPersonalHelper(c[4]);
-        currentCase.setPersonalHelperPowerOfAttorney(c[5]);
-        currentCase.setCitizenRights(c[6]);
-        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[7]));
-        currentCase.setConsent(Boolean.parseBoolean(c[8]));
-        currentCase.setConsentType(c[9]);
-        currentCase.setCollectCitizenInfo(c[10].split("|"));
-        currentCase.setSpecialCircumstances(c[11]);
-        currentCase.setDifferentCommune(c[12]);
-
-        return currentCase;
+        currentCaseID++;
+        writeCurrentIDs();
+        return currentCaseID;
     }
 
     /**
-     * Gets the case request based on the case request ID
+     * Gets a employee ID for a new employee.
      *
-     * @param ID the id of the CaseRequest
-     * @return CaseRequest
+     * @return int currentEmployeeID
      */
-    public CaseRequest getCaseRequest(int ID)
+    public int getNewEmployeeID()
     {
-        String[] cr = reader.getCaseRequest(ID);
-        if (cr[0] == null)
-        {
-            System.out.println("CaseRequest wasn't found");
-            return null;
-        }
+        currentEmployeeID++;
+        writeCurrentIDs();
+        return currentEmployeeID;
+    }
 
-        long CPR = Long.parseLong(cr[8]);               //CPR
-        int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
-        int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
+    /**
+     * Method is used to set the fields in PersistenceContact. This method is
+     * called when a reader is injected to PersistanceContant.
+     */
+    private void readCurrentIDs()
+    {
+        int[] ids = reader.getCurrentIDs();
+        this.currentCaseID = ids[0];
+        this.currentCaseRequestID = ids[1];
+        this.currentEmployeeID = ids[2];
+        System.out.println("was read: " + currentCaseID + " " + currentCaseRequestID + " " + currentEmployeeID);
 
-        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR);
+    }
 
-        currentCaseRequest.setDescription(cr[2]);
-        currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
-        currentCaseRequest.setCarePackageRequested(Boolean.parseBoolean(cr[4]));
-        currentCaseRequest.setRehousingPackageRequested(Boolean.parseBoolean(cr[5]));
-        currentCaseRequest.setRequestPerson(cr[6]);
-        currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
-        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
-        currentCaseRequest.setCitizenPhoneNr(Integer.parseInt(cr[13]));
-        currentCaseRequest.setCitizenMail(cr[14]);
-
-        return currentCaseRequest;
-
+    /**
+     * Writes the current IDs to the database. This method is called whenever
+     * there is a change in those fields.
+     */
+    private void writeCurrentIDs()
+    {
+        writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
 
 }
