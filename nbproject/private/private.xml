@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/IEmployee.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/IDomainContact.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/Case.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Presentation/CommandConverter.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/DomainContact.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/Cases.txt</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/PersistanceContact.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/Employee.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Starter/Main.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Presentation/TextInputer.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/ICase.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/CaseEmployee.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Presentation/Sem02_Semesterprojekt_SensumUdred.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Persistence/IReader.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Persistence/WriteTXT.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Domain/SocialWorker.java</file>
+            <file>file:/C:/Users/sigur/Dropbox/Skole/Uni/NetBeans/GitHub/2-semesterprojekt-sensum-udred/src/Persistence/ReadTXT.java</file>
+        </group>
     </open-files>
 </project-private>

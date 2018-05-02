@@ -10,31 +10,11 @@ package Domain;
  *
  * @author ander
  */
-public interface IEmployee {
-    
-    public long getCpr(); 
-    
-    public String getName();
-    
-    public char getGender();
-    
-    public String getBirthDate();
-    
-    public String getAddress();
-    
-    public int getPhoneNumber();
-    
-    public String getMail();
+public interface IEmployee extends IPerson{
     
     public int getId();
     
     public String getUserName();
     
     public String getPassWord();
-    
-    public void setId(int id);
-    
-    public void setUserName(String userName);
-    
-    public void setPassword(String password);
 }

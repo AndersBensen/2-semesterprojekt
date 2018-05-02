@@ -15,7 +15,7 @@ public interface ICase {
 
     String getCitizenRights();
 
-    String getCollectCitizenInfo();
+    String[] getCollectCitizenInfo();
 
     String getConsentType();
 
@@ -27,8 +27,6 @@ public interface ICase {
 
     String getNextAppointment();
 
-    String getCitizenRepresentation();
-
     String getPersonalHelper();
 
     String getSpecialCircumstances();
@@ -37,8 +35,5 @@ public interface ICase {
     
     boolean isCitizenInformedElectronic();
     
-    boolean isPersonalHelperPowerOfAttorney();
-    
-    boolean isCitizenIsInformed();
-
+    String getPersonalHelperPowerOfAttorney();
 }

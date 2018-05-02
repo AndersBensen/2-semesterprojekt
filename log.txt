@@ -1,2 +1,236 @@
 
 6;LOG_IN;User logged in;Wed Apr 25 11:29:43 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 13:52:03 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 13:52:22 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:06:28 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:07:33 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:27:14 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:33:38 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:33:54 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:34:30 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:35:26 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:37:39 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:37:48 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:40:07 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:41:28 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:46:51 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:47:21 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:47:29 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:48:02 CEST 2018
+
+6;LOG_IN;User logged in;Wed Apr 25 14:48:50 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed Apr 25 14:49:24 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:20:40 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:24:31 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:26:46 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:26:58 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:28:09 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:30:46 CEST 2018
+
+6;GET_EMPLOYEE;User requested for a person with CPR: 123456789;Tue May 01 14:30:52 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:31:50 CEST 2018
+
+6;GET_EMPLOYEE;User requested for a person with CPR: 1508800001;Tue May 01 14:31:58 CEST 2018
+
+6;SAVE_CASE_REQUEST;Saved a case request;Tue May 01 14:32:08 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:34:57 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:35:18 CEST 2018
+
+6;SAVE_CASE;Created a new case;Tue May 01 14:36:01 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:41:42 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:52:31 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:54:12 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:55:27 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:57:15 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 14:59:43 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:00:28 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:04:04 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:04:18 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:04:29 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:04:47 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:07:09 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:10:42 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 15:19:02 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 19:46:25 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:14:53 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:16:47 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:24:23 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:29:17 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:32:12 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:34:36 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:34:42 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:34:47 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:37:06 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:37:53 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:39:02 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:41:02 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:41:26 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:44:55 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:45:57 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:46:44 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:47:42 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:47:59 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:49:59 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:52:00 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:52:37 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 01 20:59:16 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 07:01:24 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 07:02:01 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 07:03:02 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:40:24 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:43:31 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:48:27 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:49:40 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:49:53 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:53:46 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 08:59:52 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:00:33 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:02:33 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:04:32 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:06:44 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 09:07:54 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:20:42 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:22:06 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 09:22:21 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:26:06 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 09:28:10 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:35:55 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:45:48 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 09:46:34 CEST 2018
+
+6;GET_EMPLOYEE;User requested for a person with CPR: 1508800001;Wed May 02 09:46:59 CEST 2018
+
+6;SAVE_CASE_REQUEST;Saved a case request;Wed May 02 09:47:25 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:06:47 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:08:13 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 10:10:15 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:11:00 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:29:19 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:29:57 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:45:55 CEST 2018
+
+6;GET_EMPLOYEE;User requested for a person with CPR: 80582009;Wed May 02 10:46:03 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:46:13 CEST 2018
+
+6;DELETE_EMPLOYEE;Deleted employee with id: 31 from persistence.;Wed May 02 10:46:19 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:47:30 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:49:32 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:52:03 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:53:38 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:56:24 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:58:37 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:59:14 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:00:05 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:01:28 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:02:08 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:02:22 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:03:36 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:03:48 CEST 2018

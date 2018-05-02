@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Peter
@@ -13,17 +15,15 @@ public class Case implements ICase {   // Mangler at logge
 
     private int ID;
     private int caseRequestID;
-    private boolean citizenIsInformed;
-    private String citizenRepresentation;
     private String nextAppointment;
     private String guardianship;
     private String personalHelper;
-    private boolean personalHelperPowerOfAttorney;
+    private String personalHelperPowerOfAttorney;
     private String citizenRights;
     private boolean citizenInformedElectronic;
     private boolean consent;
     private String consentType; // can be oral or written
-    private String collectCitizenInfo;
+    private String[] collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
 
@@ -32,8 +32,8 @@ public class Case implements ICase {   // Mangler at logge
         this.caseRequestID = caseRequestID;
 
     }
-//getters
-
+    
+    //Getter methods
     @Override
     public int getID() {
         return ID;
@@ -43,16 +43,6 @@ public class Case implements ICase {   // Mangler at logge
     public int getCaseRequestID() {
         return caseRequestID;
 
-    }
-
-    @Override
-    public boolean isCitizenIsInformed() {
-        return this.citizenIsInformed;
-    }
-
-    @Override
-    public String getCitizenRepresentation() {
-        return this.citizenRepresentation;
     }
 
     @Override
@@ -70,7 +60,8 @@ public class Case implements ICase {   // Mangler at logge
         return personalHelper;
     }
 
-    public boolean isPersonalHelperPowerOfAttorney() {
+    @Override
+    public String getPersonalHelperPowerOfAttorney() {
         return personalHelperPowerOfAttorney;
     }
 
@@ -95,7 +86,7 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public String getCollectCitizenInfo() {
+    public String[] getCollectCitizenInfo() {
         return collectCitizenInfo;
     }
 
@@ -108,18 +99,10 @@ public class Case implements ICase {   // Mangler at logge
     public String getDifferentCommune() {
         return differentCommune;
     }
-//setters
-
+    
+    //Setter methods
     public void setCaseRequestID(int caseRequestID) {
         this.caseRequestID = caseRequestID;
-    }
-
-    public void setCitizenIsInformed(boolean citizenIsInformed) {
-        this.citizenIsInformed = citizenIsInformed;
-    }
-
-    public void setCitizenRepresentation(String citizenRepresentation) {
-        this.citizenRepresentation = citizenRepresentation;
     }
 
     public void setNextAppointment(String nextAppointment) {
@@ -134,7 +117,7 @@ public class Case implements ICase {   // Mangler at logge
         this.personalHelper = personalHelper;
     }
 
-    public void setPersonalHelperPowerOfAttorney(boolean personalHelperPowerOfAttorney) {
+    public void setPersonalHelperPowerOfAttorney(String personalHelperPowerOfAttorney) {
         this.personalHelperPowerOfAttorney = personalHelperPowerOfAttorney;
     }
 
@@ -154,7 +137,7 @@ public class Case implements ICase {   // Mangler at logge
         this.consentType = consentType;
     }
 
-    public void setCollectCitizenInfo(String collectCitizenInfo) {
+    public void setCollectCitizenInfo(String[] collectCitizenInfo) {
         this.collectCitizenInfo = collectCitizenInfo;
     }
 
@@ -165,5 +148,15 @@ public class Case implements ICase {   // Mangler at logge
     public void setDifferentCommune(String differentCommune) {
         this.differentCommune = differentCommune;
     }
-
+    
+    @Override
+    public String toString() {
+        return "ID: " + ID + "\nCase request ID: " + caseRequestID + "\n1. Next Appointment: " 
+                + nextAppointment + "\n2. Guardianship: " + guardianship + "\n3. Personal helper: "
+                + personalHelper + "\n4. PHPOA: " + personalHelperPowerOfAttorney + "\n5. Citizen rights: "
+                + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic
+                + "\n7. Consent: " + consent + "\n8. Consent type: " + consentType + "\n9. Collect citizen info: "
+                + Arrays.toString(collectCitizenInfo) + "\n10. Special circumstances: " + specialCircumstances
+                + "\n11. Different commune: " + differentCommune;
+    }
 }

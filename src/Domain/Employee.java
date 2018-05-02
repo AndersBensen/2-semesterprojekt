@@ -5,9 +5,6 @@
  */
 package Domain;
 
-import com.sun.org.apache.bcel.internal.generic.DCMPG;
-import java.util.Date;
-
 /**
  *
  * @author ander
@@ -20,7 +17,7 @@ public class Employee extends Person implements IEmployee{
     private String userName;
     private String password; 
     
-    public Employee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
+    public Employee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail);
         this.id = id;
         this.userName = userName;
@@ -42,17 +39,14 @@ public class Employee extends Person implements IEmployee{
         return password;
     }
     
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    @Override
     public void setPassword(String password) {
         this.password = password;
     }

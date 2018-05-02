@@ -11,7 +11,7 @@ package Domain;
  */
 public class CaseEmployee extends Employee{
 
-    public CaseEmployee(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail, int id, String userName, String password) {
+    public CaseEmployee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
     
