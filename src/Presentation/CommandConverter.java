@@ -44,7 +44,7 @@ public class CommandConverter {
                     boolean citizenInformedElectronic = getBooleanFromInput(args[6]);
                     boolean consent = getBooleanFromInput(args[7]);
                     String consentType = args[8];
-                    String[] collectCitizenInfo = args[9].split("|");
+                    String[] collectCitizenInfo = args[9].split("#");
                     String specialCircumstances = args[10];
                     String differentCommune = args[11];
                     
@@ -65,7 +65,7 @@ public class CommandConverter {
                     boolean citizenInformedElectronic = getBooleanFromInput(args[7]);
                     boolean consent = getBooleanFromInput(args[8]);
                     String consentType = args[9];
-                    String[] collectCitizenInfo = args[10].split("|");
+                    String[] collectCitizenInfo = args[10].split("#");
                     String specialCircumstances = args[11];
                     String differentCommune = args[12];
                     

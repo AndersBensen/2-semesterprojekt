@@ -208,3 +208,29 @@
 6;LOG_IN;User logged in;Wed May 02 10:46:13 CEST 2018
 
 6;DELETE_EMPLOYEE;Deleted employee with id: 31 from persistence.;Wed May 02 10:46:19 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:47:30 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:49:32 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:52:03 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:53:38 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:56:24 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:58:37 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:59:14 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:00:05 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:01:28 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:02:08 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:02:22 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 11:03:36 CEST 2018
+
+6;SAVE_CASE;Created a new case;Wed May 02 11:03:48 CEST 2018

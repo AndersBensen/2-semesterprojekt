@@ -138,11 +138,10 @@ public final class TextInputer {
             answer = input.nextLine();
             if (!answer.equalsIgnoreCase("x")) {
                 SB.append(answer);
-                SB.append("|");
+                SB.append("#");
             }
         }
         SB.deleteCharAt(SB.length() - 1);
-        System.out.println(SB.toString());
         information.add(SB.toString());
     }
     
@@ -150,8 +149,8 @@ public final class TextInputer {
         String decoded = "";
         for (String str : sArray) {
             decoded += str;
+            decoded += "#";
         }
-        System.out.println(decoded);
         return decoded;
     }
     
