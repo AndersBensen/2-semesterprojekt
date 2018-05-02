@@ -1,7 +1,6 @@
 package Presentation;
 
 import Domain.IDomainContact;
-import java.util.Arrays;
 
 public class CommandConverter {
 
@@ -75,9 +74,36 @@ public class CommandConverter {
                     e.printStackTrace();
                 }
                 break;
-            case "addEmployee":
+            case "addemployee":
+                try
+                {
+                    long employeeCPR = Long.parseLong(args[0]);
+                    String employeeName = args[1];
+                    char employeeGender = args[2].charAt(0);
+                    String employeeBirthdate = args[3];
+                    String employeeAddress = args[4];
+                    Integer employeePhoneNr = args[5].equals("")? null : Integer.parseInt(args[5]);
+                    String employeeMail = args[6];
+                    String username = args[7];
+                    String password = args[8];
+                    int positionNumber = Integer.parseInt(args[9]);
+                    
+                    domainContact.addEmployee(employeeCPR, employeeName, employeeGender, employeeBirthdate, employeeAddress, employeePhoneNr, employeeMail, username, password, positionNumber);
+                } catch (NumberFormatException e)
+                {
+                    e.printStackTrace();
+                }
                 break;
-            case "deleteEmployee":
+            case "deleteemployee":
+                try
+                {
+                    int employeeID = Integer.parseInt(args[0]);
+                    
+                    domainContact.deleteEmployee(employeeID);
+                } catch (NumberFormatException e)
+                {
+                    e.printStackTrace();
+                }
                 break;
         }
     }

@@ -17,11 +17,12 @@ public interface IDomainContact {
             boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune);
 
-    public void addEmployee();
+    public void addEmployee(long CPR, String name, char gender, String birthdate, String Address,
+            Integer phoneNr, String mail, String username, String password, int positionNumber);
 
-    public void deleteEmployee();
-
-    public IPerson getPerson(long CPR);
+    public void deleteEmployee(int employeeID);
     
     public ICase getCase(int caseID);
+
+    public IPerson getPerson(long CPR);
 }

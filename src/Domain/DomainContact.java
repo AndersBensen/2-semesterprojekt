@@ -13,7 +13,7 @@ public class DomainContact implements IDomainContact {
     }
 
     private DomainContact() {
-        this.currentUser = new SocialWorker(1000950000, "Morten", 'M', "10-01-0000", "Hejsavej", 88888888, "hej@nal.mail", 6, "Loc", "1234567");
+        this.currentUser = new Admin(1000950000, "Morten", 'M', "10-01-0000", "Hejsavej", 88888888, "hej@nal.mail", 6, "Loc", "1234567");
         PersistanceContact PS = PersistanceContact.getInstance();
         PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User logged in");
     }
@@ -21,11 +21,11 @@ public class DomainContact implements IDomainContact {
     @Override
     public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
         if (currentUser instanceof CaseEmployee) {
-            CaseEmployee caseUser = (CaseEmployee) currentUser;
-            caseUser.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
+            CaseEmployee caseEmployee = (CaseEmployee) currentUser;
+            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
         }
         else
-            System.out.println("User not allowed to perform command: createCaseRequest");
+            printUnauthorizedAccess("createCaseRequest");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class DomainContact implements IDomainContact {
             socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
         else
-            System.out.println("User not allowed to perform command: createCase");
+            printUnauthorizedAccess("createCase");
     }
     
     @Override
@@ -45,17 +45,33 @@ public class DomainContact implements IDomainContact {
             socialWorker.saveCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
         else
-            System.out.println("User not allowed to perform command: saveEditedCase");
+            printUnauthorizedAccess("saveEditedCase");
     }
 
     @Override
-    public void addEmployee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addEmployee(long CPR, String name, char gender, String birthdate, String Address,
+            Integer phoneNr, String mail, String username, String password, int positionNumber) {
+        if (currentUser instanceof Admin) {
+            Admin admin = (Admin) currentUser;
+            admin.addEmployee(CPR, name, gender, birthdate, Address, phoneNr, mail, PersistanceContact.getInstance().getNewEmployeeID(), username, password, positionNumber);
+        }
+        else
+            printUnauthorizedAccess("addEmployee");
     }
 
     @Override
-    public void deleteEmployee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteEmployee(int employeeID) {
+        if (currentUser instanceof Admin) {
+            Admin admin = (Admin) currentUser;
+            admin.deleteEmployee(employeeID);
+        }
+        else
+            printUnauthorizedAccess("deleteEmployee");
+    }
+    
+    @Override
+    public ICase getCase(int caseID) {
+        return PersistanceContact.getInstance().getCase(caseID);
     }
 
     @Override
@@ -69,8 +85,7 @@ public class DomainContact implements IDomainContact {
         return currentUser;
     }
     
-    @Override
-    public ICase getCase(int caseID) {
-        return PersistanceContact.getInstance().getCase(caseID);
+    private void printUnauthorizedAccess(String methodName) {
+        System.out.println("User not allowed to perform command: " + methodName);
     }
 }

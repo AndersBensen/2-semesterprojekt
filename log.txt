@@ -200,3 +200,11 @@
 6;LOG_IN;User logged in;Wed May 02 10:29:19 CEST 2018
 
 6;LOG_IN;User logged in;Wed May 02 10:29:57 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:45:55 CEST 2018
+
+6;GET_EMPLOYEE;User requested for a person with CPR: 80582009;Wed May 02 10:46:03 CEST 2018
+
+6;LOG_IN;User logged in;Wed May 02 10:46:13 CEST 2018
+
+6;DELETE_EMPLOYEE;Deleted employee with id: 31 from persistence.;Wed May 02 10:46:19 CEST 2018

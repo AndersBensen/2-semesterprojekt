@@ -18,7 +18,7 @@ public class Person implements IPerson {
     private Integer phoneNumber; 
     private String mail; 
 
-    public Person(long cpr, String name, char gender, String birthDate, String address, int phoneNumber, String mail) {
+    public Person(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail) {
         this.cpr = cpr;
         this.name = name;
         this.gender = gender;

@@ -200,8 +200,10 @@ public class PersistanceContact
             System.out.println("Person wasnt found");
             return null;
         }
-
-        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], Integer.parseInt(p[5]), p[6]);
+        
+        Integer personPhoneNr = p[5].equals("")? null : Integer.parseInt(p[5]);
+        
+        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], personPhoneNr, p[6]);
 
         return person;
     }
@@ -220,17 +222,19 @@ public class PersistanceContact
             System.out.println("Employee wasn't found");
             return null;
         }
-
+        
+        Integer employeePhoneNr = e[5].equals("")? null : Integer.parseInt(e[5]);
+        
         switch (e[10])
         {
             case "1":
-                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "2":
-                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "3":
-                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], Integer.parseInt(e[5]), e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             default:
                 System.out.println("Wrong position number retrieved.");

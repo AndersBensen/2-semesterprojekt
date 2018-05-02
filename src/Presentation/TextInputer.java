@@ -2,7 +2,6 @@ package Presentation;
 
 import Domain.IDomainContact;
 import Domain.IPerson;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,11 +25,12 @@ public final class TextInputer {
             information = new LinkedList();
             System.out.println("\nEnter a valid system command (caserequest | case | editcase | addemployee | deleteemployee):\n");
             String command = input.nextLine().toLowerCase();
+            IPerson person;
 
             switch (command) {
                 case "caserequest":
                     askQuestion("CPR number of the patient?");
-                    IPerson person = IDC.getPerson(Long.parseLong(information.get(0)));
+                    person = IDC.getPerson(Long.parseLong(information.get(0)));
                     if (person != null) {
                         information.add(person.getName());
                         information.add(Character.toString(person.getGender()));
@@ -95,8 +95,31 @@ public final class TextInputer {
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "addemployee":
+                    askQuestion("CPR number of the employee?");
+                    person = IDC.getPerson(Long.parseLong(information.get(0)));
+                    if (person != null) {
+                        information.add(person.getName());
+                        information.add(Character.toString(person.getGender()));
+                        information.add(person.getBirthDate());
+                        information.add(person.getAddress());
+                    } else {
+                        askQuestion("Name of the employee?");
+                        askQuestion("Gender of the employee?");
+                        askQuestion("Birthdate of the employee?");
+                        askQuestion("Address of the employee?");
+                    }
+                    askQuestion("Phone number of the employee?");
+                    askQuestion("Email of the employee?");
+                    askQuestion("Username of employee?");
+                    askQuestion("Password of employee?");
+                    askQuestion("Position number of Employee?");
+                    
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "deleteemployee":
+                    askQuestion("ID of employee to be deleted?");
+                    
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
             }
         }

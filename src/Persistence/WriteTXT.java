@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -80,7 +81,7 @@ public class WriteTXT implements IWriter
         String gender = Character.toString(employee.getGender());
         String date = employee.getBirthDate();
         String address = employee.getAddress();
-        String phoneNumber = Integer.toString(employee.getPhoneNumber());
+        String phoneNumber = employee.getPhoneNumber() == null? "" : Integer.toString(employee.getPhoneNumber());
         String mail = employee.getMail();
         String id = Integer.toString(employee.getId());
         String userName = employee.getUserName();
@@ -108,7 +109,6 @@ public class WriteTXT implements IWriter
         sb.append(password);
         sb.append(";");
         sb.append(Integer.toString(position));
-        System.out.println(sb);
 
         PrintWriter outputStream = null;
         try
@@ -154,7 +154,7 @@ public class WriteTXT implements IWriter
             fosFile.write(input.getBytes());
             brFile.close();
             fosFile.close();
-        } catch (Exception e)
+        } catch (IOException e)
         {
             System.out.println("Problems reading");
         }
@@ -236,7 +236,6 @@ public class WriteTXT implements IWriter
         sb.append(specialCircumstances);
         sb.append(";");
         sb.append(differentCommune);
-        System.out.println(sb);
 
         PrintWriter outputStream = null;
         try
@@ -365,7 +364,6 @@ public class WriteTXT implements IWriter
         sb.append(Integer.toString(currentCaseRequestID));
         sb.append(";");
         sb.append(Integer.toString(currentEmployeeID));
-        System.out.println(sb);
 
         PrintWriter outputStream = null;
         try
