@@ -1,3 +1,1 @@
-1;0;t;t;;;t;true;true;y;|mor|hello;no;y
-
-2;123;y;;;;ye;true;false;;mor|far;y;y
+26;37;onsdag;5;guardian@info.com;kender hinanden ok godt;yep;true;true;none;mor|far;nope;no

@@ -1,6 +1,7 @@
 package Presentation;
 
 import Domain.IDomainContact;
+import java.util.Arrays;
 
 public class CommandConverter {
 
@@ -55,20 +56,21 @@ public class CommandConverter {
                 break;
             case "editcase":
                 try {
-                    Integer caseRequestID = Integer.parseInt(args[0]);
-                    String nextAppointment = args[1];
-                    String guardianship = args[2];
-                    String personalHelper = args[3];
-                    String personalHelperPowerOfAttorney = args[4];
-                    String citizenRights = args[5];
-                    boolean citizenInformedElectronic = getBooleanFromInput(args[6]);
-                    boolean consent = getBooleanFromInput(args[7]);
-                    String consentType = args[8];
-                    String[] collectCitizenInfo = args[9].split("|");
-                    String specialCircumstances = args[10];
-                    String differentCommune = args[11];
+                    Integer caseID = Integer.parseInt(args[0]);
+                    Integer caseRequestID = Integer.parseInt(args[1]);
+                    String nextAppointment = args[2];
+                    String guardianship = args[3];
+                    String personalHelper = args[4];
+                    String personalHelperPowerOfAttorney = args[5];
+                    String citizenRights = args[6];
+                    boolean citizenInformedElectronic = getBooleanFromInput(args[7]);
+                    boolean consent = getBooleanFromInput(args[8]);
+                    String consentType = args[9];
+                    String[] collectCitizenInfo = args[10].split("|");
+                    String specialCircumstances = args[11];
+                    String differentCommune = args[12];
                     
-                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                    domainContact.saveEditedCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }

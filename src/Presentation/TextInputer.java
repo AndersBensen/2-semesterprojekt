@@ -113,7 +113,6 @@ public final class TextInputer {
         while (!answer.equalsIgnoreCase("x")) {
             System.out.println("Who has provided information? (write x to exit)");
             answer = input.nextLine();
-            System.out.println(answer);
             if (!answer.equalsIgnoreCase("x")) {
                 SB.append(answer);
                 SB.append("|");
@@ -124,57 +123,67 @@ public final class TextInputer {
         information.add(SB.toString());
     }
     
+    private String decodeArray(String[] sArray) {
+        String decoded = "";
+        for (String str : sArray) {
+            decoded += str;
+        }
+        System.out.println(decoded);
+        return decoded;
+    }
+    
     private void updateField(int fieldNr, String updatedInfo) {
         
         switch(fieldNr) {
             case 1:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 2:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 3:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 4:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 5:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 6:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 7:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 8:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 9:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 10:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;
             case 11:
-                information.add(fieldNr + 1, updatedInfo);
+                information.set(fieldNr + 1, updatedInfo);
                 System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
                 break;    
         } 
     }
     
     private void reAddInfo(int ID) {
+        information.add(Integer.toString(IDC.getCase(ID).getID()));
         information.add(Integer.toString(IDC.getCase(ID).getCaseRequestID()));
         information.add(IDC.getCase(ID).getNextAppointment());
         information.add(IDC.getCase(ID).getGuardianship());
@@ -184,7 +193,7 @@ public final class TextInputer {
         information.add(Boolean.toString(IDC.getCase(ID).isCitizenInformedElectronic()));
         information.add(Boolean.toString(IDC.getCase(ID).hasConsent()));
         information.add(IDC.getCase(ID).getConsentType());
-        information.add(Arrays.toString(IDC.getCase(ID).getCollectCitizenInfo()));
+        information.add(decodeArray(IDC.getCase(ID).getCollectCitizenInfo()));
         information.add(IDC.getCase(ID).getSpecialCircumstances());
         information.add(IDC.getCase(ID).getDifferentCommune());
     }
