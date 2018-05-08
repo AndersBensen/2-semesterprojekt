@@ -36,7 +36,7 @@ public class Admin extends Employee{
      * @param positionNumber 
      */
     public void addEmployee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
-        IEmployee e;
+        Employee e;
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance(); 
         switch (positionNumber) {

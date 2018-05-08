@@ -105,6 +105,12 @@ public class CommandConverter {
                     System.out.println("Method performCommand 'DeleteEmployee': NUMBER FORMAT EXCEPTION");
                 }
                 break;
+            case "login":
+                String username = args[0];
+                String password = args[1];
+                
+                domainContact.login(username, password);
+                break;
         }
     }
 

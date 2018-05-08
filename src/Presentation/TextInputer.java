@@ -23,7 +23,7 @@ public final class TextInputer {
     public void start() {
         while (true) {
             information = new LinkedList();
-            System.out.println("\nEnter a valid system command (caserequest | case | editcase | addemployee | deleteemployee):\n");
+            System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee):\n");
             String command = input.nextLine().toLowerCase();
             IPerson person;
 
@@ -119,6 +119,11 @@ public final class TextInputer {
                 case "deleteemployee":
                     askQuestion("ID of employee to be deleted?");
                     
+                    CC.performCommand(command, information.toArray(new String[information.size()]));
+                    break;
+                case "login":
+                    askQuestion("Input your username: ");
+                    askQuestion("Input your password: ");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
             }

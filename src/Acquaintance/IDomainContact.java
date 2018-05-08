@@ -24,6 +24,8 @@ public interface IDomainContact {
 
     public void deleteEmployee(int employeeID);
     
+    public boolean login(String username, String password);
+    
     public ICase getCase(int caseID);
 
     public IPerson getPerson(long CPR);
