@@ -1,6 +1,6 @@
 package Presentation;
 
-import Domain.IDomainContact;
+import Acquaintance.IDomainContact;
 
 public class CommandConverter {
 

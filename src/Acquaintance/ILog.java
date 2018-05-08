@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Acquaintance;
 
+import Domain.LogAction;
+import java.util.Date;
 
 /**
  *
  * @author ander
  */
-public interface IEmployee extends IPerson{
-    
-    public int getId();
-    
-    public String getUserName();
-    
-    public String getPassWord();
+public interface ILog {
+    public int getEmployeeID();
+    public LogAction getAction();
+    public String getDesc();
+    public Date getDate();
 }

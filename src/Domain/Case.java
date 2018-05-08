@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import Acquaintance.ICase;
 import java.util.Arrays;
 
 /**

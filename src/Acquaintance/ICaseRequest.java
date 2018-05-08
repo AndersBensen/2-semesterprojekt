@@ -1,4 +1,4 @@
-package Domain;
+package Acquaintance;
 
 import java.util.Date;
 

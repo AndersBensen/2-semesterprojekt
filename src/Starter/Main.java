@@ -6,10 +6,10 @@
 package Starter;
 
 import Domain.DomainContact;
-import Domain.IDomainContact;
+import Acquaintance.IDomainContact;
 import Domain.PersistanceContact;
-import Persistence.IReader;
-import Persistence.IWriter;
+import Acquaintance.IReader;
+import Acquaintance.IWriter;
 import Persistence.ReadTXT;
 import Persistence.WriteTXT;
 import Presentation.CommandConverter;

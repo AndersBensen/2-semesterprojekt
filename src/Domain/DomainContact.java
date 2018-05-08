@@ -1,5 +1,9 @@
 package Domain;
 
+import Acquaintance.IPerson;
+import Acquaintance.IDomainContact;
+import Acquaintance.ICase;
+
 public class DomainContact implements IDomainContact {
 
     private Employee currentUser;

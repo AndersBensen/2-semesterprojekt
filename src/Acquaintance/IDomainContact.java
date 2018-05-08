@@ -1,4 +1,6 @@
-package Domain;
+package Acquaintance;
+
+import Acquaintance.ICase;
 
 public interface IDomainContact {
 

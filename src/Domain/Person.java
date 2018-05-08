@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import Acquaintance.IPerson;
+
 /**
  *
  * @author ander
