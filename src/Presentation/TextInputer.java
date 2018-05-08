@@ -1,7 +1,7 @@
 package Presentation;
 
-import Domain.IDomainContact;
-import Domain.IPerson;
+import Acquaintance.IDomainContact;
+import Acquaintance.IPerson;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;

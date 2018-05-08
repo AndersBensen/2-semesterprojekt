@@ -1,5 +1,7 @@
 package Domain;
 
+import Acquaintance.ICaseRequest;
+
 public class CaseRequest implements ICaseRequest {
 
     //CaseAttributes

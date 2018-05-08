@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import Acquaintance.IEmployee;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
 import java.util.Arrays;

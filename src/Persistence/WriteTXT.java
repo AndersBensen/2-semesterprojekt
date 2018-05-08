@@ -6,10 +6,10 @@
 package Persistence;
 
 import Acquaintance.IWriter;
-import Domain.ICase;
-import Domain.ICaseRequest;
-import Domain.IEmployee;
-import Domain.ILog;
+import Acquaintance.ICase;
+import Acquaintance.ICaseRequest;
+import Acquaintance.IEmployee;
+import Acquaintance.ILog;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

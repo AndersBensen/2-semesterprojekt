@@ -6,7 +6,7 @@
 package Starter;
 
 import Domain.DomainContact;
-import Domain.IDomainContact;
+import Acquaintance.IDomainContact;
 import Domain.PersistanceContact;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;

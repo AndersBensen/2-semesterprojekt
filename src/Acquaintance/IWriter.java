@@ -5,11 +5,6 @@
  */
 package Acquaintance;
 
-import Domain.ICase;
-import Domain.ICaseRequest;
-import Domain.IEmployee;
-import Domain.ILog;
-
 /**
  *
  * @author ander
