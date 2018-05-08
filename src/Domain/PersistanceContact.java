@@ -83,7 +83,7 @@ public class PersistanceContact
      * Save the employee to the database
      * @param employee 
      */
-    public void saveEmployee(IEmployee employee)
+    public String saveEmployee(Employee employee)
     {
         if (employee instanceof Secretary)
         {
@@ -98,15 +98,19 @@ public class PersistanceContact
         {
             System.out.println("Illegal position number.");
         }
+        
+        return "Employee with the ID: " + employee.getId() + " was saved";
     }
 
     /**
      * Deletes the employee from the database
      * @param id ID of employee
+     * @return 
      */
-    public void deleteEmployee(int id)
+    public String deleteEmployee(int id)
     {
         writer.deleteEmployee(id);
+        return "Employee with the ID: " + id + " was deleted";
     }
     
     public Employee login(String username, String password) {

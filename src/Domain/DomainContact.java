@@ -70,6 +70,19 @@ public class DomainContact implements IDomainContact {
         else
             printUnauthorizedAccess("deleteEmployee");
     }
+
+    @Override
+    public boolean login(String username, String password) {
+        PersistanceContact PS = PersistanceContact.getInstance();
+        Employee newUser = PS.login(username, password);
+        if(newUser != null) {
+            currentUser = newUser;
+            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
+            return true; 
+        }
+        PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
+        return false;
+    }
     
     @Override
     public ICase getCase(int caseID) {
@@ -89,18 +102,5 @@ public class DomainContact implements IDomainContact {
     
     private void printUnauthorizedAccess(String methodName) {
         System.out.println("User not allowed to perform command: " + methodName);
-    }
-
-    @Override
-    public boolean login(String username, String password) {
-        PersistanceContact PS = PersistanceContact.getInstance();
-        Employee newUser = PS.login(username, password);
-        if(newUser != null) {
-            currentUser = newUser;
-            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
-            return true; 
-        }
-        PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
-        return false;
     }
 }
