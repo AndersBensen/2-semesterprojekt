@@ -8,7 +8,6 @@ package Domain;
 import Acquaintance.IEmployee;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
-import java.util.Arrays;
 
 /**
  *
@@ -20,7 +19,6 @@ public class PersistanceContact
     private static PersistanceContact instance = null;
     private IWriter writer;
     private IReader reader;
-    private CaseRequest caseRequest;
     private int currentCaseID;
     private int currentCaseRequestID;
     private int currentEmployeeID;
@@ -61,12 +59,12 @@ public class PersistanceContact
      * Saves the case request.
      *
      * @param caseRequest
+     * @return 
      */
-    public void saveCaseRequest(CaseRequest caseRequest)
+    public String saveCaseRequest(CaseRequest caseRequest)
     {
-        this.caseRequest = caseRequest;
         writer.writeCaseRequest(caseRequest);
-        System.out.println("Case request have been saved!");
+        return "Case request has been saved with the ID: " + caseRequest.getID();
     }
 
     /**
@@ -78,7 +76,7 @@ public class PersistanceContact
     public String saveCase(Case c)
     {
         writer.writeCase(c);
-        return "your case has been saved with the ID: " + c.getID();
+        return "Case has been saved with the ID: " + c.getID();
     }
     
     /**
@@ -292,7 +290,6 @@ public class PersistanceContact
         this.currentCaseID = ids[0];
         this.currentCaseRequestID = ids[1];
         this.currentEmployeeID = ids[2];
-        System.out.println("was read: " + currentCaseID + " " + currentCaseRequestID + " " + currentEmployeeID);
 
     }
 

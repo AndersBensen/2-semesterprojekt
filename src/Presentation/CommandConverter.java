@@ -30,7 +30,7 @@ public class CommandConverter {
 
                     domainContact.createCaseRequest(citizenCPR, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    System.out.println("Method performCommand 'CaseRequest': NUMBER FORMAT EXCEPTION");
                 }
                 break;
             case "case":
@@ -50,7 +50,7 @@ public class CommandConverter {
                     
                     domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    System.out.println("Method performCommand 'Case': NUMBER FORMAT EXCEPTION");
                 }
                 break;
             case "editcase":
@@ -71,7 +71,7 @@ public class CommandConverter {
                     
                     domainContact.saveEditedCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    System.out.println("Method performCommand 'EditCase': NUMBER FORMAT EXCEPTION");
                 }
                 break;
             case "addemployee":
@@ -91,7 +91,7 @@ public class CommandConverter {
                     domainContact.addEmployee(employeeCPR, employeeName, employeeGender, employeeBirthdate, employeeAddress, employeePhoneNr, employeeMail, username, password, positionNumber);
                 } catch (NumberFormatException e)
                 {
-                    e.printStackTrace();
+                    System.out.println("Method performCommand 'AddEmployee': NUMBER FORMAT EXCEPTION");
                 }
                 break;
             case "deleteemployee":
@@ -102,7 +102,7 @@ public class CommandConverter {
                     domainContact.deleteEmployee(employeeID);
                 } catch (NumberFormatException e)
                 {
-                    e.printStackTrace();
+                    System.out.println("Method performCommand 'DeleteEmployee': NUMBER FORMAT EXCEPTION");
                 }
                 break;
         }
@@ -114,7 +114,8 @@ public class CommandConverter {
         } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")) {
             return false;
         } else {
-            throw new Error("Could not convert input to boolean");
+            System.out.println("Method getBooleanFromInput: CANNOT CONVERT STRING TO BOOLEAN");
+            return false;
         }
     }
 }
