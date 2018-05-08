@@ -82,6 +82,7 @@ public class PersistanceContact
     /**
      * Save the employee to the database
      * @param employee 
+     * @return  
      */
     public String saveEmployee(Employee employee)
     {
