@@ -5,8 +5,8 @@
  */
 package Domain;
 
-import Persistence.IReader;
-import Persistence.IWriter;
+import Acquaintance.IReader;
+import Acquaintance.IWriter;
 import java.util.Arrays;
 
 /**

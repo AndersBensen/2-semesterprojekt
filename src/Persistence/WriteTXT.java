@@ -5,6 +5,7 @@
  */
 package Persistence;
 
+import Acquaintance.IWriter;
 import Domain.ICase;
 import Domain.ICaseRequest;
 import Domain.IEmployee;
