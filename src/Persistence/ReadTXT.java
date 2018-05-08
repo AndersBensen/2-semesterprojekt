@@ -201,4 +201,30 @@ public class ReadTXT implements IReader
         return ids;
     }
 
+    @Override
+    public String[] login(String username, String password) {
+        String[] tokens = new String[11];
+        String[] employee = new String[11];
+        String word;
+        try (Scanner input = new Scanner(employeeFile))
+        {
+            while (input.hasNextLine())
+            {
+                word = input.nextLine();
+                if (word.equals(""))
+                    continue;
+                
+                tokens = word.split(";");
+                if (tokens[8].equals(username) && tokens[9].equals(password))
+                {
+                    employee = word.split(";");
+                }
+            }
+        } catch (FileNotFoundException e)
+        {
+            System.out.println("Method login: FILE NOT FOUND EXCEPTION");
+        }
+        return employee;
+    }
+
 }

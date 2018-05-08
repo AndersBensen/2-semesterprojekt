@@ -234,3 +234,11 @@
 6;LOG_IN;User logged in;Wed May 02 11:03:36 CEST 2018
 
 6;SAVE_CASE;Created a new case;Wed May 02 11:03:48 CEST 2018
+
+6;LOG_IN;User logged in;Tue May 08 10:26:20 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Tue May 08 10:27:11 CEST 2018
+
+2;SAVE_CASE;Created a new case;Tue May 08 10:29:38 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: jens and the password: jensen;Tue May 08 10:31:33 CEST 2018

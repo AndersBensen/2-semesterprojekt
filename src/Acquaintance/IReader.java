@@ -14,5 +14,6 @@ public interface IReader {
     public String[] getEmployee(int id);
     public String[] getCase(int id);
     public String[] getCaseRequest(int id);
+    public String[] login(String username, String password);
     public int[] getCurrentIDs();
 }

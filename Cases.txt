@@ -2,3 +2,5 @@
 
 
 28;37;tuesday;5;daddy;agoodone;yes;true;true;mantanks;mommy#nanny#bedemand;yes?;horsens
+
+29;37;monday;5;hans;y;yes;true;true;hej;karen#jesper;no;kbh

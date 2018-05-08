@@ -109,6 +109,18 @@ public class PersistanceContact
         writer.deleteEmployee(id);
     }
     
+    public Employee login(String username, String password) {
+        String[] e = reader.login(username, password);
+        if (e[0] == null)
+        {
+            System.out.println("User doesn't exist");
+            return null;
+        }
+        Employee employee = createEmployee(e);
+
+        return employee;
+    }
+    
     /**
      * Saves a log of the action performed
      * @param employeeID
@@ -216,31 +228,13 @@ public class PersistanceContact
     public Employee getEmployee(int ID)
     {
         String[] e = reader.getEmployee(ID);
-        Employee employee = null;
         if (e[0] == null)
         {
             System.out.println("Employee wasn't found");
             return null;
         }
-        
-        Integer employeePhoneNr = e[5].equals("")? null : Integer.parseInt(e[5]);
-        
-        switch (e[10])
-        {
-            case "1":
-                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
-                break;
-            case "2":
-                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
-                break;
-            case "3":
-                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
-                break;
-            default:
-                System.out.println("Wrong position number retrieved.");
-                break;
-        }
-
+        Employee employee = createEmployee(e);
+     
         return employee;
     }
 
@@ -290,7 +284,6 @@ public class PersistanceContact
         this.currentCaseID = ids[0];
         this.currentCaseRequestID = ids[1];
         this.currentEmployeeID = ids[2];
-
     }
 
     /**
@@ -300,6 +293,28 @@ public class PersistanceContact
     private void writeCurrentIDs()
     {
         writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
+    }
+    
+    private Employee createEmployee(String[] e) {
+        Employee employee = null;
+        Integer employeePhoneNr = e[5].equals("")? null : Integer.parseInt(e[5]);
+        
+        switch (e[10])
+        {
+            case "1":
+                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            case "2":
+                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            case "3":
+                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                break;
+            default:
+                System.out.println("Wrong position number retrieved.");
+                break;
+        }
+        return employee;
     }
 
 }
