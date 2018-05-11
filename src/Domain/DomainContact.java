@@ -127,6 +127,9 @@ public class DomainContact implements IDomainContact {
                     System.out.println("AuthorizedCommand: Invalid command to authorized");
         }
         
+        if (!authorized)
+            System.out.println("User not authorized for command: " + command);
+        
         return authorized;
     }
     

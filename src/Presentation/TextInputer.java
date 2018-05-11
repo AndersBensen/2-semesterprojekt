@@ -31,10 +31,13 @@ public final class TextInputer
             System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee | logout):\n");
             String command = input.nextLine().toLowerCase();
             IPerson person;
-
+            
             switch (command)
             {
                 case "caserequest":
+                    if (!IDC.authorizeCommand(command))
+                        continue;
+                    
                     askQuestion("CPR number of the patient?");
                     person = IDC.getPerson(Long.parseLong(information.get(0)));
                     if (person != null)
@@ -61,6 +64,9 @@ public final class TextInputer
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "case":
+                    if (!IDC.authorizeCommand(command))
+                        continue;
+                    
                     askQuestion("Which case request ID are you looking for?");
                     askQuestion("When is the next appointment?");
                     askQuestion("Enter type of guardianship (§5, §6, §7) - if any");
@@ -89,6 +95,9 @@ public final class TextInputer
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "editcase":
+                    if (!IDC.authorizeCommand(command))
+                        continue;
+                    
                     System.out.println("Which case ID are you looking for?");
                     int ID = input.nextInt();
                     ICase caseInfo = IDC.getCase(ID);
@@ -110,6 +119,9 @@ public final class TextInputer
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "addemployee":
+                    if (!IDC.authorizeCommand(command))
+                        continue;
+                    
                     askQuestion("CPR number of the employee?");
                     person = IDC.getPerson(Long.parseLong(information.get(0)));
                     if (person != null)
@@ -134,6 +146,9 @@ public final class TextInputer
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "deleteemployee":
+                    if (!IDC.authorizeCommand(command))
+                        continue;
+                    
                     askQuestion("ID of employee to be deleted?");
 
                     CC.performCommand(command, information.toArray(new String[information.size()]));

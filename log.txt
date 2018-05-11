@@ -278,3 +278,11 @@
 2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:33:58 CEST 2018
 
 2;LOG_OUT;User with username: karenmus and the password: megetHemmelig succesfully logged out;Fri May 11 09:34:03 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: karenmus and the password: megetHemmlig;Fri May 11 10:00:12 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 10:00:20 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: jeppe olsen and the password: megetHemmelig;Fri May 11 10:01:24 CEST 2018
+
+3;LOG_IN;User succesfully logged in with username: jeppedrengen and the password: megetHemmelig;Fri May 11 10:01:40 CEST 2018
