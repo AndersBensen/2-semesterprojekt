@@ -5,6 +5,7 @@
 29;2;37;monday;5;hans;y;yes;true;true;hej;karen#jesper;no;kbh
 
 
-28;5;37;tuesday;6;Mamma;agoodone;yes;true;true;mantanks;mommy#nanny#bedemand;A lot;Odense
 
 30;2;37;yesterday;7;dinFar;Very Good;yup;false;true;THe right One;The Doctor#The lawyer#A Hobo;Very Secret;Not that I know of
+
+28;5;37;tuesday;6;Mamma;agoodone;are You sure?;true;true;mantanks;mommy#nanny#bedemand;A lot;Odense

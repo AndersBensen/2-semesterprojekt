@@ -264,3 +264,7 @@
 2;SAVE_CASE;Created a new case;Fri May 11 08:56:52 CEST 2018
 
 2;SAVE_CASE;Created a new case;Fri May 11 09:00:34 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:04:42 CEST 2018
+
+2;SAVE_CASE;Created a new case;Fri May 11 09:05:09 CEST 2018

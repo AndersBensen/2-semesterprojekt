@@ -91,8 +91,9 @@ public final class TextInputer
                 case "editcase":
                     System.out.println("Which case ID are you looking for?");
                     int ID = input.nextInt();
-                    System.out.println("\n" + IDC.getCase(ID));
-                    reAddInfo(ID);
+                    ICase caseInfo = IDC.getCase(ID);
+                    System.out.println("\n" + caseInfo);
+                    reAddInfo(caseInfo);
                     int fieldNr = 1;
                     while (fieldNr != 0)
                     {
@@ -186,58 +187,11 @@ public final class TextInputer
 
         information.set(fieldNr + 2, updatedInfo);
         System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-        
-        /*switch(fieldNr) {
-            case 1:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 2:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 3:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 4:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 5:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 6:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 7:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 8:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 9:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 10:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;
-            case 11:
-                information.set(fieldNr + 1, updatedInfo);
-                System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
-                break;    
-        } */
     }
 
-    private void reAddInfo(int ID)
+    private void reAddInfo(ICase caseInfo)
     {
-        ICase caseInfo = IDC.getCase(ID);
+        //ICase caseInfo = IDC.getCase(ID);
         information.add(Integer.toString(caseInfo.getID()));
         information.add(Integer.toString(caseInfo.getEmployeeID()));
         information.add(Integer.toString(caseInfo.getCaseRequestID()));
