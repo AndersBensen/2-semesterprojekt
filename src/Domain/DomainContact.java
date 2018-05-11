@@ -34,17 +34,17 @@ public class DomainContact implements IDomainContact {
     public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), currentUser.getId(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
         else
             printUnauthorizedAccess("createCase");
     }
     
     @Override
-    public void saveEditedCase(int caseID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+    public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+            socialWorker.saveCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
         }
         else
             printUnauthorizedAccess("saveEditedCase");

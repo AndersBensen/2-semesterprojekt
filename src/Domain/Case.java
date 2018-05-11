@@ -15,6 +15,7 @@ import java.util.Arrays;
 public class Case implements ICase {   // Mangler at logge
 
     private int ID;
+    private int employeeID;
     private int caseRequestID;
     private String nextAppointment;
     private String guardianship;
@@ -28,8 +29,9 @@ public class Case implements ICase {   // Mangler at logge
     private String specialCircumstances;
     private String differentCommune;
 
-    public Case(int caseID, int caseRequestID) {
+    public Case(int caseID, int employeeID, int caseRequestID) {
         this.ID = caseID;
+        this.employeeID = employeeID;
         this.caseRequestID = caseRequestID;
 
     }
@@ -38,6 +40,12 @@ public class Case implements ICase {   // Mangler at logge
     @Override
     public int getID() {
         return ID;
+    }
+
+    @Override
+    public int getEmployeeID()
+    {
+        return employeeID;
     }
 
     @Override
@@ -152,7 +160,7 @@ public class Case implements ICase {   // Mangler at logge
     
     @Override
     public String toString() {
-        return "ID: " + ID + "\nCase request ID: " + caseRequestID + "\n1. Next Appointment: " 
+        return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequestID + "\n1. Next Appointment: " 
                 + nextAppointment + "\n2. Guardianship: " + guardianship + "\n3. Personal helper: "
                 + personalHelper + "\n4. PHPOA: " + personalHelperPowerOfAttorney + "\n5. Citizen rights: "
                 + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic

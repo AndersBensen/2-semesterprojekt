@@ -187,19 +187,18 @@ public class PersistanceContact
             return null;
         }
 
-        Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]));
-
-        currentCase.setNextAppointment(c[2]);
-        currentCase.setGuardianship(c[3]);
-        currentCase.setPersonalHelper(c[4]);
-        currentCase.setPersonalHelperPowerOfAttorney(c[5]);
-        currentCase.setCitizenRights(c[6]);
-        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[7]));
-        currentCase.setConsent(Boolean.parseBoolean(c[8]));
-        currentCase.setConsentType(c[9]);
-        currentCase.setCollectCitizenInfo(c[10].split("#"));
-        currentCase.setSpecialCircumstances(c[11]);
-        currentCase.setDifferentCommune(c[12]);
+        Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]), Integer.parseInt(c[2]));
+        currentCase.setNextAppointment(c[3]);
+        currentCase.setGuardianship(c[4]);
+        currentCase.setPersonalHelper(c[5]);
+        currentCase.setPersonalHelperPowerOfAttorney(c[6]);
+        currentCase.setCitizenRights(c[7]);
+        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[8]));
+        currentCase.setConsent(Boolean.parseBoolean(c[9]));
+        currentCase.setConsentType(c[10]);
+        currentCase.setCollectCitizenInfo(c[11].split("#"));
+        currentCase.setSpecialCircumstances(c[12]);
+        currentCase.setDifferentCommune(c[13]);
 
         return currentCase;
     }

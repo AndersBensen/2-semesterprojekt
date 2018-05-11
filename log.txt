@@ -254,3 +254,17 @@
 3;GET_EMPLOYEE;User requested for a person with CPR: 805820009;Tue May 08 11:03:30 CEST 2018
 
 3;SAVE_EMPLOYEE;Added employee with id: 1 to persistence.;Tue May 08 11:03:59 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 08:49:50 CEST 2018
+
+2;SAVE_CASE;Created a new case;Fri May 11 08:51:39 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 08:56:06 CEST 2018
+
+2;SAVE_CASE;Created a new case;Fri May 11 08:56:52 CEST 2018
+
+2;SAVE_CASE;Created a new case;Fri May 11 09:00:34 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:04:42 CEST 2018
+
+2;SAVE_CASE;Created a new case;Fri May 11 09:05:09 CEST 2018

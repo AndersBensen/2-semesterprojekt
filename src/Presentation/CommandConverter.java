@@ -56,20 +56,21 @@ public class CommandConverter {
             case "editcase":
                 try {
                     Integer caseID = Integer.parseInt(args[0]);
-                    Integer caseRequestID = Integer.parseInt(args[1]);
-                    String nextAppointment = args[2];
-                    String guardianship = args[3];
-                    String personalHelper = args[4];
-                    String personalHelperPowerOfAttorney = args[5];
-                    String citizenRights = args[6];
-                    boolean citizenInformedElectronic = getBooleanFromInput(args[7]);
-                    boolean consent = getBooleanFromInput(args[8]);
-                    String consentType = args[9];
-                    String[] collectCitizenInfo = args[10].split("#");
-                    String specialCircumstances = args[11];
-                    String differentCommune = args[12];
+                    Integer employeeID = Integer.parseInt(args[1]);
+                    Integer caseRequestID = Integer.parseInt(args[2]);
+                    String nextAppointment = args[3];
+                    String guardianship = args[4];
+                    String personalHelper = args[5];
+                    String personalHelperPowerOfAttorney = args[6];
+                    String citizenRights = args[7];
+                    boolean citizenInformedElectronic = getBooleanFromInput(args[8]);
+                    boolean consent = getBooleanFromInput(args[9]);
+                    String consentType = args[10];
+                    String[] collectCitizenInfo = args[11].split("#");
+                    String specialCircumstances = args[12];
+                    String differentCommune = args[13];
                     
-                    domainContact.saveEditedCase(caseID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'EditCase': NUMBER FORMAT EXCEPTION");
                 }

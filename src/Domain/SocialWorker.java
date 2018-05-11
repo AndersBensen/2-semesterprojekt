@@ -20,6 +20,7 @@ public class SocialWorker extends CaseEmployee {
      * what happened.
      *
      * @param ID
+     * @param employeeID
      * @param caseRequestID
      * @param nextAppointment
      * @param guardianship
@@ -34,11 +35,11 @@ public class SocialWorker extends CaseEmployee {
      * @param differentCommune
      * @return int, id of the case creater
      */
-    public int saveCase(int ID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+    public int saveCase(int ID, int employeeID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
 
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
-        Case c = new Case(ID, caseRequestID);
+        Case c = new Case(ID, employeeID, caseRequestID);
         c.setNextAppointment(nextAppointment);
         c.setGuardianship(guardianship);
         c.setPersonalHelper(personalHelper);
