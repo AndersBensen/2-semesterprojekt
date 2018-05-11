@@ -28,7 +28,7 @@ public final class TextInputer
         while (true)
         {
             information = new LinkedList();
-            System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee):\n");
+            System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee | logout):\n");
             String command = input.nextLine().toLowerCase();
             IPerson person;
 
@@ -142,6 +142,9 @@ public final class TextInputer
                     askQuestion("Input your username: ");
                     askQuestion("Input your password: ");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
+                    break;
+                case "logout":
+                    CC.performCommand(command, "");
                     break;
             }
         }
