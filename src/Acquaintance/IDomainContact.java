@@ -14,7 +14,7 @@ public interface IDomainContact {
             boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune);
 
-    public void saveEditedCase(int caseID, int caseRequestID, String nextAppointment, String guardianship,
+    public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment, String guardianship,
             String personalHelper, String personalHelperPowerOfAttorney, String citizenRights,
             boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune);

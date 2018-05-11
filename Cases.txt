@@ -1,6 +1,10 @@
-26;37;onsdag;5;guardian@info.com;kender hinanden ok godt;yep;true;true;none;mor#far;nope;no
+26;2;37;onsdag;5;guardian@info.com;kender hinanden ok godt;yep;true;true;none;mor#far;nope;no
 
 
-28;37;tuesday;5;daddy;agoodone;yes;true;true;mantanks;mommy#nanny#bedemand;yes?;horsens
 
-29;37;monday;5;hans;y;yes;true;true;hej;karen#jesper;no;kbh
+29;2;37;monday;5;hans;y;yes;true;true;hej;karen#jesper;no;kbh
+
+
+28;5;37;tuesday;6;Mamma;agoodone;yes;true;true;mantanks;mommy#nanny#bedemand;A lot;Odense
+
+30;2;37;yesterday;7;dinFar;Very Good;yup;false;true;THe right One;The Doctor#The lawyer#A Hobo;Very Secret;Not that I know of

@@ -170,6 +170,7 @@ public class WriteTXT implements IWriter
     public void writeCase(ICase cases)
     {
         String ID = Integer.toString(cases.getID());
+        String employeeID = Integer.toString(cases.getEmployeeID());
         String caseRequestID = Integer.toString(cases.getCaseRequestID());
         String nextAppointment = cases.getNextAppointment();
         String guardianship = cases.getGuardianship();
@@ -209,7 +210,9 @@ public class WriteTXT implements IWriter
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(ID + "");
+        sb.append(ID);
+        sb.append(";");
+        sb.append(employeeID);
         sb.append(";");
         sb.append(caseRequestID);
         sb.append(";");

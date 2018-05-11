@@ -11,6 +11,10 @@ package Acquaintance;
  */
 public interface ICase {
 
+    int getID();
+    
+    int getEmployeeID();
+
     int getCaseRequestID();
 
     String getCitizenRights();
@@ -22,8 +26,6 @@ public interface ICase {
     String getDifferentCommune();
 
     String getGuardianship();
-
-    int getID();
 
     String getNextAppointment();
 
