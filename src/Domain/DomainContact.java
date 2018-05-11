@@ -95,6 +95,40 @@ public class DomainContact implements IDomainContact {
         }
         
     }
+
+    @Override
+    public boolean authorizeCommand(String command)
+    {
+        boolean authorized = false;
+        
+        switch (command)
+        {
+            case "caserequest":
+                    if (userLoggedIn() && currentUser instanceof CaseEmployee)
+                        authorized = true;
+                    break;
+                case "case":
+                    if (userLoggedIn() && currentUser instanceof SocialWorker)
+                        authorized = true;
+                    break;
+                case "editcase":
+                    if (userLoggedIn() && currentUser instanceof SocialWorker)
+                        authorized = true;
+                    break;
+                case "addemployee":
+                    if (userLoggedIn() && currentUser instanceof Admin)
+                        authorized = true;
+                    break;
+                case "deleteemployee":
+                    if (userLoggedIn() && currentUser instanceof Admin)
+                        authorized = true;
+                    break;
+                default:
+                    System.out.println("AuthorizedCommand: Invalid command to authorized");
+        }
+        
+        return authorized;
+    }
     
     @Override
     public ICase getCase(int caseID) {

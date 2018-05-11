@@ -28,6 +28,8 @@ public interface IDomainContact {
     
     public void logout();
     
+    public boolean authorizeCommand(String command);
+    
     public ICase getCase(int caseID);
 
     public IPerson getPerson(long CPR);
