@@ -268,3 +268,13 @@
 2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:04:42 CEST 2018
 
 2;SAVE_CASE;Created a new case;Fri May 11 09:05:09 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:32:18 CEST 2018
+
+2;LOG_OUT;User with username: karenmus and the password: megetHemmelig succesfully logged out;Fri May 11 09:32:29 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: karenmus and the password: megetHemmeligt;Fri May 11 09:32:38 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Fri May 11 09:33:58 CEST 2018
+
+2;LOG_OUT;User with username: karenmus and the password: megetHemmelig succesfully logged out;Fri May 11 09:34:03 CEST 2018

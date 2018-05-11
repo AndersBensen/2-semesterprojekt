@@ -26,6 +26,8 @@ public interface IDomainContact {
     
     public boolean login(String username, String password);
     
+    public void logout();
+    
     public ICase getCase(int caseID);
 
     public IPerson getPerson(long CPR);

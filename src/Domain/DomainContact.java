@@ -85,6 +85,18 @@ public class DomainContact implements IDomainContact {
     }
     
     @Override
+    public void logout() {
+        if (userLoggedIn()) {
+            PersistanceContact PS = PersistanceContact.getInstance();
+            PS.logAction(currentUser.getId(), LogAction.LOG_OUT, "User with username: " + currentUser.getUserName() + " and the password: " + currentUser.getPassWord() + " succesfully logged out");
+            this.currentUser = null;
+        } else {
+            System.out.println("You failed to log out: No user is logged in.");
+        }
+        
+    }
+    
+    @Override
     public ICase getCase(int caseID) {
         return PersistanceContact.getInstance().getCase(caseID);
     }

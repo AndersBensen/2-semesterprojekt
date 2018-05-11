@@ -112,6 +112,9 @@ public class CommandConverter {
                 
                 domainContact.login(username, password);
                 break;
+            case "logout":
+                domainContact.logout();
+                break;
         }
     }
 
