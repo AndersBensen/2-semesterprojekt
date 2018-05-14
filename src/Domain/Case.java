@@ -6,6 +6,7 @@
 package Domain;
 
 import Acquaintance.ICase;
+import Acquaintance.ICaseRequest;
 import java.util.Arrays;
 
 /**
@@ -16,7 +17,7 @@ public class Case implements ICase {   // Mangler at logge
 
     private int ID;
     private int employeeID;
-    private int caseRequestID;
+    private CaseRequest caseRequest;
     private String nextAppointment;
     private String guardianship;
     private String personalHelper;
@@ -29,10 +30,14 @@ public class Case implements ICase {   // Mangler at logge
     private String specialCircumstances;
     private String differentCommune;
 
-    public Case(int caseID, int employeeID, int caseRequestID) {
+    public Case(int caseID, int employeeID, CaseRequest caseRequest) {
         this.ID = caseID;
         this.employeeID = employeeID;
-        this.caseRequestID = caseRequestID;
+        
+        if (caseRequest == null)
+            throw new IllegalArgumentException ("Cannot create a Case without a CaseRequest!");
+        
+        this.caseRequest = caseRequest;
 
     }
     
@@ -49,8 +54,8 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public int getCaseRequestID() {
-        return caseRequestID;
+    public ICaseRequest getCaseRequest() {
+        return caseRequest;
 
     }
 
@@ -110,9 +115,9 @@ public class Case implements ICase {   // Mangler at logge
     }
     
     //Setter methods
-    public void setCaseRequestID(int caseRequestID) {
-        this.caseRequestID = caseRequestID;
-    }
+    /*public void setCaseRequestID(CaseRequest caseRequest) {
+        this.caseRequest = caseRequest;
+    }*/
 
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
@@ -160,7 +165,7 @@ public class Case implements ICase {   // Mangler at logge
     
     @Override
     public String toString() {
-        return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequestID + "\n1. Next Appointment: " 
+        return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequest.getID() + "\n1. Next Appointment: " 
                 + nextAppointment + "\n2. Guardianship: " + guardianship + "\n3. Personal helper: "
                 + personalHelper + "\n4. PHPOA: " + personalHelperPowerOfAttorney + "\n5. Citizen rights: "
                 + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic

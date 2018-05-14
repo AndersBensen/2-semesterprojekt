@@ -5,7 +5,6 @@
  */
 package Domain;
 
-import Acquaintance.IEmployee;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
 
@@ -156,7 +155,9 @@ public class PersistanceContact
         long CPR = Long.parseLong(cr[8]);               //CPR
         int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
         int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
-
+        
+        Integer citizenPhoneNr = cr[13].equals("")? null : Integer.parseInt(cr[13]);
+        
         CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR);
 
         currentCaseRequest.setDescription(cr[2]);
@@ -166,7 +167,7 @@ public class PersistanceContact
         currentCaseRequest.setRequestPerson(cr[6]);
         currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
         currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
-        currentCaseRequest.setCitizenPhoneNr(Integer.parseInt(cr[13]));
+        currentCaseRequest.setCitizenPhoneNr(citizenPhoneNr);
         currentCaseRequest.setCitizenMail(cr[14]);
 
         return currentCaseRequest;
@@ -186,8 +187,12 @@ public class PersistanceContact
             System.out.println("Case wasn't found");
             return null;
         }
-
-        Case currentCase = new Case(Integer.parseInt(c[0]), Integer.parseInt(c[1]), Integer.parseInt(c[2]));
+        
+        int caseRequestID = Integer.parseInt(c[2]);
+        CaseRequest caseRequest = getCaseRequest(caseRequestID);
+        int caseID = Integer.parseInt(c[0]);
+        logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
+        Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
         currentCase.setPersonalHelper(c[5]);
@@ -199,7 +204,7 @@ public class PersistanceContact
         currentCase.setCollectCitizenInfo(c[11].split("#"));
         currentCase.setSpecialCircumstances(c[12]);
         currentCase.setDifferentCommune(c[13]);
-
+        System.out.println("caseRequest: " + caseRequest);
         return currentCase;
     }
 

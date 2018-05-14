@@ -209,10 +209,9 @@ public final class TextInputer
 
     private void reAddInfo(ICase caseInfo)
     {
-        //ICase caseInfo = IDC.getCase(ID);
         information.add(Integer.toString(caseInfo.getID()));
         information.add(Integer.toString(caseInfo.getEmployeeID()));
-        information.add(Integer.toString(caseInfo.getCaseRequestID()));
+        information.add(Integer.toString(caseInfo.getCaseRequest().getID()));
         information.add(caseInfo.getNextAppointment());
         information.add(caseInfo.getGuardianship());
         information.add(caseInfo.getPersonalHelper());
