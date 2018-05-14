@@ -39,7 +39,8 @@ public class SocialWorker extends CaseEmployee {
 
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
-        Case c = new Case(ID, employeeID, caseRequestID);
+        CaseRequest caseRequest = pc.getCaseRequest(caseRequestID);
+        Case c = new Case(ID, employeeID, caseRequest);
         c.setNextAppointment(nextAppointment);
         c.setGuardianship(guardianship);
         c.setPersonalHelper(personalHelper);

@@ -286,3 +286,41 @@
 -1;LOG_IN;User failed to log in with username: jeppe olsen and the password: megetHemmelig;Fri May 11 10:01:24 CEST 2018
 
 3;LOG_IN;User succesfully logged in with username: jeppedrengen and the password: megetHemmelig;Fri May 11 10:01:40 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:14:29 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:14:58 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: karenmus and the password: megethemmelig;Mon May 14 10:18:08 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:18:22 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:21:47 CEST 2018
+
+2;GET_CASE_REQUEST;Retrieved CaseRequest (ID Domain.CaseRequest@372f7a8d) for Case (ID 28);Mon May 14 10:21:55 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:24:02 CEST 2018
+
+2;GET_CASE_REQUEST;Retrieved CaseRequest (ID Domain.CaseRequest@372f7a8d) for Case (ID 28);Mon May 14 10:24:09 CEST 2018
+
+-1;LOG_IN;User failed to log in with username: karenmus and the password: megetHemmlig;Mon May 14 10:26:33 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:26:41 CEST 2018
+
+2;GET_CASE_REQUEST;Retrieved CaseRequest (ID Domain.CaseRequest@372f7a8d) for Case (ID 28);Mon May 14 10:26:47 CEST 2018
+
+2;SAVE_CASE;Created a new case;Mon May 14 10:27:02 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:28:00 CEST 2018
+
+2;GET_CASE_REQUEST;Retrieved CaseRequest (ID null) for Case (ID 28);Mon May 14 10:28:15 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:31:13 CEST 2018
+
+2;GET_CASE_REQUEST;Retrieved CaseRequest (ID null) for Case (ID 28);Mon May 14 10:31:18 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:31:45 CEST 2018
+
+2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:33:43 CEST 2018
+
+2;SAVE_CASE;Created a new case;Mon May 14 10:34:05 CEST 2018

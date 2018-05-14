@@ -171,7 +171,7 @@ public class WriteTXT implements IWriter
     {
         String ID = Integer.toString(cases.getID());
         String employeeID = Integer.toString(cases.getEmployeeID());
-        String caseRequestID = Integer.toString(cases.getCaseRequestID());
+        String caseRequestID = Integer.toString(cases.getCaseRequest().getID());
         String nextAppointment = cases.getNextAppointment();
         String guardianship = cases.getGuardianship();
         String personalHelper = cases.getPersonalHelper();
@@ -329,13 +329,13 @@ public class WriteTXT implements IWriter
         sb.append(citizenCPR);
         sb.append(";");
         sb.append(citizenName);
-        System.out.println(sb);
+        sb.append(";");
         sb.append(citizenGender);
         sb.append(";");
         sb.append(citizenBirthdate);
         sb.append(";");
         sb.append(citizenAddress);
-        System.out.println(sb);
+        sb.append(";");
         sb.append(citizenPhoneNr);
         sb.append(";");
         sb.append(citizenMail);

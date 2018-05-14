@@ -15,7 +15,7 @@ public interface ICase {
     
     int getEmployeeID();
 
-    int getCaseRequestID();
+    ICaseRequest getCaseRequest();
 
     String getCitizenRights();
 
