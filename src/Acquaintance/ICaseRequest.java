@@ -1,7 +1,5 @@
 package Acquaintance;
 
-import java.util.Date;
-
 
 public interface ICaseRequest {
     
