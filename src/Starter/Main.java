@@ -34,9 +34,10 @@ public class Main {
         PC.injectWriter(writer);
         
         CommandConverter CC = new CommandConverter();
-        IDomainContact IDC = DomainContact.getInstance();
-        CC.injectDomainContact(IDC);
-        TextInputer TI = new TextInputer(CC, IDC);
+        DomainContact DC = DomainContact.getInstance();
+        CC.injectDomainContact(DC);
+        TextInputer TI = new TextInputer(CC, DC);
+        DC.injectVisualController(TI);
         TI.start();
     }
 
