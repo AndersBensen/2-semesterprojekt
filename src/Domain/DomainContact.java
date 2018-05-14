@@ -6,15 +6,15 @@ import Acquaintance.ICase;
 
 public class DomainContact implements IDomainContact {
 
-    private Employee currentUser;
     private static DomainContact instance = null;
-
     public static DomainContact getInstance() {
         if (instance == null) {
             instance = new DomainContact();
         }
         return instance;
     }
+    
+    private Employee currentUser;
 
     private DomainContact() {
         this.currentUser = null;
@@ -104,27 +104,27 @@ public class DomainContact implements IDomainContact {
         switch (command)
         {
             case "caserequest":
-                    if (userLoggedIn() && currentUser instanceof CaseEmployee)
-                        authorized = true;
-                    break;
-                case "case":
-                    if (userLoggedIn() && currentUser instanceof SocialWorker)
-                        authorized = true;
-                    break;
-                case "editcase":
-                    if (userLoggedIn() && currentUser instanceof SocialWorker)
-                        authorized = true;
-                    break;
-                case "addemployee":
-                    if (userLoggedIn() && currentUser instanceof Admin)
-                        authorized = true;
-                    break;
-                case "deleteemployee":
-                    if (userLoggedIn() && currentUser instanceof Admin)
-                        authorized = true;
-                    break;
-                default:
-                    System.out.println("AuthorizedCommand: Invalid command to authorized");
+                if (userLoggedIn() && currentUser instanceof CaseEmployee)
+                    authorized = true;
+                break;
+            case "case":
+                if (userLoggedIn() && currentUser instanceof SocialWorker)
+                    authorized = true;
+                break;
+            case "editcase":
+                if (userLoggedIn() && currentUser instanceof SocialWorker)
+                    authorized = true;
+                break;
+            case "addemployee":
+                if (userLoggedIn() && currentUser instanceof Admin)
+                    authorized = true;
+                break;
+            case "deleteemployee":
+                if (userLoggedIn() && currentUser instanceof Admin)
+                    authorized = true;
+                break;
+            default:
+                System.out.println("AuthorizedCommand: Invalid command to authorized");
         }
         
         if (!authorized)

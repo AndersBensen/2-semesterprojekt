@@ -1,7 +1,5 @@
 package Acquaintance;
 
-import Acquaintance.ICase;
-
 public interface IDomainContact {
 
     public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear,
