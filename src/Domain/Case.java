@@ -115,9 +115,9 @@ public class Case implements ICase {   // Mangler at logge
     }
     
     //Setter methods
-    public void setCaseRequestID(CaseRequest caseRequest) {
+    /*public void setCaseRequestID(CaseRequest caseRequest) {
         this.caseRequest = caseRequest;
-    }
+    }*/
 
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
