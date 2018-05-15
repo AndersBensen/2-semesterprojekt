@@ -22,7 +22,7 @@ public class CaseRequest implements ICaseRequest {
     private Integer citizenPhoneNr;
     private String citizenMail;
 
-    CaseRequest(int ID, int employeeID, long citizenCPR) {
+    public CaseRequest(int ID, int employeeID, long citizenCPR) {
         this.ID = ID;
         this.employeeID = employeeID;
         this.citizenCPR = citizenCPR;

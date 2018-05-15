@@ -301,7 +301,7 @@ public class PersistanceContact
      */
     private void writeCurrentIDs()
     {
-        writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
+        //writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
     
     private Employee createEmployee(String[] e) {
