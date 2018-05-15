@@ -89,7 +89,7 @@ public class ReadDB extends AbstractDB implements IReader {
         try {
             Connection db = getDBConnection();
             Statement st = db.createStatement();
-            String query = "SELECT * FROM Employee WHERE username = '" + username + "' && password = '" + password + "'";
+            String query = "SELECT * FROM Employee WHERE username = '" + username + "' AND password = '" + password + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 EmployeeInfo[0] = rs.getString(1);

@@ -10,7 +10,9 @@ import Acquaintance.IDomainContact;
 import Domain.PersistanceContact;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
+import Persistence.ReadDB;
 import Persistence.ReadTXT;
+import Persistence.WriteDB;
 import Persistence.WriteTXT;
 import Presentation.CommandConverter;
 import Presentation.TextInputer;
@@ -27,8 +29,10 @@ public class Main {
     public static void main(String[] args) {
         PersistanceContact PC = PersistanceContact.getInstance();
 
-        IReader reader = new ReadTXT();
-        IWriter writer = new WriteTXT();
+//        IReader reader = new ReadTXT();
+//        IWriter writer = new WriteTXT();
+        IReader reader = new ReadDB();
+        IWriter writer = new WriteDB();
 
         PC.injectReader(reader);
         PC.injectWriter(writer);

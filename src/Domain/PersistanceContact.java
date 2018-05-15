@@ -311,13 +311,13 @@ public class PersistanceContact
         switch (e[10])
         {
             case "1":
-                employee = new Secretary(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Secretary(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "2":
-                employee = new SocialWorker(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new SocialWorker(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "3":
-                employee = new Admin(Long.parseLong(e[0]), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Admin(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             default:
                 System.out.println("Wrong position number retrieved.");

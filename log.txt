@@ -324,3 +324,5 @@
 2;LOG_IN;User succesfully logged in with username: karenmus and the password: megetHemmelig;Mon May 14 10:33:43 CEST 2018
 
 2;SAVE_CASE;Created a new case;Mon May 14 10:34:05 CEST 2018
+
+2;logIn;User succesfully logged in with username: karenmus and the password: megetHemmelig;Tue May 15 11:07:28 CEST 2018

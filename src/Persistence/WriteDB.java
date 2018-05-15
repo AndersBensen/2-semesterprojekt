@@ -10,17 +10,10 @@ import Acquaintance.ICaseRequest;
 import Acquaintance.IEmployee;
 import Acquaintance.ILog;
 import Acquaintance.IWriter;
-import Domain.Case;
-import Domain.CaseRequest;
-import Domain.Employee;
-import Domain.Log;
-import Domain.LogAction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -158,39 +151,39 @@ public class WriteDB extends AbstractDB implements IWriter {
         }
     }
 
-    public static void main(String[] args) {
-        WriteDB writedb = new WriteDB();
-        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-//        Employee emp = new Employee(2504770005L, "Loc Nguyen", 'M', "25-04-1977", "Middelfartvej 143, 5200 Odense V",20151515, "loc@mail.dk", 2, "locnguyen", "megethemmeligt4");
-//        writedb.writeEmployee(emp, 2);
-        //writedb.deleteEmployee(5);
-//        Case c = new Case(1, 2, new CaseRequest(1, 2, 3));
-//        c.setNextAppointment("test1");
-//        c.setGuardianship("test2");
-//        c.setPersonalHelper("test3");
-//        c.setPersonalHelperPowerOfAttorney("test4");
-//        c.setCitizenRights("test5");
-//        c.setCitizenInformedElectronic(true);
-//        c.setConsent(true);
-//        c.setConsentType("test6");
-//        c.setCollectCitizenInfo(new String[] {"test7", "test8", "test9"});
-//        c.setSpecialCircumstances("test10");
-//        c.setDifferentCommune("test11");
-//        writedb.writeCase(c);
-
-//        CaseRequest CR = new CaseRequest(1, 2, 0212122005L);
-//        CR.setDescription("test1");
-//        CR.setMessageClear(true);
-//        CR.setCarePackageRequested(true);
-//        CR.setRehousingPackageRequested(true);
-//        CR.setRequestPerson("test2");
-//        CR.setCitizenInformed(true);
-//        CR.connectCitizen(0212122005L, "test3", 'm', "test4", "test5");
-//        CR.setCitizenPhoneNr(22334455);
-//        CR.setCitizenMail("tes6");
-//        writedb.writeCaseRequest(CR);
-//        Log log = new Log(1, LogAction.LOG_IN, "Logged in test");
-//        writedb.writeLog(log);
-    }
+//    public static void main(String[] args) {
+//        WriteDB writedb = new WriteDB();
+//        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
+//        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
+////        Employee emp = new Employee(2504770005L, "Loc Nguyen", 'M', "25-04-1977", "Middelfartvej 143, 5200 Odense V",20151515, "loc@mail.dk", 2, "locnguyen", "megethemmeligt4");
+////        writedb.writeEmployee(emp, 2);
+//        //writedb.deleteEmployee(5);
+////        Case c = new Case(1, 2, new CaseRequest(1, 2, 3));
+////        c.setNextAppointment("test1");
+////        c.setGuardianship("test2");
+////        c.setPersonalHelper("test3");
+////        c.setPersonalHelperPowerOfAttorney("test4");
+////        c.setCitizenRights("test5");
+////        c.setCitizenInformedElectronic(true);
+////        c.setConsent(true);
+////        c.setConsentType("test6");
+////        c.setCollectCitizenInfo(new String[] {"test7", "test8", "test9"});
+////        c.setSpecialCircumstances("test10");
+////        c.setDifferentCommune("test11");
+////        writedb.writeCase(c);
+//
+////        CaseRequest CR = new CaseRequest(1, 2, 0212122005L);
+////        CR.setDescription("test1");
+////        CR.setMessageClear(true);
+////        CR.setCarePackageRequested(true);
+////        CR.setRehousingPackageRequested(true);
+////        CR.setRequestPerson("test2");
+////        CR.setCitizenInformed(true);
+////        CR.connectCitizen(0212122005L, "test3", 'm', "test4", "test5");
+////        CR.setCitizenPhoneNr(22334455);
+////        CR.setCitizenMail("tes6");
+////        writedb.writeCaseRequest(CR);
+////        Log log = new Log(1, LogAction.LOG_IN, "Logged in test");
+////        writedb.writeLog(log);
+//    }
 }
