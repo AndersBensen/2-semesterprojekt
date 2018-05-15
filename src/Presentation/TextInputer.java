@@ -3,11 +3,12 @@ package Presentation;
 import Acquaintance.ICase;
 import Acquaintance.IDomainContact;
 import Acquaintance.IPerson;
+import Acquaintance.IVisualController;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public final class TextInputer
+public final class TextInputer implements IVisualController
 {
 
     private List<String> information;
@@ -20,7 +21,6 @@ public final class TextInputer
         input = new Scanner(System.in);
         this.CC = CC;
         this.IDC = IDC;
-        start();
     }
 
     public void start()
@@ -154,6 +154,7 @@ public final class TextInputer
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "login":
+                    IDC.resetTimer();
                     askQuestion("Input your username: ");
                     askQuestion("Input your password: ");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
@@ -223,5 +224,10 @@ public final class TextInputer
         information.add(decodeArray(caseInfo.getCollectCitizenInfo()));
         information.add(caseInfo.getSpecialCircumstances());
         information.add(caseInfo.getDifferentCommune());
+    }
+
+    @Override
+    public void logout() {
+        CC.performCommand("logout", "");
     }
 }
