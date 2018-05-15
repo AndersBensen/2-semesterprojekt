@@ -3,10 +3,14 @@ package Domain;
 import Acquaintance.IPerson;
 import Acquaintance.IDomainContact;
 import Acquaintance.ICase;
+import Acquaintance.IVisualController;
 
 public class DomainContact implements IDomainContact {
 
     private static DomainContact instance = null;
+    private SystemTimer timer;
+    private volatile Thread timerThread;
+    
     public static DomainContact getInstance() {
         if (instance == null) {
             instance = new DomainContact();
@@ -18,6 +22,12 @@ public class DomainContact implements IDomainContact {
 
     private DomainContact() {
         this.currentUser = null;
+    }
+    
+//    @Override
+    public void injectVisualController(IVisualController IVC) {
+        timer = new SystemTimer();
+        timer.injectVisualController(IVC);
     }
 
     @Override
@@ -76,6 +86,9 @@ public class DomainContact implements IDomainContact {
         PersistanceContact PS = PersistanceContact.getInstance();
         Employee newUser = PS.login(username, password);
         if(newUser != null) {
+            timerThread = new Thread(timer);
+            timer.injectTimerThread(timerThread);
+            timerThread.start();
             currentUser = newUser;
             PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
             return true; 
@@ -90,10 +103,16 @@ public class DomainContact implements IDomainContact {
             PersistanceContact PS = PersistanceContact.getInstance();
             PS.logAction(currentUser.getId(), LogAction.LOG_OUT, "User with username: " + currentUser.getUserName() + " and the password: " + currentUser.getPassWord() + " succesfully logged out");
             this.currentUser = null;
+            timerThread = null;
         } else {
             System.out.println("You failed to log out: No user is logged in.");
         }
         
+    }
+    
+    @Override
+    public void resetTimer() {
+        timer.resetTimer();
     }
 
     @Override
