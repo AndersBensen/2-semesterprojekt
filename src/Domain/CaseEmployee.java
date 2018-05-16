@@ -1,8 +1,10 @@
 package Domain;
 
+import java.util.List;
+
 public class CaseEmployee extends Employee {
 
-    public CaseEmployee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
+    public CaseEmployee(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
 
@@ -28,7 +30,7 @@ public class CaseEmployee extends Employee {
      * @param citizenPhoneNr
      * @param citizenMail
      */
-    public void createCaseRequest(int caseRequestID, int EmployeeID, long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
+    public void createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
 
@@ -48,5 +50,13 @@ public class CaseEmployee extends Employee {
         }
         pc.saveCaseRequest(CR);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE_REQUEST, "Saved a case request");
+    }
+    
+    public List<CaseObject> getCaseObjects(String citizenCPR) {
+        DomainContact dc = DomainContact.getInstance();
+        PersistanceContact pc = PersistanceContact.getInstance();
+        
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.GET_CASE_OBJECT, "Requested a case object for: " + citizenCPR);
+        return pc.getCaseObject(citizenCPR);
     }
 }

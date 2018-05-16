@@ -2,7 +2,11 @@ package Domain;
 
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
+import Persistence.ReadDB;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class PersistanceContact {
 
@@ -130,8 +134,8 @@ public class PersistanceContact {
             System.out.println("CaseRequest wasn't found");
             return null;
         }
-
-        long CPR = Long.parseLong(cr[8]);               //CPR
+        
+        String CPR = cr[8];               //CPR
         int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
         int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
 
@@ -172,7 +176,7 @@ public class PersistanceContact {
         int caseID = Integer.parseInt(c[0]);
         Date dateCreated = new Date(Long.parseLong(c[14]));
         Date dateModified = new Date(Long.parseLong(c[15]));
-        logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
+        //logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
         Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
@@ -188,6 +192,32 @@ public class PersistanceContact {
         System.out.println("caseRequest: " + caseRequest);
         return currentCase;
     }
+    
+    public List<CaseObject> getCaseObject(String citizenCPR) {
+        List<CaseObject> caseObjects = new ArrayList<>();
+        
+        for (String[] simpleCase : reader.getSimpleCases(citizenCPR)) {
+            int id = Integer.parseInt(simpleCase[0]);
+            int employeeID = Integer.parseInt(simpleCase[1]);
+            String description = simpleCase[2];
+            Date dateCreated = new Date(Long.parseLong(simpleCase[3]));
+            
+            CaseObject caseObject = new CaseObject(id, employeeID, "Case", description, dateCreated);
+            caseObjects.add(caseObject);
+        }
+        
+        for (String[] simpleCase : reader.getSimpleCaseRequests(citizenCPR)) {
+            int id = Integer.parseInt(simpleCase[0]);
+            int employeeID = Integer.parseInt(simpleCase[1]);
+            String description = simpleCase[2];
+            Date dateCreated = new Date(Long.parseLong(simpleCase[3]));
+            
+            CaseObject caseObject = new CaseObject(id, employeeID, "CaseRequest", description, dateCreated);
+            caseObjects.add(caseObject);
+        }
+        
+        return caseObjects;
+    }
 
     /**
      * Gets the person based on a CPR number
@@ -195,16 +225,16 @@ public class PersistanceContact {
      * @param CPR
      * @return Person
      */
-    public Person getPerson(long CPR) {
+    public Person getPerson(String CPR) {
         String[] p = reader.getPerson(CPR);
         if (p[0] == null) {
             System.out.println("Person wasnt found");
             return null;
         }
 
-        Integer personPhoneNr = p[5].equals("") ? null : Integer.parseInt(p[5]);
+        //Integer personPhoneNr = p[5].equals("") ? null : Integer.parseInt(p[5]);
 
-        Person person = new Person(Long.parseLong(p[0]), p[1], p[2].charAt(0), p[3], p[4], personPhoneNr, p[6]);
+        Person person = new Person(p[0], p[1], p[2].charAt(0), p[3], p[4], null, "");
 
         return person;
     }
@@ -284,13 +314,13 @@ public class PersistanceContact {
 
         switch (e[10]) {
             case "1":
-                employee = new Secretary(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Secretary(e[0].trim(), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "2":
-                employee = new SocialWorker(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new SocialWorker(e[0].trim(), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             case "3":
-                employee = new Admin(Long.parseLong(e[0].trim()), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
+                employee = new Admin(e[0].trim(), e[1], e[2].charAt(0), e[3], e[4], employeePhoneNr, e[6], Integer.parseInt(e[7]), e[8], e[9]);
                 break;
             default:
                 System.out.println("Wrong position number retrieved.");
@@ -298,5 +328,11 @@ public class PersistanceContact {
         }
         return employee;
     }
-
+//    public static void main(String[] args) {
+//        PersistanceContact pc = PersistanceContact.getInstance();
+//        pc.injectReader(new ReadDB());
+//        System.out.println(pc.getCaseObject("36217861"));
+//        System.out.println(pc.getCase(1));
+//        System.out.println(pc.getCaseRequest(1).toString());
+//    }
 }

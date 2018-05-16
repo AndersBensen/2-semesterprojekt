@@ -1,10 +1,11 @@
 package Acquaintance;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IDomainContact {
 
-    public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear,
+    public void createCaseRequest(String citizenCPR, String desc, boolean isMessageClear,
             boolean isCarePackage, boolean isRehousingPackage, String requestPerson,
             boolean isCitizenInformed, String citizenName, char citizenGender,
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail);
@@ -19,7 +20,7 @@ public interface IDomainContact {
             boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated);
 
-    public void addEmployee(long CPR, String name, char gender, String birthdate, String Address,
+    public void addEmployee(String CPR, String name, char gender, String birthdate, String Address,
             Integer phoneNr, String mail, String username, String password, int positionNumber);
 
     public void deleteEmployee(int employeeID);
@@ -34,5 +35,7 @@ public interface IDomainContact {
 
     public ICase getCase(int caseID);
 
-    public IPerson getPerson(long CPR);
+    public IPerson getPerson(String CPR);
+    
+    public List<ICaseObject> getCaseObject(String citizenCPR);
 }

@@ -63,7 +63,7 @@ public class WriteTXT implements IWriter {
      */
     @Override
     public void writeEmployee(IEmployee employee, int position) {
-        String cpr = Long.toString(employee.getCpr());
+        String cpr = employee.getCpr();
         String name = employee.getName();
         String gender = Character.toString(employee.getGender());
         String date = employee.getBirthDate();
@@ -250,7 +250,7 @@ public class WriteTXT implements IWriter {
         String requestPerson = caseRequests.getRequestPerson();
         String CitizenInformed = Boolean.toString(caseRequests.isCitizenInformed());
         //CitizenAttributes
-        String citizenCPR = Long.toString(caseRequests.getCitizenCPR());
+        String citizenCPR = caseRequests.getCitizenCPR();
         String citizenName = caseRequests.getCitizenName();
         String citizenGender = caseRequests.getCitizenGender() + "";
         String citizenBirthdate = caseRequests.getCitizenBirthdate();

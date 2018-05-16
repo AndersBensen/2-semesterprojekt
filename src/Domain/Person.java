@@ -4,7 +4,7 @@ import Acquaintance.IPerson;
 
 public class Person implements IPerson {
 
-    private long cpr;
+    private String cpr;
     private String name;
     private char gender;
     private String birthDate;
@@ -12,7 +12,7 @@ public class Person implements IPerson {
     private Integer phoneNumber;
     private String mail;
 
-    public Person(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail) {
+    public Person(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail) {
         this.cpr = cpr;
         this.name = name;
         this.gender = gender;
@@ -23,7 +23,7 @@ public class Person implements IPerson {
     }
 
     @Override
-    public long getCpr() {
+    public String getCpr() {
         return cpr;
     }
 
@@ -57,7 +57,7 @@ public class Person implements IPerson {
         return mail;
     }
 
-    public void setCpr(int cpr) {
+    public void setCpr(String cpr) {
         this.cpr = cpr;
     }
 

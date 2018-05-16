@@ -2,7 +2,7 @@ package Acquaintance;
 
 public interface IPerson {
 
-    public long getCpr();
+    public String getCpr();
 
     public String getName();
 
