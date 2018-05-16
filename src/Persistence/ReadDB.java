@@ -5,12 +5,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 public class ReadDB extends AbstractDB implements IReader {
 
     @Override
     public String[] getCaseRequest(int id) {
-        String[] caseRequestInfo = new String[15];
+        String[] caseRequestInfo = new String[17];
         try {
             Connection db = getDBConnection();
             Statement st = db.createStatement();
@@ -32,6 +33,8 @@ public class ReadDB extends AbstractDB implements IReader {
                 caseRequestInfo[12] = rs.getString(13);
                 caseRequestInfo[13] = rs.getString(14);
                 caseRequestInfo[14] = rs.getString(15);
+                caseRequestInfo[15] = rs.getString(16);
+                caseRequestInfo[16] = rs.getString(17);
             }
             rs.close();
             st.close();
@@ -43,7 +46,7 @@ public class ReadDB extends AbstractDB implements IReader {
 
     @Override
     public String[] getCase(int id) {
-        String[] caseInfo = new String[13];
+        String[] caseInfo = new String[16];
         try {
             Connection db = getDBConnection();
             Statement st = db.createStatement();
@@ -63,6 +66,9 @@ public class ReadDB extends AbstractDB implements IReader {
                 caseInfo[10] = rs.getString(11);
                 caseInfo[11] = rs.getString(12);
                 caseInfo[12] = rs.getString(13);
+                caseInfo[13] = rs.getString(14);
+                caseInfo[14] = rs.getString(15);
+                caseInfo[15] = rs.getString(16);
             }
             rs.close();
             st.close();
@@ -174,4 +180,10 @@ public class ReadDB extends AbstractDB implements IReader {
         }
         return idArray;
     }
+    
+//    public static void main(String[] args) {
+//        ReadDB rdb = new ReadDB();
+//        System.out.println(Arrays.toString(rdb.getCase(1)));
+//        System.out.println(Arrays.toString(rdb.getCaseRequest(1)));
+//    }
 }
