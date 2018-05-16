@@ -1,9 +1,9 @@
 package Starter;
 
-import Domain.DomainContact;
-import Domain.PersistanceContact;
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
+import Domain.DomainContact;
+import Domain.PersistanceContact;
 import Persistence.ReadDB;
 import Persistence.WriteDB;
 import Presentation.CommandConverter;
@@ -12,6 +12,7 @@ import Presentation.TextInputer;
 public class Main {
 
     public static void main(String[] args) {
+        
         PersistanceContact PC = PersistanceContact.getInstance();
 
         IReader reader = new ReadDB();
