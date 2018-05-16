@@ -29,7 +29,7 @@ public class CommandConverter {
                     String requestPerson = args[11];
                     boolean citizenInformed = getBooleanFromInput(args[12]);
 
-                    domainContact.createCaseRequest(citizenCPR, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
+                    domainContact.createCaseRequest(citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'CaseRequest': NUMBER FORMAT EXCEPTION");
                 }

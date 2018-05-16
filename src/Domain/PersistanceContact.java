@@ -2,9 +2,7 @@ package Domain;
 
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
-import Persistence.ReadDB;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -135,15 +133,16 @@ public class PersistanceContact {
             return null;
         }
         
-        String CPR = cr[8];               //CPR
+        String CPR = cr[8];                             //CPR
         int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
         int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
 
-        Integer citizenPhoneNr = cr[13].equals("") ? null : Integer.parseInt(cr[13]);
+        Integer citizenPhoneNr = cr[13].equals("-1") ? null : Integer.parseInt(cr[13]);
+        Person citizen = new Person(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12], citizenPhoneNr, cr[14]);
         Date dateCreated = new Date(Long.parseLong(cr[15]));
         Date dateModified = new Date(Long.parseLong(cr[16]));
 
-        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR, dateCreated, dateModified);
+        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, citizen, dateCreated, dateModified);
 
         currentCaseRequest.setDescription(cr[2]);
         currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
@@ -151,9 +150,9 @@ public class PersistanceContact {
         currentCaseRequest.setRehousingPackageRequested(Boolean.parseBoolean(cr[5]));
         currentCaseRequest.setRequestPerson(cr[6]);
         currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
-        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
-        currentCaseRequest.setCitizenPhoneNr(citizenPhoneNr);
-        currentCaseRequest.setCitizenMail(cr[14]);
+//        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
+//        currentCaseRequest.setCitizenPhoneNr(citizenPhoneNr);
+//        currentCaseRequest.setCitizenMail(cr[14]);
 
         return currentCaseRequest;
     }
@@ -176,7 +175,7 @@ public class PersistanceContact {
         int caseID = Integer.parseInt(c[0]);
         Date dateCreated = new Date(Long.parseLong(c[14]));
         Date dateModified = new Date(Long.parseLong(c[15]));
-        //logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
+        logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
         Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
@@ -310,7 +309,7 @@ public class PersistanceContact {
 
     private Employee createEmployee(String[] e) {
         Employee employee = null;
-        Integer employeePhoneNr = e[5].equals("") ? null : Integer.parseInt(e[5]);
+        Integer employeePhoneNr = e[5].equals("-1") ? null : Integer.parseInt(e[5]);
 
         switch (e[10]) {
             case "1":

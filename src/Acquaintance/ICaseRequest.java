@@ -7,7 +7,9 @@ public interface ICaseRequest {
     public int getID();
 
     public int getEmployeeID();
-
+    
+    public IPerson getCitizen();
+    
     public String getDescription();
 
     public boolean isMessageClear();
@@ -19,20 +21,6 @@ public interface ICaseRequest {
     public String getRequestPerson();
 
     public boolean isCitizenInformed();
-
-    public String getCitizenCPR();
-
-    public String getCitizenName();
-
-    public char getCitizenGender();
-
-    public String getCitizenBirthdate();
-
-    public String getCitizenAddress();
-
-    public Integer getCitizenPhoneNr();
-
-    public String getCitizenMail();
     
     Date getDateCreated();
     

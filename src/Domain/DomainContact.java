@@ -39,10 +39,13 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public void createCaseRequest(String citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
+    public void createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
+            String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
+            String citizenMail, String desc, boolean isMessageClear, boolean isCarePackage,
+            boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed) {
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
-            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
+            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed);
         } else {
             printUnauthorizedAccess("createCaseRequest");
         }
