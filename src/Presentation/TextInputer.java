@@ -93,7 +93,7 @@ public final class TextInputer implements IVisualController {
 
                     System.out.println("Which case ID are you looking for?");
                     int ID = input.nextInt();
-                    ICase caseInfo = IDC.getCase(ID);
+                    ICase caseInfo = IDC.editCase(ID);
                     System.out.println("\n" + caseInfo);
                     reAddInfo(caseInfo);
                     int fieldNr = 1;

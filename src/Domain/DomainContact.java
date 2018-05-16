@@ -57,6 +57,17 @@ public class DomainContact implements IDomainContact {
             printUnauthorizedAccess("createCase");
         }
     }
+    
+    @Override
+    public ICase editCase(int caseID) {
+        if (userLoggedIn() && currentUser instanceof SocialWorker) {
+            SocialWorker socialWorker = (SocialWorker) currentUser;
+            return socialWorker.editCase(caseID);
+        } else {
+            printUnauthorizedAccess("editCase");
+        }
+        return null; 
+    }
 
     @Override
     public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
@@ -65,7 +76,7 @@ public class DomainContact implements IDomainContact {
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
+            socialWorker.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
         } else {
             printUnauthorizedAccess("saveEditedCase");
         }
@@ -170,11 +181,6 @@ public class DomainContact implements IDomainContact {
         }
 
         return authorized;
-    }
-
-    @Override
-    public ICase getCase(int caseID) {
-        return PersistanceContact.getInstance().getCase(caseID);
     }
 
     @Override

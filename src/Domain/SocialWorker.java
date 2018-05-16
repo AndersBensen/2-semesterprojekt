@@ -75,7 +75,7 @@ public class SocialWorker extends CaseEmployee {
      * @param dateCreated
      * @return int, id of the case creater
      */
-    public int saveCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
+    public int saveEditedCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
@@ -96,7 +96,7 @@ public class SocialWorker extends CaseEmployee {
         c.setSpecialCircumstances(specialCircumstances);
         c.setDifferentCommune(differentCommune);
         pc.saveCase(c);
-        pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
+        pc.logAction(dc.getCurrentUser().getId(), LogAction.EDIT_CASE, "Edited a case with the following id: " + ID);
         return c.getID();
     }
     

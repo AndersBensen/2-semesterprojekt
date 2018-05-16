@@ -33,7 +33,7 @@ public interface IDomainContact {
 
     public boolean authorizeCommand(String command);
 
-    public ICase getCase(int caseID);
+    public ICase editCase(int caseID);
 
     public IPerson getPerson(String CPR);
     
