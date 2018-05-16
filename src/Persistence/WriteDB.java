@@ -25,11 +25,20 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void writeEmployee(IEmployee employee, int position) {
         try {
             Connection db = getDBConnection();
-            String query = "INSERT INTO Employee"
-                    + " Values('" + employee.getCpr() + "', '" + employee.getName() + "', '" + employee.getGender() + "', '" + employee.getBirthDate()
-                    + "', '" + employee.getAddress() + "', " + employee.getPhoneNumber() + ", '" + employee.getMail() + "', " + employee.getId()
-                    + ", '" + employee.getUserName() + "', '" + employee.getPassWord() + "', " + position + ")";
+            String query = "INSERT INTO Employee " + 
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
+            ps.setString(1, Long.toString(employee.getCpr()));
+            ps.setString(2, employee.getName());
+            ps.setString(3, Character.toString(employee.getGender()));
+            ps.setString(4, employee.getBirthDate());
+            ps.setString(5, employee.getAddress());
+            ps.setInt(6, employee.getPhoneNumber());
+            ps.setString(7, employee.getMail());
+            ps.setInt(8, employee.getId());
+            ps.setString(9, employee.getUserName());
+            ps.setString(10, employee.getPassWord());
+            ps.setInt(11, position);
             ps.execute();
             ps.close();
             db.close();
@@ -42,8 +51,8 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void deleteEmployee(int id) {
         try {
             Connection db = getDBConnection();
-            String query = "DELETE FROM Employee "
-                    + "WHERE id = " + id;
+            String query = "DELETE FROM Employee " + 
+                           "WHERE id = " + id;
             PreparedStatement ps = db.prepareStatement(query);
             ps.execute();
             ps.close();
@@ -150,40 +159,4 @@ public class WriteDB extends AbstractDB implements IWriter {
             System.out.println("SQL error in writeLog");
         }
     }
-
-//    public static void main(String[] args) {
-//        WriteDB writedb = new WriteDB();
-//        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-//        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-////        Employee emp = new Employee(2504770005L, "Loc Nguyen", 'M', "25-04-1977", "Middelfartvej 143, 5200 Odense V",20151515, "loc@mail.dk", 2, "locnguyen", "megethemmeligt4");
-////        writedb.writeEmployee(emp, 2);
-//        //writedb.deleteEmployee(5);
-////        Case c = new Case(1, 2, new CaseRequest(1, 2, 3));
-////        c.setNextAppointment("test1");
-////        c.setGuardianship("test2");
-////        c.setPersonalHelper("test3");
-////        c.setPersonalHelperPowerOfAttorney("test4");
-////        c.setCitizenRights("test5");
-////        c.setCitizenInformedElectronic(true);
-////        c.setConsent(true);
-////        c.setConsentType("test6");
-////        c.setCollectCitizenInfo(new String[] {"test7", "test8", "test9"});
-////        c.setSpecialCircumstances("test10");
-////        c.setDifferentCommune("test11");
-////        writedb.writeCase(c);
-//
-////        CaseRequest CR = new CaseRequest(1, 2, 0212122005L);
-////        CR.setDescription("test1");
-////        CR.setMessageClear(true);
-////        CR.setCarePackageRequested(true);
-////        CR.setRehousingPackageRequested(true);
-////        CR.setRequestPerson("test2");
-////        CR.setCitizenInformed(true);
-////        CR.connectCitizen(0212122005L, "test3", 'm', "test4", "test5");
-////        CR.setCitizenPhoneNr(22334455);
-////        CR.setCitizenMail("tes6");
-////        writedb.writeCaseRequest(CR);
-////        Log log = new Log(1, LogAction.LOG_IN, "Logged in test");
-////        writedb.writeLog(log);
-//    }
 }
