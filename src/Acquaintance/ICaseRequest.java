@@ -20,7 +20,7 @@ public interface ICaseRequest {
 
     public boolean isCitizenInformed();
 
-    public long getCitizenCPR();
+    public String getCitizenCPR();
 
     public String getCitizenName();
 

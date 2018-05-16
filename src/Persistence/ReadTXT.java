@@ -3,6 +3,7 @@ package Persistence;
 import Acquaintance.IReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReadTXT implements IReader {
@@ -105,7 +106,7 @@ public class ReadTXT implements IReader {
      * @return patient[]
      */
     @Override
-    public String[] getPerson(long cpr) {
+    public String[] getPerson(String cpr) {
         String[] tokens = new String[7];
         String[] patient = new String[7];
         String word;
@@ -117,7 +118,7 @@ public class ReadTXT implements IReader {
                 }
 
                 tokens = word.split(";");
-                if (Long.parseLong(tokens[0]) == cpr) {
+                if (tokens[0].equalsIgnoreCase(cpr)) {
                     patient = word.split(";");
                 }
             }
@@ -185,6 +186,16 @@ public class ReadTXT implements IReader {
             System.out.println("Method getCurrentIDs: NUMBER FORMAT EXCEPTION");
         }
         return ids;
+    }
+
+    @Override
+    public List<String[]> getSimpleCaseRequests(String citizenCPR) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String[]> getSimpleCases(String citizenCPR) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

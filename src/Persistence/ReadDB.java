@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReadDB extends AbstractDB implements IReader {
 
@@ -13,7 +17,7 @@ public class ReadDB extends AbstractDB implements IReader {
     public String[] getCaseRequest(int id) {
         String[] caseRequestInfo = new String[17];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
             String query = "SELECT * FROM CaseRequest WHERE id = '" + Integer.toString(id) + "'";
             ResultSet rs = st.executeQuery(query);
@@ -48,7 +52,7 @@ public class ReadDB extends AbstractDB implements IReader {
     public String[] getCase(int id) {
         String[] caseInfo = new String[16];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
             String query = "SELECT * FROM Cases WHERE id = '" + Integer.toString(id) + "'";
             ResultSet rs = st.executeQuery(query);
@@ -82,7 +86,7 @@ public class ReadDB extends AbstractDB implements IReader {
     public String[] login(String username, String password) {
         String[] EmployeeInfo = new String[11];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
             String query = "SELECT * FROM Employee WHERE username = '" + username + "' AND password = '" + password + "'";
             ResultSet rs = st.executeQuery(query);
@@ -108,12 +112,12 @@ public class ReadDB extends AbstractDB implements IReader {
     }
 
     @Override
-    public String[] getPerson(long cpr) {
+    public String[] getPerson(String cpr) {
         String[] personInfo = new String[5];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
-            String query = "SELECT * FROM Person WHERE cpr = '" + Long.toString(cpr) + "'";
+            String query = "SELECT * FROM Person WHERE cpr = '" + cpr + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 personInfo[0] = rs.getString(1);
@@ -134,7 +138,7 @@ public class ReadDB extends AbstractDB implements IReader {
     public String[] getEmployee(int id) {
         String[] EmployeeInfo = new String[11];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
             String query = "SELECT * FROM Employee WHERE id = '" + Integer.toString(id) + "'";
             ResultSet rs = st.executeQuery(query);
@@ -163,7 +167,7 @@ public class ReadDB extends AbstractDB implements IReader {
     public int[] getCurrentIDs() {
         int[] idArray = new int[3];
         try {
-            Connection db = getDBConnection();
+//            Connection db = getDBConnection();
             Statement st = db.createStatement();
             String query = "SELECT MAX(Cases.id), MAX(CaseRequest.id), MAX(Employee.id)\n"
                     + "FROM CaseRequest, Cases, Employee";
@@ -180,10 +184,60 @@ public class ReadDB extends AbstractDB implements IReader {
         }
         return idArray;
     }
-    
-//    public static void main(String[] args) {
-//        ReadDB rdb = new ReadDB();
-//        System.out.println(Arrays.toString(rdb.getCase(1)));
-//        System.out.println(Arrays.toString(rdb.getCaseRequest(1)));
-//    }
+
+    @Override
+    public List<String[]> getSimpleCaseRequests(String citizenCPR) {
+        List<String[]> simpleCasesList = new ArrayList<>();
+        String[] caseObject = new String[4];
+        
+        try {
+//            Connection db = getDBConnection();
+            Statement st = db.createStatement();
+            String query = "SELECT id, employeeid, description, datecreated " +
+                           "FROM caserequest " +
+                           "WHERE caserequest.citizencpr = '" + citizenCPR + "';";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                caseObject[0] = rs.getString(1);
+                caseObject[1] = rs.getString(2);
+                caseObject[2] = rs.getString(3);
+                caseObject[3] = rs.getString(4);
+                simpleCasesList.add(caseObject);
+                caseObject = new String[4];
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("SQL error in getSimpleCaseRequests()");
+        }
+        return simpleCasesList;
+    }
+
+    @Override
+    public List<String[]> getSimpleCases(String citizenCPR) {
+        List<String[]> simpleCasesList = new ArrayList<>();
+        String[] caseObject = new String[4];
+        
+        try {
+//            Connection db = getDBConnection();
+            Statement st = db.createStatement();
+            String query = "SELECT cases.id, cases.employeeid, caserequest.description, cases.datecreated " +
+                           "FROM cases, caserequest " +
+                           "WHERE cases.caserequestid = caserequest.id AND caserequest.citizencpr = '" + citizenCPR + "';";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                caseObject[0] = rs.getString(1);
+                caseObject[1] = rs.getString(2);
+                caseObject[2] = rs.getString(3);
+                caseObject[3] = rs.getString(4);
+                simpleCasesList.add(caseObject);
+                caseObject = new String[4];
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("SQL error in getSimpleCases()");
+        }
+        return simpleCasesList;
+    }
 }

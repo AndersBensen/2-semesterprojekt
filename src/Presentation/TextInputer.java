@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.ICase;
+import Acquaintance.ICaseObject;
 import Acquaintance.IDomainContact;
 import Acquaintance.IPerson;
 import Acquaintance.IVisualController;
@@ -24,7 +25,7 @@ public final class TextInputer implements IVisualController {
     public void start() {
         while (true) {
             information = new LinkedList();
-            System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee | logout):\n");
+            System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee | searchperson | logout):\n");
             String command = input.nextLine().toLowerCase();
             IPerson person;
 
@@ -35,7 +36,7 @@ public final class TextInputer implements IVisualController {
                     }
 
                     askQuestion("CPR number of the patient?");
-                    person = IDC.getPerson(Long.parseLong(information.get(0)));
+                    person = IDC.getPerson(information.get(0));
                     if (person != null) {
                         information.add(person.getName());
                         information.add(Character.toString(person.getGender()));
@@ -92,7 +93,7 @@ public final class TextInputer implements IVisualController {
 
                     System.out.println("Which case ID are you looking for?");
                     int ID = input.nextInt();
-                    ICase caseInfo = IDC.getCase(ID);
+                    ICase caseInfo = IDC.editCase(ID);
                     System.out.println("\n" + caseInfo);
                     reAddInfo(caseInfo);
                     int fieldNr = 1;
@@ -114,7 +115,7 @@ public final class TextInputer implements IVisualController {
                     }
 
                     askQuestion("CPR number of the employee?");
-                    person = IDC.getPerson(Long.parseLong(information.get(0)));
+                    person = IDC.getPerson(information.get(0));
                     if (person != null) {
                         information.add(person.getName());
                         information.add(Character.toString(person.getGender()));
@@ -148,6 +149,15 @@ public final class TextInputer implements IVisualController {
                     askQuestion("Input your username: ");
                     askQuestion("Input your password: ");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
+                    break;
+                case "searchperson":
+                    if (!IDC.authorizeCommand(command)) {
+                        continue;
+                    }
+                    askQuestion("Please enter the CPR number of the requested person.");
+                    for (ICaseObject string : IDC.getCaseObject(information.get(0))) {
+                        System.out.println(string);
+                    }
                     break;
                 case "logout":
                     CC.performCommand(command, "");

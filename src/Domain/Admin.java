@@ -2,7 +2,7 @@ package Domain;
 
 public class Admin extends Employee {
 
-    public Admin(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
+    public Admin(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
 
@@ -25,7 +25,7 @@ public class Admin extends Employee {
      * @param password
      * @param positionNumber
      */
-    public void addEmployee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
+    public void addEmployee(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
         Employee e;
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();

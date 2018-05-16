@@ -3,8 +3,16 @@ package Domain;
 import Acquaintance.IPerson;
 import Acquaintance.IDomainContact;
 import Acquaintance.ICase;
+import Acquaintance.ICaseObject;
+import Acquaintance.IReader;
 import Acquaintance.IVisualController;
+import Acquaintance.IWriter;
+import Persistence.ReadDB;
+import Persistence.WriteDB;
+import Presentation.CommandConverter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DomainContact implements IDomainContact {
 
@@ -31,7 +39,7 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
+    public void createCaseRequest(String citizenCPR, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail) {
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
             caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
@@ -49,6 +57,17 @@ public class DomainContact implements IDomainContact {
             printUnauthorizedAccess("createCase");
         }
     }
+    
+    @Override
+    public ICase editCase(int caseID) {
+        if (userLoggedIn() && currentUser instanceof SocialWorker) {
+            SocialWorker socialWorker = (SocialWorker) currentUser;
+            return socialWorker.editCase(caseID);
+        } else {
+            printUnauthorizedAccess("editCase");
+        }
+        return null; 
+    }
 
     @Override
     public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
@@ -57,14 +76,14 @@ public class DomainContact implements IDomainContact {
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
+            socialWorker.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
         } else {
             printUnauthorizedAccess("saveEditedCase");
         }
     }
 
     @Override
-    public void addEmployee(long CPR, String name, char gender, String birthdate, String Address,
+    public void addEmployee(String CPR, String name, char gender, String birthdate, String Address,
             Integer phoneNr, String mail, String username, String password, int positionNumber) {
         if (userLoggedIn() && currentUser instanceof Admin) {
             Admin admin = (Admin) currentUser;
@@ -148,6 +167,11 @@ public class DomainContact implements IDomainContact {
                     authorized = true;
                 }
                 break;
+            case "searchperson":
+                if (userLoggedIn() && currentUser instanceof CaseEmployee) {
+                    authorized = true;
+                }
+                break;
             default:
                 System.out.println("AuthorizedCommand: Invalid command to authorized");
         }
@@ -160,12 +184,7 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public ICase getCase(int caseID) {
-        return PersistanceContact.getInstance().getCase(caseID);
-    }
-
-    @Override
-    public IPerson getPerson(long CPR) {
+    public IPerson getPerson(String CPR) {
         if (!userLoggedIn()) {
             printUnauthorizedAccess("getPerson");
             return null;
@@ -185,5 +204,33 @@ public class DomainContact implements IDomainContact {
 
     private void printUnauthorizedAccess(String methodName) {
         System.out.println("User not allowed to perform command: " + methodName);
+    }
+
+    @Override
+    public List<ICaseObject> getCaseObject(String citizenCPR) {
+        List<ICaseObject> iCaseObjectList = new ArrayList<>();
+        boolean isSecretary = false; 
+        
+        if (userLoggedIn() && currentUser instanceof CaseEmployee) {
+            CaseEmployee caseEmployee = (CaseEmployee) currentUser;
+            if (currentUser instanceof Secretary) {
+                isSecretary = true; 
+            }
+            for (ICaseObject iCaseObject : caseEmployee.getCaseObjects(citizenCPR)) {
+                if (isSecretary) {
+                    if (iCaseObject.getType().equalsIgnoreCase("caserequest")) {
+                        iCaseObjectList.add(iCaseObject);
+                    }
+                }
+                else {
+                    iCaseObjectList.add(iCaseObject);
+                }
+            }
+        }
+        else {
+            printUnauthorizedAccess("getCaseObject");
+        }
+        
+        return iCaseObjectList;
     }
 }
