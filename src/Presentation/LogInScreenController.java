@@ -23,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -56,7 +58,7 @@ public class LogInScreenController implements Initializable, IVisualController{
     private void handleLogIn(ActionEvent event) {
         System.out.println(IDC);
       //  System.out.println(username.getText() + " " + password.getText() + " med dc " + DomainContact.getInstance());
-      //  if (DomainContact.getInstance().login(username.getText(), password.getText())) {
+        if (DomainContact.getInstance().login(username.getText(), password.getText())) {
            
             try {
                 Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -76,17 +78,48 @@ public class LogInScreenController implements Initializable, IVisualController{
                 Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
-//        else{
-//            username.clear();
-//            username.setPromptText("Forkerte oplysninger");
-//            password.clear();
-//        }
-//
-//    }
+        else{
+            username.clear();
+            username.setPromptText("Forkerte oplysninger");
+            password.clear();
+        }
+
+    }
 
     @Override
     public void logout() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void HandlePW(KeyEvent event) {
+         if (event.getCode().equals(KeyCode.ENTER)) {
+             if (DomainContact.getInstance().login(username.getText(), password.getText())) {
+           
+            try {
+                Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                Scene newScene = new Scene(nextView);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(newScene);
+                stage.show();
+                nextView.setOnMousePressed((javafx.scene.input.MouseEvent event1) -> {
+                    xOffset = event1.getSceneX();
+                    yOffset = event1.getSceneY();
+                });
+                nextView.setOnMouseDragged((javafx.scene.input.MouseEvent event1) -> {
+                    stage.setX(event1.getScreenX() - xOffset);
+                    stage.setY(event1.getScreenY() - yOffset);
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }
+        else{
+            username.clear();
+            username.setPromptText("Forkerte oplysninger");
+            password.clear();
+        }
+         }
     }
 
 }

@@ -19,6 +19,33 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="522.0" prefWidth="898.0" style="-fx-background-color: #FFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.FXMLDocumentController">
    <children>
+      <VBox fx:id="VBoxAnsat" layoutX="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="717.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="744.0" style="-fx-background-color: #FFFF;">
+               <children>
+                  <JFXTextField fx:id="opretCPR" focusColor="#0f9d58" layoutX="48.0" layoutY="192.0" onKeyPressed="#HandleopretCPR" promptText="CPR:" />
+                  <JFXTextField fx:id="opretNavn" focusColor="#0f9d58" layoutX="253.0" layoutY="192.0" promptText="Navn:" />
+                  <JFXTextField fx:id="opretKøn" focusColor="#0f9d58" layoutX="469.0" layoutY="192.0" promptText="Køn:" />
+                  <JFXTextField fx:id="opretFødselsdag" focusColor="#0f9d58" layoutX="48.0" layoutY="252.0" promptText="Fødselsdag:" />
+                  <JFXTextField fx:id="opretAdresse" focusColor="#0f9d58" layoutX="258.0" layoutY="252.0" promptText="Adresse:" />
+                  <JFXTextField fx:id="opretTelefon" focusColor="#0f9d58" layoutX="469.0" layoutY="252.0" promptText="Tlf. Nr." />
+                  <JFXTextField fx:id="opretEmail" focusColor="#0f9d58" layoutX="48.0" layoutY="308.0" promptText="E-Mail:" />
+                  <JFXTextField fx:id="opretBrugernavn" focusColor="#0f9d58" layoutX="255.0" layoutY="308.0" promptText="Brugernavn:" />
+                  <JFXTextField fx:id="opretAdgangskode" focusColor="#0f9d58" layoutX="466.0" layoutY="308.0" promptText="Adgangskode:" />
+                  <JFXRadioButton fx:id="sagsbehandlerRadio" layoutX="81.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Sagsbehandler">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="opretToggle" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="sletAnsatRadio" layoutX="422.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Slet Ansat" toggleGroup="$opretToggle" />
+                  <JFXRadioButton fx:id="adminRadio" layoutX="551.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Admin" toggleGroup="$opretToggle" />
+                  <JFXButton fx:id="opretAnsat" layoutX="308.0" layoutY="401.0" onAction="#HandleopretAnsat" ripplerFill="#cc0000" style="-fx-border-color: #BBBB;" text="Opret" />
+                  <JFXRadioButton fx:id="sekretærRadio" layoutX="268.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Sekretær" toggleGroup="$opretToggle" />
+                  <JFXTextField fx:id="deleteEmployeeID" focusColor="#cc0000" layoutX="258.0" layoutY="145.0" promptText="ID" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
       <VBox fx:id="testVbox" layoutX="145.0" prefHeight="1107.0" prefWidth="733.0">
          <children>
             <AnchorPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="650.0" prefWidth="733.0" style="-fx-background-color: #FFFF;">
@@ -147,34 +174,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <VBox fx:id="VBoxAnsat" layoutX="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="717.0">
-         <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="744.0" style="-fx-background-color: #FFFF;">
-               <children>
-                  <JFXTextField fx:id="opretCPR" focusColor="#0f9d58" layoutX="48.0" layoutY="192.0" promptText="CPR:" />
-                  <JFXTextField fx:id="opretNavn" focusColor="#0f9d58" layoutX="253.0" layoutY="192.0" promptText="Navn:" />
-                  <JFXTextField fx:id="opretKøn" focusColor="#0f9d58" layoutX="469.0" layoutY="192.0" promptText="Køn:" />
-                  <JFXTextField fx:id="opretFødselsdag" focusColor="#0f9d58" layoutX="48.0" layoutY="252.0" promptText="Fødselsdag:" />
-                  <JFXTextField fx:id="opretAdresse" focusColor="#0f9d58" layoutX="258.0" layoutY="252.0" promptText="Adresse:" />
-                  <JFXTextField fx:id="opretTelefon" focusColor="#0f9d58" layoutX="469.0" layoutY="252.0" promptText="Tlf. Nr." />
-                  <JFXTextField fx:id="opretEmail" focusColor="#0f9d58" layoutX="48.0" layoutY="308.0" promptText="E-Mail:" />
-                  <JFXTextField fx:id="opretBrugernavn" focusColor="#0f9d58" layoutX="255.0" layoutY="308.0" promptText="Brugernavn:" />
-                  <JFXTextField fx:id="opretAdgangskode" focusColor="#0f9d58" layoutX="466.0" layoutY="308.0" promptText="Adgangskode:" />
-                  <JFXRadioButton fx:id="sagsbehandlerRadio" layoutX="81.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Sagsbehandler">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="opretToggle" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton fx:id="sletAnsatRadio" layoutX="422.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Slet Ansat" toggleGroup="$opretToggle" />
-                  <JFXRadioButton fx:id="adminRadio" layoutX="551.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Admin" toggleGroup="$opretToggle" />
-                  <JFXButton fx:id="opretAnsat" layoutX="308.0" layoutY="401.0" ripplerFill="#cc0000" style="-fx-border-color: #BBBB;" text="Opret" />
-                  <JFXRadioButton fx:id="sekretærRadio" layoutX="268.0" layoutY="65.0" style="-jfx-selected-color: cc0000;" text="Opret Sekretær" toggleGroup="$opretToggle" />
-                  <JFXTextField fx:id="deleteEmployeeID" focusColor="#cc0000" layoutX="258.0" layoutY="145.0" promptText="ID" />
-               </children>
-            </AnchorPane>
-         </children>
-      </VBox>
-      <ScrollPane fx:id="ScrollTest" layoutX="143.0" prefHeight="522.0" prefWidth="753.0">
+      <ScrollPane fx:id="ScrollTest" layoutX="145.0" layoutY="14.0" prefHeight="509.0" prefWidth="753.0">
          <content>
             <VBox fx:id="VBox2" prefHeight="1677.0" prefWidth="734.0" style="-fx-background-color: #FFFF;">
                <children>
@@ -263,7 +263,7 @@
                         <JFXCheckBox fx:id="checkHandleKomune" layoutX="45.0" layoutY="1060.0" onAction="#handleHandleKomune" text="Handlekommune" />
                         <JFXTextField fx:id="EK" focusColor="#0f9d58" layoutX="340.0" layoutY="1013.0" promptText="Angiv kommune" />
                         <JFXTextField fx:id="HK" focusColor="#0f9d58" layoutX="340.0" layoutY="1055.0" promptText="Angiv kommune" />
-                        <JFXButton layoutX="332.0" layoutY="1137.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-color: #BBBB;" text="Opret sag">
+                        <JFXButton layoutX="332.0" layoutY="1137.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleOSButton" style="-fx-border-color: #BBBB;" text="Opret sag">
                            <ripplerFill>
                               <LinearGradient endX="1.0" endY="1.0">
                                  <stops>
@@ -273,6 +273,7 @@
                               </LinearGradient>
                            </ripplerFill>
                         </JFXButton>
+                        <JFXTextField fx:id="caseRequestID" focusColor="#0f9d58" layoutX="477.0" layoutY="1138.0" prefHeight="31.0" prefWidth="107.0" promptText="HenvendelseID" />
                      </children>
                   </AnchorPane>
                </children>
@@ -303,7 +304,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="adgangsPosition" layoutX="350.0" layoutY="194.0" text="med ..." />
+                  <Label fx:id="adgangsPosition" layoutX="95.0" layoutY="221.0" text="med ..." />
                </children>
             </AnchorPane>
          </children>

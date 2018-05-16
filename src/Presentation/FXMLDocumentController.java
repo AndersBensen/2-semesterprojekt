@@ -338,8 +338,8 @@ public class FXMLDocumentController implements Initializable, IVisualController 
                     indforstået = "true";
                 }
         
-//        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " " +
-//               hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
+        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " " +
+               hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
                 
                 
         CC.performCommand("CaseRequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
@@ -803,17 +803,17 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private void HandleCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             System.out.println("søg");
-//            if(CPR.getText().equals(DomainContact.getInstance().getPerson(CPR.getText()))){
-//                name.setText(DomainContact.getInstance().getPerson(CPR.getText()).getName());
-//                gender.setText(DomainContact.getInstance().getPerson(CPR.getText()).getGender());
-//                birthday.setText(DomainContact.getInstance().getPerson(CPR.getText()).getBirthDate());
-//                address.setText(DomainContact.getInstance().getPerson(CPR.getText()).getAddress());
-//                phone.setText(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber());
-//                email.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
-//            }
-//            else{
-//                System.out.println("intet");
-//            }
+            if(CPR.getText().equals(DomainContact.getInstance().getPerson(CPR.getText()))){
+                name.setText(DomainContact.getInstance().getPerson(CPR.getText()).getName());
+                gender.setText(Character.toString(DomainContact.getInstance().getPerson(CPR.getText()).getGender()));
+                birthday.setText(DomainContact.getInstance().getPerson(CPR.getText()).getBirthDate());
+                address.setText(DomainContact.getInstance().getPerson(CPR.getText()).getAddress());
+                phone.setText(Integer.toString(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber()));
+                email.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
+            }
+            else{
+                System.out.println("intet");
+            }
         }
     }
 
@@ -919,19 +919,19 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private void HandleopretCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             System.out.println("søg");
-//            if(opretCPR.getText().equals(DomainContact.getInstance().getPerson(opretCPR.getText()))){
-//                opretNavn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getName());
-//                opretKøn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getGender());
-//                opretFødselsdag.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getBirthDate());
-//                opretAdresse.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getAddress());
+            if(opretCPR.getText().equals(DomainContact.getInstance().getPerson(opretCPR.getText()))){
+                opretNavn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getName());
+                opretKøn.setText(Character.toString(DomainContact.getInstance().getPerson(opretCPR.getText()).getGender()));
+                opretFødselsdag.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getBirthDate());
+                opretAdresse.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getAddress());
                 
                 
-              //  opretTelefon.setText(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber());
-              //  opretEmail.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
-//            }
-//            else{
-//                System.out.println("intet");
-//            }
+                opretTelefon.setText(Integer.toString(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber()));
+                opretEmail.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
+            }
+            else{
+                System.out.println("intet");
+            }
         }
     }
     
