@@ -1,10 +1,11 @@
 package Domain;
 
 import Acquaintance.IVisualController;
+import Presentation.FXMLDocumentController;
 
 public final class SystemTimer implements Runnable {
 
-    private final int DEFAULT_TIMER = 1000;
+    private final int DEFAULT_TIMER = 2;
     private int currentTimer;
     private IVisualController IVC;
     private volatile Thread timerThread;

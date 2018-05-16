@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="571.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.LogInScreenController">
+    <stylesheets>
+        <URL value="@loginscreen.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="463.0" fitWidth="571.0" pickOnBounds="true">
+         <image>
+            <Image url="@Sigurd3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="113.0" fitWidth="222.0" layoutX="226.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@appLogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="135.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@userLogo.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="username" focusColor="BLACK" layoutX="175.0" layoutY="201.0" prefHeight="31.0" prefWidth="222.0" promptText="Brugernavn" unFocusColor="#cc0000" />
+      <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="135.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@passwordLogo.png" />
+         </image>
+      </ImageView>
+      <JFXPasswordField fx:id="password" focusColor="BLACK" layoutX="175.0" layoutY="291.0" prefHeight="31.0" prefWidth="222.0" promptText="Kodeord" unFocusColor="#cc0000" />
+      <JFXButton fx:id="logInButton" layoutX="250.0" layoutY="359.0" onAction="#handleLogIn" style="-fx-background-color: #cc0000;" text="Log ind" textFill="WHITE" />
+      <Label layoutX="173.0" layoutY="113.0" text="Sensum Udred">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
