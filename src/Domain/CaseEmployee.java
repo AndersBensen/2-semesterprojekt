@@ -46,6 +46,7 @@ public class CaseEmployee extends Employee{
         CR.setMessageClear(isMessageClear);
         CR.setCarePackageRequested(isCarePackage);
         CR.setRehousingPackageRequested(isRehousingPackage);
+        CR.setRequestPerson(contact);
         CR.setCitizenInformed(isCitizenInformed);
         CR.connectCitizen(citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress);
         if(citizenPhoneNr != null) {
