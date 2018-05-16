@@ -15,7 +15,7 @@ public class CommandConverter {
         switch (command) {
             case "caserequest":
                 try {
-                    long citizenCPR = Long.parseLong(args[0]);
+                    String citizenCPR = args[0];
                     String citizenName = args[1];
                     char citizenGender = args[2].charAt(0);
                     String citizenBirthdate = args[3];
@@ -79,7 +79,7 @@ public class CommandConverter {
                 break;
             case "addemployee":
                 try {
-                    long employeeCPR = Long.parseLong(args[0]);
+                    String employeeCPR = args[0];
                     String employeeName = args[1];
                     char employeeGender = args[2].charAt(0);
                     String employeeBirthdate = args[3];

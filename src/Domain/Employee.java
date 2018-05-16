@@ -11,7 +11,7 @@ public class Employee extends Person implements IEmployee {
     private String userName;
     private String password;
 
-    public Employee(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
+    public Employee(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail);
         this.id = id;
         this.userName = userName;

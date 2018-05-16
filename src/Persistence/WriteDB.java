@@ -7,6 +7,7 @@ import Acquaintance.ILog;
 import Acquaintance.IWriter;
 import Domain.Case;
 import Domain.CaseRequest;
+import Domain.Employee;
 import Domain.Log;
 import Domain.LogAction;
 import java.sql.Connection;
@@ -19,11 +20,11 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public void writeEmployee(IEmployee employee, int position) {
         try {
-            Connection db = getDBConnection();
+            //Connection db = getDBConnection();
             String query = "INSERT INTO Employee "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
-            ps.setString(1, Long.toString(employee.getCpr()));
+            ps.setString(1, employee.getCpr());
             ps.setString(2, employee.getName());
             ps.setString(3, Character.toString(employee.getGender()));
             ps.setString(4, employee.getBirthDate());
@@ -36,7 +37,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(11, position);
             ps.execute();
             ps.close();
-            db.close();
+            //db.close();
         } catch (SQLException e) {
             System.out.println("SQL error in writeEmployee()");
         }
@@ -45,13 +46,13 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public void deleteEmployee(int id) {
         try {
-            Connection db = getDBConnection();
+            //Connection db = getDBConnection();
             String query = "DELETE FROM Employee "
                     + "WHERE id = " + id;
             PreparedStatement ps = db.prepareStatement(query);
             ps.execute();
             ps.close();
-            db.close();
+            //db.close();
         } catch (SQLException e) {
             System.out.println("SQL error in deleteEmployee()");
         }
@@ -67,10 +68,15 @@ public class WriteDB extends AbstractDB implements IWriter {
             }
             citizenInfo = citizenInfo.substring(0, citizenInfo.length()-1);
             
-            Connection db = getDBConnection();
-            String query = "INSERT INTO Cases "
+            String query1 = "DELETE FROM Cases " + 
+                            "WHERE ID = " + cases.getID();
+            PreparedStatement ps = db.prepareStatement(query1);
+            ps.execute();
+            
+            //Connection db = getDBConnection();
+            String query2 = "INSERT INTO Cases "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = db.prepareStatement(query);
+            ps = db.prepareStatement(query2);
             ps.setInt(1, cases.getID());
             ps.setInt(2, cases.getEmployeeID());
             ps.setInt(3, cases.getCaseRequest().getID());
@@ -89,14 +95,14 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(16, Long.toString(cases.getDateModified().getTime()));
             ps.execute();
 
-            String query2 = "INSERT INTO Becomes "
+            String query3 = "INSERT INTO Becomes "
                     + "VALUES(?, ?)";
-            ps = db.prepareStatement(query2);
+            ps = db.prepareStatement(query3);
             ps.setInt(1, cases.getCaseRequest().getID());
             ps.setInt(2, cases.getID());
             ps.execute();
             ps.close();
-            db.close();
+            //db.close();
         } catch (SQLException ex) {
             System.out.println("SQL error in writeCase()");
         }
@@ -105,7 +111,7 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public void writeCaseRequest(ICaseRequest ICR) {
         try {
-            Connection db = getDBConnection();
+            //Connection db = getDBConnection();
             String query = "INSERT INTO Caserequest "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
@@ -117,7 +123,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setBoolean(6, ICR.isRehousingPackageRequested());
             ps.setString(7, ICR.getRequestPerson());
             ps.setBoolean(8, ICR.isCitizenInformed());
-            ps.setString(9, Long.toString(ICR.getCitizenCPR()));
+            ps.setString(9, ICR.getCitizenCPR());
             ps.setString(10, ICR.getCitizenName());
             ps.setString(11, Character.toString(ICR.getCitizenGender()));
             ps.setString(12, ICR.getCitizenBirthdate());
@@ -135,7 +141,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(2, ICR.getID());
             ps.execute();
             ps.close();
-            db.close();
+            //db.close();
         } catch (SQLException ex) {
             System.out.println("SQL error in writeCaseRequest()");
         }
@@ -144,7 +150,7 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public void writeLog(ILog log) {
         try {
-            Connection db = getDBConnection();
+            //Connection db = getDBConnection();
             String query = "INSERT INTO Log "
                     + "VALUES(?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
@@ -161,48 +167,9 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(2, log.getDate().toString());
             ps.execute();
             ps.close();
-            db.close();
+            //db.close();
         } catch (SQLException ex) {
             System.out.println("SQL error in writeLog");
         }
     }
-//        public static void main(String[] args) {
-//        WriteDB writedb = new WriteDB();
-////        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-////        //Employee emp = new Employee(1205820009L, "Sigurd Espersen", 'M', "08-05-1982", "Vestergade 29, 5000 Odense C", 22334455, "jss@mail.dk", 1, "sigurdespersen", "megethemmeligt3");
-////        Employee emp = new Employee(2504770005L, "Loc Nguyen", 'M', "25-04-1977", "Middelfartvej 143, 5200 Odense V", 20151515, "loc@mail.dk", 2, "locnguyen", "megethemmeligt4");
-////        writedb.writeEmployee(emp, 2);
-////        writedb.deleteEmployee(1);
-////        Case c = new Case(2, 2, new CaseRequest(1, 2, 3));
-////        c.setNextAppointment("test1");
-////        c.setGuardianship("test2");
-////        c.setPersonalHelper("test3");
-////        c.setPersonalHelperPowerOfAttorney("test4");
-////        c.setCitizenRights("test5");
-////        c.setCitizenInformedElectronic(true);
-////        c.setConsent(true);
-////        c.setConsentType("test6");
-////        c.setCollectCitizenInfo(new String[] {"test7", "test8", "test9"});
-////        c.setSpecialCircumstances("test10");
-////        c.setDifferentCommune("test11");
-////        writedb.writeCase(c);
-//
-////        CaseRequest CR = new CaseRequest(1, 2, 0212122005L);
-////        CR.setDescription("test1");
-////        CR.setMessageClear(true);
-////        CR.setCarePackageRequested(true);
-////        CR.setRehousingPackageRequested(true);
-////        CR.setRequestPerson("test2");
-////        CR.setCitizenInformed(true);
-////        CR.connectCitizen(0212122005L, "test3", 'm', "test4", "test5");
-////        CR.setCitizenPhoneNr(22334455);
-////        CR.setCitizenMail("tes6");
-////        writedb.writeCaseRequest(CR);
-////        Log log = new Log(1, LogAction.LOG_IN, "Logged in test");
-////        writedb.writeLog(log);
-//    }
-
-
-
-
 }

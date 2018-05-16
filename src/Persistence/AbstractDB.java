@@ -3,11 +3,17 @@ package Persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public abstract class AbstractDB {
+    protected Connection db; 
 
-    protected Connection getDBConnection() {
-        Connection db = null;
+    public AbstractDB() {
+        db = getDBConnection();
+    }
+
+    private Connection getDBConnection() {
+        db = null;
         try {
             Class.forName("org.postgresql.Driver");
         } catch (java.lang.ClassNotFoundException e) {
