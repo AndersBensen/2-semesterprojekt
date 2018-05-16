@@ -7,6 +7,7 @@ package Presentation;
 
 import Acquaintance.IVisualController;
 import Domain.Admin;
+import Domain.CaseRequest;
 import Domain.DomainContact;
 import Domain.Secretary;
 import Domain.SocialWorker;
@@ -44,7 +45,7 @@ import javafx.stage.Stage;
  * @author Peter
  */
 public class FXMLDocumentController implements Initializable, IVisualController {
-
+    CommandConverter CC;
     private Stage stage;
     private double xOffset;
     private double yOffset;
@@ -213,9 +214,26 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private JFXButton logAf;
     @FXML
     private Label adgangsPosition;
+    @FXML
+    private JFXTextField CPR;
+    @FXML
+    private JFXTextField name;
+    @FXML
+    private JFXTextField email;
+    @FXML
+    private JFXTextField birthday;
+    @FXML
+    private JFXTextField address;
+    @FXML
+    private JFXTextField gender;
+    @FXML
+    private JFXTextField phone;
+    @FXML
+    private JFXTextField caseRequestID;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        CC = new CommandConverter();
         DomainContact.getInstance().injectVisualController(this);
 
         disableOpretFields();
@@ -301,15 +319,31 @@ public class FXMLDocumentController implements Initializable, IVisualController 
 
     @FXML
     private void HandleOpretHenvendelse(ActionEvent event) {        //Knappen
-
-        String s = "";
-        s += videreForløbTarea.getText() + ";";
-        if (klarHenvendelseJa.isSelected()) {
-            s += "true";
-        } else {
-            s += "false";
-        }
-        System.out.println("vi fik: " + s);
+        String msc = "false";
+                if(klarHenvendelseJa.isSelected()){
+                    msc = "true";
+                }
+        String hbdso = "";
+        if(støtteTIlPraktiskOpgave.isSelected())
+            hbdso += "Støtte til praktiske opgaver i hjemmet#";
+        if(støtteTilIndkøb.isSelected())
+            hbdso += "Støtte til til indkøb og kost#";
+        if(støtteTIlPersonligPleje.isSelected())
+            hbdso += "Støtte til personlig pleje#";
+        if(!støtteTilAndet.getText().equals(""))
+            hbdso += støtteTilAndet.getText() + "#";
+        
+        String indforstået = "false";
+                if(indforståetJa.isSelected()){
+                    indforstået = "true";
+                }
+        
+//        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " " +
+//               hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
+                
+                
+        CC.performCommand("CaseRequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
+               hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
     }
 
     @FXML
@@ -764,5 +798,143 @@ public class FXMLDocumentController implements Initializable, IVisualController 
         }
 
     }
+
+    @FXML
+    private void HandleCPR(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            System.out.println("søg");
+//            if(CPR.getText().equals(DomainContact.getInstance().getPerson(CPR.getText()))){
+//                name.setText(DomainContact.getInstance().getPerson(CPR.getText()).getName());
+//                gender.setText(DomainContact.getInstance().getPerson(CPR.getText()).getGender());
+//                birthday.setText(DomainContact.getInstance().getPerson(CPR.getText()).getBirthDate());
+//                address.setText(DomainContact.getInstance().getPerson(CPR.getText()).getAddress());
+//                phone.setText(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber());
+//                email.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
+//            }
+//            else{
+//                System.out.println("intet");
+//            }
+        }
+    }
+
+    @FXML
+    private void HandleOSButton(ActionEvent event) {
+        String personalHelper = "";
+        if(værgemål.isSelected())
+            personalHelper += "Værgemål#";
+        if(værgeMedMere.isSelected())
+            personalHelper += "Værgemål med frataget retslig handleevne#";
+        if(samværgemål.isSelected())
+            personalHelper += "Samværgemål#";
+        if(!værgeInfo.getText().equals(""))
+            personalHelper += støtteTilAndet.getText() + "#";
+        
+        String PHPOA = "";
+        if(bisidder.isSelected())
+            PHPOA += "Bisidder#";
+        if(partsrepræsentant.isSelected())
+            PHPOA += "Partsrepræsentant#";
+        if(fuldmagtMedMere.isSelected()) {
+        if(!fuldmagtTekst.getText().equals(""))
+            PHPOA += støtteTilAndet.getText() + "#";
+        }
+        
+        String electronic = "false";
+                if(indforståetElektroniskJa.isSelected()){
+                    electronic = "true";
+                }
+        
+        String consent = "false";
+                if(jaSamtykke_sag.isSelected()){
+                    consent = "true";
+                }
+                
+        String consentType = "";
+                if(mundtligSamtykke.isSelected()) {
+                    consentType += "mundtligSamtykke";
+                }
+                else if (skriftligSamtykke.isSelected()) {
+                    consentType += "skriftligSamtykke";
+                }
+                
+        String collectCitizenInfo = "";
+                if(checkEgenLæge.isSelected()) {
+                    collectCitizenInfo += AEL.getText() + "#";
+                }
+                if(checkSpecialLæge.isSelected()) {
+                    collectCitizenInfo += ASL.getText() + "#";
+                }
+                if(checkHospital.isSelected()) {
+                    collectCitizenInfo += AH.getText() + "#";
+                }
+                if(checkAkasse.isSelected()) {
+                    collectCitizenInfo += AAK.getText() + "#";
+                }
+                if(checkTilbud.isSelected()) {
+                    collectCitizenInfo += AT.getText() + "#";
+                }
+                if(checkArbejdsgiver.isSelected()) {
+                    collectCitizenInfo += AA.getText() + "#";
+                }
+                if(checkOPkomune.isSelected()) {
+                    collectCitizenInfo += AK.getText() + "#";
+                }
+                if(checkAndre.isSelected()) {
+                    collectCitizenInfo += Andre.getText() + "#";
+                }
+                
+        String communeInfo = "";
+                if(checkEgenKomune.isSelected()) {
+                    collectCitizenInfo += EK.getText() + "#";
+                }
+                if(checkHandleKomune.isSelected()) {
+                    collectCitizenInfo += HK.getText() + "#";
+                }        
+                
+        
+        CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo);
+    }
+
+    @FXML
+    private void HandleopretAnsat(ActionEvent event) {
+        int i = 0;
+        if(sagsbehandlerRadio.isSelected()){
+            i = 2;
+        }
+        if(sekretærRadio.isSelected()){
+            i = 1;
+        }
+        if(adminRadio.isSelected()){
+            i = 3;
+        }
+        if(sletAnsatRadio.isSelected()){
+            CC.performCommand("deleteemployee", deleteEmployeeID.getText());
+            
+        }
+        CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+        
+    }
+
+    @FXML
+    private void HandleopretCPR(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            System.out.println("søg");
+//            if(opretCPR.getText().equals(DomainContact.getInstance().getPerson(opretCPR.getText()))){
+//                opretNavn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getName());
+//                opretKøn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getGender());
+//                opretFødselsdag.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getBirthDate());
+//                opretAdresse.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getAddress());
+                
+                
+              //  opretTelefon.setText(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber());
+              //  opretEmail.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
+//            }
+//            else{
+//                System.out.println("intet");
+//            }
+        }
+    }
+    
+    
 
 }
