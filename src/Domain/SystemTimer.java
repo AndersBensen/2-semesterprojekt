@@ -4,7 +4,7 @@ import Acquaintance.IVisualController;
 
 public final class SystemTimer implements Runnable {
 
-    private final int DEFAULT_TIMER = 10;
+    private final int DEFAULT_TIMER = 1000;
     private int currentTimer;
     private IVisualController IVC;
     private volatile Thread timerThread;
@@ -40,7 +40,7 @@ public final class SystemTimer implements Runnable {
                     System.out.println(e);
                 }
                 currentTimer--;
-                System.out.println(currentTimer);
+                //System.out.println(currentTimer);
 
             }
             IVC.logout();

@@ -2,6 +2,7 @@ package Domain;
 
 import Acquaintance.IReader;
 import Acquaintance.IWriter;
+import java.util.Date;
 
 public class PersistanceContact {
 
@@ -135,8 +136,10 @@ public class PersistanceContact {
         int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
 
         Integer citizenPhoneNr = cr[13].equals("") ? null : Integer.parseInt(cr[13]);
+        Date dateCreated = new Date(Long.parseLong(cr[15]));
+        Date dateModified = new Date(Long.parseLong(cr[16]));
 
-        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR);
+        CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, CPR, dateCreated, dateModified);
 
         currentCaseRequest.setDescription(cr[2]);
         currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
@@ -167,8 +170,10 @@ public class PersistanceContact {
         int caseRequestID = Integer.parseInt(c[2]);
         CaseRequest caseRequest = getCaseRequest(caseRequestID);
         int caseID = Integer.parseInt(c[0]);
+        Date dateCreated = new Date(Long.parseLong(c[14]));
+        Date dateModified = new Date(Long.parseLong(c[15]));
         logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
-        Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest);
+        Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
         currentCase.setPersonalHelper(c[5]);

@@ -4,6 +4,7 @@ import Acquaintance.IPerson;
 import Acquaintance.IDomainContact;
 import Acquaintance.ICase;
 import Acquaintance.IVisualController;
+import java.util.Date;
 
 public class DomainContact implements IDomainContact {
 
@@ -50,10 +51,13 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+    public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
+            String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
+            String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
+            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+            socialWorker.saveCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
         } else {
             printUnauthorizedAccess("saveEditedCase");
         }

@@ -3,6 +3,7 @@ package Domain;
 import Acquaintance.ICase;
 import Acquaintance.ICaseRequest;
 import java.util.Arrays;
+import java.util.Date;
 
 public class Case implements ICase {   // Mangler at logge
 
@@ -20,8 +21,15 @@ public class Case implements ICase {   // Mangler at logge
     private String[] collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
+    private Date dateCreated;
+    private Date dateModified;
 
     public Case(int caseID, int employeeID, CaseRequest caseRequest) {
+        this(caseID, employeeID, caseRequest, new Date(), new Date());
+    }
+
+    public Case(int caseID, int employeeID, CaseRequest caseRequest, Date dateCreated, Date dateModified)
+    {
         this.ID = caseID;
         this.employeeID = employeeID;
 
@@ -30,8 +38,11 @@ public class Case implements ICase {   // Mangler at logge
         }
 
         this.caseRequest = caseRequest;
-
+        this.dateCreated = dateCreated;
+        this.dateModified = dateModified;
     }
+    
+    
 
     //Getter methods
     @Override
@@ -105,49 +116,72 @@ public class Case implements ICase {   // Mangler at logge
         return differentCommune;
     }
 
+    @Override
+    public Date getDateCreated()
+    {
+        return dateCreated;
+    }
+
+    @Override
+    public Date getDateModified()
+    {
+        return dateModified;
+    }
+
     //Setter methods
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
+        updateDateModified();
     }
 
     public void setGuardianship(String guardianship) {
         this.guardianship = guardianship;
+        updateDateModified();
     }
 
     public void setPersonalHelper(String personalHelper) {
         this.personalHelper = personalHelper;
+        updateDateModified();
     }
 
     public void setPersonalHelperPowerOfAttorney(String personalHelperPowerOfAttorney) {
         this.personalHelperPowerOfAttorney = personalHelperPowerOfAttorney;
+        updateDateModified();
     }
 
     public void setCitizenRights(String citizenRights) {
         this.citizenRights = citizenRights;
+        updateDateModified();
     }
 
     public void setCitizenInformedElectronic(boolean citizenInformedElectronic) {
         this.citizenInformedElectronic = citizenInformedElectronic;
+        updateDateModified();
     }
 
     public void setConsent(boolean consent) {
         this.consent = consent;
+        updateDateModified();
     }
 
     public void setConsentType(String consentType) {
         this.consentType = consentType;
+        updateDateModified();
     }
 
     public void setCollectCitizenInfo(String[] collectCitizenInfo) {
         this.collectCitizenInfo = collectCitizenInfo;
+        updateDateModified();
     }
 
     public void setSpecialCircumstances(String specialCircumstances) {
         this.specialCircumstances = specialCircumstances;
+        updateDateModified();
     }
 
     public void setDifferentCommune(String differentCommune) {
         this.differentCommune = differentCommune;
+        updateDateModified();
     }
 
     @Override
@@ -159,5 +193,10 @@ public class Case implements ICase {   // Mangler at logge
                 + "\n7. Consent: " + consent + "\n8. Consent type: " + consentType + "\n9. Collect citizen info: "
                 + Arrays.toString(collectCitizenInfo) + "\n10. Special circumstances: " + specialCircumstances
                 + "\n11. Different commune: " + differentCommune;
+    }
+    
+    private void updateDateModified ()
+    {
+        dateModified = new Date();
     }
 }

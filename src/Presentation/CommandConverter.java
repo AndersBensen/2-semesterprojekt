@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import java.util.Date;
 
 public class CommandConverter {
 
@@ -69,8 +70,9 @@ public class CommandConverter {
                     String[] collectCitizenInfo = args[11].split("#");
                     String specialCircumstances = args[12];
                     String differentCommune = args[13];
+                    Date dateCreated = new Date(Long.parseLong(args[14]));
 
-                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'EditCase': NUMBER FORMAT EXCEPTION");
                 }

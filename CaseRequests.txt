@@ -1,3 +1,5 @@
 0;6;234;true;true;true;null;false;1508800001;Hans Christian Andersen;M;15-08-1980;Stationsvej 1, 5000 Odense C;21345;1345
 
 37;6;han er syg;true;true;false;null;false;1508800001;Hans Christian Andersen;M;15-08-1980;Stationsvej 1, 5000 Odense C;123456;123456
+
+38;2;Han har det skidt;true;false;true;Hans mor;false;805820009;Sigurd Espersen;M;08-05-1982;Vestergade 29, 5000 Odense C;42;42@hotmail.yes;1526458194149;1526458194149

@@ -1,5 +1,7 @@
 package Acquaintance;
 
+import java.util.Date;
+
 public interface ICase {
 
     int getID();
@@ -8,25 +10,29 @@ public interface ICase {
 
     ICaseRequest getCaseRequest();
 
-    String getCitizenRights();
-
-    String[] getCollectCitizenInfo();
-
-    String getConsentType();
-
-    String getDifferentCommune();
+    String getNextAppointment();
 
     String getGuardianship();
 
-    String getNextAppointment();
-
     String getPersonalHelper();
 
-    String getSpecialCircumstances();
+    String getPersonalHelperPowerOfAttorney();
 
-    boolean hasConsent();
+    String getCitizenRights();
 
     boolean isCitizenInformedElectronic();
 
-    String getPersonalHelperPowerOfAttorney();
+    boolean hasConsent();
+
+    String getConsentType();
+
+    String[] getCollectCitizenInfo();
+
+    String getSpecialCircumstances();
+
+    String getDifferentCommune();
+    
+    Date getDateCreated();
+    
+    Date getDateModified();
 }
