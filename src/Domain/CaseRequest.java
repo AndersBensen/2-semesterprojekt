@@ -1,20 +1,23 @@
 package Domain;
 
 import Acquaintance.ICaseRequest;
+import java.util.Date;
 
 public class CaseRequest implements ICaseRequest {
 
     //CaseAttributes
-    private final int ID;
-    private final int employeeID;
+    private int ID;
+    private int employeeID;
     private String description;
     private boolean MessageClear;
     private boolean CarePackageRequested;
     private boolean RehousingPackageRequested;
     private String requestPerson;
     private boolean CitizenInformed;
+    private Date dateCreated;
+    private Date dateModified;
     //CitizenAttributes
-    private final long citizenCPR;
+    private long citizenCPR;
     private String citizenName;
     private char citizenGender;
     private String citizenBirthdate;
@@ -23,51 +26,16 @@ public class CaseRequest implements ICaseRequest {
     private String citizenMail;
 
     public CaseRequest(int ID, int employeeID, long citizenCPR) {
+        this(ID, employeeID, citizenCPR, new Date(), new Date());
+    }
+
+    public CaseRequest(int ID, int employeeID, long citizenCPR, Date dateCreated, Date dateModified)
+    {
         this.ID = ID;
         this.employeeID = employeeID;
         this.citizenCPR = citizenCPR;
-    }
-
-    //Setter methods
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setMessageClear(boolean MessageClear) {
-        this.MessageClear = MessageClear;
-    }
-
-    public void setCarePackageRequested(boolean CarePackageRequested) {
-        this.CarePackageRequested = CarePackageRequested;
-    }
-
-    public void setRehousingPackageRequested(boolean RehousingPackageRequested) {
-        this.RehousingPackageRequested = RehousingPackageRequested;
-    }
-
-    public void setRequestPerson(String requestPerson) {
-        this.requestPerson = requestPerson;
-    }
-
-    public void setCitizenInformed(boolean CitizenInformed) {
-        this.CitizenInformed = CitizenInformed;
-    }
-
-    public void connectCitizen(long CPR, String name, char gender, String birthdate, String address) {
-        if (CPR == this.citizenCPR) {
-            this.citizenName = name;
-            this.citizenGender = gender;
-            this.citizenBirthdate = birthdate;
-            this.citizenAddress = address;
-        }
-    }
-
-    public void setCitizenPhoneNr(Integer number) {
-        this.citizenPhoneNr = number;
-    }
-
-    public void setCitizenMail(String mail) {
-        this.citizenMail = mail;
+        this.dateCreated = dateCreated;
+        this.dateModified = dateModified;
     }
 
     //Getter methods
@@ -144,5 +112,73 @@ public class CaseRequest implements ICaseRequest {
     @Override
     public String getCitizenMail() {
         return citizenMail;
+    }
+
+    @Override
+    public Date getDateCreated()
+    {
+        return dateCreated;
+    }
+
+    @Override
+    public Date getDateModified()
+    {
+        return dateModified;
+    }
+    
+    //Setter methods
+    public void setDescription(String description) {
+        this.description = description;
+        updateDateModified();
+    }
+
+    public void setMessageClear(boolean MessageClear) {
+        this.MessageClear = MessageClear;
+        updateDateModified();
+    }
+
+    public void setCarePackageRequested(boolean CarePackageRequested) {
+        this.CarePackageRequested = CarePackageRequested;
+        updateDateModified();
+    }
+
+    public void setRehousingPackageRequested(boolean RehousingPackageRequested) {
+        this.RehousingPackageRequested = RehousingPackageRequested;
+        updateDateModified();
+    }
+
+    public void setRequestPerson(String requestPerson) {
+        this.requestPerson = requestPerson;
+        updateDateModified();
+    }
+
+    public void setCitizenInformed(boolean CitizenInformed) {
+        this.CitizenInformed = CitizenInformed;
+        updateDateModified();
+    }
+
+    public void connectCitizen(long CPR, String name, char gender, String birthdate, String address) {
+        if (CPR == this.citizenCPR) {
+            this.citizenName = name;
+            this.citizenGender = gender;
+            this.citizenBirthdate = birthdate;
+            this.citizenAddress = address;
+            updateDateModified();
+        }
+    }
+
+    public void setCitizenPhoneNr(Integer number) {
+        this.citizenPhoneNr = number;
+        updateDateModified();
+    }
+
+    public void setCitizenMail(String mail) {
+        this.citizenMail = mail;
+        updateDateModified();
+    }
+    
+    private void updateDateModified ()
+    {
+        dateModified = new Date();
     }
 }

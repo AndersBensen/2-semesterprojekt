@@ -1,5 +1,7 @@
 package Acquaintance;
 
+import java.util.Date;
+
 public interface ICaseRequest {
 
     public int getID();
@@ -31,4 +33,8 @@ public interface ICaseRequest {
     public Integer getCitizenPhoneNr();
 
     public String getCitizenMail();
+    
+    Date getDateCreated();
+    
+    Date getDateModified();
 }
