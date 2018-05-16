@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistence;
 
 import Acquaintance.ICase;
@@ -15,18 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-/**
- *
- * @author ander
- */
 public class WriteDB extends AbstractDB implements IWriter {
 
     @Override
     public void writeEmployee(IEmployee employee, int position) {
         try {
             Connection db = getDBConnection();
-            String query = "INSERT INTO Employee " + 
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Employee "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
             ps.setString(1, Long.toString(employee.getCpr()));
             ps.setString(2, employee.getName());
@@ -51,8 +42,8 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void deleteEmployee(int id) {
         try {
             Connection db = getDBConnection();
-            String query = "DELETE FROM Employee " + 
-                           "WHERE id = " + id;
+            String query = "DELETE FROM Employee "
+                    + "WHERE id = " + id;
             PreparedStatement ps = db.prepareStatement(query);
             ps.execute();
             ps.close();
@@ -66,8 +57,8 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void writeCase(ICase cases) {
         try {
             Connection db = getDBConnection();
-            String query = "INSERT INTO Cases " + 
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Cases "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
             ps.setInt(1, cases.getID());
             ps.setInt(2, cases.getCaseRequest().getID());
@@ -83,9 +74,9 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(12, cases.getSpecialCircumstances());
             ps.setString(13, cases.getDifferentCommune());
             ps.execute();
-            
-            String query2 = "INSERT INTO Becomes " + 
-                            "VALUES(?, ?)";
+
+            String query2 = "INSERT INTO Becomes "
+                    + "VALUES(?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, cases.getCaseRequest().getID());
             ps.setInt(2, cases.getID());
@@ -101,8 +92,8 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void writeCaseRequest(ICaseRequest ICR) {
         try {
             Connection db = getDBConnection();
-            String query = "INSERT INTO Caserequest " + 
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Caserequest "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
             ps.setInt(1, ICR.getID());
             ps.setInt(2, ICR.getEmployeeID());
@@ -120,9 +111,9 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(14, ICR.getCitizenPhoneNr());
             ps.setString(15, ICR.getCitizenMail());
             ps.execute();
-            
-            String query2 = "INSERT INTO Makes " +
-                            "VALUES(?, ?)";
+
+            String query2 = "INSERT INTO Makes "
+                    + "VALUES(?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, ICR.getEmployeeID());
             ps.setInt(2, ICR.getID());
@@ -138,17 +129,17 @@ public class WriteDB extends AbstractDB implements IWriter {
     public void writeLog(ILog log) {
         try {
             Connection db = getDBConnection();
-            String query = "INSERT INTO Log " +
-                           "VALUES(?, ?, ?, ?)";
+            String query = "INSERT INTO Log "
+                    + "VALUES(?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
             ps.setInt(1, log.getEmployeeID());
             ps.setString(2, log.getAction().toString());
             ps.setString(3, log.getDesc());
             ps.setString(4, log.getDate().toString());
             ps.execute();
-            
-            String query2 = "INSERT INTO Logs " + 
-                            "VALUES(?, ?)";
+
+            String query2 = "INSERT INTO Logs "
+                    + "VALUES(?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, log.getEmployeeID());
             ps.setString(2, log.getDate().toString());

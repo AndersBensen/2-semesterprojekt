@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistence;
 
 import Acquaintance.IWriter;
@@ -18,12 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- *
- * @author ander
- */
-public class WriteTXT implements IWriter
-{
+public class WriteTXT implements IWriter {
 
     private File logFile = new File("log.txt");
     private File employeeFile = new File("Employees.txt");
@@ -37,8 +27,7 @@ public class WriteTXT implements IWriter
     *for when changes were made.
      */
     @Override
-    public void writeLog(ILog log)
-    {
+    public void writeLog(ILog log) {
         String employeeID = Integer.toString(log.getEmployeeID());
         String action = log.getAction().toString();
         String desc = log.getDesc();
@@ -54,12 +43,10 @@ public class WriteTXT implements IWriter
         sb.append(date);
 
         PrintWriter outputStream = null;
-        try
-        {
+        try {
             //outputStream = new PrintWriter(fileName);
             outputStream = new PrintWriter(new FileOutputStream(logFile, true));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Error loading the file: " + logFile);
             System.exit(0);
         }
@@ -75,14 +62,13 @@ public class WriteTXT implements IWriter
     * @param employee, position
      */
     @Override
-    public void writeEmployee(IEmployee employee, int position)
-    {
+    public void writeEmployee(IEmployee employee, int position) {
         String cpr = Long.toString(employee.getCpr());
         String name = employee.getName();
         String gender = Character.toString(employee.getGender());
         String date = employee.getBirthDate();
         String address = employee.getAddress();
-        String phoneNumber = employee.getPhoneNumber() == null? "" : Integer.toString(employee.getPhoneNumber());
+        String phoneNumber = employee.getPhoneNumber() == null ? "" : Integer.toString(employee.getPhoneNumber());
         String mail = employee.getMail();
         String id = Integer.toString(employee.getId());
         String userName = employee.getUserName();
@@ -112,12 +98,10 @@ public class WriteTXT implements IWriter
         sb.append(Integer.toString(position));
 
         PrintWriter outputStream = null;
-        try
-        {
+        try {
             //outputStream = new PrintWriter(fileName);
             outputStream = new PrintWriter(new FileOutputStream(employeeFile, true));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Error loading the file: " + employeeFile);
             System.exit(0);
         }
@@ -133,20 +117,15 @@ public class WriteTXT implements IWriter
     * @param id
      */
     @Override
-    public void deleteEmployee(int id)
-    {
-        try
-        {
+    public void deleteEmployee(int id) {
+        try {
             BufferedReader brFile = new BufferedReader(new FileReader(employeeFile));
             String line;
             String input = "";
-            while ((line = brFile.readLine()) != null)
-            {
-                if (line.contains(";" + id + ";"))
-                {
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(";" + id + ";")) {
                     line = "";
-                } else
-                {
+                } else {
                     line = line + '\n';
                 }
                 input += line;
@@ -155,8 +134,7 @@ public class WriteTXT implements IWriter
             fosFile.write(input.getBytes());
             brFile.close();
             fosFile.close();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Problems reading");
         }
     }
@@ -167,8 +145,7 @@ public class WriteTXT implements IWriter
     * @param cases
      */
     @Override
-    public void writeCase(ICase cases)
-    {
+    public void writeCase(ICase cases) {
         String ID = Integer.toString(cases.getID());
         String employeeID = Integer.toString(cases.getEmployeeID());
         String caseRequestID = Integer.toString(cases.getCaseRequest().getID());
@@ -184,18 +161,14 @@ public class WriteTXT implements IWriter
         String specialCircumstances = cases.getSpecialCircumstances();
         String differentCommune = cases.getDifferentCommune();
 
-        try
-        {
+        try {
             BufferedReader brFile = new BufferedReader(new FileReader(caseFile));
             String line;
             String input = "";
-            while ((line = brFile.readLine()) != null)
-            {
-                if (line.contains(cases.getID() + ";"))
-                {
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(cases.getID() + ";")) {
                     line = "";
-                } else
-                {
+                } else {
                     line = line + '\n';
                 }
                 input += line;
@@ -204,8 +177,7 @@ public class WriteTXT implements IWriter
             fosFile.write(input.getBytes());
             brFile.close();
             fosFile.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Problems reading");
         }
 
@@ -232,8 +204,7 @@ public class WriteTXT implements IWriter
         sb.append(";");
         sb.append(consentType);
         sb.append(";");
-        for (String string : collectCitizenInfo)
-        {
+        for (String string : collectCitizenInfo) {
             sb.append(string);
             sb.append("#");
         }
@@ -244,12 +215,10 @@ public class WriteTXT implements IWriter
         sb.append(differentCommune);
 
         PrintWriter outputStream = null;
-        try
-        {
+        try {
             //outputStream = new PrintWriter(fileName);
             outputStream = new PrintWriter(new FileOutputStream(caseFile, true));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Error loading the file: " + caseFile);
             System.exit(0);
         }
@@ -265,8 +234,7 @@ public class WriteTXT implements IWriter
     * @param caseRequests
      */
     @Override
-    public void writeCaseRequest(ICaseRequest caseRequests)
-    {
+    public void writeCaseRequest(ICaseRequest caseRequests) {
         String ID = Integer.toString(caseRequests.getID());
         String employeeID = Integer.toString(caseRequests.getEmployeeID());
         String description = caseRequests.getDescription();
@@ -284,18 +252,14 @@ public class WriteTXT implements IWriter
         String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
         String citizenMail = caseRequests.getCitizenMail();
 
-        try
-        {
+        try {
             BufferedReader brFile = new BufferedReader(new FileReader(caseRequestsFile));
             String line;
             String input = "";
-            while ((line = brFile.readLine()) != null)
-            {
-                if (line.contains(caseRequests.getID() + ";"))
-                {
+            while ((line = brFile.readLine()) != null) {
+                if (line.contains(caseRequests.getID() + ";")) {
                     line = "";
-                } else
-                {
+                } else {
                     line = line + '\n';
                 }
                 input += line;
@@ -304,8 +268,7 @@ public class WriteTXT implements IWriter
             fosFile.write(input.getBytes());
             brFile.close();
             fosFile.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Problems reading");
         }
 
@@ -341,12 +304,10 @@ public class WriteTXT implements IWriter
         sb.append(citizenMail);
 
         PrintWriter outputStream = null;
-        try
-        {
+        try {
             //outputStream = new PrintWriter(fileName);
             outputStream = new PrintWriter(new FileOutputStream(caseRequestsFile, true));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Error loading the file: " + caseRequestsFile);
             System.exit(0);
         }
@@ -362,8 +323,7 @@ public class WriteTXT implements IWriter
     * @param currentCaseID, currentCaseRequestID, currentEmployeeID
      */
     //@Override
-    public void writeIDs(int currentCaseID, int currentCaseRequestID, int currentEmployeeID)
-    {
+    public void writeIDs(int currentCaseID, int currentCaseRequestID, int currentEmployeeID) {
         StringBuilder sb = new StringBuilder();
         sb.append(Integer.toString(currentCaseID));
         sb.append(";");
@@ -372,12 +332,10 @@ public class WriteTXT implements IWriter
         sb.append(Integer.toString(currentEmployeeID));
 
         PrintWriter outputStream = null;
-        try
-        {
+        try {
             //outputStream = new PrintWriter(fileName);
             outputStream = new PrintWriter(new FileOutputStream(currentIDs, false));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Error loading the file: " + currentIDs);
             System.exit(0);
         }

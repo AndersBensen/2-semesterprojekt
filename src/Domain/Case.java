@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseRequest;
 import java.util.Arrays;
 
-/**
- *
- * @author Peter
- */
 public class Case implements ICase {   // Mangler at logge
 
     private int ID;
@@ -33,14 +24,15 @@ public class Case implements ICase {   // Mangler at logge
     public Case(int caseID, int employeeID, CaseRequest caseRequest) {
         this.ID = caseID;
         this.employeeID = employeeID;
-        
-        if (caseRequest == null)
-            throw new IllegalArgumentException ("Cannot create a Case without a CaseRequest!");
-        
+
+        if (caseRequest == null) {
+            throw new IllegalArgumentException("Cannot create a Case without a CaseRequest!");
+        }
+
         this.caseRequest = caseRequest;
 
     }
-    
+
     //Getter methods
     @Override
     public int getID() {
@@ -48,8 +40,7 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
-    public int getEmployeeID()
-    {
+    public int getEmployeeID() {
         return employeeID;
     }
 
@@ -113,12 +104,8 @@ public class Case implements ICase {   // Mangler at logge
     public String getDifferentCommune() {
         return differentCommune;
     }
-    
-    //Setter methods
-    /*public void setCaseRequestID(CaseRequest caseRequest) {
-        this.caseRequest = caseRequest;
-    }*/
 
+    //Setter methods
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
     }
@@ -162,10 +149,10 @@ public class Case implements ICase {   // Mangler at logge
     public void setDifferentCommune(String differentCommune) {
         this.differentCommune = differentCommune;
     }
-    
+
     @Override
     public String toString() {
-        return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequest.getID() + "\n1. Next Appointment: " 
+        return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequest.getID() + "\n1. Next Appointment: "
                 + nextAppointment + "\n2. Guardianship: " + guardianship + "\n3. Personal helper: "
                 + personalHelper + "\n4. PHPOA: " + personalHelperPowerOfAttorney + "\n5. Citizen rights: "
                 + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic

@@ -61,11 +61,11 @@ public class CaseRequest implements ICaseRequest {
             this.citizenAddress = address;
         }
     }
-    
+
     public void setCitizenPhoneNr(Integer number) {
         this.citizenPhoneNr = number;
     }
-    
+
     public void setCitizenMail(String mail) {
         this.citizenMail = mail;
     }

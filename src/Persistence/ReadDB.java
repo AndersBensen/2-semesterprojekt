@@ -1,22 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistence;
 
 import Acquaintance.IReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 
-/**
- *
- * @author ander
- */
 public class ReadDB extends AbstractDB implements IReader {
 
     @Override
@@ -170,8 +159,8 @@ public class ReadDB extends AbstractDB implements IReader {
         try {
             Connection db = getDBConnection();
             Statement st = db.createStatement();
-            String query = "SELECT MAX(Cases.id), MAX(CaseRequest.id), MAX(Employee.id)\n" +
-                           "FROM CaseRequest, Cases, Employee";
+            String query = "SELECT MAX(Cases.id), MAX(CaseRequest.id), MAX(Employee.id)\n"
+                    + "FROM CaseRequest, Cases, Employee";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 idArray[0] = Integer.parseInt(rs.getString(1));

@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acquaintance.IVisualController;
 
-/**
- *
- * @author lalal
- */
 public final class SystemTimer implements Runnable {
 
     private final int DEFAULT_TIMER = 10;
@@ -25,7 +16,7 @@ public final class SystemTimer implements Runnable {
     public void injectVisualController(IVisualController IVC) {
         this.IVC = IVC;
     }
-    
+
     public void injectTimerThread(Thread timerThread) {
         this.timerThread = timerThread;
     }
@@ -33,7 +24,7 @@ public final class SystemTimer implements Runnable {
     public void resetTimer() {
         currentTimer = DEFAULT_TIMER;
     }
-    
+
     public void clearThread() {
         this.timerThread = null;
     }
@@ -50,7 +41,7 @@ public final class SystemTimer implements Runnable {
                 }
                 currentTimer--;
                 System.out.println(currentTimer);
-                
+
             }
             IVC.logout();
             clearThread();
