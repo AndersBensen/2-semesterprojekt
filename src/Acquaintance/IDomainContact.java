@@ -1,7 +1,7 @@
 package Acquaintance;
 
 public interface IDomainContact {
-    
+
     public void createCaseRequest(long citizenCPR, String desc, boolean isMessageClear,
             boolean isCarePackage, boolean isRehousingPackage, String requestPerson,
             boolean isCitizenInformed, String citizenName, char citizenGender,
@@ -21,15 +21,15 @@ public interface IDomainContact {
             Integer phoneNr, String mail, String username, String password, int positionNumber);
 
     public void deleteEmployee(int employeeID);
-    
+
     public boolean login(String username, String password);
-    
+
     public void logout();
-    
+
     public void resetTimer();
-    
+
     public boolean authorizeCommand(String command);
-    
+
     public ICase getCase(int caseID);
 
     public IPerson getPerson(long CPR);

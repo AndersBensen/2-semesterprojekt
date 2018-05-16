@@ -8,46 +8,40 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public final class TextInputer implements IVisualController
-{
+public final class TextInputer implements IVisualController {
 
     private List<String> information;
-    private Scanner input;
-    private CommandConverter CC;
-    private IDomainContact IDC;
+    private final Scanner input;
+    private final CommandConverter CC;
+    private final IDomainContact IDC;
 
-    public TextInputer(CommandConverter CC, IDomainContact IDC)
-    {
+    public TextInputer(CommandConverter CC, IDomainContact IDC) {
         input = new Scanner(System.in);
         this.CC = CC;
         this.IDC = IDC;
     }
 
-    public void start()
-    {
-        while (true)
-        {
+    public void start() {
+        while (true) {
             information = new LinkedList();
             System.out.println("\nEnter a valid system command (login | caserequest | case | editcase | addemployee | deleteemployee | logout):\n");
             String command = input.nextLine().toLowerCase();
             IPerson person;
-            
-            switch (command)
-            {
+
+            switch (command) {
                 case "caserequest":
-                    if (!IDC.authorizeCommand(command))
+                    if (!IDC.authorizeCommand(command)) {
                         continue;
-                    
+                    }
+
                     askQuestion("CPR number of the patient?");
                     person = IDC.getPerson(Long.parseLong(information.get(0)));
-                    if (person != null)
-                    {
+                    if (person != null) {
                         information.add(person.getName());
                         information.add(Character.toString(person.getGender()));
                         information.add(person.getBirthDate());
                         information.add(person.getAddress());
-                    } else
-                    {
+                    } else {
                         askQuestion("Name of the patient?");
                         askQuestion("Gender of the patient?");
                         askQuestion("Birthdate of the patient?");
@@ -64,29 +58,26 @@ public final class TextInputer implements IVisualController
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "case":
-                    if (!IDC.authorizeCommand(command))
+                    if (!IDC.authorizeCommand(command)) {
                         continue;
-                    
+                    }
+
                     askQuestion("Which case request ID are you looking for?");
                     askQuestion("When is the next appointment?");
                     askQuestion("Enter type of guardianship (§5, §6, §7) - if any");
-                    if (information.get(2).equalsIgnoreCase("5") || information.get(2).equalsIgnoreCase("6") || information.get(2).equalsIgnoreCase("7"))
-                    {
+                    if (information.get(2).equalsIgnoreCase("5") || information.get(2).equalsIgnoreCase("6") || information.get(2).equalsIgnoreCase("7")) {
                         askQuestion("Enter the guardians contact information");
                         askQuestion("Descripe the correlation between guardian and citizen");
-                    } else
-                    {
+                    } else {
                         information.add("");
                         information.add("");
                     }
                     askQuestion("Is the citizen informed of his/her rights?");
                     askQuestion("Is the citizen informed electronically? (Y/N)");
                     askQuestion("Is it relevent for the citizen to give his/her consent? (Y/N)");
-                    if (information.get(7).equalsIgnoreCase("Y"))
-                    {
+                    if (information.get(7).equalsIgnoreCase("Y")) {
                         askQuestion("Which type of consent?");
-                    } else
-                    {
+                    } else {
                         information.add("");
                     }
                     askForFurtherInfo();
@@ -95,21 +86,20 @@ public final class TextInputer implements IVisualController
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "editcase":
-                    if (!IDC.authorizeCommand(command))
+                    if (!IDC.authorizeCommand(command)) {
                         continue;
-                    
+                    }
+
                     System.out.println("Which case ID are you looking for?");
                     int ID = input.nextInt();
                     ICase caseInfo = IDC.getCase(ID);
                     System.out.println("\n" + caseInfo);
                     reAddInfo(caseInfo);
                     int fieldNr = 1;
-                    while (fieldNr != 0)
-                    {
+                    while (fieldNr != 0) {
                         System.out.println("\nWhich field should be edited? (1,2... or 0 to exit)");
                         fieldNr = input.nextInt();
-                        if (fieldNr != 0)
-                        {
+                        if (fieldNr != 0) {
                             System.out.println("Type in your edit:");
                             input.nextLine(); //virker ikke uden denne ekstra input linje???
                             String edit = input.nextLine();
@@ -119,19 +109,18 @@ public final class TextInputer implements IVisualController
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "addemployee":
-                    if (!IDC.authorizeCommand(command))
+                    if (!IDC.authorizeCommand(command)) {
                         continue;
-                    
+                    }
+
                     askQuestion("CPR number of the employee?");
                     person = IDC.getPerson(Long.parseLong(information.get(0)));
-                    if (person != null)
-                    {
+                    if (person != null) {
                         information.add(person.getName());
                         information.add(Character.toString(person.getGender()));
                         information.add(person.getBirthDate());
                         information.add(person.getAddress());
-                    } else
-                    {
+                    } else {
                         askQuestion("Name of the employee?");
                         askQuestion("Gender of the employee?");
                         askQuestion("Birthdate of the employee?");
@@ -146,9 +135,10 @@ public final class TextInputer implements IVisualController
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "deleteemployee":
-                    if (!IDC.authorizeCommand(command))
+                    if (!IDC.authorizeCommand(command)) {
                         continue;
-                    
+                    }
+
                     askQuestion("ID of employee to be deleted?");
 
                     CC.performCommand(command, information.toArray(new String[information.size()]));
@@ -166,22 +156,18 @@ public final class TextInputer implements IVisualController
         }
     }
 
-    private void askQuestion(String question)
-    {
+    private void askQuestion(String question) {
         System.out.println(question);
         information.add(input.nextLine());
     }
 
-    private void askForFurtherInfo()
-    {
+    private void askForFurtherInfo() {
         String answer = "";
         StringBuilder SB = new StringBuilder();
-        while (!answer.equalsIgnoreCase("x"))
-        {
+        while (!answer.equalsIgnoreCase("x")) {
             System.out.println("Who has provided information? (write x to exit)");
             answer = input.nextLine();
-            if (!answer.equalsIgnoreCase("x"))
-            {
+            if (!answer.equalsIgnoreCase("x")) {
                 SB.append(answer);
                 SB.append("#");
             }
@@ -190,26 +176,22 @@ public final class TextInputer implements IVisualController
         information.add(SB.toString());
     }
 
-    private String decodeArray(String[] sArray)
-    {
+    private String decodeArray(String[] sArray) {
         String decoded = "";
-        for (String str : sArray)
-        {
+        for (String str : sArray) {
             decoded += str;
             decoded += "#";
         }
         return decoded;
     }
 
-    private void updateField(int fieldNr, String updatedInfo)
-    {
+    private void updateField(int fieldNr, String updatedInfo) {
 
         information.set(fieldNr + 2, updatedInfo);
         System.out.println("Field number: " + fieldNr + " updated with: " + updatedInfo);
     }
 
-    private void reAddInfo(ICase caseInfo)
-    {
+    private void reAddInfo(ICase caseInfo) {
         information.add(Integer.toString(caseInfo.getID()));
         information.add(Integer.toString(caseInfo.getEmployeeID()));
         information.add(Integer.toString(caseInfo.getCaseRequest().getID()));

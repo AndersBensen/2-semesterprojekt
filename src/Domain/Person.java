@@ -1,24 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acquaintance.IPerson;
 
-/**
- *
- * @author ander
- */
 public class Person implements IPerson {
-    private long cpr; 
+
+    private long cpr;
     private String name;
     private char gender;
-    private String birthDate; 
-    private String address; 
-    private Integer phoneNumber; 
-    private String mail; 
+    private String birthDate;
+    private String address;
+    private Integer phoneNumber;
+    private String mail;
 
     public Person(long cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail) {
         this.cpr = cpr;

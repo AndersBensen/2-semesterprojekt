@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistence;
 
 import Acquaintance.IReader;
@@ -10,12 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- *
- * @author ander
- */
-public class ReadTXT implements IReader
-{
+public class ReadTXT implements IReader {
 
     private final File cprFile = new File("CPRRegister.txt");
     private final File employeeFile = new File("Employees.txt");
@@ -30,30 +20,25 @@ public class ReadTXT implements IReader
      * @return String[] caseRequest
      */
     @Override
-    public String[] getCaseRequest(int id)
-    {
+    public String[] getCaseRequest(int id) {
         String[] tokens = new String[13];
         String[] caseRequest = new String[13];
         String word;
-        try (Scanner input = new Scanner(caseRequestFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(caseRequestFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
-                if (word.equals(""))
+                if (word.equals("")) {
                     continue;
-                
+                }
+
                 tokens = word.split(";");
-                if (Integer.parseInt(tokens[0]) == id)
-                {
+                if (Integer.parseInt(tokens[0]) == id) {
                     caseRequest = word.split(";");
                 }
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method getCaseRequest: FILE NOT FOUND EXCEPTION");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("Method getCaseRequest: NUMBER FORMAT EXCEPTION");
         }
         return caseRequest;
@@ -66,30 +51,25 @@ public class ReadTXT implements IReader
      * @return String[] cases
      */
     @Override
-    public String[] getCase(int id)
-    {
+    public String[] getCase(int id) {
         String[] tokens = new String[14];
         String[] cases = new String[14];
         String word;
-        try (Scanner input = new Scanner(caseFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(caseFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
-                if (word.equals(""))
+                if (word.equals("")) {
                     continue;
-                
+                }
+
                 tokens = word.split(";");
-                if (Integer.parseInt(tokens[0]) == id)
-                {
+                if (Integer.parseInt(tokens[0]) == id) {
                     cases = word.split(";");
                 }
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method getCase: FILE NOT FOUND EXCEPTION");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("Method getCase: NUMBER FORMAT EXCEPTION");
         }
         return cases;
@@ -100,27 +80,24 @@ public class ReadTXT implements IReader
         String[] tokens = new String[11];
         String[] employee = new String[11];
         String word;
-        try (Scanner input = new Scanner(employeeFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(employeeFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
-                if (word.equals(""))
+                if (word.equals("")) {
                     continue;
-                
+                }
+
                 tokens = word.split(";");
-                if (tokens[8].equals(username) && tokens[9].equals(password))
-                {
+                if (tokens[8].equals(username) && tokens[9].equals(password)) {
                     employee = word.split(";");
                 }
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method login: FILE NOT FOUND EXCEPTION");
         }
         return employee;
     }
-    
+
     /**
      * Reads all the information about a specific patient
      *
@@ -128,30 +105,25 @@ public class ReadTXT implements IReader
      * @return patient[]
      */
     @Override
-    public String[] getPerson(long cpr)
-    {
+    public String[] getPerson(long cpr) {
         String[] tokens = new String[7];
         String[] patient = new String[7];
         String word;
-        try (Scanner input = new Scanner(cprFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(cprFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
-                if (word.equals(""))
+                if (word.equals("")) {
                     continue;
-                
+                }
+
                 tokens = word.split(";");
-                if (Long.parseLong(tokens[0]) == cpr)
-                {
+                if (Long.parseLong(tokens[0]) == cpr) {
                     patient = word.split(";");
                 }
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method getPerson: FILE NOT FOUND EXCEPTION");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("Method getPerson: NUMBER FORMAT EXCEPTION");
         }
         return patient;
@@ -164,30 +136,25 @@ public class ReadTXT implements IReader
      * @return String[] employee
      */
     @Override
-    public String[] getEmployee(int id)
-    {
+    public String[] getEmployee(int id) {
         String[] tokens = new String[5];
         String[] employee = new String[11];
         String word;
-        try (Scanner input = new Scanner(employeeFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(employeeFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
-                if (word.equals(""))
+                if (word.equals("")) {
                     continue;
-                
+                }
+
                 tokens = word.split(";");
-                if (Integer.parseInt(tokens[7]) == id)
-                {
+                if (Integer.parseInt(tokens[7]) == id) {
                     employee = word.split(";");
                 }
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method getEmployee: FILE NOT FOUND EXCEPTION");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("Method getEmployee: NUMBER FORMAT EXCEPTION");
         }
         return employee;
@@ -200,27 +167,21 @@ public class ReadTXT implements IReader
      * @return int[] ids
      */
     @Override
-    public int[] getCurrentIDs()
-    {
+    public int[] getCurrentIDs() {
         int[] ids = new int[3];
         String[] s = new String[3];
         String word;
-        try (Scanner input = new Scanner(currentIDsFile))
-        {
-            while (input.hasNextLine())
-            {
+        try (Scanner input = new Scanner(currentIDsFile)) {
+            while (input.hasNextLine()) {
                 word = input.nextLine();
                 s = word.split(";");
             }
-            for (int i = 0; i < 2; i++)
-            {
+            for (int i = 0; i < 2; i++) {
                 ids[i] = Integer.parseInt(s[i]);
             }
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("Method getCurrentIDs: FILE NOT FOUND EXCEPTION");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("Method getCurrentIDs: NUMBER FORMAT EXCEPTION");
         }
         return ids;
