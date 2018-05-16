@@ -160,6 +160,8 @@ public class WriteTXT implements IWriter {
         String[] collectCitizenInfo = cases.getCollectCitizenInfo();
         String specialCircumstances = cases.getSpecialCircumstances();
         String differentCommune = cases.getDifferentCommune();
+        String dateCreated = Long.toString(cases.getDateCreated().getTime());
+        String dateModified = Long.toString(cases.getDateModified().getTime());
 
         try {
             BufferedReader brFile = new BufferedReader(new FileReader(caseFile));
@@ -213,6 +215,10 @@ public class WriteTXT implements IWriter {
         sb.append(specialCircumstances);
         sb.append(";");
         sb.append(differentCommune);
+        sb.append(";");
+        sb.append(dateCreated);
+        sb.append(";");
+        sb.append(dateModified);
 
         PrintWriter outputStream = null;
         try {
@@ -251,6 +257,8 @@ public class WriteTXT implements IWriter {
         String citizenAddress = caseRequests.getCitizenAddress();
         String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
         String citizenMail = caseRequests.getCitizenMail();
+        String dateCreated = Long.toString(caseRequests.getDateCreated().getTime());
+        String dateModified = Long.toString(caseRequests.getDateModified().getTime());
 
         try {
             BufferedReader brFile = new BufferedReader(new FileReader(caseRequestsFile));
@@ -302,6 +310,10 @@ public class WriteTXT implements IWriter {
         sb.append(citizenPhoneNr);
         sb.append(";");
         sb.append(citizenMail);
+        sb.append(";");
+        sb.append(dateCreated);
+        sb.append(";");
+        sb.append(dateModified);
 
         PrintWriter outputStream = null;
         try {

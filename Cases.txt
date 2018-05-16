@@ -4,7 +4,7 @@
 
 29;2;37;monday;5;hans;y;yes;true;true;hej;karen#jesper;no;kbh
 
-
+31;2;38;Sunday;7;doctor x;Ret skidt;nope;false;true;den rightige;l�ge#sygehus#en vagabond;Ret mange;Horsens;1526458269807;1526458269807
 
 30;2;37;yesterday;7;dinFar;Very Good;yup;false;true;THe right One;The Doctor#The lawyer#A Hobo;Very Secret;Not that I know of
 
@@ -12,3 +12,6 @@
 28;5;37;tuesday;6;Mamma;agoodone;are You sure?;true;true;mantanks;mommy#nanny#bedemand;A lot;Odense
 
 32;2;0;sdf;6;sdf;few;wer;false;false;;saf#tgg;fjiw;wjkl
+
+
+33;2;38;Sunday;7;en hund;Ret skidt;nope;false;true;den rightige;l�ge#sygehus#en vagabond;Ret mange;Horsens;1526458372773;1526458518086

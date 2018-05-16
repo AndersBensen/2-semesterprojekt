@@ -38,8 +38,8 @@ public class Case implements ICase {   // Mangler at logge
         }
 
         this.caseRequest = caseRequest;
-        this.dateCreated = new Date();
-        this.dateModified = new Date();
+        this.dateCreated = dateCreated;
+        this.dateModified = dateModified;
     }
     
     

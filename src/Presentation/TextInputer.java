@@ -206,6 +206,7 @@ public final class TextInputer implements IVisualController {
         information.add(decodeArray(caseInfo.getCollectCitizenInfo()));
         information.add(caseInfo.getSpecialCircumstances());
         information.add(caseInfo.getDifferentCommune());
+        information.add(Long.toString(caseInfo.getDateCreated().getTime()));
     }
 
     @Override

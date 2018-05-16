@@ -21,8 +21,8 @@ public class ReadTXT implements IReader {
      */
     @Override
     public String[] getCaseRequest(int id) {
-        String[] tokens = new String[13];
-        String[] caseRequest = new String[13];
+        String[] tokens = new String[15];
+        String[] caseRequest = new String[15];
         String word;
         try (Scanner input = new Scanner(caseRequestFile)) {
             while (input.hasNextLine()) {
@@ -52,8 +52,8 @@ public class ReadTXT implements IReader {
      */
     @Override
     public String[] getCase(int id) {
-        String[] tokens = new String[14];
-        String[] cases = new String[14];
+        String[] tokens = new String[16];
+        String[] cases = new String[16];
         String word;
         try (Scanner input = new Scanner(caseFile)) {
             while (input.hasNextLine()) {
