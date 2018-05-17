@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface IDomainContact {
 
-    public void createCaseRequest(String citizenCPR, String desc, boolean isMessageClear,
-            boolean isCarePackage, boolean isRehousingPackage, String requestPerson,
-            boolean isCitizenInformed, String citizenName, char citizenGender,
-            String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail);
+    public void createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
+            String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail
+            , String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage,
+            String requestPerson, boolean isCitizenInformed);
 
     public void createCase(int caseRequestID, String nextAppointment, String guardianship,
             String personalHelper, String personalHelperPowerOfAttorney, String citizenRights,

@@ -34,8 +34,6 @@ public class Main {
         TextInputer TI = new TextInputer(CC, DC);
         DC.injectVisualController(TI);
         TI.start();
-//        DC.login("sigurdespersen", "megethemmeligt3");
-//        DC.getCaseObject("36217861");
 
     }
 }

@@ -8,6 +8,7 @@ public class CaseRequest implements ICaseRequest {
     //CaseAttributes
     private int ID;
     private int employeeID;
+    private Person citizen;
     private String description;
     private boolean MessageClear;
     private boolean CarePackageRequested;
@@ -16,24 +17,16 @@ public class CaseRequest implements ICaseRequest {
     private boolean CitizenInformed;
     private Date dateCreated;
     private Date dateModified;
-    //CitizenAttributes
-    private String citizenCPR;
-    private String citizenName;
-    private char citizenGender;
-    private String citizenBirthdate;
-    private String citizenAddress;
-    private Integer citizenPhoneNr;
-    private String citizenMail;
-
-    public CaseRequest(int ID, int employeeID, String citizenCPR) {
-        this(ID, employeeID, citizenCPR, new Date(), new Date());
+    
+    public CaseRequest(int ID, int employeeID, Person citizen) {
+        this(ID, employeeID, citizen, new Date(), new Date());
     }
 
-    public CaseRequest(int ID, int employeeID, String citizenCPR, Date dateCreated, Date dateModified)
+    public CaseRequest(int ID, int employeeID, Person citizen, Date dateCreated, Date dateModified)
     {
         this.ID = ID;
         this.employeeID = employeeID;
-        this.citizenCPR = citizenCPR;
+        this.citizen = citizen;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
     }
@@ -47,6 +40,12 @@ public class CaseRequest implements ICaseRequest {
     @Override
     public int getEmployeeID() {
         return employeeID;
+    }
+    
+    @Override
+    public Person getCitizen()
+    {
+        return citizen;
     }
 
     @Override
@@ -77,41 +76,6 @@ public class CaseRequest implements ICaseRequest {
     @Override
     public boolean isCitizenInformed() {
         return CitizenInformed;
-    }
-
-    @Override
-    public String getCitizenCPR() {
-        return citizenCPR;
-    }
-
-    @Override
-    public String getCitizenName() {
-        return citizenName;
-    }
-
-    @Override
-    public char getCitizenGender() {
-        return citizenGender;
-    }
-
-    @Override
-    public String getCitizenBirthdate() {
-        return citizenBirthdate;
-    }
-
-    @Override
-    public String getCitizenAddress() {
-        return citizenAddress;
-    }
-
-    @Override
-    public Integer getCitizenPhoneNr() {
-        return citizenPhoneNr;
-    }
-
-    @Override
-    public String getCitizenMail() {
-        return citizenMail;
     }
 
     @Override
@@ -156,24 +120,14 @@ public class CaseRequest implements ICaseRequest {
         this.CitizenInformed = CitizenInformed;
         updateDateModified();
     }
-
-    public void connectCitizen(String CPR, String name, char gender, String birthdate, String address) {
-        if (CPR.equalsIgnoreCase(this.citizenCPR)) {
-            this.citizenName = name;
-            this.citizenGender = gender;
-            this.citizenBirthdate = birthdate;
-            this.citizenAddress = address;
-            updateDateModified();
-        }
-    }
-
+    
     public void setCitizenPhoneNr(Integer number) {
-        this.citizenPhoneNr = number;
+        this.citizen.setPhoneNumber(number);
         updateDateModified();
     }
 
     public void setCitizenMail(String mail) {
-        this.citizenMail = mail;
+        this.citizen.setMail(mail);
         updateDateModified();
     }
     
