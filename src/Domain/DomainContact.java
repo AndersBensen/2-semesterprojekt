@@ -4,6 +4,7 @@ import Acquaintance.IPerson;
 import Acquaintance.IDomainContact;
 import Acquaintance.ICase;
 import Acquaintance.ICaseObject;
+import Acquaintance.IEmployee;
 import Acquaintance.IReader;
 import Acquaintance.IVisualController;
 import Acquaintance.IWriter;
@@ -195,6 +196,18 @@ public class DomainContact implements IDomainContact {
         PersistanceContact PS = PersistanceContact.getInstance();
         PS.logAction(currentUser.getId(), LogAction.GET_PERSON, "User requested for a person with CPR: " + CPR);
         return PS.getPerson(CPR);
+    }
+
+    @Override
+    public IEmployee getEmployee(int ID)
+    {
+        if (!userLoggedIn()) {
+            printUnauthorizedAccess("getEmployee");
+            return null;
+        }
+        PersistanceContact PS = PersistanceContact.getInstance();
+        PS.logAction(currentUser.getId(), LogAction.GET_EMPLOYEE, "User requested for an employee with ID: " + ID);
+        return PS.getEmployee(ID);
     }
 
     public Employee getCurrentUser() {
