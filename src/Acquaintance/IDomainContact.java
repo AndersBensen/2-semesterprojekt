@@ -37,5 +37,7 @@ public interface IDomainContact {
 
     public IPerson getPerson(String CPR);
     
+    public IEmployee getEmployee(int ID);
+    
     public List<ICaseObject> getCaseObject(String citizenCPR);
 }
