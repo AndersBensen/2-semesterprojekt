@@ -5,12 +5,7 @@ import Acquaintance.IDomainContact;
 import Acquaintance.ICase;
 import Acquaintance.ICaseObject;
 import Acquaintance.IEmployee;
-import Acquaintance.IReader;
 import Acquaintance.IVisualController;
-import Acquaintance.IWriter;
-import Persistence.ReadDB;
-import Persistence.WriteDB;
-import Presentation.CommandConverter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,11 +27,6 @@ public class DomainContact implements IDomainContact {
 
     private DomainContact() {
         this.currentUser = null;
-    }
-
-    public void injectVisualController(IVisualController IVC) {
-        timer = new SystemTimer();
-        timer.injectVisualController(IVC);
     }
 
     @Override
@@ -112,11 +102,8 @@ public class DomainContact implements IDomainContact {
         PersistanceContact PS = PersistanceContact.getInstance();
         Employee newUser = PS.login(username, password);
         if (newUser != null) {
-            timerThread = new Thread(timer);
-            timer.injectTimerThread(timerThread);
-            timerThread.start();
             currentUser = newUser;
-            //PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
+            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
             return true;
         }
         PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
@@ -134,6 +121,17 @@ public class DomainContact implements IDomainContact {
             System.out.println("You failed to log out: No user is logged in.");
         }
 
+    }
+
+    @Override
+    public void injectVisualController(IVisualController IVC) {
+        timer = new SystemTimer();
+        timer.injectVisualController(IVC);
+        
+        //Initialize timerthread
+        timerThread = new Thread(timer);
+        timer.injectTimerThread(timerThread);
+        timerThread.start();
     }
 
     @Override

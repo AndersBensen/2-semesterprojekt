@@ -28,6 +28,8 @@ public interface IDomainContact {
     public boolean login(String username, String password);
 
     public void logout();
+    
+    public void injectVisualController(IVisualController IVC);
 
     public void resetTimer();
 
