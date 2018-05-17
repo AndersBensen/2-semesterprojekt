@@ -14,9 +14,9 @@ public interface ICaseRequest {
 
     public boolean isMessageClear();
 
-    public boolean isCarePackageRequested();
+    public String[] getCarePackageRequested();
 
-    public boolean isRehousingPackageRequested();
+    public String getRehousingPackageRequested();
 
     public String getRequestPerson();
 

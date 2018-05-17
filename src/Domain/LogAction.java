@@ -3,7 +3,7 @@ package Domain;
 public enum LogAction {
 
     SAVE_CASE_REQUEST("saveCaseRequest"), SAVE_CASE("saveCase"), EDIT_CASE("editCase"), SAVE_EMPLOYEE("saveEmployee"), 
-    DELETE_EMPLOYEE("deleteEmployee"), GET_CASE_REQUEST("getCaseRequest"), GET_CASE("getCase"), 
+    DELETE_EMPLOYEE("deleteEmployee"), GET_CASE_REQUEST("getCaseRequest"), GET_CASE("getCase"), GET_PERSON("getPerson"), 
     GET_EMPLOYEE("getEmployee"), GET_CASE_OBJECT("getCaseObject"), LOG_IN("logIn"), LOG_OUT("logOut");
     
     private String commandString;

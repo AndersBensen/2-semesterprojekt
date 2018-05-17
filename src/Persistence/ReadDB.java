@@ -1,15 +1,11 @@
 package Persistence;
 
 import Acquaintance.IReader;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ReadDB extends AbstractDB implements IReader {
 
@@ -50,7 +46,7 @@ public class ReadDB extends AbstractDB implements IReader {
 
     @Override
     public String[] getCase(int id) {
-        String[] caseInfo = new String[16];
+        String[] caseInfo = new String[17];
         try {
 //            Connection db = getDBConnection();
             Statement st = db.createStatement();
@@ -73,6 +69,7 @@ public class ReadDB extends AbstractDB implements IReader {
                 caseInfo[13] = rs.getString(14);
                 caseInfo[14] = rs.getString(15);
                 caseInfo[15] = rs.getString(16);
+                caseInfo[16] = rs.getString(17);
             }
             rs.close();
             st.close();
@@ -173,9 +170,9 @@ public class ReadDB extends AbstractDB implements IReader {
                     + "FROM CaseRequest, Cases, Employee";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                idArray[0] = Integer.parseInt(rs.getString(1));
-                idArray[1] = Integer.parseInt(rs.getString(2));
-                idArray[2] = Integer.parseInt(rs.getString(3));
+                idArray[0] = rs.getString(1) == null? 0 : Integer.parseInt(rs.getString(1));
+                idArray[1] = rs.getString(2) == null? 0 : Integer.parseInt(rs.getString(2));
+                idArray[2] = rs.getString(3) == null? 0 : Integer.parseInt(rs.getString(3));
             }
             rs.close();
             st.close();

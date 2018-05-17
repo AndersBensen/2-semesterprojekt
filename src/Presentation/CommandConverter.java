@@ -24,8 +24,8 @@ public class CommandConverter {
                     String citizenMail = args[6];
                     String desc = args[7];
                     boolean messageClear = getBooleanFromInput(args[8]);
-                    boolean carePackageRequested = getBooleanFromInput(args[9]);
-                    boolean rehousingPackageRequested = getBooleanFromInput(args[10]);
+                    String[] carePackageRequested = args[9].split("#");
+                    String rehousingPackageRequested = args[10];
                     String requestPerson = args[11];
                     boolean citizenInformed = getBooleanFromInput(args[12]);
 
@@ -48,8 +48,9 @@ public class CommandConverter {
                     String[] collectCitizenInfo = args[9].split("#");
                     String specialCircumstances = args[10];
                     String differentCommune = args[11];
+                    String state = args[12];
 
-                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'Case': NUMBER FORMAT EXCEPTION");
                 }
@@ -70,9 +71,10 @@ public class CommandConverter {
                     String[] collectCitizenInfo = args[11].split("#");
                     String specialCircumstances = args[12];
                     String differentCommune = args[13];
-                    Date dateCreated = new Date(Long.parseLong(args[14]));
+                    String state = args[14];
+                    Date dateCreated = new Date(Long.parseLong(args[15]));
 
-                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
+                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'EditCase': NUMBER FORMAT EXCEPTION");
                 }

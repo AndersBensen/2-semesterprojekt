@@ -52,8 +52,8 @@ public final class TextInputer implements IVisualController {
                     askQuestion("Email of the patient?");
                     askQuestion("Description of the case request");
                     askQuestion("Is message clear? (Y/N)");
-                    askQuestion("Is care package requested? (Y/N)");
-                    askQuestion("Is rehousing package requested? (Y/N)");
+                    askForFurtherInfo("What kind of care package is request?");
+                    askQuestion("What kind of rehousing package is requested?");
                     askQuestion("Who is responsible for the case request?");
                     askQuestion("Is the citizen informed of the case request? (Y/N)");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
@@ -81,9 +81,10 @@ public final class TextInputer implements IVisualController {
                     } else {
                         information.add("");
                     }
-                    askForFurtherInfo();
+                    askForFurtherInfo("Who has provided information?");
                     askQuestion("Any special circumstances?");
                     askQuestion("Is the citizen from a different commune?");
+                    askQuestion("What is the state of the case?");
                     CC.performCommand(command, information.toArray(new String[information.size()]));
                     break;
                 case "editcase":
@@ -171,11 +172,11 @@ public final class TextInputer implements IVisualController {
         information.add(input.nextLine());
     }
 
-    private void askForFurtherInfo() {
+    private void askForFurtherInfo(String question) {
         String answer = "";
         StringBuilder SB = new StringBuilder();
         while (!answer.equalsIgnoreCase("x")) {
-            System.out.println("Who has provided information? (write x to exit)");
+            System.out.println(question + " (write x to exit)");
             answer = input.nextLine();
             if (!answer.equalsIgnoreCase("x")) {
                 SB.append(answer);
@@ -216,6 +217,7 @@ public final class TextInputer implements IVisualController {
         information.add(decodeArray(caseInfo.getCollectCitizenInfo()));
         information.add(caseInfo.getSpecialCircumstances());
         information.add(caseInfo.getDifferentCommune());
+        information.add(caseInfo.getState());
         information.add(Long.toString(caseInfo.getDateCreated().getTime()));
     }
 

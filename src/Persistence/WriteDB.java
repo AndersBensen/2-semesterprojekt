@@ -5,6 +5,9 @@ import Acquaintance.ICaseRequest;
 import Acquaintance.IEmployee;
 import Acquaintance.ILog;
 import Acquaintance.IWriter;
+import Domain.Employee;
+import Domain.Log;
+import Domain.LogAction;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -65,7 +68,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.execute();
             
             String query2 = "INSERT INTO Cases "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, cases.getID());
             ps.setInt(2, cases.getEmployeeID());
@@ -81,8 +84,9 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(12, citizenInfo);
             ps.setString(13, cases.getSpecialCircumstances());
             ps.setString(14, cases.getDifferentCommune());
-            ps.setString(15, Long.toString(cases.getDateCreated().getTime()));
-            ps.setString(16, Long.toString(cases.getDateModified().getTime()));
+            ps.setString(15, cases.getState());
+            ps.setString(16, Long.toString(cases.getDateCreated().getTime()));
+            ps.setString(17, Long.toString(cases.getDateModified().getTime()));
             ps.execute();
 
             String query3 = "INSERT INTO Becomes "
@@ -102,6 +106,13 @@ public class WriteDB extends AbstractDB implements IWriter {
         try {
             int phoneNr = ICR.getCitizen().getPhoneNumber() == null? -1 : ICR.getCitizen().getPhoneNumber();
             
+            String carePackageRequested = "";
+            for (String string : ICR.getCarePackageRequested()) {
+                carePackageRequested += string;
+                carePackageRequested += "#";
+            }
+            carePackageRequested = carePackageRequested.substring(0, carePackageRequested.length()-1);
+            
             String query = "INSERT INTO Caserequest "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
@@ -109,8 +120,8 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(2, ICR.getEmployeeID());
             ps.setString(3, ICR.getDescription());
             ps.setBoolean(4, ICR.isMessageClear());
-            ps.setBoolean(5, ICR.isCarePackageRequested());
-            ps.setBoolean(6, ICR.isRehousingPackageRequested());
+            ps.setString(5, carePackageRequested);
+            ps.setString(6, ICR.getRehousingPackageRequested());
             ps.setString(7, ICR.getRequestPerson());
             ps.setBoolean(8, ICR.isCitizenInformed());
             ps.setString(9, ICR.getCitizen().getCpr());
@@ -146,17 +157,21 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(2, log.getAction().toString());
             ps.setString(3, log.getDesc());
             ps.setString(4, log.getDate().toString());
+            System.out.println("log: " + log);
+            System.out.println("test først");
             ps.execute();
+            System.out.println("test sidst");
 
             String query2 = "INSERT INTO Logs "
-                    + "VALUES(?, ?)";
+                    + "VALUES(?, ?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, log.getEmployeeID());
-            ps.setString(2, log.getDate().toString());
+            ps.setString(2, log.getAction().toString());
+            ps.setString(3, log.getDate().toString());
             ps.execute();
             ps.close();
         } catch (SQLException ex) {
-            System.out.println("SQL error in writeLog");
+            System.out.println("SQL error in writeLog()");
         }
     }
 }

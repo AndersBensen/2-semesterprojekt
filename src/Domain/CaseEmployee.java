@@ -19,8 +19,8 @@ public class CaseEmployee extends Employee {
      * @param citizenCPR
      * @param desc
      * @param isMessageClear
-     * @param isCarePackage
-     * @param isRehousingPackage
+     * @param carePackage
+     * @param rehousingPackage
      * @param contact
      * @param isCitizenInformed
      * @param citizenName
@@ -30,7 +30,7 @@ public class CaseEmployee extends Employee {
      * @param citizenPhoneNr
      * @param citizenMail
      */
-    public void createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail, String desc, boolean isMessageClear, boolean isCarePackage, boolean isRehousingPackage, String contact, boolean isCitizenInformed) {
+    public void createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail, String desc, boolean isMessageClear, String[] carePackage, String rehousingPackage, String contact, boolean isCitizenInformed) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
         
@@ -38,8 +38,8 @@ public class CaseEmployee extends Employee {
         CaseRequest CR = new CaseRequest(caseRequestID, EmployeeID, citizen);
         CR.setDescription(desc);
         CR.setMessageClear(isMessageClear);
-        CR.setCarePackageRequested(isCarePackage);
-        CR.setRehousingPackageRequested(isRehousingPackage);
+        CR.setCarePackageRequested(carePackage);
+        CR.setRehousingPackageRequested(rehousingPackage);
         CR.setRequestPerson(contact);
         CR.setCitizenInformed(isCitizenInformed);
         pc.saveCaseRequest(CR);

@@ -31,7 +31,7 @@ public class SocialWorker extends CaseEmployee {
     public int saveCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
-            String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state) {
 
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
@@ -48,6 +48,7 @@ public class SocialWorker extends CaseEmployee {
         c.setCollectCitizenInfo(collectCitizenInfo);
         c.setSpecialCircumstances(specialCircumstances);
         c.setDifferentCommune(differentCommune);
+        c.setState(state);
         pc.saveCase(c);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
         return c.getID();
@@ -78,7 +79,7 @@ public class SocialWorker extends CaseEmployee {
     public int saveEditedCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
-            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
+            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state, Date dateCreated) {
 
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
@@ -95,6 +96,7 @@ public class SocialWorker extends CaseEmployee {
         c.setCollectCitizenInfo(collectCitizenInfo);
         c.setSpecialCircumstances(specialCircumstances);
         c.setDifferentCommune(differentCommune);
+        c.setState(state);
         pc.saveCase(c);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.EDIT_CASE, "Edited a case with the following id: " + ID);
         return c.getID();

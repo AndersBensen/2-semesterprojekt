@@ -245,8 +245,8 @@ public class WriteTXT implements IWriter {
         String employeeID = Integer.toString(caseRequests.getEmployeeID());
         String description = caseRequests.getDescription();
         String MessageClear = Boolean.toString(caseRequests.isMessageClear());
-        String CarePackageRequested = Boolean.toString(caseRequests.isCarePackageRequested());
-        String RehousingPackageRequested = Boolean.toString(caseRequests.isRehousingPackageRequested());
+        String[] CarePackageRequested = caseRequests.getCarePackageRequested();
+        String RehousingPackageRequested = caseRequests.getRehousingPackageRequested();
         String requestPerson = caseRequests.getRequestPerson();
         String CitizenInformed = Boolean.toString(caseRequests.isCitizenInformed());
         //CitizenAttributes
@@ -290,7 +290,11 @@ public class WriteTXT implements IWriter {
         sb.append(";");
         sb.append(MessageClear);
         sb.append(";");
-        sb.append(CarePackageRequested);
+        for (String string : CarePackageRequested) {
+            sb.append(string);
+            sb.append("#");
+        }
+        sb.deleteCharAt(sb.length() - 1);
         sb.append(";");
         sb.append(RehousingPackageRequested);
         sb.append(";");
