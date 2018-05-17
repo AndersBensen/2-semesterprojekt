@@ -68,7 +68,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.execute();
             
             String query2 = "INSERT INTO Cases "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)";
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = db.prepareStatement(query2);
             ps.setInt(1, cases.getID());
             ps.setInt(2, cases.getEmployeeID());
