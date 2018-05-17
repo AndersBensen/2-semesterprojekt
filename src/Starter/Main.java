@@ -22,7 +22,6 @@ public class Main {
         Sem02_Semesterprojekt_SensumUdred sp = new Sem02_Semesterprojekt_SensumUdred();
 //        reader = new ReadTXT();
 //        writer = new WriteTXT();
-        System.out.println("Start");
         
         PC.injectReader(reader);
         PC.injectWriter(writer);
@@ -31,6 +30,7 @@ public class Main {
         CommandConverter CC = new CommandConverter();
         DomainContact DC = DomainContact.getInstance();
         CC.injectDomainContact(DC);
+        sp.injectCommandConverter(CC);
 //        TextInputer TI = new TextInputer(CC, DC);
       //  DC.injectVisualController();
 //        TI.start();

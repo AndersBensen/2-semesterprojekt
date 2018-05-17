@@ -34,6 +34,7 @@ import javafx.stage.Stage;
  */
 public class LogInScreenController implements Initializable, IVisualController{
     private IDomainContact IDC;
+    CommandConverter CC;
     private Stage stage;
     private double xOffset;
     private double yOffset;
@@ -49,7 +50,8 @@ public class LogInScreenController implements Initializable, IVisualController{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        IDC = Sem02_Semesterprojekt_SensumUdred.getDomainContact();
+         CC = Sem02_Semesterprojekt_SensumUdred.getCommandConverter();
+         IDC = Sem02_Semesterprojekt_SensumUdred.getDomainContact();
          DomainContact.getInstance().injectVisualController(this);
     }
     
@@ -57,23 +59,15 @@ public class LogInScreenController implements Initializable, IVisualController{
     @FXML
     private void handleLogIn(ActionEvent event) {
         System.out.println(IDC);
+       // CC.performCommand("login", username.getText(), password.getText());
       //  System.out.println(username.getText() + " " + password.getText() + " med dc " + DomainContact.getInstance());
         if (DomainContact.getInstance().login(username.getText(), password.getText())) {
-           
             try {
                 Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Scene newScene = new Scene(nextView);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(newScene);
                 stage.show();
-                nextView.setOnMousePressed((javafx.scene.input.MouseEvent event1) -> {
-                    xOffset = event1.getSceneX();
-                    yOffset = event1.getSceneY();
-                });
-                nextView.setOnMouseDragged((javafx.scene.input.MouseEvent event1) -> {
-                    stage.setX(event1.getScreenX() - xOffset);
-                    stage.setY(event1.getScreenY() - yOffset);
-                });
             } catch (IOException ex) {
                 Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -88,7 +82,14 @@ public class LogInScreenController implements Initializable, IVisualController{
 
     @Override
     public void logout() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            Parent nextView = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
+            Scene newScene = new Scene(nextView);
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

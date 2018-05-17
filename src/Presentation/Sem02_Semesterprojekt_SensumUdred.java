@@ -13,9 +13,14 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
 
     
     private static IDomainContact IDC;
+    private static CommandConverter CC;
     
     public void injectDomain(IDomainContact _DC){
         IDC = _DC;
+    }
+    
+    public void injectCommandConverter(CommandConverter CC){
+        this.CC = CC;
     }
     
     
@@ -48,6 +53,10 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
     public static IDomainContact getDomainContact(){
         return IDC;
     }
+    
+    public static CommandConverter getCommandConverter(){
+        return CC;
+    } 
     
     public void startApplication(String[] args) {
         launch(args);

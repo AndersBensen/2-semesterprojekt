@@ -5,6 +5,7 @@
  */
 package Presentation;
 
+import Acquaintance.ICaseObject;
 import Acquaintance.IVisualController;
 import Domain.Admin;
 import Domain.CaseRequest;
@@ -17,6 +18,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +39,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -49,6 +52,8 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private Stage stage;
     private double xOffset;
     private double yOffset;
+    private ICaseObject c1 = null;
+    List<ICaseObject> icb;
     @FXML
     private VBox testVbox;
     @FXML
@@ -230,12 +235,22 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private JFXTextField phone;
     @FXML
     private JFXTextField caseRequestID;
+    @FXML
+    private TextArea beskrivelse;
+    private Label opretteAf;
+    @FXML
+    private JFXButton gåTil;
+    @FXML
+    private Label oprettetAf;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         CC = new CommandConverter();
         DomainContact.getInstance().injectVisualController(this);
-
+        beskrivelse.setVisible(false);
+        oprettetAf.setVisible(false);
+        gåTil.setVisible(false);
+        
         disableOpretFields();
         ScrollTest.setContent(vboxStart);
         clearHenvendelseFields();
@@ -664,28 +679,20 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     private void handleSøg(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             ScrollTest.setContent(vboxSøg);
-
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-            dropDown.getItems().add(søgSide.getText());
-            dropDown.setValue(søgSide.getText());
-
+            
+            this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
+            for(ICaseObject c : icb ){
+                dropDown.getItems().add(c.getType() +  ":  " + c.getDateCreated() + ": " + c.getDesc());
+                dropDown.setValue(c.getType() +  " " + c.getDateCreated() + " " + c.getDesc());
+            }
+//            int k =  dropDown.getSelectionModel().getSelectedIndex();
+//            c1 = icb.get(k);
+//            beskrivelse.setVisible(true);
+//            oprettetAf.setVisible(true);
+//            gåTil.setVisible(true);
+//            beskrivelse.setText(c1.getDesc());
+        //    oprettetAf.setText(DomainContact.getInstance().getEmployee(c1.getEmployeeID()));
+            
             søgSide.clear();
 
         }
@@ -765,14 +772,6 @@ public class FXMLDocumentController implements Initializable, IVisualController 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(newScene);
             stage.show();
-            nextView.setOnMousePressed((javafx.scene.input.MouseEvent event1) -> {
-                xOffset = event1.getSceneX();
-                yOffset = event1.getSceneY();
-            });
-            nextView.setOnMouseDragged((javafx.scene.input.MouseEvent event1) -> {
-                stage.setX(event1.getScreenX() - xOffset);
-                stage.setY(event1.getScreenY() - yOffset);
-            });
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -785,14 +784,6 @@ public class FXMLDocumentController implements Initializable, IVisualController 
             Scene newScene = new Scene(nextView);
             stage.setScene(newScene);
             stage.show();
-            nextView.setOnMousePressed((javafx.scene.input.MouseEvent event1) -> {
-                xOffset = event1.getSceneX();
-                yOffset = event1.getSceneY();
-            });
-            nextView.setOnMouseDragged((javafx.scene.input.MouseEvent event1) -> {
-                stage.setX(event1.getScreenX() - xOffset);
-                stage.setY(event1.getScreenY() - yOffset);
-            });
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -912,7 +903,6 @@ public class FXMLDocumentController implements Initializable, IVisualController 
             
         }
         CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
-        
     }
 
     @FXML
@@ -933,6 +923,42 @@ public class FXMLDocumentController implements Initializable, IVisualController 
                 System.out.println("intet");
             }
         }
+    }
+
+    @FXML
+    private void HandleGåTil(ActionEvent event) {
+        if(c1.getType().equals("caseRequest")){
+        caseRequestID.setText(Integer.toString(c1.getID()));
+        beskrivelse.setVisible(false);
+        oprettetAf.setVisible(false);
+        gåTil.setVisible(false);
+        ScrollTest.setContent(VBox2);
+        }
+        else if(c1.getType().equals("case")){
+        videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
+        }
+    }
+
+    @FXML
+    private void handDropDown(MouseEvent event) {
+        beskrivelse.setVisible(true);
+        oprettetAf.setVisible(true);
+        gåTil.setVisible(true);
+        dropDown.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+      @Override
+      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+          c1 = icb.get((Integer) number2);
+        beskrivelse.setText(icb.get((Integer) number2).getDesc());
+        oprettetAf.setText(Integer.toString(icb.get((Integer) number2).getEmployeeID()));
+      }
+    });
+        
+        
+        
+//        dropDown.getSelectionModel()
+//    .selectedItemProperty()
+//    .addListener( (ObservableValue<? extends String> observable, String oldValue, String newValue) -> beskrivelse.setText(newValue));
+
     }
     
     
