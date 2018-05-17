@@ -17,7 +17,7 @@ public final class TextInputer implements IVisualController {
     private final IDomainContact IDC;
 
     public TextInputer(CommandConverter CC, IDomainContact IDC) {
-        input = new Scanner(System.in);
+        input = new Scanner(System.in, "ISO-8859-1");
         this.CC = CC;
         this.IDC = IDC;
     }

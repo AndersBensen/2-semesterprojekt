@@ -5,9 +5,7 @@ import Acquaintance.IWriter;
 import Domain.DomainContact;
 import Domain.PersistanceContact;
 import Persistence.ReadDB;
-import Persistence.ReadTXT;
 import Persistence.WriteDB;
-import Persistence.WriteTXT;
 import Presentation.CommandConverter;
 import Presentation.TextInputer;
 
@@ -29,7 +27,6 @@ public class Main {
         CommandConverter CC = new CommandConverter();
         DomainContact DC = DomainContact.getInstance();
         CC.injectDomainContact(DC);
-        
         
         TextInputer TI = new TextInputer(CC, DC);
         DC.injectVisualController(TI);
