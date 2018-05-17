@@ -6,6 +6,7 @@
 package Presentation;
 
 import Acquaintance.ICaseObject;
+import Acquaintance.IPerson;
 import Acquaintance.IVisualController;
 import Domain.Admin;
 import Domain.CaseRequest;
@@ -677,11 +678,15 @@ public class FXMLDocumentController implements Initializable, IVisualController 
 
     @FXML
     private void handleSøg(KeyEvent event) {
+        dropDown.getItems().removeAll(dropDown.getItems());
         if (event.getCode().equals(KeyCode.ENTER)) {
+            if(!ScrollTest.getContent().equals(vboxSøg))
             ScrollTest.setContent(vboxSøg);
             
             this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
+            System.out.println("Størrelsen på ICB: " + icb.size());
             for(ICaseObject c : icb ){
+                
                 dropDown.getItems().add(c.getType() +  ":  " + c.getDateCreated() + ": " + c.getDesc());
                 dropDown.setValue(c.getType() +  " " + c.getDateCreated() + " " + c.getDesc());
             }
@@ -780,6 +785,7 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     @Override
     public void logout() {
         try {
+            System.out.println("er i FXML");
             Parent nextView = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
             Scene newScene = new Scene(nextView);
             stage.setScene(newScene);
@@ -793,14 +799,13 @@ public class FXMLDocumentController implements Initializable, IVisualController 
     @FXML
     private void HandleCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            System.out.println("søg");
-            if(CPR.getText().equals(DomainContact.getInstance().getPerson(CPR.getText()))){
-                name.setText(DomainContact.getInstance().getPerson(CPR.getText()).getName());
-                gender.setText(Character.toString(DomainContact.getInstance().getPerson(CPR.getText()).getGender()));
-                birthday.setText(DomainContact.getInstance().getPerson(CPR.getText()).getBirthDate());
-                address.setText(DomainContact.getInstance().getPerson(CPR.getText()).getAddress());
-                phone.setText(Integer.toString(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber()));
-                email.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
+            
+                IPerson p = DomainContact.getInstance().getPerson(CPR.getText());
+            if(CPR.getText().trim().equals(p.getCpr().trim())){
+                name.setText(p.getName());
+                gender.setText(Character.toString(p.getGender()));
+                birthday.setText(p.getBirthDate());
+                address.setText(p.getAddress());
             }
             else{
                 System.out.println("intet");
@@ -947,9 +952,17 @@ public class FXMLDocumentController implements Initializable, IVisualController 
         dropDown.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
       @Override
       public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-          c1 = icb.get((Integer) number2);
-        beskrivelse.setText(icb.get((Integer) number2).getDesc());
-        oprettetAf.setText(Integer.toString(icb.get((Integer) number2).getEmployeeID()));
+          int i = 0;
+          if((int)number2 > 0){
+          if(i == 0){
+       //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
+        c1 = icb.get(((Integer) number2));
+        beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
+        oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
+        i ++;
+              }
+          }
+          
       }
     });
         

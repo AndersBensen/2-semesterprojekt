@@ -5,7 +5,7 @@ import Presentation.FXMLDocumentController;
 
 public final class SystemTimer implements Runnable {
 
-    private final int DEFAULT_TIMER = 10000;
+    private final int DEFAULT_TIMER = 2000;
     private int currentTimer;
     private IVisualController IVC;
     private volatile Thread timerThread;
@@ -15,7 +15,9 @@ public final class SystemTimer implements Runnable {
     }
 
     public void injectVisualController(IVisualController IVC) {
+        
         this.IVC = IVC;
+        System.out.println("IVC: " + this.IVC);
     }
 
     public void injectTimerThread(Thread timerThread) {
@@ -33,7 +35,6 @@ public final class SystemTimer implements Runnable {
     @Override
     public void run() {
         Thread thisThread = Thread.currentThread();
-        System.out.println("Running");
         while (timerThread == thisThread) {
             while (currentTimer > 0) {
                 try {
@@ -46,7 +47,8 @@ public final class SystemTimer implements Runnable {
 
             }
             System.out.println("calling logout");
-            IVC.logout();
+            System.out.println(IVC);
+            this.IVC.logout();
             clearThread();
         }
 

@@ -65,7 +65,6 @@ public class LogInScreenController implements Initializable, IVisualController{
             try {
                 Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Scene newScene = new Scene(nextView);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(newScene);
                 stage.show();
             } catch (IOException ex) {
@@ -80,17 +79,7 @@ public class LogInScreenController implements Initializable, IVisualController{
 
     }
 
-    @Override
-    public void logout() {
-         try {
-            Parent nextView = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
-            Scene newScene = new Scene(nextView);
-            stage.setScene(newScene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+  
 
     @FXML
     private void HandlePW(KeyEvent event) {
@@ -121,6 +110,11 @@ public class LogInScreenController implements Initializable, IVisualController{
             password.clear();
         }
          }
+    }
+
+    @Override
+    public void logout() {
+        System.out.println("");
     }
 
 }
