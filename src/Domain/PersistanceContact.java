@@ -137,7 +137,7 @@ public class PersistanceContact {
         int employeeID = Integer.parseInt(cr[0]);       //EmployeeID
         int caseRequestID = Integer.parseInt(cr[1]);    //CaseReqID
 
-        Integer citizenPhoneNr = cr[13].equals("-1") ? null : Integer.parseInt(cr[13]);
+        Integer citizenPhoneNr = cr[13].trim().equals("-1") ? null : Integer.parseInt(cr[13]);
         Person citizen = new Person(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12], citizenPhoneNr, cr[14]);
         Date dateCreated = new Date(Long.parseLong(cr[15]));
         Date dateModified = new Date(Long.parseLong(cr[16]));
@@ -309,7 +309,7 @@ public class PersistanceContact {
 
     private Employee createEmployee(String[] e) {
         Employee employee = null;
-        Integer employeePhoneNr = e[5].equals("-1") ? null : Integer.parseInt(e[5]);
+        Integer employeePhoneNr = e[5].trim().equals("-1") ? null : Integer.parseInt(e[5]);
 
         switch (e[10]) {
             case "1":

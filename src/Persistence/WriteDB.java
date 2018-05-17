@@ -13,8 +13,8 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public void writeEmployee(IEmployee employee, int position) {
         try {
-            
             int phoneNr = employee.getPhoneNumber() == null? -1 : employee.getPhoneNumber();
+            
             String query = "INSERT INTO Employee "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = db.prepareStatement(query);
@@ -118,7 +118,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(11, Character.toString(ICR.getCitizen().getGender()));
             ps.setString(12, ICR.getCitizen().getBirthDate());
             ps.setString(13, ICR.getCitizen().getAddress());
-            ps.setInt(14, ICR.getCitizen().getPhoneNumber());
+            ps.setInt(14, phoneNr);
             ps.setString(15, ICR.getCitizen().getMail());
             ps.setString(16, Long.toString(ICR.getDateCreated().getTime()));
             ps.setString(17, Long.toString(ICR.getDateModified().getTime()));
