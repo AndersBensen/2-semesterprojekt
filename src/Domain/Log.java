@@ -36,5 +36,11 @@ public class Log implements ILog {
     public Date getDate() {
         return date;
     }
+    
+    @Override
+    public String toString ()
+    {
+        return "employeeID: " + employeeID + " action: " + action + " description: " + desc + " date: " + date;
+    }
 
 }

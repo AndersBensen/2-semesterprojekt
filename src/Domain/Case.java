@@ -21,6 +21,7 @@ public class Case implements ICase {   // Mangler at logge
     private String[] collectCitizenInfo;
     private String specialCircumstances;
     private String differentCommune;
+    private String state;
     private Date dateCreated;
     private Date dateModified;
 
@@ -42,8 +43,6 @@ public class Case implements ICase {   // Mangler at logge
         this.dateModified = dateModified;
     }
     
-    
-
     //Getter methods
     @Override
     public int getID() {
@@ -117,6 +116,12 @@ public class Case implements ICase {   // Mangler at logge
     }
 
     @Override
+    public String getState()
+    {
+        return state;
+    }
+
+    @Override
     public Date getDateCreated()
     {
         return dateCreated;
@@ -184,6 +189,12 @@ public class Case implements ICase {   // Mangler at logge
         updateDateModified();
     }
 
+    public void setState(String state)
+    {
+        this.state = state;
+        updateDateModified();
+    }
+    
     @Override
     public String toString() {
         return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequest.getID() + "\n1. Next Appointment: "
@@ -192,7 +203,7 @@ public class Case implements ICase {   // Mangler at logge
                 + citizenRights + "\n6. Citizen informed electronic: " + citizenInformedElectronic
                 + "\n7. Consent: " + consent + "\n8. Consent type: " + consentType + "\n9. Collect citizen info: "
                 + Arrays.toString(collectCitizenInfo) + "\n10. Special circumstances: " + specialCircumstances
-                + "\n11. Different commune: " + differentCommune;
+                + "\n11. Different commune: " + differentCommune + "\n12. State: " + state;
     }
     
     private void updateDateModified ()

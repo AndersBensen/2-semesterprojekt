@@ -68,7 +68,7 @@ public class WriteTXT implements IWriter {
         String gender = Character.toString(employee.getGender());
         String date = employee.getBirthDate();
         String address = employee.getAddress();
-        String phoneNumber = employee.getPhoneNumber() == null ? "" : Integer.toString(employee.getPhoneNumber());
+        String phoneNumber = employee.getPhoneNumber() == null ? "-1" : Integer.toString(employee.getPhoneNumber());
         String mail = employee.getMail();
         String id = Integer.toString(employee.getId());
         String userName = employee.getUserName();
@@ -245,18 +245,19 @@ public class WriteTXT implements IWriter {
         String employeeID = Integer.toString(caseRequests.getEmployeeID());
         String description = caseRequests.getDescription();
         String MessageClear = Boolean.toString(caseRequests.isMessageClear());
-        String CarePackageRequested = Boolean.toString(caseRequests.isCarePackageRequested());
-        String RehousingPackageRequested = Boolean.toString(caseRequests.isRehousingPackageRequested());
+        String[] CarePackageRequested = caseRequests.getCarePackageRequested();
+        String RehousingPackageRequested = caseRequests.getRehousingPackageRequested();
         String requestPerson = caseRequests.getRequestPerson();
         String CitizenInformed = Boolean.toString(caseRequests.isCitizenInformed());
         //CitizenAttributes
-        String citizenCPR = caseRequests.getCitizenCPR();
-        String citizenName = caseRequests.getCitizenName();
-        String citizenGender = caseRequests.getCitizenGender() + "";
-        String citizenBirthdate = caseRequests.getCitizenBirthdate();
-        String citizenAddress = caseRequests.getCitizenAddress();
-        String citizenPhoneNr = Integer.toString(caseRequests.getCitizenPhoneNr());
-        String citizenMail = caseRequests.getCitizenMail();
+        Integer phoneNr = caseRequests.getCitizen().getPhoneNumber() == null? -1 : caseRequests.getCitizen().getPhoneNumber();
+        String citizenCPR = caseRequests.getCitizen().getCpr();
+        String citizenName = caseRequests.getCitizen().getName();
+        String citizenGender = caseRequests.getCitizen().getGender() + "";
+        String citizenBirthdate = caseRequests.getCitizen().getBirthDate();
+        String citizenAddress = caseRequests.getCitizen().getAddress();
+        String citizenPhoneNr = Integer.toString(phoneNr);
+        String citizenMail = caseRequests.getCitizen().getMail();
         String dateCreated = Long.toString(caseRequests.getDateCreated().getTime());
         String dateModified = Long.toString(caseRequests.getDateModified().getTime());
 
@@ -289,7 +290,11 @@ public class WriteTXT implements IWriter {
         sb.append(";");
         sb.append(MessageClear);
         sb.append(";");
-        sb.append(CarePackageRequested);
+        for (String string : CarePackageRequested) {
+            sb.append(string);
+            sb.append("#");
+        }
+        sb.deleteCharAt(sb.length() - 1);
         sb.append(";");
         sb.append(RehousingPackageRequested);
         sb.append(";");
