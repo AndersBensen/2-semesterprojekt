@@ -52,6 +52,7 @@ public class PersistanceContact {
      */
     public String saveCaseRequest(CaseRequest caseRequest) {
         writer.writeCaseRequest(caseRequest);
+        System.out.println("PersistenceContact: saveCaseRequest");
         return "Case request has been saved with the ID: " + caseRequest.getID();
     }
 
@@ -63,6 +64,7 @@ public class PersistanceContact {
      */
     public String saveCase(Case c) {
         writer.writeCase(c);
+        System.out.println("PersistenceContact: saveCase");
         return "Case has been saved with the ID: " + c.getID();
     }
 
@@ -83,6 +85,7 @@ public class PersistanceContact {
             System.out.println("Illegal position number.");
         }
 
+        System.out.println("PersistenceContact: saveEmployee");
         return "Employee with the ID: " + employee.getId() + " was saved";
     }
 
@@ -94,6 +97,7 @@ public class PersistanceContact {
      */
     public String deleteEmployee(int id) {
         writer.deleteEmployee(id);
+        System.out.println("PersistenceContact: deleteEmployee");
         return "Employee with the ID: " + id + " was deleted";
     }
 
@@ -105,6 +109,7 @@ public class PersistanceContact {
         }
         Employee employee = createEmployee(e);
 
+        System.out.println("PersistenceContact: login");
         return employee;
     }
 
@@ -118,6 +123,7 @@ public class PersistanceContact {
     public void logAction(int employeeID, LogAction action, String desc) {
         Log log = new Log(employeeID, action, desc);
         writer.writeLog(log);
+        System.out.println("PersistenceContact: logAction");
     }
 
     /**
