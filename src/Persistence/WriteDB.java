@@ -157,10 +157,7 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(2, log.getAction().toString());
             ps.setString(3, log.getDesc());
             ps.setString(4, log.getDate().toString());
-            System.out.println("log: " + log);
-            System.out.println("test først");
             ps.execute();
-            System.out.println("test sidst");
 
             String query2 = "INSERT INTO Logs "
                     + "VALUES(?, ?, ?)";
