@@ -29,11 +29,6 @@ public class DomainContact implements IDomainContact {
         this.currentUser = null;
     }
 
-    public void injectVisualController(IVisualController IVC) {
-        timer = new SystemTimer();
-        timer.injectVisualController(IVC);
-    }
-
     @Override
     public void createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
@@ -107,11 +102,8 @@ public class DomainContact implements IDomainContact {
         PersistanceContact PS = PersistanceContact.getInstance();
         Employee newUser = PS.login(username, password);
         if (newUser != null) {
-            timerThread = new Thread(timer);
-            timer.injectTimerThread(timerThread);
-            timerThread.start();
             currentUser = newUser;
-            //PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
+            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
             return true;
         }
         PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
@@ -129,6 +121,17 @@ public class DomainContact implements IDomainContact {
             System.out.println("You failed to log out: No user is logged in.");
         }
 
+    }
+
+    @Override
+    public void injectVisualController(IVisualController IVC) {
+        timer = new SystemTimer();
+        timer.injectVisualController(IVC);
+        
+        //Initialize timerthread
+        timerThread = new Thread(timer);
+        timer.injectTimerThread(timerThread);
+        timerThread.start();
     }
 
     @Override
