@@ -130,6 +130,7 @@ public class DomainContact implements IDomainContact {
         
         //Initialize timerthread
         timerThread = new Thread(timer);
+        timerThread.setDaemon(true);
         timer.injectTimerThread(timerThread);
         timerThread.start();
     }

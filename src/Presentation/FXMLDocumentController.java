@@ -6,6 +6,7 @@
 package Presentation;
 
 import Acquaintance.ICaseObject;
+import Acquaintance.IInjectableController;
 import Acquaintance.IPerson;
 import Acquaintance.IVisualController;
 import Domain.Admin;
@@ -48,7 +49,7 @@ import javafx.stage.Stage;
  *
  * @author Peter
  */
-public class FXMLDocumentController implements Initializable, IVisualController {
+public class FXMLDocumentController implements Initializable, IVisualController, IInjectableController {
     CommandConverter CC;
     private Stage stage;
     private double xOffset;
@@ -349,6 +350,7 @@ public class FXMLDocumentController implements Initializable, IVisualController 
         if(!støtteTilAndet.getText().equals(""))
             hbdso += støtteTilAndet.getText() + "#";
         
+        hbdso.substring(0, hbdso.length()-1);
         String indforstået = "false";
                 if(indforståetJa.isSelected()){
                     indforstået = "true";
@@ -360,7 +362,9 @@ public class FXMLDocumentController implements Initializable, IVisualController 
                 
         CC.performCommand("CaseRequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
                hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
-    }
+       //  DomainContact.getInstance().createCaseRequest(CPR.getText(), name.getText(), gender.getText().charAt(0), birthday.getText(), address.getText(), Integer.parseInt(phone.getText()), email.getText(), videreForløbTarea.getText(), Boolean.parseBoolean(msc),
+       //        hbdso.split("#"), angivTilbud.getText(), henvendelsesPerson.getText(), Boolean.parseBoolean(indforstået));
+    }   
 
     @FXML
     private void HandleOA(ActionEvent event) {
@@ -771,25 +775,19 @@ public class FXMLDocumentController implements Initializable, IVisualController 
 
     @FXML
     private void HandleLogOut(ActionEvent event) {
-        try {
-            Parent nextView = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
-            Scene newScene = new Scene(nextView);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(newScene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        logout();
     }
 
     @Override
     public void logout() {
         try {
-            System.out.println("er i FXML");
-            Parent nextView = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
-            Scene newScene = new Scene(nextView);
-            stage.setScene(newScene);
-            stage.show();
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    IInjectableController controller = loader.getController();
+                    controller.injectStage(stage);
+                    stage.setScene(scene);
+                    stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -972,6 +970,13 @@ public class FXMLDocumentController implements Initializable, IVisualController 
 //    .selectedItemProperty()
 //    .addListener( (ObservableValue<? extends String> observable, String oldValue, String newValue) -> beskrivelse.setText(newValue));
 
+    }
+
+    @Override
+    public void injectStage(Stage stage) {
+        this.stage = stage;
+        System.out.println("stage: " + stage);
+         System.out.println(this.stage);
     }
     
     

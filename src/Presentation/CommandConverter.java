@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import java.util.Arrays;
 import java.util.Date;
 
 public class CommandConverter {
@@ -12,6 +13,7 @@ public class CommandConverter {
     }
 
     public void performCommand(String command, String... args) {
+        System.out.println(Arrays.toString(args));
         switch (command) {
             case "caserequest":
                 try {

@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import Acquaintance.IInjectableController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -26,10 +27,12 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
+         Parent root = loader.load();
         
         Scene scene = new Scene(root);
-        
+        IInjectableController controller = loader.getController();
+        controller.injectStage(stage);
         
         stage.getIcons().add(
         new Image(
@@ -39,7 +42,6 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
         stage.setScene(scene);
         stage.setScene(scene);
         stage.sizeToScene();
-        
         stage.show();
     }
 

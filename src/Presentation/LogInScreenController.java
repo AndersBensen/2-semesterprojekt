@@ -6,6 +6,7 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import Acquaintance.IInjectableController;
 import Acquaintance.IVisualController;
 import Domain.DomainContact;
 import com.jfoenix.controls.JFXButton;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author Peter
  */
-public class LogInScreenController implements Initializable, IVisualController{
+public class LogInScreenController implements Initializable, IInjectableController{
     private IDomainContact IDC;
     CommandConverter CC;
     private Stage stage;
@@ -52,21 +53,23 @@ public class LogInScreenController implements Initializable, IVisualController{
     public void initialize(URL url, ResourceBundle rb) {
          CC = Sem02_Semesterprojekt_SensumUdred.getCommandConverter();
          IDC = Sem02_Semesterprojekt_SensumUdred.getDomainContact();
-         DomainContact.getInstance().injectVisualController(this);
+       //  DomainContact.getInstance().injectVisualController(this);
     }
     
 
     @FXML
     private void handleLogIn(ActionEvent event) {
         System.out.println(IDC);
-       // CC.performCommand("login", username.getText(), password.getText());
-      //  System.out.println(username.getText() + " " + password.getText() + " med dc " + DomainContact.getInstance());
         if (DomainContact.getInstance().login(username.getText(), password.getText())) {
             try {
-                Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-                Scene newScene = new Scene(nextView);
-                stage.setScene(newScene);
-                stage.show();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    System.out.println("loader:" + loader.getController());
+                    IInjectableController controller = loader.getController();
+                    controller.injectStage(stage);
+                    stage.setScene(scene);
+                    stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -84,22 +87,16 @@ public class LogInScreenController implements Initializable, IVisualController{
     @FXML
     private void HandlePW(KeyEvent event) {
          if (event.getCode().equals(KeyCode.ENTER)) {
-             if (DomainContact.getInstance().login(username.getText(), password.getText())) {
-           
+          if (DomainContact.getInstance().login(username.getText(), password.getText())) {
             try {
-                Parent nextView = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-                Scene newScene = new Scene(nextView);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(newScene);
-                stage.show();
-                nextView.setOnMousePressed((javafx.scene.input.MouseEvent event1) -> {
-                    xOffset = event1.getSceneX();
-                    yOffset = event1.getSceneY();
-                });
-                nextView.setOnMouseDragged((javafx.scene.input.MouseEvent event1) -> {
-                    stage.setX(event1.getScreenX() - xOffset);
-                    stage.setY(event1.getScreenY() - yOffset);
-                });
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    System.out.println("loader:" + loader.getController());
+                    IInjectableController controller = loader.getController();
+                    controller.injectStage(stage);
+                    stage.setScene(scene);
+                    stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -108,13 +105,13 @@ public class LogInScreenController implements Initializable, IVisualController{
             username.clear();
             username.setPromptText("Forkerte oplysninger");
             password.clear();
-        }
-         }
+        }}
     }
 
     @Override
-    public void logout() {
-        System.out.println("");
+    public void injectStage(Stage stage) {
+        this.stage = stage;
     }
+
 
 }
