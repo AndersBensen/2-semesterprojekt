@@ -41,21 +41,21 @@ public class DomainContact implements IDomainContact {
     @Override
     public void createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
-            String citizenMail, String desc, boolean isMessageClear, boolean isCarePackage,
-            boolean isRehousingPackage, String requestPerson, boolean isCitizenInformed) {
+            String citizenMail, String desc, boolean isMessageClear, String[] carePackage,
+            String rehousingPackage, String requestPerson, boolean isCitizenInformed) {
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
-            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, isCarePackage, isRehousingPackage, requestPerson, isCitizenInformed);
+            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, carePackage, rehousingPackage, requestPerson, isCitizenInformed);
         } else {
             printUnauthorizedAccess("createCaseRequest");
         }
     }
 
     @Override
-    public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune) {
+    public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), currentUser.getId(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune);
+            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), currentUser.getId(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state);
         } else {
             printUnauthorizedAccess("createCase");
         }
@@ -76,10 +76,10 @@ public class DomainContact implements IDomainContact {
     public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
-            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, Date dateCreated) {
+            String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state, Date dateCreated) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, dateCreated);
+            socialWorker.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
         } else {
             printUnauthorizedAccess("saveEditedCase");
         }
@@ -115,7 +115,7 @@ public class DomainContact implements IDomainContact {
             timer.injectTimerThread(timerThread);
             timerThread.start();
             currentUser = newUser;
-            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
+            //PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
             return true;
         }
         PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
@@ -193,7 +193,7 @@ public class DomainContact implements IDomainContact {
             return null;
         }
         PersistanceContact PS = PersistanceContact.getInstance();
-        PS.logAction(currentUser.getId(), LogAction.GET_EMPLOYEE, "User requested for a person with CPR: " + CPR);
+        PS.logAction(currentUser.getId(), LogAction.GET_PERSON, "User requested for a person with CPR: " + CPR);
         return PS.getPerson(CPR);
     }
 

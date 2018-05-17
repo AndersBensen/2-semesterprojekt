@@ -32,6 +32,8 @@ public interface ICase {
 
     String getDifferentCommune();
     
+    String getState();
+    
     Date getDateCreated();
     
     Date getDateModified();

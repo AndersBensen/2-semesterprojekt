@@ -146,13 +146,10 @@ public class PersistanceContact {
 
         currentCaseRequest.setDescription(cr[2]);
         currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
-        currentCaseRequest.setCarePackageRequested(Boolean.parseBoolean(cr[4]));
-        currentCaseRequest.setRehousingPackageRequested(Boolean.parseBoolean(cr[5]));
+        currentCaseRequest.setCarePackageRequested(cr[4].split("#"));
+        currentCaseRequest.setRehousingPackageRequested(cr[5]);
         currentCaseRequest.setRequestPerson(cr[6]);
         currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
-//        currentCaseRequest.connectCitizen(CPR, cr[9], cr[10].charAt(0), cr[11], cr[12]);  //cpr, name, gender, birthday, address
-//        currentCaseRequest.setCitizenPhoneNr(citizenPhoneNr);
-//        currentCaseRequest.setCitizenMail(cr[14]);
 
         return currentCaseRequest;
     }
@@ -171,11 +168,13 @@ public class PersistanceContact {
         }
 
         int caseRequestID = Integer.parseInt(c[2]);
-        CaseRequest caseRequest = getCaseRequest(caseRequestID);
         int caseID = Integer.parseInt(c[0]);
-        Date dateCreated = new Date(Long.parseLong(c[14]));
-        Date dateModified = new Date(Long.parseLong(c[15]));
+        CaseRequest caseRequest = getCaseRequest(caseRequestID);
         logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
+        
+        Date dateCreated = new Date(Long.parseLong(c[15]));
+        Date dateModified = new Date(Long.parseLong(c[16]));
+        
         Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
@@ -188,7 +187,7 @@ public class PersistanceContact {
         currentCase.setCollectCitizenInfo(c[11].split("#"));
         currentCase.setSpecialCircumstances(c[12]);
         currentCase.setDifferentCommune(c[13]);
-        System.out.println("caseRequest: " + caseRequest);
+        currentCase.setState(c[14]);
         return currentCase;
     }
     

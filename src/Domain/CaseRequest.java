@@ -11,8 +11,8 @@ public class CaseRequest implements ICaseRequest {
     private Person citizen;
     private String description;
     private boolean MessageClear;
-    private boolean CarePackageRequested;
-    private boolean RehousingPackageRequested;
+    private String[] carePackageRequested;
+    private String rehousingPackageRequested;
     private String requestPerson;
     private boolean CitizenInformed;
     private Date dateCreated;
@@ -59,13 +59,13 @@ public class CaseRequest implements ICaseRequest {
     }
 
     @Override
-    public boolean isCarePackageRequested() {
-        return CarePackageRequested;
+    public String[] getCarePackageRequested() {
+        return carePackageRequested;
     }
 
     @Override
-    public boolean isRehousingPackageRequested() {
-        return RehousingPackageRequested;
+    public String getRehousingPackageRequested() {
+        return rehousingPackageRequested;
     }
 
     @Override
@@ -101,13 +101,13 @@ public class CaseRequest implements ICaseRequest {
         updateDateModified();
     }
 
-    public void setCarePackageRequested(boolean CarePackageRequested) {
-        this.CarePackageRequested = CarePackageRequested;
+    public void setCarePackageRequested(String[] carePackageRequested) {
+        this.carePackageRequested = carePackageRequested;
         updateDateModified();
     }
 
-    public void setRehousingPackageRequested(boolean RehousingPackageRequested) {
-        this.RehousingPackageRequested = RehousingPackageRequested;
+    public void setRehousingPackageRequested(String rehousingPackageRequested) {
+        this.rehousingPackageRequested = rehousingPackageRequested;
         updateDateModified();
     }
 
