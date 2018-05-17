@@ -20,7 +20,7 @@ public class CommandConverter {
                     char citizenGender = args[2].charAt(0);
                     String citizenBirthdate = args[3];
                     String citizenAddress = args[4];
-                    Integer citizenPhoneNr = Integer.parseInt(args[5]);
+                    Integer citizenPhoneNr = args[5].trim().equals("")? -1 : Integer.parseInt(args[5]);
                     String citizenMail = args[6];
                     String desc = args[7];
                     boolean messageClear = getBooleanFromInput(args[8]);
