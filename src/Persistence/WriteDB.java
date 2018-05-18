@@ -43,13 +43,6 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(16, Long.toString(ICR.getDateCreated().getTime()));
             ps.setString(17, Long.toString(ICR.getDateModified().getTime()));
             ps.execute();
-
-            String query2 = "INSERT INTO Makes "
-                    + "VALUES(?, ?)";
-            ps = db.prepareStatement(query2);
-            ps.setInt(1, ICR.getEmployeeID());
-            ps.setInt(2, ICR.getID());
-            ps.execute();
             ps.close();
             return ICR.getID();
         } catch (SQLException ex) {
@@ -93,13 +86,6 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(15, cases.getState());
             ps.setString(16, Long.toString(cases.getDateCreated().getTime()));
             ps.setString(17, Long.toString(cases.getDateModified().getTime()));
-            ps.execute();
-
-            String query3 = "INSERT INTO Becomes "
-                    + "VALUES(?, ?)";
-            ps = db.prepareStatement(query3);
-            ps.setInt(1, cases.getCaseRequest().getID());
-            ps.setInt(2, cases.getID());
             ps.execute();
             ps.close();
             return cases.getID();
@@ -162,14 +148,6 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setString(2, log.getAction().toString());
             ps.setString(3, log.getDesc());
             ps.setString(4, log.getDate().toString());
-            ps.execute();
-
-            String query2 = "INSERT INTO Logs "
-                    + "VALUES(?, ?, ?)";
-            ps = db.prepareStatement(query2);
-            ps.setInt(1, log.getEmployeeID());
-            ps.setString(2, log.getAction().toString());
-            ps.setString(3, log.getDate().toString());
             ps.execute();
             ps.close();
         } catch (SQLException ex) {
