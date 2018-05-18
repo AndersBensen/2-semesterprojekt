@@ -30,7 +30,8 @@ public class CaseEmployee extends Employee {
      * @param citizenPhoneNr
      * @param citizenMail
      */
-    public void createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail, String desc, boolean isMessageClear, String[] carePackage, String rehousingPackage, String contact, boolean isCitizenInformed) {
+    public int createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail, String desc, boolean isMessageClear, String[] carePackage, String rehousingPackage, String contact, boolean isCitizenInformed) {
+        
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
         
@@ -42,8 +43,10 @@ public class CaseEmployee extends Employee {
         CR.setRehousingPackageRequested(rehousingPackage);
         CR.setRequestPerson(contact);
         CR.setCitizenInformed(isCitizenInformed);
-        pc.saveCaseRequest(CR);
+        int returnInt = pc.saveCaseRequest(CR);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE_REQUEST, "Saved a case request");
+        
+        return returnInt;
     }
     
     public List<CaseObject> getCaseObjects(String citizenCPR) {

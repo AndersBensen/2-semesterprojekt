@@ -26,13 +26,14 @@ public class SocialWorker extends CaseEmployee {
      * @param collectCitizenInfo
      * @param consentType
      * @param differentCommune
+     * @param state
      * @return int, id of the case creater
      */
     public int saveCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state) {
-
+        
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
         CaseRequest caseRequest = pc.getCaseRequest(caseRequestID);
@@ -49,9 +50,10 @@ public class SocialWorker extends CaseEmployee {
         c.setSpecialCircumstances(specialCircumstances);
         c.setDifferentCommune(differentCommune);
         c.setState(state);
-        pc.saveCase(c);
+        int returnInt = pc.saveCase(c);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_CASE, "Created a new case");
-        return c.getID();
+        
+        return returnInt;
     }
     
     
@@ -73,6 +75,7 @@ public class SocialWorker extends CaseEmployee {
      * @param collectCitizenInfo
      * @param consentType
      * @param differentCommune
+     * @param state
      * @param dateCreated
      * @return int, id of the case creater
      */
