@@ -2,13 +2,13 @@ package Acquaintance;
 
 public interface IWriter {
 
-    public void writeEmployee(IEmployee employee, int position);
+    public int writeCaseRequest(ICaseRequest ICR);
 
-    public void deleteEmployee(int id);
+    public int writeCase(ICase cases);
 
-    public void writeCase(ICase cases);
+    public int writeEmployee(IEmployee employee, int position);
 
-    public void writeCaseRequest(ICaseRequest ICR);
+    public int deleteEmployee(int id);
 
     public void writeLog(ILog log);
 }

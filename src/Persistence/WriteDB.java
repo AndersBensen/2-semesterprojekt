@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class WriteDB extends AbstractDB implements IWriter {
 
     @Override
-    public void writeCaseRequest(ICaseRequest ICR) {
+    public int writeCaseRequest(ICaseRequest ICR) {
         try {
             int phoneNr = ICR.getCitizen().getPhoneNumber() == null? -1 : ICR.getCitizen().getPhoneNumber();
             
@@ -51,13 +51,15 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(2, ICR.getID());
             ps.execute();
             ps.close();
+            return ICR.getID();
         } catch (SQLException ex) {
             System.out.println("WriteDB: SQL error in writeCaseRequest()");
         }
+        return -1;
     }
 
     @Override
-    public void writeCase(ICase cases) {
+    public int writeCase(ICase cases) {
         try {
             String citizenInfo = "";
             for (String string : cases.getCollectCitizenInfo()) {
@@ -100,13 +102,15 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(2, cases.getID());
             ps.execute();
             ps.close();
+            return cases.getID();
         } catch (SQLException ex) {
             System.out.println("WriteDB: SQL error in writeCase()");
         }
+        return -1;
     }
 
     @Override
-    public void writeEmployee(IEmployee employee, int position) {
+    public int writeEmployee(IEmployee employee, int position) {
         try {
             int phoneNr = employee.getPhoneNumber() == null? -1 : employee.getPhoneNumber();
             
@@ -126,22 +130,26 @@ public class WriteDB extends AbstractDB implements IWriter {
             ps.setInt(11, position);
             ps.execute();
             ps.close();
+            return employee.getId();
         } catch (SQLException e) {
             System.out.println("WriteDB: SQL error in writeEmployee()");
         }
+        return -1;
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public int deleteEmployee(int id) {
         try {
             String query = "DELETE FROM Employee "
                     + "WHERE id = " + id;
             PreparedStatement ps = db.prepareStatement(query);
             ps.execute();
             ps.close();
+            return id;
         } catch (SQLException e) {
             System.out.println("WriteDB: SQL error in deleteEmployee()");
         }
+        return -1;
     }
 
     @Override

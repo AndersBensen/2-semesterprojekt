@@ -25,27 +25,33 @@ public class Admin extends Employee {
      * @param password
      * @param positionNumber
      */
-    public void addEmployee(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
+    public int addEmployee(String cpr, String name, char gender, String birthDate, String address,
+            Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
+        
+        int returnInt = -1;
+        
         Employee e;
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
         switch (positionNumber) {
             case 1:
                 e = new Secretary(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                pc.saveEmployee(e);
+                returnInt = pc.saveEmployee(e);
                 break;
             case 2:
                 e = new SocialWorker(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                pc.saveEmployee(e);
+                returnInt = pc.saveEmployee(e);
                 break;
             case 3:
                 e = new Admin(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
-                pc.saveEmployee(e);
+                returnInt = pc.saveEmployee(e);
                 break;
             default:
                 System.out.println("Please enter a number between 1 and 3");
         }
         pc.logAction(dc.getCurrentUser().getId(), LogAction.SAVE_EMPLOYEE, "Added employee with id: " + id + " to persistence.");
+        
+        return returnInt;
     }
 
     /**
@@ -54,10 +60,12 @@ public class Admin extends Employee {
      *
      * @param id
      */
-    public void deleteEmployee(int id) {
+    public int deleteEmployee(int id) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();
-        pc.deleteEmployee(id);
+        int returnInt = pc.deleteEmployee(id);
         pc.logAction(dc.getCurrentUser().getId(), LogAction.DELETE_EMPLOYEE, "Deleted employee with id: " + id + " from persistence.");
+        
+        return returnInt;
     }
 }
