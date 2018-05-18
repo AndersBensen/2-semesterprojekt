@@ -30,27 +30,39 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public void createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
+    public int createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
             String citizenMail, String desc, boolean isMessageClear, String[] carePackage,
             String rehousingPackage, String requestPerson, boolean isCitizenInformed) {
-        System.out.println("cpr: " + citizenCPR);
+
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
-            caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, carePackage, rehousingPackage, requestPerson, isCitizenInformed);
+            return caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(),
+                    currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate,
+                    citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, carePackage,
+                    rehousingPackage, requestPerson, isCitizenInformed);
         } else {
             printUnauthorizedAccess("createCaseRequest");
         }
+        return -1;
     }
 
     @Override
-    public void createCase(int caseRequestID, String nextAppointment, String guardianship, String personalHelper, String personalHelperPowerOfAttorney, String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state) {
+    public int createCase(int caseRequestID, String nextAppointment, String guardianship,
+            String personalHelper, String personalHelperPowerOfAttorney, String citizenRights,
+            boolean citizenInformedElectronic, boolean consent, String consentType, String[] collectCitizenInfo,
+            String specialCircumstances, String differentCommune, String state) {
+        
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(), currentUser.getId(), caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state);
+            return socialWorker.saveCase(PersistanceContact.getInstance().getNewCaseID(),
+                    currentUser.getId(), caseRequestID, nextAppointment, guardianship, personalHelper,
+                    personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent,
+                    consentType, collectCitizenInfo, specialCircumstances, differentCommune, state);
         } else {
             printUnauthorizedAccess("createCase");
         }
+        return -1;
     }
     
     @Override
@@ -65,37 +77,46 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public void saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
+    public int saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
             String citizenRights, boolean citizenInformedElectronic, boolean consent, String consentType,
             String[] collectCitizenInfo, String specialCircumstances, String differentCommune, String state, Date dateCreated) {
+        
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
             SocialWorker socialWorker = (SocialWorker) currentUser;
-            socialWorker.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
+            return socialWorker.saveEditedCase(caseID, employeeID, caseRequestID,
+                    nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney,
+                    citizenRights, citizenInformedElectronic, consent, consentType,
+                    collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
         } else {
             printUnauthorizedAccess("saveEditedCase");
         }
+        return -1;
     }
 
     @Override
-    public void addEmployee(String CPR, String name, char gender, String birthdate, String Address,
+    public int addEmployee(String CPR, String name, char gender, String birthdate, String Address,
             Integer phoneNr, String mail, String username, String password, int positionNumber) {
+        
         if (userLoggedIn() && currentUser instanceof Admin) {
             Admin admin = (Admin) currentUser;
-            admin.addEmployee(CPR, name, gender, birthdate, Address, phoneNr, mail, PersistanceContact.getInstance().getNewEmployeeID(), username, password, positionNumber);
+            return admin.addEmployee(CPR, name, gender, birthdate, Address, phoneNr, mail,
+                    PersistanceContact.getInstance().getNewEmployeeID(), username, password, positionNumber);
         } else {
             printUnauthorizedAccess("addEmployee");
         }
+        return -1;
     }
 
     @Override
-    public void deleteEmployee(int employeeID) {
+    public int deleteEmployee(int employeeID) {
         if (userLoggedIn() && currentUser instanceof Admin) {
             Admin admin = (Admin) currentUser;
-            admin.deleteEmployee(employeeID);
+            return admin.deleteEmployee(employeeID);
         } else {
             printUnauthorizedAccess("deleteEmployee");
         }
+        return -1;
     }
 
     @Override
@@ -104,24 +125,29 @@ public class DomainContact implements IDomainContact {
         Employee newUser = PS.login(username, password);
         if (newUser != null) {
             currentUser = newUser;
-            PS.logAction(currentUser.getId(), LogAction.LOG_IN, "User succesfully logged in with username: " + username + " and the password: " + password);
+            PS.logAction(currentUser.getId(), LogAction.LOG_IN,
+                    "User succesfully logged in with username: " + username + " and the password: " + password);
             return true;
         }
-        PS.logAction(-1, LogAction.LOG_IN, "User failed to log in with username: " + username + " and the password: " + password);
+        PS.logAction(-1, LogAction.LOG_IN,
+                    "User failed to log in with username: " + username + " and the password: " + password);
         return false;
     }
 
     @Override
-    public void logout() {
+    public boolean logout() {
         if (userLoggedIn()) {
             PersistanceContact PS = PersistanceContact.getInstance();
-            PS.logAction(currentUser.getId(), LogAction.LOG_OUT, "User with username: " + currentUser.getUserName() + " and the password: " + currentUser.getPassWord() + " succesfully logged out");
+            PS.logAction(currentUser.getId(), LogAction.LOG_OUT,
+                    "User with username: " + currentUser.getUserName()
+                    + " and the password: " + currentUser.getPassWord() + " succesfully logged out");
             this.currentUser = null;
             timerThread = null;
+            return true;
         } else {
             System.out.println("You failed to log out: No user is logged in.");
         }
-
+        return false;
     }
 
     @Override
@@ -188,41 +214,6 @@ public class DomainContact implements IDomainContact {
     }
 
     @Override
-    public IPerson getPerson(String CPR) {
-        if (!userLoggedIn()) {
-            printUnauthorizedAccess("getPerson");
-            return null;
-        }
-        PersistanceContact PS = PersistanceContact.getInstance();
-        PS.logAction(currentUser.getId(), LogAction.GET_PERSON, "User requested for a person with CPR: " + CPR);
-        return PS.getPerson(CPR);
-    }
-
-    @Override
-    public IEmployee getEmployee(int ID)
-    {
-        if (!userLoggedIn()) {
-            printUnauthorizedAccess("getEmployee");
-            return null;
-        }
-        PersistanceContact PS = PersistanceContact.getInstance();
-        PS.logAction(currentUser.getId(), LogAction.GET_EMPLOYEE, "User requested for an employee with ID: " + ID);
-        return PS.getEmployee(ID);
-    }
-
-    public Employee getCurrentUser() {
-        return currentUser;
-    }
-
-    private boolean userLoggedIn() {
-        return currentUser != null;
-    }
-
-    private void printUnauthorizedAccess(String methodName) {
-        System.out.println("User not allowed to perform command: " + methodName);
-    }
-
-    @Override
     public List<ICaseObject> getCaseObject(String citizenCPR) {
         List<ICaseObject> iCaseObjectList = new ArrayList<>();
         boolean isSecretary = false; 
@@ -248,5 +239,43 @@ public class DomainContact implements IDomainContact {
         }
         
         return iCaseObjectList;
+    }
+
+    @Override
+    public IPerson getPerson(String CPR) {
+        if (!userLoggedIn()) {
+            printUnauthorizedAccess("getPerson");
+            return null;
+        }
+        PersistanceContact PS = PersistanceContact.getInstance();
+        PS.logAction(currentUser.getId(), LogAction.GET_PERSON,
+                "User requested for a person with CPR: " + CPR);
+        return PS.getPerson(CPR);
+    }
+
+    @Override
+    public IEmployee getEmployee(int ID)
+    {
+        if (!userLoggedIn()) {
+            printUnauthorizedAccess("getEmployee");
+            return null;
+        }
+        PersistanceContact PS = PersistanceContact.getInstance();
+        PS.logAction(currentUser.getId(), LogAction.GET_EMPLOYEE,
+                "User requested for an employee with ID: " + ID);
+        return PS.getEmployee(ID);
+    }
+
+    @Override
+    public Employee getCurrentUser() {
+        return currentUser;
+    }
+
+    private boolean userLoggedIn() {
+        return currentUser != null;
+    }
+
+    private void printUnauthorizedAccess(String methodName) {
+        System.out.println("User not allowed to perform command: " + methodName);
     }
 }

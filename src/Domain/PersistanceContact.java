@@ -50,10 +50,9 @@ public class PersistanceContact {
      * @param caseRequest
      * @return
      */
-    public String saveCaseRequest(CaseRequest caseRequest) {
-        writer.writeCaseRequest(caseRequest);
+    public int saveCaseRequest(CaseRequest caseRequest) {
         System.out.println("PersistenceContact: saveCaseRequest");
-        return "Case request has been saved with the ID: " + caseRequest.getID();
+        return writer.writeCaseRequest(caseRequest);
     }
 
     /**
@@ -62,10 +61,9 @@ public class PersistanceContact {
      * @param c
      * @return String for the user.
      */
-    public String saveCase(Case c) {
-        writer.writeCase(c);
+    public int saveCase(Case c) {
         System.out.println("PersistenceContact: saveCase");
-        return "Case has been saved with the ID: " + c.getID();
+        return writer.writeCase(c);
     }
 
     /**
@@ -74,19 +72,20 @@ public class PersistanceContact {
      * @param employee
      * @return
      */
-    public String saveEmployee(Employee employee) {
+    public int saveEmployee(Employee employee) {
+        int returnInt = -1;
         if (employee instanceof Secretary) {
-            writer.writeEmployee(employee, 1);
+            returnInt = writer.writeEmployee(employee, 1);
         } else if (employee instanceof SocialWorker) {
-            writer.writeEmployee(employee, 2);
+            returnInt = writer.writeEmployee(employee, 2);
         } else if (employee instanceof Admin) {
-            writer.writeEmployee(employee, 3);
+            returnInt = writer.writeEmployee(employee, 3);
         } else {
-            System.out.println("Illegal position number.");
+            System.out.println("PersistenceContact: Illegal position number in saveEmployee()");
         }
 
         System.out.println("PersistenceContact: saveEmployee");
-        return "Employee with the ID: " + employee.getId() + " was saved";
+        return returnInt;
     }
 
     /**
@@ -95,10 +94,9 @@ public class PersistanceContact {
      * @param id ID of employee
      * @return
      */
-    public String deleteEmployee(int id) {
-        writer.deleteEmployee(id);
+    public int deleteEmployee(int id) {
         System.out.println("PersistenceContact: deleteEmployee");
-        return "Employee with the ID: " + id + " was deleted";
+        return writer.deleteEmployee(id);
     }
 
     public Employee login(String username, String password) {

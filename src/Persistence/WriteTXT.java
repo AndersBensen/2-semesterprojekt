@@ -62,7 +62,7 @@ public class WriteTXT implements IWriter {
     * @param employee, position
      */
     @Override
-    public void writeEmployee(IEmployee employee, int position) {
+    public int writeEmployee(IEmployee employee, int position) {
         String cpr = employee.getCpr();
         String name = employee.getName();
         String gender = Character.toString(employee.getGender());
@@ -108,6 +108,7 @@ public class WriteTXT implements IWriter {
         outputStream.println("\n" + sb);
         outputStream.close();
         System.out.println("employee was written to: " + employeeFile);
+        return employee.getId();
     }
 
     /*
@@ -117,7 +118,7 @@ public class WriteTXT implements IWriter {
     * @param id
      */
     @Override
-    public void deleteEmployee(int id) {
+    public int deleteEmployee(int id) {
         try {
             BufferedReader brFile = new BufferedReader(new FileReader(employeeFile));
             String line;
@@ -137,6 +138,7 @@ public class WriteTXT implements IWriter {
         } catch (IOException e) {
             System.out.println("Problems reading");
         }
+        return id;
     }
 
     /*
@@ -145,7 +147,7 @@ public class WriteTXT implements IWriter {
     * @param cases
      */
     @Override
-    public void writeCase(ICase cases) {
+    public int writeCase(ICase cases) {
         String ID = Integer.toString(cases.getID());
         String employeeID = Integer.toString(cases.getEmployeeID());
         String caseRequestID = Integer.toString(cases.getCaseRequest().getID());
@@ -231,7 +233,7 @@ public class WriteTXT implements IWriter {
         outputStream.println("\n" + sb);
         outputStream.close();
         System.out.println("case was written to: " + caseFile);
-
+        return cases.getID();
     }
 
     /*
@@ -240,7 +242,7 @@ public class WriteTXT implements IWriter {
     * @param caseRequests
      */
     @Override
-    public void writeCaseRequest(ICaseRequest caseRequests) {
+    public int writeCaseRequest(ICaseRequest caseRequests) {
         String ID = Integer.toString(caseRequests.getID());
         String employeeID = Integer.toString(caseRequests.getEmployeeID());
         String description = caseRequests.getDescription();
@@ -331,7 +333,7 @@ public class WriteTXT implements IWriter {
         outputStream.println("\n" + sb);
         outputStream.close();
         System.out.println("Case request was written to: " + caseRequestsFile);
-
+        return caseRequests.getID();
     }
 
     /*

@@ -19,8 +19,8 @@ public class CommandConverter {
         this.domainContact = domainContact;
     }
 
-    public void performCommand(String command, String... args) {
-        System.out.println(Arrays.toString(args));
+
+    public int performCommand(String command, String... args) {
         switch (command.toLowerCase()) {
             case "caserequest":
                 try {
@@ -38,7 +38,10 @@ public class CommandConverter {
                     String requestPerson = args[11];
                     boolean citizenInformed = getBooleanFromInput(args[12]);
 
-                    domainContact.createCaseRequest(citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, messageClear, carePackageRequested, rehousingPackageRequested, requestPerson, citizenInformed);
+                    return domainContact.createCaseRequest(citizenCPR, citizenName,
+                            citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr,
+                            citizenMail, desc, messageClear, carePackageRequested,
+                            rehousingPackageRequested, requestPerson, citizenInformed);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'CaseRequest': NUMBER FORMAT EXCEPTION");
                 }
@@ -59,7 +62,10 @@ public class CommandConverter {
                     String differentCommune = args[11];
                     String state = args[12];
 
-                    domainContact.createCase(caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state);
+                    return domainContact.createCase(caseRequestID, nextAppointment,
+                            guardianship, personalHelper, personalHelperPowerOfAttorney,
+                            citizenRights, citizenInformedElectronic, consent, consentType,
+                            collectCitizenInfo, specialCircumstances, differentCommune, state);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'Case': NUMBER FORMAT EXCEPTION");
                 }
@@ -83,7 +89,10 @@ public class CommandConverter {
                     String state = args[14];
                     Date dateCreated = new Date(Long.parseLong(args[15]));
 
-                    domainContact.saveEditedCase(caseID, employeeID, caseRequestID, nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney, citizenRights, citizenInformedElectronic, consent, consentType, collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
+                    return domainContact.saveEditedCase(caseID, employeeID, caseRequestID,
+                            nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney,
+                            citizenRights, citizenInformedElectronic, consent, consentType,
+                            collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'EditCase': NUMBER FORMAT EXCEPTION");
                 }
@@ -101,7 +110,9 @@ public class CommandConverter {
                     String password = args[8];
                     int positionNumber = Integer.parseInt(args[9]);
 
-                    domainContact.addEmployee(employeeCPR, employeeName, employeeGender, employeeBirthdate, employeeAddress, employeePhoneNr, employeeMail, username, password, positionNumber);
+                    return domainContact.addEmployee(employeeCPR, employeeName,
+                            employeeGender,employeeBirthdate, employeeAddress,
+                            employeePhoneNr, employeeMail, username, password, positionNumber);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'AddEmployee': NUMBER FORMAT EXCEPTION");
                 }
@@ -110,7 +121,7 @@ public class CommandConverter {
                 try {
                     int employeeID = Integer.parseInt(args[0]);
 
-                    domainContact.deleteEmployee(employeeID);
+                    return domainContact.deleteEmployee(employeeID);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'DeleteEmployee': NUMBER FORMAT EXCEPTION");
                 }
@@ -119,12 +130,11 @@ public class CommandConverter {
                 String username = args[0];
                 String password = args[1];
 
-                domainContact.login(username, password);
-                break;
+                return domainContact.login(username, password)? 1 : -1;
             case "logout":
-                domainContact.logout();
-                break;
+                return domainContact.logout()? 1 : -1;
         }
+        return -1;
     }
 
     private boolean getBooleanFromInput(String input) {
