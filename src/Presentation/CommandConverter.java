@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import Domain.DomainContact;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -8,13 +9,19 @@ public class CommandConverter {
 
     private IDomainContact domainContact;
 
+    public CommandConverter() {
+        domainContact = DomainContact.getInstance();
+    }
+    
+    
+
     public void injectDomainContact(IDomainContact domainContact) {
         this.domainContact = domainContact;
     }
 
     public void performCommand(String command, String... args) {
         System.out.println(Arrays.toString(args));
-        switch (command) {
+        switch (command.toLowerCase()) {
             case "caserequest":
                 try {
                     String citizenCPR = args[0];

@@ -34,6 +34,7 @@ public class DomainContact implements IDomainContact {
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
             String citizenMail, String desc, boolean isMessageClear, String[] carePackage,
             String rehousingPackage, String requestPerson, boolean isCitizenInformed) {
+        System.out.println("cpr: " + citizenCPR);
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
             caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(), currentUser.getId(), citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail, desc, isMessageClear, carePackage, rehousingPackage, requestPerson, isCitizenInformed);

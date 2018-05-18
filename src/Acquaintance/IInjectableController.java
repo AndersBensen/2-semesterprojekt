@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import Presentation.CommandConverter;
 import javafx.stage.Stage;
 
 /**
@@ -14,5 +15,7 @@ import javafx.stage.Stage;
 public interface IInjectableController {
     
     public void injectStage(Stage stage);
+    
+    public void injectCommandConverter(CommandConverter commandConverter);
     
 }

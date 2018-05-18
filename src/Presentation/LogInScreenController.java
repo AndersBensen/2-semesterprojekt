@@ -51,8 +51,7 @@ public class LogInScreenController implements Initializable, IInjectableControll
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         CC = Sem02_Semesterprojekt_SensumUdred.getCommandConverter();
-         IDC = Sem02_Semesterprojekt_SensumUdred.getDomainContact();
+     
        //  DomainContact.getInstance().injectVisualController(this);
     }
     
@@ -67,6 +66,7 @@ public class LogInScreenController implements Initializable, IInjectableControll
                     Scene scene = new Scene(root);
                     System.out.println("loader:" + loader.getController());
                     IInjectableController controller = loader.getController();
+                    controller.injectCommandConverter(CC);
                     controller.injectStage(stage);
                     stage.setScene(scene);
                     stage.show();
@@ -94,6 +94,7 @@ public class LogInScreenController implements Initializable, IInjectableControll
                     Scene scene = new Scene(root);
                     System.out.println("loader:" + loader.getController());
                     IInjectableController controller = loader.getController();
+                    controller.injectCommandConverter(CC);
                     controller.injectStage(stage);
                     stage.setScene(scene);
                     stage.show();
@@ -111,6 +112,13 @@ public class LogInScreenController implements Initializable, IInjectableControll
     @Override
     public void injectStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @Override
+    public void injectCommandConverter(CommandConverter commandConverter) {
+        
+        this.CC = commandConverter;
+        System.out.println("Loginscreen injecCC: " + CC);
     }
 
 

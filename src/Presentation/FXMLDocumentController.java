@@ -6,6 +6,7 @@
 package Presentation;
 
 import Acquaintance.ICaseObject;
+import Acquaintance.IEmployee;
 import Acquaintance.IInjectableController;
 import Acquaintance.IPerson;
 import Acquaintance.IVisualController;
@@ -50,6 +51,7 @@ import javafx.stage.Stage;
  * @author Peter
  */
 public class FXMLDocumentController implements Initializable, IVisualController, IInjectableController {
+
     CommandConverter CC;
     private Stage stage;
     private double xOffset;
@@ -247,12 +249,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        CC = new CommandConverter();
         DomainContact.getInstance().injectVisualController(this);
         beskrivelse.setVisible(false);
         oprettetAf.setVisible(false);
         gåTil.setVisible(false);
-        
+
         disableOpretFields();
         ScrollTest.setContent(vboxStart);
         clearHenvendelseFields();
@@ -337,34 +338,37 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleOpretHenvendelse(ActionEvent event) {        //Knappen
         String msc = "false";
-                if(klarHenvendelseJa.isSelected()){
-                    msc = "true";
-                }
+        if (klarHenvendelseJa.isSelected()) {
+            msc = "true";
+        }
         String hbdso = "";
-        if(støtteTIlPraktiskOpgave.isSelected())
+        if (støtteTIlPraktiskOpgave.isSelected()) {
             hbdso += "Støtte til praktiske opgaver i hjemmet#";
-        if(støtteTilIndkøb.isSelected())
+        }
+        if (støtteTilIndkøb.isSelected()) {
             hbdso += "Støtte til til indkøb og kost#";
-        if(støtteTIlPersonligPleje.isSelected())
+        }
+        if (støtteTIlPersonligPleje.isSelected()) {
             hbdso += "Støtte til personlig pleje#";
-        if(!støtteTilAndet.getText().equals(""))
+        }
+        if (!støtteTilAndet.getText().equals("")) {
             hbdso += støtteTilAndet.getText() + "#";
-        
-        hbdso.substring(0, hbdso.length()-1);
+        }
+
+        hbdso.substring(0, hbdso.length() - 1);
         String indforstået = "false";
-                if(indforståetJa.isSelected()){
-                    indforstået = "true";
-                }
-        
-        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " " +
-               hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
-                
-                
-        CC.performCommand("CaseRequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
-               hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
-       //  DomainContact.getInstance().createCaseRequest(CPR.getText(), name.getText(), gender.getText().charAt(0), birthday.getText(), address.getText(), Integer.parseInt(phone.getText()), email.getText(), videreForløbTarea.getText(), Boolean.parseBoolean(msc),
-       //        hbdso.split("#"), angivTilbud.getText(), henvendelsesPerson.getText(), Boolean.parseBoolean(indforstået));
-    }   
+        if (indforståetJa.isSelected()) {
+            indforstået = "true";
+        }
+
+        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " "
+                + hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
+
+        CC.performCommand("caserequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
+                hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
+        //  DomainContact.getInstance().createCaseRequest(CPR.getText(), name.getText(), gender.getText().charAt(0), birthday.getText(), address.getText(), Integer.parseInt(phone.getText()), email.getText(), videreForløbTarea.getText(), Boolean.parseBoolean(msc),
+        //        hbdso.split("#"), angivTilbud.getText(), henvendelsesPerson.getText(), Boolean.parseBoolean(indforstået));
+    }
 
     @FXML
     private void HandleOA(ActionEvent event) {
@@ -383,14 +387,18 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
                     deleteEmployeeID.setVisible(true);
                     opretAnsat.setVisible(true);
+                    opretAnsat.setText("Slet Ansat");
 
                 } else if (opretToggle.getSelectedToggle() == sekretærRadio) {
+                    opretAnsat.setText("Opret Ansat");
                     enableOpretAnsat();
 
                 } else if (opretToggle.getSelectedToggle() == sagsbehandlerRadio) {
                     enableOpretAnsat();
+                    opretAnsat.setText("Opret Ansat");
                 } else {
                     enableOpretAnsat();
+                    opretAnsat.setText("Opret Ansat");
                 }
 
             }
@@ -684,15 +692,16 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void handleSøg(KeyEvent event) {
         dropDown.getItems().removeAll(dropDown.getItems());
         if (event.getCode().equals(KeyCode.ENTER)) {
-            if(!ScrollTest.getContent().equals(vboxSøg))
-            ScrollTest.setContent(vboxSøg);
-            
+            if (!ScrollTest.getContent().equals(vboxSøg)) {
+                ScrollTest.setContent(vboxSøg);
+            }
+
             this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
             System.out.println("Størrelsen på ICB: " + icb.size());
-            for(ICaseObject c : icb ){
-                
-                dropDown.getItems().add(c.getType() +  ":  " + c.getDateCreated() + ": " + c.getDesc());
-                dropDown.setValue(c.getType() +  " " + c.getDateCreated() + " " + c.getDesc());
+            for (ICaseObject c : icb) {
+
+                dropDown.getItems().add(c.getType() + ":  " + c.getDateCreated() + ": " + c.getDesc());
+                dropDown.setValue(c.getType() + " " + c.getDateCreated() + " " + c.getDesc());
             }
 //            int k =  dropDown.getSelectionModel().getSelectedIndex();
 //            c1 = icb.get(k);
@@ -700,8 +709,8 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 //            oprettetAf.setVisible(true);
 //            gåTil.setVisible(true);
 //            beskrivelse.setText(c1.getDesc());
-        //    oprettetAf.setText(DomainContact.getInstance().getEmployee(c1.getEmployeeID()));
-            
+            //    oprettetAf.setText(DomainContact.getInstance().getEmployee(c1.getEmployeeID()));
+
             søgSide.clear();
 
         }
@@ -781,13 +790,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @Override
     public void logout() {
         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    IInjectableController controller = loader.getController();
-                    controller.injectStage(stage);
-                    stage.setScene(scene);
-                    stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            IInjectableController controller = loader.getController();
+            controller.injectStage(stage);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -797,15 +806,14 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            
-                IPerson p = DomainContact.getInstance().getPerson(CPR.getText());
-            if(CPR.getText().trim().equals(p.getCpr().trim())){
+
+            IPerson p = DomainContact.getInstance().getPerson(CPR.getText());
+            if (CPR.getText().trim().equals(p.getCpr().trim())) {
                 name.setText(p.getName());
                 gender.setText(Character.toString(p.getGender()));
                 birthday.setText(p.getBirthDate());
                 address.setText(p.getAddress());
-            }
-            else{
+            } else {
                 System.out.println("intet");
             }
         }
@@ -814,131 +822,151 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleOSButton(ActionEvent event) {
         String personalHelper = "";
-        if(værgemål.isSelected())
-            personalHelper += "Værgemål#";
-        if(værgeMedMere.isSelected())
+//        if(værgemål.isSelected())
+//            personalHelper += "Værgemål#";
+        if (værgeMedMere.isSelected()) {
             personalHelper += "Værgemål med frataget retslig handleevne#";
-        if(samværgemål.isSelected())
-            personalHelper += "Samværgemål#";
-        if(!værgeInfo.getText().equals(""))
-            personalHelper += støtteTilAndet.getText() + "#";
-        
-        String PHPOA = "";
-        if(bisidder.isSelected())
-            PHPOA += "Bisidder#";
-        if(partsrepræsentant.isSelected())
-            PHPOA += "Partsrepræsentant#";
-        if(fuldmagtMedMere.isSelected()) {
-        if(!fuldmagtTekst.getText().equals(""))
-            PHPOA += støtteTilAndet.getText() + "#";
         }
-        
+        if (samværgemål.isSelected()) {
+            personalHelper += "Samværgemål#";
+        }
+        if (!(værgeInfo.getText().equals(""))) {
+            personalHelper += værgeInfo.getText() + "#";
+        }
+
+        String PHPOA = "";
+        if (bisidder.isSelected()) {
+            PHPOA += "Bisidder#";
+        }
+        if (partsrepræsentant.isSelected()) {
+            PHPOA += "Partsrepræsentant#";
+        }
+        if (fuldmagtMedMere.isSelected()) {
+            if (!fuldmagtTekst.getText().equals("")) {
+                PHPOA += fuldmagtTekst.getText() + "#";
+            }
+        }
+        PHPOA.substring(0, PHPOA.length() - 1);
+
         String electronic = "false";
-                if(indforståetElektroniskJa.isSelected()){
-                    electronic = "true";
-                }
-        
+        if (indforståetElektroniskJa.isSelected()) {
+            electronic = "true";
+        }
+
         String consent = "false";
-                if(jaSamtykke_sag.isSelected()){
-                    consent = "true";
-                }
-                
+        if (jaSamtykke_sag.isSelected()) {
+            consent = "true";
+        }
+
         String consentType = "";
-                if(mundtligSamtykke.isSelected()) {
-                    consentType += "mundtligSamtykke";
-                }
-                else if (skriftligSamtykke.isSelected()) {
-                    consentType += "skriftligSamtykke";
-                }
-                
+        if (mundtligSamtykke.isSelected()) {
+            consentType += "mundtligSamtykke";
+        } else if (skriftligSamtykke.isSelected()) {
+            consentType += "skriftligSamtykke";
+        }
+
         String collectCitizenInfo = "";
-                if(checkEgenLæge.isSelected()) {
-                    collectCitizenInfo += AEL.getText() + "#";
-                }
-                if(checkSpecialLæge.isSelected()) {
-                    collectCitizenInfo += ASL.getText() + "#";
-                }
-                if(checkHospital.isSelected()) {
-                    collectCitizenInfo += AH.getText() + "#";
-                }
-                if(checkAkasse.isSelected()) {
-                    collectCitizenInfo += AAK.getText() + "#";
-                }
-                if(checkTilbud.isSelected()) {
-                    collectCitizenInfo += AT.getText() + "#";
-                }
-                if(checkArbejdsgiver.isSelected()) {
-                    collectCitizenInfo += AA.getText() + "#";
-                }
-                if(checkOPkomune.isSelected()) {
-                    collectCitizenInfo += AK.getText() + "#";
-                }
-                if(checkAndre.isSelected()) {
-                    collectCitizenInfo += Andre.getText() + "#";
-                }
-                
+        if (checkEgenLæge.isSelected()) {
+            collectCitizenInfo += AEL.getText() + "#";
+        }
+        if (checkSpecialLæge.isSelected()) {
+            collectCitizenInfo += ASL.getText() + "#";
+        }
+        if (checkHospital.isSelected()) {
+            collectCitizenInfo += AH.getText() + "#";
+        }
+        if (checkAkasse.isSelected()) {
+            collectCitizenInfo += AAK.getText() + "#";
+        }
+        if (checkTilbud.isSelected()) {
+            collectCitizenInfo += AT.getText() + "#";
+        }
+        if (checkArbejdsgiver.isSelected()) {
+            collectCitizenInfo += AA.getText() + "#";
+        }
+        if (checkOPkomune.isSelected()) {
+            collectCitizenInfo += AK.getText() + "#";
+        }
+        if (checkAndre.isSelected()) {
+            collectCitizenInfo += Andre.getText() + "#";
+        }
+
         String communeInfo = "";
-                if(checkEgenKomune.isSelected()) {
-                    collectCitizenInfo += EK.getText() + "#";
-                }
-                if(checkHandleKomune.isSelected()) {
-                    collectCitizenInfo += HK.getText() + "#";
-                }        
-                
-        
-        CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo);
+        if (checkEgenKomune.isSelected()) {
+            communeInfo += EK.getText() + "#";
+        }
+        if (checkHandleKomune.isSelected()) {
+            communeInfo += HK.getText() + "#";
+        }
+
+        CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open");
+        // CC.performCommand("case", "1", "soon", "5", "moo", "moo", "nope", "Y", "Y", "no", "s#S#", "no", "no", "open");
     }
 
     @FXML
     private void HandleopretAnsat(ActionEvent event) {
         int i = 0;
-        if(sagsbehandlerRadio.isSelected()){
+        if (sagsbehandlerRadio.isSelected()) {
             i = 2;
+            CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+
         }
-        if(sekretærRadio.isSelected()){
+        else if (sekretærRadio.isSelected()) {
             i = 1;
+            CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+
         }
-        if(adminRadio.isSelected()){
+        else if (adminRadio.isSelected()) {
             i = 3;
+            CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+
         }
-        if(sletAnsatRadio.isSelected()){
+        else if (sletAnsatRadio.isSelected()) {
+            if(Integer.parseInt(deleteEmployeeID.getText()) != DomainContact.getInstance().getCurrentUser().getId()){
             CC.performCommand("deleteemployee", deleteEmployeeID.getText());
-            
+            }else{
+                deleteEmployeeID.setText("Kan ikke slette dig selv");
+                opretNavn.setVisible(false);
+                opretAdresse.setVisible(false);
+                opretBrugernavn.setVisible(false);
+            }
+             
+                opretNavn.clear();
+                opretAdresse.clear();
+                opretBrugernavn.clear();
+                
         }
-        CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
     }
 
     @FXML
     private void HandleopretCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            System.out.println("søg");
-            if(opretCPR.getText().equals(DomainContact.getInstance().getPerson(opretCPR.getText()))){
-                opretNavn.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getName());
-                opretKøn.setText(Character.toString(DomainContact.getInstance().getPerson(opretCPR.getText()).getGender()));
-                opretFødselsdag.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getBirthDate());
-                opretAdresse.setText(DomainContact.getInstance().getPerson(opretCPR.getText()).getAddress());
-                
-                
-                opretTelefon.setText(Integer.toString(DomainContact.getInstance().getPerson(CPR.getText()).getPhoneNumber()));
-                opretEmail.setText(DomainContact.getInstance().getPerson(CPR.getText()).getMail());
-            }
-            else{
+
+            IPerson p = DomainContact.getInstance().getPerson(opretCPR.getText());
+            if (opretCPR.getText().trim().equals(p.getCpr().trim())) {
+                opretNavn.setText(p.getName());
+                opretKøn.setText(Character.toString(p.getGender()));
+                opretFødselsdag.setText(p.getBirthDate());
+                opretAdresse.setText(p.getAddress());
+                //opretAdresse.setText(p.getAddress());
+                //opretAdresse.setText(p.getAddress());
+            } else {
                 System.out.println("intet");
             }
+
         }
     }
 
     @FXML
     private void HandleGåTil(ActionEvent event) {
-        if(c1.getType().equals("caseRequest")){
-        caseRequestID.setText(Integer.toString(c1.getID()));
-        beskrivelse.setVisible(false);
-        oprettetAf.setVisible(false);
-        gåTil.setVisible(false);
-        ScrollTest.setContent(VBox2);
-        }
-        else if(c1.getType().equals("case")){
-        videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
+        if (c1.getType().equals("caseRequest")) {
+            caseRequestID.setText(Integer.toString(c1.getID()));
+            beskrivelse.setVisible(false);
+            oprettetAf.setVisible(false);
+            gåTil.setVisible(false);
+            ScrollTest.setContent(VBox2);
+        } else if (c1.getType().equals("case")) {
+            videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
         }
     }
 
@@ -948,37 +976,55 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         oprettetAf.setVisible(true);
         gåTil.setVisible(true);
         dropDown.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-          int i = 0;
-          if((int)number2 > 0){
-          if(i == 0){
-       //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
-        c1 = icb.get(((Integer) number2));
-        beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
-        oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
-        i ++;
-              }
-          }
-          
-      }
-    });
-        
-        
-        
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                int i = 0;
+                if ((int) number2 > 0) {
+                    if (i == 0) {
+                        //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
+                        c1 = icb.get(((Integer) number2));
+                        beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
+                        oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
+                        i++;
+                    }
+                }
+
+            }
+        });
+
 //        dropDown.getSelectionModel()
 //    .selectedItemProperty()
 //    .addListener( (ObservableValue<? extends String> observable, String oldValue, String newValue) -> beskrivelse.setText(newValue));
-
     }
 
     @Override
     public void injectStage(Stage stage) {
         this.stage = stage;
-        System.out.println("stage: " + stage);
-         System.out.println(this.stage);
     }
-    
-    
+
+    @Override
+    public void injectCommandConverter(CommandConverter commandConverter) {
+
+        this.CC = commandConverter;
+        System.out.println("CC: " + CC);
+    }
+
+    @FXML
+    private void HandleDeleteEmployee(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+
+            IEmployee e = DomainContact.getInstance().getEmployee(Integer.parseInt(deleteEmployeeID.getText()));
+            if (Integer.parseInt(deleteEmployeeID.getText().trim()) == e.getId()) {
+                opretNavn.setVisible(true);
+                opretAdresse.setVisible(true);
+                opretBrugernavn.setVisible(true);
+                opretNavn.setText(e.getName());
+                opretAdresse.setText(e.getAddress());
+                opretBrugernavn.setText(e.getUserName());
+            } else {
+                System.out.println("intet");
+            }
+        }
+    }
 
 }

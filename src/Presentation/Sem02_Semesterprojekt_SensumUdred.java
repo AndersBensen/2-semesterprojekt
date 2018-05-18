@@ -32,6 +32,8 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
         
         Scene scene = new Scene(root);
         IInjectableController controller = loader.getController();
+        System.out.println("InjekterCC: " + CC);
+        controller.injectCommandConverter(CC);
         controller.injectStage(stage);
         
         stage.getIcons().add(
@@ -52,13 +54,7 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
 //        launch(args);
 //    }
 //    
-    public static IDomainContact getDomainContact(){
-        return IDC;
-    }
     
-    public static CommandConverter getCommandConverter(){
-        return CC;
-    } 
     
     public void startApplication(String[] args) {
         launch(args);
