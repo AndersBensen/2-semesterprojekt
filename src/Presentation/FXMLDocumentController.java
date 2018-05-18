@@ -5,7 +5,9 @@
  */
 package Presentation;
 
+import Acquaintance.ICase;
 import Acquaintance.ICaseObject;
+import Acquaintance.ICaseRequest;
 import Acquaintance.IEmployee;
 import Acquaintance.IInjectableController;
 import Acquaintance.IPerson;
@@ -21,6 +23,8 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -246,6 +250,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private JFXButton gåTil;
     @FXML
     private Label oprettetAf;
+    @FXML
+    private JFXButton opretSag;
+    @FXML
+    private JFXButton redigerSag;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -253,6 +261,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         beskrivelse.setVisible(false);
         oprettetAf.setVisible(false);
         gåTil.setVisible(false);
+        redigerSag.setVisible(false);
 
         disableOpretFields();
         ScrollTest.setContent(vboxStart);
@@ -956,14 +965,127 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     @FXML
     private void HandleGåTil(ActionEvent event) {
-        if (c1.getType().equals("caseRequest")) {
+        ICase c = DomainContact.getInstance().editCase(c1.getID());
+        if (c1.getType().equals("CaseRequest")) {
             caseRequestID.setText(Integer.toString(c1.getID()));
+
             beskrivelse.setVisible(false);
             oprettetAf.setVisible(false);
             gåTil.setVisible(false);
             ScrollTest.setContent(VBox2);
-        } else if (c1.getType().equals("case")) {
-            videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
+        } else if (c1.getType().equals("Case")) {
+            redigerSag.setVisible(true);
+            opretSag.setVisible(false);
+            beskrivelse.setVisible(false);
+            oprettetAf.setVisible(false);
+            gåTil.setVisible(false);
+            ScrollTest.setContent(VBox2);
+            
+            // videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
+            boolean bol = false;
+            if (c.getGuardianship().equalsIgnoreCase("værgemål")) {
+                bol = true;
+            }
+
+            boolean samværgemål1 = false;
+            boolean værgemedmere = false;
+            String andetString = c.getPersonalHelper();
+            if (andetString.contains("Værgemål med frataget retslig handleevne")) {
+                værgemedmere = true;
+                andetString = andetString.substring(41, andetString.length());
+            }
+            if (andetString.contains("Samværgemål")) {
+                samværgemål1 = true;
+                andetString = andetString.substring(12, andetString.length());
+            }
+
+            andetString = andetString.substring(0, andetString.length() - 1);
+            andetString.trim();
+            værgeInfo.setText(andetString);
+
+            værgemål.setSelected(bol);
+            værgeMedMere.setSelected(værgemedmere);
+            this.samværgemål.setSelected(samværgemål1);
+
+            String PHPOAReturnString = c.getPersonalHelperPowerOfAttorney();
+            boolean bi = false;
+            boolean pr = false;
+            if (c.getPersonalHelperPowerOfAttorney().contains("Bisidder")) {
+                bi = true;
+                this.bisidder.setSelected(bi);
+                PHPOAReturnString = PHPOAReturnString.substring(9, PHPOAReturnString.length());
+            } else if (c.getPersonalHelperPowerOfAttorney().contains("Partsrepræsentant")) {
+                pr = true;
+                this.partsrepræsentant.setSelected(pr);
+                PHPOAReturnString = PHPOAReturnString.substring(18, PHPOAReturnString.length());
+            }
+            PHPOAReturnString = PHPOAReturnString.substring(0, PHPOAReturnString.length() - 1);
+            PHPOAReturnString.trim();
+            if (!PHPOAReturnString.isEmpty()) {
+                fuldmagtMedMere.setSelected(true);
+                fuldmagtTekst.setDisable(false);
+            }
+            fuldmagtTekst.setText(PHPOAReturnString);
+
+            rettighederMedMere.setText(c.getCitizenRights());
+
+            if (c.isCitizenInformedElectronic()) {
+                indforståetElektroniskJa.setSelected(true);
+            } else {
+                indforståetElektroniskNej.setSelected(true);
+            }
+            if (c.hasConsent()) {
+                jaSamtykke_sag.setSelected(true);
+            } else {
+                nejSamtykke_sag.setSelected(true);
+            }
+            if (c.getConsentType().equals("mundtligSamtykke")) {
+                mundtligSamtykke.setSelected(true);
+                mundtligSamtykke.setDisable(false);
+            } else if (c.getConsentType().equals("skriftligSamtykke")) {
+                skriftligSamtykke.setSelected(true);
+                skriftligSamtykke.setDisable(false);
+            }
+
+            //TODO Indhentelse af oplysninger
+            BorgerInddragelse.setText(c.getSpecialCircumstances());
+            String DifferentCommuneStatus = c.getDifferentCommune();
+            int communeIndex = 0;
+            int communeLengthIndex = 0;
+            int firstWordLength = 0;
+            int secondWordLength = 0;
+            int lastWordLength = 0;
+            for (char communeChar : DifferentCommuneStatus.toCharArray()) {
+                communeLengthIndex++;
+
+                if (communeChar == '#') {
+                    communeIndex++;
+                } else if (communeIndex == 0) {
+                    firstWordLength++;
+                } else if (communeIndex >= 1) {
+                    secondWordLength++;
+                }
+                System.out.println("Firstword = " + firstWordLength);
+                System.out.println("Secondword = " + secondWordLength);
+            }
+
+            String communeFinalString = c.getDifferentCommune();
+
+            if (communeIndex > 0) {
+                checkEgenKomune.setSelected(true);
+                EK.setText(communeFinalString.substring(0, firstWordLength));
+                EK.setDisable(false);
+            }
+
+            if (communeIndex > 1) {
+                checkHandleKomune.setSelected(true);
+                System.out.println("i handlekommune: " + secondWordLength);
+                HK.setText(communeFinalString.substring(firstWordLength + 1, firstWordLength + secondWordLength + 1));
+                HK.setDisable(false);
+            }
+
+            caseRequestID.setText(Integer.toString(c1.getID()));
+            handleVærgemål(event);
         }
     }
 
@@ -980,8 +1102,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                     if (i == 0) {
                         c1 = icb.get(((Integer) number2));
                         //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
-
-                        
 
                         beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
                         oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
@@ -1025,6 +1145,89 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 System.out.println("intet");
             }
         }
+    }
+
+    @FXML
+    private void HandleRedigerSagButton(ActionEvent event) {
+        ICase ic = DomainContact.getInstance().editCase(c1.getID());
+        redigerSag.setVisible(true);
+        String personalHelper = "";
+        if (værgeMedMere.isSelected()) {
+            personalHelper += "Værgemål med frataget retslig handleevne#";
+        }
+        if (samværgemål.isSelected()) {
+            personalHelper += "Samværgemål#";
+        }
+        if (!(værgeInfo.getText().equals(""))) {
+            personalHelper += værgeInfo.getText() + "#";
+        }
+
+        String PHPOA = "";
+        if (bisidder.isSelected()) {
+            PHPOA += "Bisidder#";
+        }
+        if (partsrepræsentant.isSelected()) {
+            PHPOA += "Partsrepræsentant#";
+        }
+        if (fuldmagtMedMere.isSelected()) {
+            if (!fuldmagtTekst.getText().equals("")) {
+                PHPOA += fuldmagtTekst.getText() + "#";
+            }
+        }
+        PHPOA.substring(0, PHPOA.length() - 1);
+
+        String electronic = "false";
+        if (indforståetElektroniskJa.isSelected()) {
+            electronic = "true";
+        }
+
+        String consent = "false";
+        if (jaSamtykke_sag.isSelected()) {
+            consent = "true";
+        }
+
+        String consentType = "";
+        if (mundtligSamtykke.isSelected()) {
+            consentType += "mundtligSamtykke";
+        } else if (skriftligSamtykke.isSelected()) {
+            consentType += "skriftligSamtykke";
+        }
+
+        String collectCitizenInfo = "";
+        if (checkEgenLæge.isSelected()) {
+            collectCitizenInfo += AEL.getText() + "#";
+        }
+        if (checkSpecialLæge.isSelected()) {
+            collectCitizenInfo += ASL.getText() + "#";
+        }
+        if (checkHospital.isSelected()) {
+            collectCitizenInfo += AH.getText() + "#";
+        }
+        if (checkAkasse.isSelected()) {
+            collectCitizenInfo += AAK.getText() + "#";
+        }
+        if (checkTilbud.isSelected()) {
+            collectCitizenInfo += AT.getText() + "#";
+        }
+        if (checkArbejdsgiver.isSelected()) {
+            collectCitizenInfo += AA.getText() + "#";
+        }
+        if (checkOPkomune.isSelected()) {
+            collectCitizenInfo += AK.getText() + "#";
+        }
+        if (checkAndre.isSelected()) {
+            collectCitizenInfo += Andre.getText() + "#";
+        }
+
+        String communeInfo = "";
+        if (checkEgenKomune.isSelected()) {
+            communeInfo += EK.getText() + "#";
+        }
+        if (checkHandleKomune.isSelected()) {
+            communeInfo += HK.getText() + "#";
+        }
+
+        CC.performCommand("editcase",Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", "12314123");
     }
 
 }

@@ -138,9 +138,9 @@ public class CommandConverter {
     }
 
     private boolean getBooleanFromInput(String input) {
-        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true")) {
+        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t")) {
             return true;
-        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")) {
+        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")|| input.equalsIgnoreCase("f")) {
             return false;
         } else {
             System.out.println("Method getBooleanFromInput: CANNOT CONVERT STRING TO BOOLEAN");

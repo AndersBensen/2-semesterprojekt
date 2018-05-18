@@ -279,7 +279,7 @@
                         <JFXCheckBox fx:id="checkHandleKomune" layoutX="45.0" layoutY="1060.0" onAction="#handleHandleKomune" text="Handlekommune" />
                         <JFXTextField fx:id="EK" focusColor="#0f9d58" layoutX="340.0" layoutY="1013.0" promptText="Angiv kommune" />
                         <JFXTextField fx:id="HK" focusColor="#0f9d58" layoutX="340.0" layoutY="1055.0" promptText="Angiv kommune" />
-                        <JFXButton layoutX="332.0" layoutY="1137.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleOSButton" style="-fx-border-color: #BBBB;" text="Opret sag">
+                        <JFXButton fx:id="opretSag" layoutX="332.0" layoutY="1137.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleOSButton" style="-fx-border-color: #BBBB;" text="Opret sag">
                            <ripplerFill>
                               <LinearGradient endX="1.0" endY="1.0">
                                  <stops>
@@ -290,6 +290,16 @@
                            </ripplerFill>
                         </JFXButton>
                         <JFXTextField fx:id="caseRequestID" focusColor="#0f9d58" layoutX="477.0" layoutY="1138.0" prefHeight="31.0" prefWidth="107.0" promptText="HenvendelseID" />
+                        <JFXButton fx:id="redigerSag" layoutX="342.0" layoutY="1147.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleRedigerSagButton" style="-fx-border-color: #BBBB;" text="Rediger sag">
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#cc0000" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
                </children>
