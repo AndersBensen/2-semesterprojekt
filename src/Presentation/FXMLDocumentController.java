@@ -910,31 +910,28 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             i = 2;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
 
-        }
-        else if (sekretærRadio.isSelected()) {
+        } else if (sekretærRadio.isSelected()) {
             i = 1;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
 
-        }
-        else if (adminRadio.isSelected()) {
+        } else if (adminRadio.isSelected()) {
             i = 3;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
 
-        }
-        else if (sletAnsatRadio.isSelected()) {
-            if(Integer.parseInt(deleteEmployeeID.getText()) != DomainContact.getInstance().getCurrentUser().getId()){
-            CC.performCommand("deleteemployee", deleteEmployeeID.getText());
-            }else{
+        } else if (sletAnsatRadio.isSelected()) {
+            if (Integer.parseInt(deleteEmployeeID.getText()) != DomainContact.getInstance().getCurrentUser().getId()) {
+                CC.performCommand("deleteemployee", deleteEmployeeID.getText());
+            } else {
                 deleteEmployeeID.setText("Kan ikke slette dig selv");
                 opretNavn.setVisible(false);
                 opretAdresse.setVisible(false);
                 opretBrugernavn.setVisible(false);
             }
-             
-                opretNavn.clear();
-                opretAdresse.clear();
-                opretBrugernavn.clear();
-                
+
+            opretNavn.clear();
+            opretAdresse.clear();
+            opretBrugernavn.clear();
+
         }
     }
 
@@ -979,10 +976,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
                 int i = 0;
-                if ((int) number2 > 0) {
+                if ((int) number2 >= 0) {
                     if (i == 0) {
-                        //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
                         c1 = icb.get(((Integer) number2));
+                        //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
+
+                        
+
                         beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
                         oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
                         i++;
