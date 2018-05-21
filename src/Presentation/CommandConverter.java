@@ -21,6 +21,9 @@ public class CommandConverter {
 
 
     public int performCommand(String command, String... args) {
+       for (String s : args){
+           System.out.println(s);
+       }
         switch (command.toLowerCase()) {
             case "caserequest":
                 try {
