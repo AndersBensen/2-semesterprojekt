@@ -16,6 +16,8 @@ public interface IInjectableController {
     
     public void injectStage(Stage stage);
     
+    public void injectDomainContact(IDomainContact IDC);
+    
     public void injectCommandConverter(CommandConverter commandConverter);
     
 }

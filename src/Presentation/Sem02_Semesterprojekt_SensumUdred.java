@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 public class Sem02_Semesterprojekt_SensumUdred extends Application {
 
     private static IDomainContact IDC;
-    private static CommandConverter CC;
+    private CommandConverter CC;
 
-    public void injectDomain(IDomainContact _DC) {
-        IDC = _DC;
+    public void injectDomain(IDomainContact IDC) {
+        this.IDC = IDC;
     }
 
     public void injectCommandConverter(CommandConverter CC) {
@@ -30,9 +30,9 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
 
         Scene scene = new Scene(root);
         IInjectableController controller = loader.getController();
-        System.out.println("InjekterCC: " + CC);
-        controller.injectCommandConverter(CC);
         controller.injectStage(stage);
+        controller.injectDomainContact(IDC);
+        controller.injectCommandConverter(CC);
 
         stage.getIcons().add(
                 new Image(
