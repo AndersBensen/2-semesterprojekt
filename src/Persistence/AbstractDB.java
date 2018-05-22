@@ -11,7 +11,13 @@ public abstract class AbstractDB {
     public AbstractDB() {
         db = getDBConnection();
     }
-
+    
+    /**
+     * This method connects to the postgresql database, through the website
+     * elephantsql. It connects with a specific username and password to make
+     * sure that it connects to tables that wevere made. 
+     * @return Connection to the database website
+     */
     private Connection getDBConnection() {
         db = null;
         try {

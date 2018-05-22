@@ -15,8 +15,7 @@ public class ReadTXT implements IReader {
     private final File currentIDsFile = new File("IDfile.txt");
 
     /**
-     * Reads all the information about a specific case request
-     *
+     * Reads all the information about a specific case request.
      * @param id
      * @return String[] caseRequest
      */
@@ -46,7 +45,7 @@ public class ReadTXT implements IReader {
     }
 
     /**
-     * Reads all the information about a specific case
+     * Reads all the information about a specific case.
      *
      * @param id
      * @return String[] cases
@@ -76,6 +75,13 @@ public class ReadTXT implements IReader {
         return cases;
     }
 
+    /**
+     * Reads all the information about an employee depending on the username 
+     * and password that is given as an argument.
+     * @param username
+     * @param password
+     * @return 
+     */
     @Override
     public String[] login(String username, String password) {
         String[] tokens = new String[11];
@@ -100,8 +106,7 @@ public class ReadTXT implements IReader {
     }
 
     /**
-     * Reads all the information about a specific patient
-     *
+     * Reads all the information about a specific patient.
      * @param cpr
      * @return patient[]
      */
@@ -131,8 +136,8 @@ public class ReadTXT implements IReader {
     }
 
     /**
-     * Reads all the information about a specific employee
-     *
+     * Reads all the information about a specific employee depending
+     * on a specific id. 
      * @param id
      * @return String[] employee
      */
@@ -163,8 +168,7 @@ public class ReadTXT implements IReader {
 
     /**
      * Reads all the ID's from the id file, these ids are caseID, case
-     * requestID, employeeID
-     *
+     * requestID, employeeID.
      * @return int[] ids
      */
     @Override
@@ -188,11 +192,21 @@ public class ReadTXT implements IReader {
         return ids;
     }
 
+    /**
+     * This method is only used in the database.
+     * @param citizenCPR
+     * @return 
+     */
     @Override
     public List<String[]> getSimpleCaseRequests(String citizenCPR) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * This method is only used in the database. 
+     * @param citizenCPR
+     * @return 
+     */
     @Override
     public List<String[]> getSimpleCases(String citizenCPR) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
