@@ -2,6 +2,7 @@ package Presentation;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseObject;
+import Acquaintance.IDomainContact;
 import Acquaintance.IEmployee;
 import Acquaintance.IInjectableController;
 import Acquaintance.IPerson;
@@ -17,9 +18,11 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -28,6 +31,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -42,6 +47,7 @@ import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable, IVisualController, IInjectableController {
 
+    private IDomainContact IDC;
     private CommandConverter CC;
     private Stage stage;
     private double xOffset;
@@ -344,7 +350,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             hbdso += støtteTilAndet.getText() + "#";
         }
         if (!hbdso.isEmpty()) {
-            hbdso.substring(0, hbdso.length() - 1);
+            hbdso = hbdso.substring(0, hbdso.length() - 1);
         }
         String indforstået = "false";
         if (indforståetJa.isSelected()) {
@@ -683,7 +689,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
             this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
             for (ICaseObject c : icb) {
-
                 dropDown.getItems().add(c.getType() + ":  " + c.getDateCreated() + ": " + c.getDesc());
                 dropDown.setValue(c.getType() + " " + c.getDateCreated() + " " + c.getDesc());
             }
@@ -769,9 +774,16 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            
+            IDC.logout();
+            
             IInjectableController controller = loader.getController();
             controller.injectStage(stage);
+            controller.injectDomainContact(IDC);
+            controller.injectCommandConverter(CC);
+            
+            Scene scene = new Scene(root);
+            
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -779,6 +791,34 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
 
     }
+
+    @Override
+    public void alert()
+    {
+        ButtonType OKBtn = new ButtonType("OK");
+        Platform.runLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Alert alertMenu = new Alert(Alert.AlertType.WARNING);
+                alertMenu.setTitle("Advarsel - Logout!");
+                alertMenu.setHeaderText("Du bliver logget ud i løbet af 1 minut");
+                alertMenu.getButtonTypes().setAll(OKBtn);
+                
+                alertMenu.getDialogPane().setPrefSize(340, 80);
+                
+                Optional<ButtonType> result = alertMenu.showAndWait();
+                
+                if (result.get() == OKBtn)
+                    IDC.resetTimer();
+            }
+        });
+        
+        
+    }
+    
+    
 
     @FXML
     private void HandleCPR(KeyEvent event) {
@@ -822,7 +862,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             }
         }
         if (!PHPOA.isEmpty()) {
-            PHPOA.substring(0, PHPOA.length() - 1);
+            PHPOA = PHPOA.substring(0, PHPOA.length() - 1);
         }
 
         String electronic = "false";
@@ -1120,10 +1160,15 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     }
 
     @Override
+    public void injectDomainContact(IDomainContact IDC)
+    {
+        this.IDC = IDC;
+    }
+
+    @Override
     public void injectCommandConverter(CommandConverter commandConverter) {
 
         this.CC = commandConverter;
-        System.out.println("CC: " + CC);
     }
 
     @FXML
@@ -1172,7 +1217,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             }
         }
         if (!PHPOA.isEmpty()) {
-            PHPOA.substring(0, PHPOA.length() - 1);
+            PHPOA = PHPOA.substring(0, PHPOA.length() - 1);
         }
 
         String electronic = "false";

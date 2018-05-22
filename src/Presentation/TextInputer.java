@@ -226,4 +226,12 @@ public final class TextInputer implements IVisualController {
         CC.performCommand("logout", "");
         System.out.println("User auto logged out");
     }
+
+    @Override
+    public void alert()
+    {
+        System.out.println("Alert Logout");
+    }
+    
+    
 }

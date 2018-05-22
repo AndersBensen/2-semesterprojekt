@@ -26,6 +26,7 @@ public class Main {
         CommandConverter CC = new CommandConverter();
         DomainContact DC = DomainContact.getInstance();
         CC.injectDomainContact(DC);
+        sp.injectDomain(DC);
         sp.injectCommandConverter(CC);
 
         sp.startApplication(args);

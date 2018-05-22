@@ -1,12 +1,12 @@
 package Domain;
 
 import Acquaintance.IVisualController;
-import Presentation.FXMLDocumentController;
 import javafx.application.Platform;
 
 public final class SystemTimer implements Runnable {
 
-    private final int DEFAULT_TIMER = 20000;
+    private final int DEFAULT_TIMER = 300;
+    private final int ALERT_TIMER = 60;
     private int currentTimer;
     private IVisualController IVC;
     private volatile Thread timerThread;
@@ -16,9 +16,7 @@ public final class SystemTimer implements Runnable {
     }
 
     public void injectVisualController(IVisualController IVC) {
-        
         this.IVC = IVC;
-        System.out.println("IVC: " + this.IVC);
     }
 
     public void injectTimerThread(Thread timerThread) {
@@ -37,7 +35,6 @@ public final class SystemTimer implements Runnable {
     public void run() {
         
         Thread thisThread = Thread.currentThread();
-        System.out.println("Running");
         while (timerThread == thisThread) {
             while (currentTimer > 0) {
                 try {
@@ -46,10 +43,10 @@ public final class SystemTimer implements Runnable {
                     System.out.println(e);
                 }
                 currentTimer--;
-
+                
+                if (currentTimer == ALERT_TIMER)
+                    IVC.alert();
             }
-            System.out.println("calling logout");
-            System.out.println(IVC);
             break;
         }
         
@@ -60,7 +57,7 @@ public final class SystemTimer implements Runnable {
             }
         });
         
-            clearThread();
+        clearThread();
     }
 
 }

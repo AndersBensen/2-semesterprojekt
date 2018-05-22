@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class CommandConverter {
 
-    private IDomainContact domainContact;
+    private IDomainContact IDC;
 
-    public CommandConverter() {
+    /*public CommandConverter() {
         domainContact = DomainContact.getInstance();
-    }
+    }*/
 
-    public void injectDomainContact(IDomainContact domainContact) {
-        this.domainContact = domainContact;
+    public void injectDomainContact(IDomainContact IDC) {
+        this.IDC = IDC;
     }
 
     public int performCommand(String command, String... args) {
@@ -39,7 +39,7 @@ public class CommandConverter {
                     String requestPerson = args[11];
                     boolean citizenInformed = getBooleanFromInput(args[12]);
 
-                    return domainContact.createCaseRequest(citizenCPR, citizenName,
+                    return IDC.createCaseRequest(citizenCPR, citizenName,
                             citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr,
                             citizenMail, desc, messageClear, carePackageRequested,
                             rehousingPackageRequested, requestPerson, citizenInformed);
@@ -63,7 +63,7 @@ public class CommandConverter {
                     String differentCommune = args[11];
                     String state = args[12];
 
-                    return domainContact.createCase(caseRequestID, nextAppointment,
+                    return IDC.createCase(caseRequestID, nextAppointment,
                             guardianship, personalHelper, personalHelperPowerOfAttorney,
                             citizenRights, citizenInformedElectronic, consent, consentType,
                             collectCitizenInfo, specialCircumstances, differentCommune, state);
@@ -89,7 +89,7 @@ public class CommandConverter {
                     String differentCommune = args[13];
                     String state = args[14];
                     Date dateCreated = new Date(Long.parseLong(args[15]));
-                    return domainContact.saveEditedCase(caseID, employeeID, caseRequestID,
+                    return IDC.saveEditedCase(caseID, employeeID, caseRequestID,
                             nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney,
                             citizenRights, citizenInformedElectronic, consent, consentType,
                             collectCitizenInfo, specialCircumstances, differentCommune, state, dateCreated);
@@ -110,7 +110,7 @@ public class CommandConverter {
                     String password = args[8];
                     int positionNumber = Integer.parseInt(args[9]);
 
-                    return domainContact.addEmployee(employeeCPR, employeeName,
+                    return IDC.addEmployee(employeeCPR, employeeName,
                             employeeGender, employeeBirthdate, employeeAddress,
                             employeePhoneNr, employeeMail, username, password, positionNumber);
                 } catch (NumberFormatException e) {
@@ -121,7 +121,7 @@ public class CommandConverter {
                 try {
                     int employeeID = Integer.parseInt(args[0]);
 
-                    return domainContact.deleteEmployee(employeeID);
+                    return IDC.deleteEmployee(employeeID);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'DeleteEmployee': NUMBER FORMAT EXCEPTION");
                 }
@@ -130,9 +130,9 @@ public class CommandConverter {
                 String username = args[0];
                 String password = args[1];
 
-                return domainContact.login(username, password) ? 1 : -1;
+                return IDC.login(username, password) ? 1 : -1;
             case "logout":
-                return domainContact.logout() ? 1 : -1;
+                return IDC.logout() ? 1 : -1;
         }
         return -1;
     }

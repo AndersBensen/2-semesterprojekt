@@ -2,7 +2,6 @@ package Presentation;
 
 import Acquaintance.IDomainContact;
 import Acquaintance.IInjectableController;
-import Domain.DomainContact;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -43,19 +42,49 @@ public class LogInScreenController implements Initializable, IInjectableControll
 
     }
 
+    @Override
+    public void injectStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @Override
+    public void injectDomainContact(IDomainContact IDC)
+    {
+        this.IDC = IDC;
+    }
+
+    @Override
+    public void injectCommandConverter(CommandConverter commandConverter) {
+        this.CC = commandConverter;
+    }
+
     @FXML
     private void handleLogIn(ActionEvent event) {
-        System.out.println(IDC);
-        if (DomainContact.getInstance().login(username.getText(), password.getText())) {
+        changeScene();
+    }
+
+    @FXML
+    private void HandlePW(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            changeScene();
+        }
+    }
+    
+    private void changeScene ()
+    {
+        if (IDC.login(username.getText(), password.getText())) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
-                System.out.println("loader:" + loader.getController());
+                
                 IInjectableController controller = loader.getController();
                 controller.injectCommandConverter(CC);
+                controller.injectDomainContact(IDC);
                 controller.injectStage(stage);
-                stage.setScene(scene);
+                
+                Scene newScene = new Scene(root);
+                
+                stage.setScene(newScene);
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,43 +94,6 @@ public class LogInScreenController implements Initializable, IInjectableControll
             username.setPromptText("Forkerte oplysninger");
             password.clear();
         }
-
-    }
-
-    @FXML
-    private void HandlePW(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            if (DomainContact.getInstance().login(username.getText(), password.getText())) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    System.out.println("loader:" + loader.getController());
-                    IInjectableController controller = loader.getController();
-                    controller.injectCommandConverter(CC);
-                    controller.injectStage(stage);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException ex) {
-                    Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                username.clear();
-                username.setPromptText("Forkerte oplysninger");
-                password.clear();
-            }
-        }
-    }
-
-    @Override
-    public void injectStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @Override
-    public void injectCommandConverter(CommandConverter commandConverter) {
-
-        this.CC = commandConverter;
     }
 
 }

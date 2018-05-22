@@ -73,6 +73,8 @@ public class PersistanceContact {
      * @return
      */
     public int saveEmployee(Employee employee) {
+        System.out.println("PersistenceContact: saveEmployee");
+        
         int returnInt = -1;
         if (employee instanceof Secretary) {
             returnInt = writer.writeEmployee(employee, 1);
@@ -84,7 +86,6 @@ public class PersistanceContact {
             System.out.println("PersistenceContact: Illegal position number in saveEmployee()");
         }
 
-        System.out.println("PersistenceContact: saveEmployee");
         return returnInt;
     }
 
@@ -100,6 +101,8 @@ public class PersistanceContact {
     }
 
     public Employee login(String username, String password) {
+        System.out.println("PersistenceContact: login");
+        
         String[] e = reader.login(username, password);
         if (e[0] == null) {
             System.out.println("User doesn't exist");
@@ -107,7 +110,6 @@ public class PersistanceContact {
         }
         Employee employee = createEmployee(e);
 
-        System.out.println("PersistenceContact: login");
         return employee;
     }
 
@@ -119,9 +121,10 @@ public class PersistanceContact {
      * @param desc
      */
     public void logAction(int employeeID, LogAction action, String desc) {
+        System.out.println("PersistenceContact: logAction");
+        
         Log log = new Log(employeeID, action, desc);
         writer.writeLog(log);
-        System.out.println("PersistenceContact: logAction");
     }
 
     /**
