@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentation;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseObject;
-import Acquaintance.ICaseRequest;
 import Acquaintance.IEmployee;
 import Acquaintance.IInjectableController;
 import Acquaintance.IPerson;
 import Acquaintance.IVisualController;
 import Domain.Admin;
-import Domain.CaseRequest;
 import Domain.DomainContact;
 import Domain.Secretary;
 import Domain.SocialWorker;
@@ -23,8 +16,6 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -35,7 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -50,10 +40,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Peter
- */
 public class FXMLDocumentController implements Initializable, IVisualController, IInjectableController {
 
     private CommandConverter CC;
@@ -274,7 +260,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             /*
             logAf.setLayoutX(OA.getLayoutX());
             logAf.setLayoutY(OA.getLayoutY());
-            */
+             */
             OA.setVisible(false);
         } else if (DomainContact.getInstance().getCurrentUser() instanceof Secretary) {
             velkommenText.setText(DomainContact.getInstance().getCurrentUser().getUserName());
@@ -357,15 +343,16 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (!støtteTilAndet.getText().equals("")) {
             hbdso += støtteTilAndet.getText() + "#";
         }
-        if(!hbdso.isEmpty())
-        hbdso.substring(0, hbdso.length() - 1);
+        if (!hbdso.isEmpty()) {
+            hbdso.substring(0, hbdso.length() - 1);
+        }
         String indforstået = "false";
         if (indforståetJa.isSelected()) {
             indforstået = "true";
         }
         CC.performCommand("caserequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
                 hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
-      
+
     }
 
     @FXML
@@ -834,8 +821,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 PHPOA += fuldmagtTekst.getText() + "#";
             }
         }
-        if(!PHPOA.isEmpty())
-        PHPOA.substring(0, PHPOA.length() - 1);  
+        if (!PHPOA.isEmpty()) {
+            PHPOA.substring(0, PHPOA.length() - 1);
+        }
 
         String electronic = "false";
         if (indforståetElektroniskJa.isSelected()) {
@@ -856,28 +844,28 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
         String collectCitizenInfo = "";
         if (checkEgenLæge.isSelected()) {
-            collectCitizenInfo += (char)945 + AEL.getText() + "#";
+            collectCitizenInfo += (char) 945 + AEL.getText() + "#";
         }
         if (checkSpecialLæge.isSelected()) {
-            collectCitizenInfo += (char)946 + ASL.getText() + "#";
+            collectCitizenInfo += (char) 946 + ASL.getText() + "#";
         }
         if (checkHospital.isSelected()) {
-            collectCitizenInfo += (char)947 + AH.getText() + "#";
+            collectCitizenInfo += (char) 947 + AH.getText() + "#";
         }
         if (checkAkasse.isSelected()) {
-            collectCitizenInfo += (char)948 + AAK.getText() + "#";
+            collectCitizenInfo += (char) 948 + AAK.getText() + "#";
         }
         if (checkTilbud.isSelected()) {
-            collectCitizenInfo += (char)949 + AT.getText() + "#";
+            collectCitizenInfo += (char) 949 + AT.getText() + "#";
         }
         if (checkArbejdsgiver.isSelected()) {
-            collectCitizenInfo += (char)950 + AA.getText() + "#";
+            collectCitizenInfo += (char) 950 + AA.getText() + "#";
         }
         if (checkOPkomune.isSelected()) {
-            collectCitizenInfo += (char)951 + AK.getText() + "#";
+            collectCitizenInfo += (char) 951 + AK.getText() + "#";
         }
         if (checkAndre.isSelected()) {
-            collectCitizenInfo += (char)952 + Andre.getText() + "#";
+            collectCitizenInfo += (char) 952 + Andre.getText() + "#";
         }
 
         String communeInfo = "";
@@ -889,7 +877,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
 
         CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open");
-       
+
     }
 
     @FXML
@@ -959,7 +947,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             oprettetAf.setVisible(false);
             gåTil.setVisible(false);
             ScrollTest.setContent(VBox2);
-            
+
             boolean bol = false;
             if (c.getGuardianship().equalsIgnoreCase("værgemål")) {
                 bol = true;
@@ -976,9 +964,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 samværgemål1 = true;
                 andetString = andetString.substring(12, andetString.length());
             }
-            if(!andetString.isEmpty()){
-            andetString = andetString.substring(0, andetString.length() - 1);
-            andetString.trim();
+            if (!andetString.isEmpty()) {
+                andetString = andetString.substring(0, andetString.length() - 1);
+                andetString.trim();
             }
             værgeInfo.setText(andetString);
 
@@ -998,8 +986,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 this.partsrepræsentant.setSelected(pr);
                 PHPOAReturnString = PHPOAReturnString.substring(18, PHPOAReturnString.length());
             }
-            if(!PHPOAReturnString.isEmpty())
-            PHPOAReturnString = PHPOAReturnString.substring(0, PHPOAReturnString.length() - 1);
+            if (!PHPOAReturnString.isEmpty()) {
+                PHPOAReturnString = PHPOAReturnString.substring(0, PHPOAReturnString.length() - 1);
+            }
             PHPOAReturnString.trim();
             if (!PHPOAReturnString.isEmpty()) {
                 fuldmagtMedMere.setSelected(true);
@@ -1027,51 +1016,43 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 skriftligSamtykke.setDisable(false);
             }
             String[] citizenInfo = c.getCollectCitizenInfo();
-            for (String s : citizenInfo){
-                if(s.contains(""+(char)945)){
+            for (String s : citizenInfo) {
+                if (s.contains("" + (char) 945)) {
                     checkEgenLæge.setSelected(true);
                     AEL.setText(s.substring(1, s.length()));
                     AEL.setDisable(false);
-                }
-                else if(s.contains(""+(char)946)){
+                } else if (s.contains("" + (char) 946)) {
                     checkSpecialLæge.setSelected(true);
                     ASL.setText(s.substring(1, s.length()));
                     ASL.setDisable(false);
-                }
-                else if(s.contains(""+(char)947)){
+                } else if (s.contains("" + (char) 947)) {
                     checkHospital.setSelected(true);
                     AH.setText(s.substring(1, s.length()));
                     AH.setDisable(false);
-                }
-                else if(s.contains(""+(char)948)){
+                } else if (s.contains("" + (char) 948)) {
                     checkAkasse.setSelected(true);
                     AAK.setText(s.substring(1, s.length()));
                     AAK.setDisable(false);
-                }
-                else  if(s.contains(""+(char)949)){
+                } else if (s.contains("" + (char) 949)) {
                     checkTilbud.setSelected(true);
                     AT.setText(s.substring(1, s.length()));
                     AT.setDisable(false);
-                }
-                else if(s.contains(""+(char)950)){
+                } else if (s.contains("" + (char) 950)) {
                     checkArbejdsgiver.setSelected(true);
                     AA.setText(s.substring(1, s.length()));
                     AA.setDisable(false);
-                }
-                else if(s.contains(""+(char)951)){
+                } else if (s.contains("" + (char) 951)) {
                     checkOPkomune.setSelected(true);
                     AK.setText(s.substring(1, s.length()));
                     AK.setDisable(false);
-                }
-                else if(s.contains(""+(char)952)){
+                } else if (s.contains("" + (char) 952)) {
                     checkAndre.setSelected(true);
                     Andre.setText(s.substring(1, s.length()));
                     Andre.setDisable(false);
                 }
-               
+
             }
-            
-            
+
             BorgerInddragelse.setText(c.getSpecialCircumstances());
             String DifferentCommuneStatus = c.getDifferentCommune();
             int communeIndex = 0;
@@ -1104,7 +1085,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 HK.setText(communeFinalString.substring(firstWordLength + 1, firstWordLength + secondWordLength + 1));
                 HK.setDisable(false);
             }
-           
+
             caseRequestID.setDisable(true);
             handleVærgemål(event);
         }
@@ -1190,8 +1171,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 PHPOA += fuldmagtTekst.getText() + "#";
             }
         }
-        if(!PHPOA.isEmpty())
-        PHPOA.substring(0, PHPOA.length() - 1);
+        if (!PHPOA.isEmpty()) {
+            PHPOA.substring(0, PHPOA.length() - 1);
+        }
 
         String electronic = "false";
         if (indforståetElektroniskJa.isSelected()) {
@@ -1212,28 +1194,28 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
         String collectCitizenInfo = "";
         if (checkEgenLæge.isSelected()) {
-            collectCitizenInfo += (char)945 + AEL.getText() + "#";
+            collectCitizenInfo += (char) 945 + AEL.getText() + "#";
         }
         if (checkSpecialLæge.isSelected()) {
-            collectCitizenInfo += (char)946 + ASL.getText() + "#";
+            collectCitizenInfo += (char) 946 + ASL.getText() + "#";
         }
         if (checkHospital.isSelected()) {
-            collectCitizenInfo += (char)947 + AH.getText() + "#";
+            collectCitizenInfo += (char) 947 + AH.getText() + "#";
         }
         if (checkAkasse.isSelected()) {
-            collectCitizenInfo += (char)948 + AAK.getText() + "#";
+            collectCitizenInfo += (char) 948 + AAK.getText() + "#";
         }
         if (checkTilbud.isSelected()) {
-            collectCitizenInfo += (char)949 + AT.getText() + "#";
+            collectCitizenInfo += (char) 949 + AT.getText() + "#";
         }
         if (checkArbejdsgiver.isSelected()) {
-            collectCitizenInfo += (char)950 + AA.getText() + "#";
+            collectCitizenInfo += (char) 950 + AA.getText() + "#";
         }
         if (checkOPkomune.isSelected()) {
-            collectCitizenInfo += (char)951 + AK.getText() + "#";
+            collectCitizenInfo += (char) 951 + AK.getText() + "#";
         }
         if (checkAndre.isSelected()) {
-            collectCitizenInfo += (char)952 + Andre.getText() + "#";
+            collectCitizenInfo += (char) 952 + Andre.getText() + "#";
         }
 
         String communeInfo = "";
@@ -1243,7 +1225,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkHandleKomune.isSelected()) {
             communeInfo += HK.getText() + "#";
         }
-        CC.performCommand("editcase",Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), Integer.toString(ic.getCaseRequest().getID()), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", Long.toString(ic.getDateCreated().getTime()));
+        CC.performCommand("editcase", Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), Integer.toString(ic.getCaseRequest().getID()), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", Long.toString(ic.getDateCreated().getTime()));
     }
 
 }

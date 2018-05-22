@@ -12,33 +12,31 @@ import javafx.stage.Stage;
 
 public class Sem02_Semesterprojekt_SensumUdred extends Application {
 
-    
     private static IDomainContact IDC;
     private static CommandConverter CC;
-    
-    public void injectDomain(IDomainContact _DC){
+
+    public void injectDomain(IDomainContact _DC) {
         IDC = _DC;
     }
-    
-    public void injectCommandConverter(CommandConverter CC){
+
+    public void injectCommandConverter(CommandConverter CC) {
         this.CC = CC;
     }
-    
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
-         Parent root = loader.load();
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
         IInjectableController controller = loader.getController();
         System.out.println("InjekterCC: " + CC);
         controller.injectCommandConverter(CC);
         controller.injectStage(stage);
-        
+
         stage.getIcons().add(
-        new Image(
-        Sem02_Semesterprojekt_SensumUdred.class.getResourceAsStream("appLogo.png")));
+                new Image(
+                        Sem02_Semesterprojekt_SensumUdred.class.getResourceAsStream("appLogo.png")));
         stage.setResizable(false);
         stage.setTitle("EG Team Online - Sensum Udred");
         stage.setScene(scene);
@@ -47,15 +45,6 @@ public class Sem02_Semesterprojekt_SensumUdred extends Application {
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//    
-    
-    
     public void startApplication(String[] args) {
         launch(args);
     }

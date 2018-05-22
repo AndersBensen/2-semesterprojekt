@@ -2,7 +2,6 @@ package Presentation;
 
 import Acquaintance.IDomainContact;
 import Domain.DomainContact;
-import java.util.Arrays;
 import java.util.Date;
 
 public class CommandConverter {
@@ -12,20 +11,17 @@ public class CommandConverter {
     public CommandConverter() {
         domainContact = DomainContact.getInstance();
     }
-    
-    
 
     public void injectDomainContact(IDomainContact domainContact) {
         this.domainContact = domainContact;
     }
 
-
     public int performCommand(String command, String... args) {
-       int i = 0;
-        for (String s : args){
-           System.out.println("arg: " + i + " har: " + s);
-           i++;
-       }
+        int i = 0;
+        for (String s : args) {
+            System.out.println("arg: " + i + " har: " + s);
+            i++;
+        }
         switch (command.toLowerCase()) {
             case "caserequest":
                 try {
@@ -34,7 +30,7 @@ public class CommandConverter {
                     char citizenGender = args[2].charAt(0);
                     String citizenBirthdate = args[3];
                     String citizenAddress = args[4];
-                    Integer citizenPhoneNr = args[5].trim().equals("")? -1 : Integer.parseInt(args[5]);
+                    Integer citizenPhoneNr = args[5].trim().equals("") ? -1 : Integer.parseInt(args[5]);
                     String citizenMail = args[6];
                     String desc = args[7];
                     boolean messageClear = getBooleanFromInput(args[8]);
@@ -115,7 +111,7 @@ public class CommandConverter {
                     int positionNumber = Integer.parseInt(args[9]);
 
                     return domainContact.addEmployee(employeeCPR, employeeName,
-                            employeeGender,employeeBirthdate, employeeAddress,
+                            employeeGender, employeeBirthdate, employeeAddress,
                             employeePhoneNr, employeeMail, username, password, positionNumber);
                 } catch (NumberFormatException e) {
                     System.out.println("Method performCommand 'AddEmployee': NUMBER FORMAT EXCEPTION");
@@ -134,17 +130,17 @@ public class CommandConverter {
                 String username = args[0];
                 String password = args[1];
 
-                return domainContact.login(username, password)? 1 : -1;
+                return domainContact.login(username, password) ? 1 : -1;
             case "logout":
-                return domainContact.logout()? 1 : -1;
+                return domainContact.logout() ? 1 : -1;
         }
         return -1;
     }
 
     private boolean getBooleanFromInput(String input) {
-        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t")) {
+        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true") || input.equalsIgnoreCase("T")) {
             return true;
-        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")|| input.equalsIgnoreCase("f")) {
+        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false") || input.equalsIgnoreCase("F")) {
             return false;
         } else {
             System.out.println("Method getBooleanFromInput: CANNOT CONVERT STRING TO BOOLEAN");
