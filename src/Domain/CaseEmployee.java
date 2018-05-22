@@ -37,8 +37,6 @@ public class CaseEmployee extends Employee {
         
         Person citizen = new Person(citizenCPR, citizenName, citizenGender, citizenBirthdate, citizenAddress, citizenPhoneNr, citizenMail);
         CaseRequest CR = new CaseRequest(caseRequestID, EmployeeID, citizen);
-        
-        System.out.println("case employee har: " + caseRequestID);
         CR.setDescription(desc);
         CR.setMessageClear(isMessageClear);
         CR.setCarePackageRequested(carePackage);

@@ -56,12 +56,12 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable, IVisualController, IInjectableController {
 
-    CommandConverter CC;
+    private CommandConverter CC;
     private Stage stage;
     private double xOffset;
     private double yOffset;
     private ICaseObject c1 = null;
-    List<ICaseObject> icb;
+    private List<ICaseObject> icb;
     @FXML
     private VBox testVbox;
     @FXML
@@ -295,16 +295,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void HandleOH(ActionEvent event) {      //checkbox i OH
 
         ScrollTest.setContent(testVbox);
-
-//        klarHenvendelseJa.setSelected(false);
-//        klarHenvendelseNej.setSelected(false);
-//        støtteTIlPersonligPleje.setSelected(false);
-//        støtteTIlPraktiskOpgave.setSelected(false);
-//        støtteTilAndet.clear();
-//        støtteTilIndkøb.setDisable(true);
-//        støtteTIlPraktiskOpgave.setDisable(true);
-//        støtteTIlPersonligPleje.setDisable(true);
-//        støtteTilAndet.setDisable(true);
     }
 
     @FXML
@@ -373,14 +363,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (indforståetJa.isSelected()) {
             indforstået = "true";
         }
-
-        System.out.println(CPR.getText() + " " + name.getText() + " " + gender.getText() + " " + birthday.getText() + " " + address.getText() + " " + phone.getText() + " " + email.getText() + " " + videreForløbTarea.getText() + " " + msc + " "
-                + hbdso + " " + angivTilbud.getText() + " " + henvendelsesPerson.getText() + " " + indforstået);
-
         CC.performCommand("caserequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
                 hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
-        //  DomainContact.getInstance().createCaseRequest(CPR.getText(), name.getText(), gender.getText().charAt(0), birthday.getText(), address.getText(), Integer.parseInt(phone.getText()), email.getText(), videreForløbTarea.getText(), Boolean.parseBoolean(msc),
-        //        hbdso.split("#"), angivTilbud.getText(), henvendelsesPerson.getText(), Boolean.parseBoolean(indforstået));
+      
     }
 
     @FXML
@@ -710,20 +695,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             }
 
             this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
-            System.out.println("Størrelsen på ICB: " + icb.size());
             for (ICaseObject c : icb) {
 
                 dropDown.getItems().add(c.getType() + ":  " + c.getDateCreated() + ": " + c.getDesc());
                 dropDown.setValue(c.getType() + " " + c.getDateCreated() + " " + c.getDesc());
             }
-//            int k =  dropDown.getSelectionModel().getSelectedIndex();
-//            c1 = icb.get(k);
-//            beskrivelse.setVisible(true);
-//            oprettetAf.setVisible(true);
-//            gåTil.setVisible(true);
-//            beskrivelse.setText(c1.getDesc());
-            //    oprettetAf.setText(DomainContact.getInstance().getEmployee(c1.getEmployeeID()));
-
+            ScrollTest.setVvalue(xOffset);
             søgSide.clear();
 
         }
@@ -835,8 +812,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleOSButton(ActionEvent event) {
         String personalHelper = "";
-//        if(værgemål.isSelected())
-//            personalHelper += "Værgemål#";
         if (værgeMedMere.isSelected()) {
             personalHelper += "Værgemål med frataget retslig handleevne#";
         }
@@ -860,7 +835,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             }
         }
         if(!PHPOA.isEmpty())
-        PHPOA.substring(0, PHPOA.length() - 1);  //BUG -------------------------------
+        PHPOA.substring(0, PHPOA.length() - 1);  
 
         String electronic = "false";
         if (indforståetElektroniskJa.isSelected()) {
@@ -914,7 +889,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
 
         CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open");
-        // CC.performCommand("case", "1", "soon", "5", "moo", "moo", "nope", "Y", "Y", "no", "s#S#", "no", "no", "open");
+       
     }
 
     @FXML
@@ -959,8 +934,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 opretKøn.setText(Character.toString(p.getGender()));
                 opretFødselsdag.setText(p.getBirthDate());
                 opretAdresse.setText(p.getAddress());
-                //opretAdresse.setText(p.getAddress());
-                //opretAdresse.setText(p.getAddress());
             } else {
                 System.out.println("intet");
             }
@@ -987,7 +960,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             gåTil.setVisible(false);
             ScrollTest.setContent(VBox2);
             
-            // videreForløbAftale.setText(DomainContact.getInstance().editCase(c1.getID()).getNextAppointment());
             boolean bol = false;
             if (c.getGuardianship().equalsIgnoreCase("værgemål")) {
                 bol = true;
@@ -1117,8 +1089,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 } else if (communeIndex >= 1) {
                     secondWordLength++;
                 }
-                System.out.println("Firstword = " + firstWordLength);
-                System.out.println("Secondword = " + secondWordLength);
             }
 
             String communeFinalString = c.getDifferentCommune();
@@ -1131,12 +1101,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
             if (communeIndex > 1) {
                 checkHandleKomune.setSelected(true);
-                System.out.println("i handlekommune: " + secondWordLength);
                 HK.setText(communeFinalString.substring(firstWordLength + 1, firstWordLength + secondWordLength + 1));
                 HK.setDisable(false);
             }
            
-            //caseRequestID.setText(Integer.toString(c1.getID()));
             caseRequestID.setDisable(true);
             handleVærgemål(event);
         }
@@ -1154,7 +1122,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 if ((int) number2 >= 0) {
                     if (i == 0) {
                         c1 = icb.get(((Integer) number2));
-                        //   System.out.println("nummber 2: " + number2 + " Med listestørrelse: " + icb.size());
 
                         beskrivelse.setText(icb.get(((Integer) number2)).getDesc());
                         oprettetAf.setText("MedarbejderID: " + Integer.toString(icb.get(((Integer) number2)).getEmployeeID()));
@@ -1164,10 +1131,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
             }
         });
-
-//        dropDown.getSelectionModel()
-//    .selectedItemProperty()
-//    .addListener( (ObservableValue<? extends String> observable, String oldValue, String newValue) -> beskrivelse.setText(newValue));
     }
 
     @Override
@@ -1280,7 +1243,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkHandleKomune.isSelected()) {
             communeInfo += HK.getText() + "#";
         }
-        System.out.println("caseRequestID: " + Integer.toString(ic.getCaseRequest().getID()));
         CC.performCommand("editcase",Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), Integer.toString(ic.getCaseRequest().getID()), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", Long.toString(ic.getDateCreated().getTime()));
     }
 

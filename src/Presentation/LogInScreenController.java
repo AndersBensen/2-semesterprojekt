@@ -35,7 +35,7 @@ import javafx.stage.Stage;
  */
 public class LogInScreenController implements Initializable, IInjectableController{
     private IDomainContact IDC;
-    CommandConverter CC;
+    private CommandConverter CC;
     private Stage stage;
     private double xOffset;
     private double yOffset;
@@ -52,7 +52,6 @@ public class LogInScreenController implements Initializable, IInjectableControll
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      
-       //  DomainContact.getInstance().injectVisualController(this);
     }
     
 
@@ -118,7 +117,6 @@ public class LogInScreenController implements Initializable, IInjectableControll
     public void injectCommandConverter(CommandConverter commandConverter) {
         
         this.CC = commandConverter;
-        System.out.println("Loginscreen injecCC: " + CC);
     }
 
 
