@@ -979,6 +979,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             gåTil.setVisible(false);
             ScrollTest.setContent(VBox2);
         } else if (c1.getType().equals("Case")) {
+            videreForløbAftale.setText(c.getNextAppointment());
             redigerSag.setVisible(true);
             opretSag.setVisible(false);
             beskrivelse.setVisible(false);
@@ -1279,8 +1280,8 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkHandleKomune.isSelected()) {
             communeInfo += HK.getText() + "#";
         }
-
-        CC.performCommand("editcase",Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), "3", videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", "12314123");
+        System.out.println("caseRequestID: " + Integer.toString(ic.getCaseRequest().getID()));
+        CC.performCommand("editcase",Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), Integer.toString(ic.getCaseRequest().getID()), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", Long.toString(ic.getDateCreated().getTime()));
     }
 
 }

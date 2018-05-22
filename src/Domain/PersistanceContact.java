@@ -175,10 +175,12 @@ public class PersistanceContact {
         int caseID = Integer.parseInt(c[0]);
         CaseRequest caseRequest = getCaseRequest(caseRequestID);
         logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
-        
+        System.out.println("Persistance1: " + c[15]);
+        System.out.println("Persistance2: " + c[16]);
         Date dateCreated = new Date(Long.parseLong(c[15]));
         Date dateModified = new Date(Long.parseLong(c[16]));
-        
+        System.out.println("Persistance3: " + dateCreated);
+        System.out.println("Persistance4: " + dateModified);
         Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);

@@ -21,8 +21,10 @@ public class CommandConverter {
 
 
     public int performCommand(String command, String... args) {
-       for (String s : args){
-           System.out.println(s);
+       int i = 0;
+        for (String s : args){
+           System.out.println("arg: " + i + " har: " + s);
+           i++;
        }
         switch (command.toLowerCase()) {
             case "caserequest":
@@ -91,7 +93,6 @@ public class CommandConverter {
                     String differentCommune = args[13];
                     String state = args[14];
                     Date dateCreated = new Date(Long.parseLong(args[15]));
-
                     return domainContact.saveEditedCase(caseID, employeeID, caseRequestID,
                             nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney,
                             citizenRights, citizenInformedElectronic, consent, consentType,

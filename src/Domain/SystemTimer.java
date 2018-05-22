@@ -61,8 +61,6 @@ public final class SystemTimer implements Runnable {
         });
         
             clearThread();
-
-
     }
 
 }
