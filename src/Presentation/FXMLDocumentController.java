@@ -774,11 +774,16 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("logInScreen.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            
+            IDC.logout();
+            
             IInjectableController controller = loader.getController();
             controller.injectStage(stage);
             controller.injectDomainContact(IDC);
             controller.injectCommandConverter(CC);
+            
+            Scene scene = new Scene(root);
+            
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
