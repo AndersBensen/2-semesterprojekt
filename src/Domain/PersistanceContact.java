@@ -149,11 +149,11 @@ public class PersistanceContact {
         CaseRequest currentCaseRequest = new CaseRequest(employeeID, caseRequestID, citizen, dateCreated, dateModified);
 
         currentCaseRequest.setDescription(cr[2]);
-        currentCaseRequest.setMessageClear(Boolean.parseBoolean(cr[3]));
+        currentCaseRequest.setMessageClear(getBooleanFromInput(cr[3]));
         currentCaseRequest.setCarePackageRequested(cr[4].split("#"));
         currentCaseRequest.setRehousingPackageRequested(cr[5]);
         currentCaseRequest.setRequestPerson(cr[6]);
-        currentCaseRequest.setCitizenInformed(Boolean.parseBoolean(cr[7]));
+        currentCaseRequest.setCitizenInformed(getBooleanFromInput(cr[7]));
 
         return currentCaseRequest;
     }
@@ -175,18 +175,16 @@ public class PersistanceContact {
         int caseID = Integer.parseInt(c[0]);
         CaseRequest caseRequest = getCaseRequest(caseRequestID);
         logAction(DomainContact.getInstance().getCurrentUser().getId(), LogAction.GET_CASE_REQUEST, "Retrieved CaseRequest (ID " + caseRequest + ") for Case (ID " + caseID + ")");
-        
         Date dateCreated = new Date(Long.parseLong(c[15]));
         Date dateModified = new Date(Long.parseLong(c[16]));
-        
         Case currentCase = new Case(caseID, Integer.parseInt(c[1]), caseRequest, dateCreated, dateModified);
         currentCase.setNextAppointment(c[3]);
         currentCase.setGuardianship(c[4]);
         currentCase.setPersonalHelper(c[5]);
         currentCase.setPersonalHelperPowerOfAttorney(c[6]);
         currentCase.setCitizenRights(c[7]);
-        currentCase.setCitizenInformedElectronic(Boolean.parseBoolean(c[8]));
-        currentCase.setConsent(Boolean.parseBoolean(c[9]));
+        currentCase.setCitizenInformedElectronic(getBooleanFromInput(c[8]));
+        currentCase.setConsent(getBooleanFromInput(c[9]));
         currentCase.setConsentType(c[10]);
         currentCase.setCollectCitizenInfo(c[11].split("#"));
         currentCase.setSpecialCircumstances(c[12]);
@@ -337,4 +335,15 @@ public class PersistanceContact {
 //        System.out.println(pc.getCase(1));
 //        System.out.println(pc.getCaseRequest(1).toString());
 //    }
+    
+    private boolean getBooleanFromInput(String input) {
+        if (input.equalsIgnoreCase("T") || input.equalsIgnoreCase("true")) {
+            return true;
+        } else if (input.equalsIgnoreCase("F") || input.equalsIgnoreCase("false")) {
+            return false;
+        } else {
+            System.out.println("Method getBooleanFromInput: CANNOT CONVERT STRING TO BOOLEAN");
+            return false;
+        }
+    }
 }

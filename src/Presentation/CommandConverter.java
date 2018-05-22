@@ -1,18 +1,32 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
+import Domain.DomainContact;
+import java.util.Arrays;
 import java.util.Date;
 
 public class CommandConverter {
 
     private IDomainContact domainContact;
 
+    public CommandConverter() {
+        domainContact = DomainContact.getInstance();
+    }
+    
+    
+
     public void injectDomainContact(IDomainContact domainContact) {
         this.domainContact = domainContact;
     }
 
+
     public int performCommand(String command, String... args) {
-        switch (command) {
+       int i = 0;
+        for (String s : args){
+           System.out.println("arg: " + i + " har: " + s);
+           i++;
+       }
+        switch (command.toLowerCase()) {
             case "caserequest":
                 try {
                     String citizenCPR = args[0];
@@ -79,7 +93,6 @@ public class CommandConverter {
                     String differentCommune = args[13];
                     String state = args[14];
                     Date dateCreated = new Date(Long.parseLong(args[15]));
-
                     return domainContact.saveEditedCase(caseID, employeeID, caseRequestID,
                             nextAppointment, guardianship, personalHelper, personalHelperPowerOfAttorney,
                             citizenRights, citizenInformedElectronic, consent, consentType,
@@ -129,9 +142,9 @@ public class CommandConverter {
     }
 
     private boolean getBooleanFromInput(String input) {
-        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true")) {
+        if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t")) {
             return true;
-        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")) {
+        } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("false")|| input.equalsIgnoreCase("f")) {
             return false;
         } else {
             System.out.println("Method getBooleanFromInput: CANNOT CONVERT STRING TO BOOLEAN");

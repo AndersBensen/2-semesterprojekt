@@ -34,7 +34,7 @@ public class DomainContact implements IDomainContact {
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
             String citizenMail, String desc, boolean isMessageClear, String[] carePackage,
             String rehousingPackage, String requestPerson, boolean isCitizenInformed) {
-        
+
         if (userLoggedIn() && currentUser instanceof CaseEmployee) {
             CaseEmployee caseEmployee = (CaseEmployee) currentUser;
             return caseEmployee.createCaseRequest(PersistanceContact.getInstance().getNewCaseRequestID(),
@@ -157,6 +157,7 @@ public class DomainContact implements IDomainContact {
         
         //Initialize timerthread
         timerThread = new Thread(timer);
+        timerThread.setDaemon(true);
         timer.injectTimerThread(timerThread);
         timerThread.start();
     }
