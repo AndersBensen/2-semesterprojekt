@@ -126,9 +126,15 @@ public class WriteDB extends AbstractDB implements IWriter {
     @Override
     public int deleteEmployee(int id) {
         try {
-            String query = "DELETE FROM Employee "
-                    + "WHERE id = " + id;
-            PreparedStatement ps = db.prepareStatement(query);
+            int empID = id;
+            String query1 = "DELETE FROM Log " 
+                    + "WHERE employeeID = " + empID; 
+            PreparedStatement ps = db.prepareStatement(query1);
+            ps.execute();
+                    
+            String query2 = "DELETE FROM Employee "
+                    + "WHERE id = " + empID;
+            ps = db.prepareStatement(query2);
             ps.execute();
             ps.close();
             return id;
