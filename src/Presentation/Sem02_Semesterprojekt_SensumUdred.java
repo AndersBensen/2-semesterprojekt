@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class Sem02_Semesterprojekt_SensumUdred extends Application {
 
     private static IDomainContact IDC;
-    private CommandConverter CC;
+    private static CommandConverter CC;
 
     public void injectDomain(IDomainContact IDC) {
         this.IDC = IDC;
