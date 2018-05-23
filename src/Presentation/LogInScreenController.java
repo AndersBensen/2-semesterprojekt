@@ -42,16 +42,33 @@ public class LogInScreenController implements Initializable, IInjectableControll
 
     }
 
+    /**
+     * Overrided method from IInjectableController.
+     * Injects a stage into this controller
+     * @param stage 
+     */
     @Override
     public void injectStage(Stage stage) {
         this.stage = stage;
     }
+    
+    /**
+     * Overrided method from IInjectableController.
+     * Injects a reference of the interface for DomainContact
+     * @param IDC 
+     */
 
     @Override
     public void injectDomainContact(IDomainContact IDC)
     {
         this.IDC = IDC;
     }
+    
+    /**
+     * Overrided method from IInjectableController.
+     * Injects a reference to CommandConverter
+     * @param commandConverter 
+     */
 
     @Override
     public void injectCommandConverter(CommandConverter commandConverter) {
@@ -69,6 +86,13 @@ public class LogInScreenController implements Initializable, IInjectableControll
             changeScene();
         }
     }
+    
+    /**
+     * This method changes to the system stage, if username and password is
+     * valid. If valid, the controller associated with this root injects
+     * all the necessary references for CommandConverter, IDomainContact and 
+     * stage.
+     */
     
     private void changeScene ()
     {
