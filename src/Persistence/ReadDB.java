@@ -14,7 +14,7 @@ public class ReadDB extends AbstractDB implements IReader {
      * database. The caserequest that is chosen is selected with a specific
      * id that the method takes as a argument. All the information that is
      * in the database about the caserequest is returned as a string array.
-     * @param id
+     * @param id int
      * @return string array with caserequest information
      */
     @Override
@@ -56,7 +56,7 @@ public class ReadDB extends AbstractDB implements IReader {
      * database. The case that is chosen is selected with a specific
      * id that the method takes as a argument. All the information that is
      * in the database about the case is returned as a string array.
-     * @param id
+     * @param id int
      * @return string array with case information
      */
     @Override
@@ -97,8 +97,8 @@ public class ReadDB extends AbstractDB implements IReader {
      * This method returns all the information about a specific employee in the
      * database. The sql query searches for a specific username and password
      * that is taken as arguments in the method. 
-     * @param username
-     * @param password
+     * @param username String
+     * @param password String
      * @return string array with employee information 
      */
     @Override
@@ -133,7 +133,7 @@ public class ReadDB extends AbstractDB implements IReader {
      * This method searches for all the information about a  specific person in the 
      * database. The sql query searches for a specific cpr and returns all the
      * information found in a string array.
-     * @param cpr
+     * @param cpr String
      * @return string array with person information. 
      */
     @Override
@@ -162,7 +162,7 @@ public class ReadDB extends AbstractDB implements IReader {
      * This method searches for all the information about a  specific employee in the 
      * database. The sql query searches for a specific id and returns all the
      * information found in a string array.
-     * @param id
+     * @param id int
      * @return string array with employee information. 
      */
     @Override
@@ -224,7 +224,7 @@ public class ReadDB extends AbstractDB implements IReader {
     /**
      * This method returns some of the information from a caserequest
      * depending on the citizencpr that is connected to the caserequest.
-     * @param citizenCPR
+     * @param citizenCPR String
      * @return List with the type of string array with some of the information
      * about a specific caserequest. 
      */
@@ -260,7 +260,7 @@ public class ReadDB extends AbstractDB implements IReader {
      * matches the information depending on which caserequest id the case 
      * has. If the id's are the same as the id that the cpr number belongs to,
      * then the information is returned. 
-     * @param citizenCPR
+     * @param citizenCPR String
      * @return List with the type of string array with some of the information
      * about a specific case. 
      */

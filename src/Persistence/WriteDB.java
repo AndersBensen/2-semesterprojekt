@@ -14,8 +14,8 @@ public class WriteDB extends AbstractDB implements IWriter {
      * This method writes a caserequest to the database. The sql query
      * is a simple insert into, where it uses a preparedstatment to
      * put all the information in from the caserequest, which the method
-     * takes as an arugment. 
-     * @param ICR
+     * takes as an argument. 
+     * @param ICR ICaseRequest
      * @return caserequest id
      */
     @Override
@@ -64,7 +64,7 @@ public class WriteDB extends AbstractDB implements IWriter {
      * that is given with the method as an argument. This is because 
      * this method also works as an edit case method. It then inserts
      * all the information from the case with an sql query, 
-     * @param cases
+     * @param cases ICase
      * @return case id
      */
     @Override
@@ -115,8 +115,8 @@ public class WriteDB extends AbstractDB implements IWriter {
      * This method writes all the information about an employee to the database.
      * The method takes an Iemployee as argument and sends all the information
      * to the database.
-     * @param employee
-     * @param position
+     * @param employee IEmployee
+     * @param position int
      * @return employee id
      */
     @Override
@@ -152,7 +152,7 @@ public class WriteDB extends AbstractDB implements IWriter {
      * a foreign key between the Log table and the Employee table then it is
      * not possible to simply delete an employee. All the logs in the database 
      * with the employee id must be deleted first. 
-     * @param id
+     * @param id int
      * @return emplyoee id 
      */
     @Override
@@ -179,7 +179,7 @@ public class WriteDB extends AbstractDB implements IWriter {
     /**
      * This method takes all the information about a log and writes it to the
      * database. 
-     * @param log 
+     * @param log ILog 
      */
     @Override
     public void writeLog(ILog log) {
