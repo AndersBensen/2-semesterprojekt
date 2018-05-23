@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Case implements ICase {   // Mangler at logge
-
+    
+    // Information stored on a Case
     private int ID;
     private int employeeID;
     private CaseRequest caseRequest;
@@ -25,6 +26,9 @@ public class Case implements ICase {   // Mangler at logge
     private Date dateCreated;
     private Date dateModified;
 
+    // *******************************
+    // ********* Constructors ********
+    // *******************************
     public Case(int caseID, int employeeID, CaseRequest caseRequest) {
         this(caseID, employeeID, caseRequest, new Date(), new Date());
     }
@@ -43,7 +47,9 @@ public class Case implements ICase {   // Mangler at logge
         this.dateModified = dateModified;
     }
     
-    //Getter methods
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public int getID() {
         return ID;
@@ -133,7 +139,9 @@ public class Case implements ICase {   // Mangler at logge
         return dateModified;
     }
 
-    //Setter methods
+    // *******************************
+    // *********   Setters   *********
+    // *******************************
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
         updateDateModified();
@@ -195,6 +203,9 @@ public class Case implements ICase {   // Mangler at logge
         updateDateModified();
     }
     
+    // *******************************
+    // *********    Misc    **********
+    // *******************************
     @Override
     public String toString() {
         return "ID: " + ID + "\nEmployeeID: " + employeeID + "\nCase request ID: " + caseRequest.getID() + "\n1. Next Appointment: "
@@ -206,6 +217,9 @@ public class Case implements ICase {   // Mangler at logge
                 + "\n11. Different commune: " + differentCommune + "\n12. State: " + state;
     }
     
+    // *******************************
+    // *********   Private   *********
+    // *******************************
     private void updateDateModified ()
     {
         dateModified = new Date();

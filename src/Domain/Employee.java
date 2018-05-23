@@ -4,13 +4,14 @@ import Acquaintance.IEmployee;
 
 public class Employee extends Person implements IEmployee {
 
-    /**
-     * Below is some attributes that make Employees unique compared to Persons.
-     */
+    // These attributes makes an employee unique compared to a person
     private int id;
     private String userName;
     private String password;
 
+    // *******************************
+    // ********* Constructors ********
+    // *******************************
     public Employee(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail);
         this.id = id;
@@ -18,6 +19,9 @@ public class Employee extends Person implements IEmployee {
         this.password = password;
     }
 
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public int getId() {
         return id;
@@ -33,6 +37,9 @@ public class Employee extends Person implements IEmployee {
         return password;
     }
 
+    // *******************************
+    // *********   Setters   *********
+    // *******************************
     public void setId(int id) {
         this.id = id;
     }

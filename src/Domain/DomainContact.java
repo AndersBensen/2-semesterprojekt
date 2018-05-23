@@ -12,23 +12,49 @@ import java.util.List;
 
 public class DomainContact implements IDomainContact {
 
+    // *******************************
+    // *********  Singleton  *********
+    // *******************************
     private static DomainContact instance = null;
-    private SystemTimer timer;
-    private volatile Thread timerThread;
-
     public static DomainContact getInstance() {
         if (instance == null) {
             instance = new DomainContact();
         }
         return instance;
     }
-
-    private Employee currentUser;
-
+    
     private DomainContact() {
         this.currentUser = null;
     }
+    
+    // *******************************
+    // ********   Attributes  ********
+    // *******************************
+    
+    // Information about the current system
+    private Employee currentUser;
+    private SystemTimer timer;
+    private volatile Thread timerThread;
 
+    /**
+     * This method parses information about a new case request to the current user.
+     * @param citizenCPR String
+     * @param citizenName String
+     * @param citizenGender char
+     * @param citizenBirthdate String
+     * @param citizenAddress String
+     * @param citizenPhoneNr Integer
+     * @param citizenMail String
+     * @param desc String
+     * @param isMessageClear boolean
+     * @param carePackage String[]
+     * @param rehousingPackage String
+     * @param requestPerson String
+     * @param isCitizenInformed boolean
+     * @return (int) The id of the newly created CaseRequest. If the value is -1,
+     * a case request was not created correctly and therefore wasn't saved in
+     * the database
+     */
     @Override
     public int createCaseRequest(String citizenCPR, String citizenName, char citizenGender,
             String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr,
@@ -47,6 +73,24 @@ public class DomainContact implements IDomainContact {
         return -1;
     }
 
+    /**
+     * This method parses information about a new case to the current user.
+     * @param caseRequestID int
+     * @param nextAppointment String
+     * @param guardianship String
+     * @param personalHelper String
+     * @param personalHelperPowerOfAttorney String
+     * @param citizenRights String
+     * @param citizenInformedElectronic boolean
+     * @param consent boolean
+     * @param consentType String
+     * @param collectCitizenInfo String[]
+     * @param specialCircumstances String
+     * @param differentCommune String
+     * @param state String
+     * @return (int) The id of the newly created Case. If the value is -1, a 
+     * case was not created correctly and therefore wasn't saved in the database
+     */
     @Override
     public int createCase(int caseRequestID, String nextAppointment, String guardianship,
             String personalHelper, String personalHelperPowerOfAttorney, String citizenRights,
@@ -65,6 +109,11 @@ public class DomainContact implements IDomainContact {
         return -1;
     }
     
+    /**
+     * This method ask the current user for a case with a specific id
+     * @param caseID int
+     * @return (ICase) The case if any with the specific id
+     */
     @Override
     public ICase editCase(int caseID) {
         if (userLoggedIn() && currentUser instanceof SocialWorker) {
@@ -76,6 +125,28 @@ public class DomainContact implements IDomainContact {
         return null; 
     }
 
+    /**
+     * This method parses information about an existing case to the current user.
+     * @param caseID int
+     * @param employeeID int
+     * @param caseRequestID int
+     * @param nextAppointment String
+     * @param guardianship String
+     * @param personalHelper String
+     * @param personalHelperPowerOfAttorney String
+     * @param citizenRights String
+     * @param citizenInformedElectronic boolean
+     * @param consent boolean
+     * @param consentType String
+     * @param collectCitizenInfo String[]
+     * @param specialCircumstances String
+     * @param differentCommune String
+     * @param state String
+     * @param dateCreated Date
+     * @return (int) The id of the newly edited Case. If the value is -1, the 
+     * case was not edited correctly and therefore the changes wasn't saved in
+     * the database
+     */
     @Override
     public int saveEditedCase(int caseID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
@@ -94,6 +165,22 @@ public class DomainContact implements IDomainContact {
         return -1;
     }
 
+    /**
+     * This method parses information about a new employee to the current user.
+     * @param CPR String
+     * @param name String
+     * @param gender char
+     * @param birthdate String
+     * @param Address String
+     * @param phoneNr Integer
+     * @param mail String
+     * @param username String
+     * @param password String
+     * @param positionNumber int
+     * @return (int) The id of the newly created Employee. If the value is -1, an
+     * employee was not created correctly and therefore wasn't saved in the
+     * database
+     */
     @Override
     public int addEmployee(String CPR, String name, char gender, String birthdate, String Address,
             Integer phoneNr, String mail, String username, String password, int positionNumber) {
@@ -108,6 +195,14 @@ public class DomainContact implements IDomainContact {
         return -1;
     }
 
+    /**
+     * This method prompt the current user to delete an employee with the
+     * specific id.
+     * @param employeeID int
+     * @return (int) The id of the deleted Employee. If the value is -1, an
+     * employee was not deleted correctly and therefore wasn't removed from the
+     * database
+     */
     @Override
     public int deleteEmployee(int employeeID) {
         if (userLoggedIn() && currentUser instanceof Admin) {
@@ -119,6 +214,15 @@ public class DomainContact implements IDomainContact {
         return -1;
     }
 
+    /**
+     * This method checks if the username and password matches any users in the
+     * system.
+     * 
+     * If the information matchs, the user is logged into the system
+     * @param username String
+     * @param password String
+     * @return (boolean) Returns whether or not a user was logged in
+     */
     @Override
     public boolean login(String username, String password) {
         PersistanceContact PS = PersistanceContact.getInstance();
@@ -134,6 +238,12 @@ public class DomainContact implements IDomainContact {
         return false;
     }
 
+    /**
+     * This method logs the current user out of the system.
+     * 
+     * @return (boolean) Returns whether or not a user was logged out of the
+     * system
+     */
     @Override
     public boolean logout() {
         if (userLoggedIn()) {
@@ -150,6 +260,12 @@ public class DomainContact implements IDomainContact {
         return false;
     }
 
+    /**
+     * This method injects a reference to the presentation layer and starts the 
+     * timer thread.
+     * 
+     * @param IVC IVisualController
+     */
     @Override
     public void injectVisualController(IVisualController IVC) {
         timer = new SystemTimer();
@@ -162,11 +278,21 @@ public class DomainContact implements IDomainContact {
         timerThread.start();
     }
 
+    /**
+     * This method tells the current timer to start over.
+     */
     @Override
     public void resetTimer() {
         timer.resetTimer();
     }
 
+    /**
+     * This method is used to check if the current user is allowed to perform a 
+     * specific command.
+     * 
+     * @param command String
+     * @return (boolean) Returns whether or not the user is authorized
+     */
     @Override
     public boolean authorizeCommand(String command) {
         boolean authorized = false;
@@ -213,6 +339,14 @@ public class DomainContact implements IDomainContact {
         return authorized;
     }
 
+    /**
+     * This method is used to retrieve all cases and case requests as
+     * CaseObjects that affect a citizen with the specific CPR.
+     * 
+     * @param citizenCPR String
+     * @return (List ICaseObject) Returns all the CaseObjects that responds to
+     * the citizen's CPR
+     */
     @Override
     public List<ICaseObject> getCaseObject(String citizenCPR) {
         List<ICaseObject> iCaseObjectList = new ArrayList<>();
@@ -240,7 +374,13 @@ public class DomainContact implements IDomainContact {
         
         return iCaseObjectList;
     }
-
+    
+    /**
+     * This method is used to get a person with the specific CPR.
+     * 
+     * @param CPR String
+     * @return (IPerson) Returns the person if any with the specific CPR
+     */
     @Override
     public IPerson getPerson(String CPR) {
         if (!userLoggedIn()) {
@@ -253,6 +393,12 @@ public class DomainContact implements IDomainContact {
         return PS.getPerson(CPR);
     }
 
+    /**
+     * This method is used to get an employee with the specific id.
+     * 
+     * @param ID int
+     * @return (IEmployee) Returns an employee if any with the specific id
+     */
     @Override
     public IEmployee getEmployee(int ID)
     {
@@ -265,7 +411,12 @@ public class DomainContact implements IDomainContact {
                 "User requested for an employee with ID: " + ID);
         return PS.getEmployee(ID);
     }
-
+    
+    /**
+     * This method is used to get the current user.
+     * 
+     * @return (Employee) Returns the current user if any
+     */
     @Override
     public Employee getCurrentUser() {
         return currentUser;

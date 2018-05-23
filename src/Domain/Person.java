@@ -4,6 +4,7 @@ import Acquaintance.IPerson;
 
 public class Person implements IPerson {
 
+    // Information stored on a Person
     private String cpr;
     private String name;
     private char gender;
@@ -12,6 +13,9 @@ public class Person implements IPerson {
     private Integer phoneNumber;
     private String mail;
 
+    // *******************************
+    // ********* Constructors ********
+    // *******************************
     public Person(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail) {
         this.cpr = cpr;
         this.name = name;
@@ -22,6 +26,9 @@ public class Person implements IPerson {
         this.mail = mail;
     }
 
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public String getCpr() {
         return cpr;
@@ -57,6 +64,9 @@ public class Person implements IPerson {
         return mail;
     }
 
+    // *******************************
+    // *********   Setters   *********
+    // *******************************
     public void setCpr(String cpr) {
         this.cpr = cpr;
     }

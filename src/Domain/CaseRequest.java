@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class CaseRequest implements ICaseRequest {
 
-    //CaseAttributes
+    // Information stored on a CaseRequest
     private int ID;
     private int employeeID;
     private Person citizen;
@@ -18,6 +18,9 @@ public class CaseRequest implements ICaseRequest {
     private Date dateCreated;
     private Date dateModified;
     
+    // *******************************
+    // ********* Constructors ********
+    // *******************************
     public CaseRequest(int ID, int employeeID, Person citizen) {
         this(ID, employeeID, citizen, new Date(), new Date());
     }
@@ -31,7 +34,9 @@ public class CaseRequest implements ICaseRequest {
         this.dateModified = dateModified;
     }
 
-    //Getter methods
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public int getID() {
         return ID;
@@ -90,7 +95,9 @@ public class CaseRequest implements ICaseRequest {
         return dateModified;
     }
     
-    //Setter methods
+    // *******************************
+    // *********   Setters   *********
+    // *******************************
     public void setDescription(String description) {
         this.description = description;
         updateDateModified();
@@ -131,6 +138,9 @@ public class CaseRequest implements ICaseRequest {
         updateDateModified();
     }
     
+    // *******************************
+    // *********   Private   *********
+    // *******************************
     private void updateDateModified ()
     {
         dateModified = new Date();

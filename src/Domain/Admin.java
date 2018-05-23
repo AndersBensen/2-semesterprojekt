@@ -7,23 +7,24 @@ public class Admin extends Employee {
     }
 
     /**
-     * The method addEmployee adds an emplyoee to the persistance layer. The
-     * method takes the different attributes that a employee needs and
-     * instantitates as either a Secretary, SocialWorker or an Admin depending n
-     * the positionNumber given. It also logs activity with a description of the
-     * activity.
+     * This method adds an emplyoee to the database. 
+     * It takes the information that an employee needs and creates an object of
+     * either a Secretary, SocialWorker or an Admin depending on the positionNumber
+     * given. It also logs activity with a description of the activity.
      *
-     * @param cpr
-     * @param name
-     * @param gender
-     * @param birthDate
-     * @param address
-     * @param phoneNumber
-     * @param mail
-     * @param id
-     * @param userName
-     * @param password
-     * @param positionNumber
+     * @param cpr String
+     * @param name String
+     * @param gender char
+     * @param birthDate String
+     * @param address String
+     * @param phoneNumber Integer
+     * @param mail String
+     * @param id int
+     * @param userName String
+     * @param password String
+     * @param positionNumber int
+     * @return (int) The id of the newly created Employee. If the value is -1, the 
+     * employee was not created correctly and therefore wasn't saved in the database
      */
     public int addEmployee(String cpr, String name, char gender, String birthDate, String address,
             Integer phoneNumber, String mail, int id, String userName, String password, int positionNumber) {
@@ -55,10 +56,13 @@ public class Admin extends Employee {
     }
 
     /**
-     * This method deletes an employee with the matching employee id. It also
-     * logs the activity with a description of what happened.
-     *
-     * @param id
+     * This method deletes an employee with the matching employee id.
+     * It removes the employee with the given id from the database and logs the 
+     * activity with a description of what happened.
+     * 
+     * @param id int
+     * @return (int) The id of the deleted Employee. If the value is -1, the employee 
+     * was not deleted correctly and therefore wasn't removed from the database
      */
     public int deleteEmployee(int id) {
         DomainContact dc = DomainContact.getInstance();
