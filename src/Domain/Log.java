@@ -5,11 +5,15 @@ import java.util.Date;
 
 public class Log implements ILog {
 
+    // Information stored in a Log
     private int employeeID;
     private LogAction action;
     private String desc;
     private Date date;
 
+    // *******************************
+    // ********* Constructors ********
+    // *******************************
     public Log(int employeeID, LogAction action, String desc) {
         this.employeeID = employeeID;
         this.action = action;
@@ -17,6 +21,9 @@ public class Log implements ILog {
         date = new Date();
     }
 
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public int getEmployeeID() {
         return employeeID;
@@ -37,6 +44,9 @@ public class Log implements ILog {
         return date;
     }
     
+    // *******************************
+    // *********    Misc    **********
+    // *******************************
     @Override
     public String toString ()
     {

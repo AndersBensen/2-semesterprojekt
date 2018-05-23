@@ -8,13 +8,10 @@ import java.util.List;
 
 public class PersistanceContact {
 
+    // *******************************
+    // *********  Singleton  *********
+    // *******************************
     private static PersistanceContact instance = null;
-    private IWriter writer;
-    private IReader reader;
-    private int currentCaseID;
-    private int currentCaseRequestID;
-    private int currentEmployeeID;
-
     public static PersistanceContact getInstance() {
         if (instance == null) {
             instance = new PersistanceContact();
@@ -22,8 +19,21 @@ public class PersistanceContact {
         return instance;
     }
 
-    private PersistanceContact() {
-    }
+    private PersistanceContact() {}
+    
+    // *******************************
+    // ********   Attributes  ********
+    // *******************************
+    
+    // Recerences to the writer and reader of the database
+    private IWriter writer;
+    private IReader reader;
+    
+    // Information about the current system
+    private int currentCaseID;
+    private int currentCaseRequestID;
+    private int currentEmployeeID;
+
 
     /**
      * Injects a writer to the PersistanceContact.
@@ -45,10 +55,13 @@ public class PersistanceContact {
     }
 
     /**
-     * Saves the case request.
+     * This method sends the case request to the writer to be stored in the 
+     * database.
      *
-     * @param caseRequest
-     * @return
+     * @param caseRequest CaseRequest
+     * @return (int) The id of the newly created CaseRequest. If the value is -1,
+     * a case request was not created correctly and therefore wasn't saved in
+     * the database
      */
     public int saveCaseRequest(CaseRequest caseRequest) {
         System.out.println("PersistenceContact: saveCaseRequest");
@@ -56,10 +69,11 @@ public class PersistanceContact {
     }
 
     /**
-     * Saves the case
+     * This method sends the case to the writer to be stored in the database.
      *
-     * @param c
-     * @return String for the user.
+     * @param c Case
+     * @return (int) The id of the newly created Case. If the value is -1, a 
+     * case was not created correctly and therefore wasn't saved in the database
      */
     public int saveCase(Case c) {
         System.out.println("PersistenceContact: saveCase");
@@ -67,10 +81,12 @@ public class PersistanceContact {
     }
 
     /**
-     * Save the employee to the database
+     * This method sends the employee to the writer to be stored in the database.
      *
-     * @param employee
-     * @return
+     * @param employee Employee
+     * @return (int) The id of the newly created Employee. If the value is -1, an
+     * employee was not created correctly and therefore wasn't saved in the
+     * database
      */
     public int saveEmployee(Employee employee) {
         System.out.println("PersistenceContact: saveEmployee");
@@ -90,16 +106,43 @@ public class PersistanceContact {
     }
 
     /**
-     * Deletes the employee from the database
+     * This method sends the id of an employee to the writer to be deleted from 
+     * the database.
      *
-     * @param id ID of employee
-     * @return
+     * @param id int
+     * @return (int) The id of the deleted Employee. If the value is -1, an 
+     * employee was not deleted correctly and therefore wasn't removed from the 
+     * database
      */
     public int deleteEmployee(int id) {
         System.out.println("PersistenceContact: deleteEmployee");
         return writer.deleteEmployee(id);
     }
 
+    /**
+     * This method takes information which should be logged and sends it to the 
+     * writer to be stored in the database.
+     *
+     * @param employeeID int
+     * @param action LogAction
+     * @param desc String
+     */
+    public void logAction(int employeeID, LogAction action, String desc) {
+        System.out.println("PersistenceContact: logAction");
+        
+        Log log = new Log(employeeID, action, desc);
+        writer.writeLog(log);
+    }
+
+    /**
+     * This method sends information to the database to check if the username
+     * and password matches any users in the system.
+     * 
+     * @param username
+     * @param password
+     * @return (Employee) Returns the employee if any with the specific username
+     *  and password
+     */
     public Employee login(String username, String password) {
         System.out.println("PersistenceContact: login");
         
@@ -114,24 +157,12 @@ public class PersistanceContact {
     }
 
     /**
-     * Saves a log of the action performed
+     * This method retrieves a case request with the specific id from the
+     * database through the reader.
      *
-     * @param employeeID
-     * @param action
-     * @param desc
-     */
-    public void logAction(int employeeID, LogAction action, String desc) {
-        System.out.println("PersistenceContact: logAction");
-        
-        Log log = new Log(employeeID, action, desc);
-        writer.writeLog(log);
-    }
-
-    /**
-     * Gets the case request based on the case request ID
-     *
-     * @param ID the id of the CaseRequest
-     * @return CaseRequest
+     * @param ID int
+     * @return (CaseRequest) Returns the case request if any with the specific 
+     * id
      */
     public CaseRequest getCaseRequest(int ID) {
         String[] cr = reader.getCaseRequest(ID);
@@ -162,10 +193,11 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets the case based on the case ID
+     * This method retrieves a case with the specific id from the database 
+     * through the reader.
      *
-     * @param ID The id of the Case
-     * @return Case
+     * @param ID int
+     * @return (Case) Returns the case if any with the specific id
      */
     public Case getCase(int ID) {
         String[] c = reader.getCase(ID);
@@ -196,6 +228,14 @@ public class PersistanceContact {
         return currentCase;
     }
     
+    /**
+     * This method is used to retrieve all cases and case requests as
+     * CaseObjects that affect a citizen with the specific CPR.
+     * 
+     * @param citizenCPR String
+     * @return (List CaseObject) Returns all the CaseObjects that responds to
+     * the citizen's CPR
+     */
     public List<CaseObject> getCaseObject(String citizenCPR) {
         List<CaseObject> caseObjects = new ArrayList<>();
         
@@ -223,10 +263,11 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets the person based on a CPR number
+     * This method retrieves a person with the specific CPR from the database 
+     * through the reader.
      *
-     * @param CPR
-     * @return Person
+     * @param CPR String
+     * @return (Person) Returns the Person if any with the specific id
      */
     public Person getPerson(String CPR) {
         String[] p = reader.getPerson(CPR);
@@ -243,10 +284,11 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets an employee based on the ID
+     * This method retrieves an employee with the specific id from the database 
+     * through the reader.
      *
-     * @param ID
-     * @return Employee
+     * @param ID int
+     * @return (Employee) Returns the Employee if any with the specific id
      */
     public Employee getEmployee(int ID) {
         String[] e = reader.getEmployee(ID);
@@ -260,9 +302,9 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets a case request ID for a new case request.
+     * This method retrieves the ID for a new case request.
      *
-     * @return int currentCaseRequestID
+     * @return (int) Returns the id
      */
     public int getNewCaseRequestID() {
         currentCaseRequestID++;
@@ -271,9 +313,9 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets a case ID for a new case.
+     * This method retrieves the ID for a new case.
      *
-     * @return int currentCaseID
+     * @return (int) Returns the id
      */
     public int getNewCaseID() {
         currentCaseID++;
@@ -282,9 +324,9 @@ public class PersistanceContact {
     }
 
     /**
-     * Gets a employee ID for a new employee.
+     * This method retrieves the ID for a new employee.
      *
-     * @return int currentEmployeeID
+     * @return (int) Returns the id
      */
     public int getNewEmployeeID() {
         currentEmployeeID++;
@@ -293,8 +335,9 @@ public class PersistanceContact {
     }
 
     /**
-     * Method is used to set the fields in PersistenceContact. This method is
-     * called when a reader is injected to PersistanceContant.
+     * This method initialize the id attributes with information from the 
+     * database. This method is called when a reader is injected into the 
+     * PersistanceContant
      */
     private void readCurrentIDs() {
         int[] ids = reader.getCurrentIDs();
@@ -306,11 +349,19 @@ public class PersistanceContact {
     /**
      * Writes the current IDs to the database. This method is called whenever
      * there is a change in those fields.
+     * @deprecated This method is not to be used with a relationel database. It
+     * should only be used with the database using textfiles
      */
     private void writeCurrentIDs() {
         //writer.writeIDs(currentCaseID, currentCaseRequestID, currentEmployeeID);
     }
 
+    /**
+     * This method creates an employee based on the information given.
+     * 
+     * @param e String[]
+     * @return (Employee) Returns the employee created
+     */
     private Employee createEmployee(String[] e) {
         Employee employee = null;
         Integer employeePhoneNr = e[5].trim().equals("-1") ? null : Integer.parseInt(e[5]);
@@ -331,14 +382,13 @@ public class PersistanceContact {
         }
         return employee;
     }
-//    public static void main(String[] args) {
-//        PersistanceContact pc = PersistanceContact.getInstance();
-//        pc.injectReader(new ReadDB());
-//        System.out.println(pc.getCaseObject("36217861"));
-//        System.out.println(pc.getCase(1));
-//        System.out.println(pc.getCaseRequest(1).toString());
-//    }
     
+    /**
+     * Transform a string to the corresponding boolean.
+     * 
+     * @param input String
+     * @return (boolean) Returns the boolean which correspond to the String
+     */
     private boolean getBooleanFromInput(String input) {
         if (input.equalsIgnoreCase("T") || input.equalsIgnoreCase("true")) {
             return true;

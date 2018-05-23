@@ -9,26 +9,29 @@ public class CaseEmployee extends Employee {
     }
 
     /**
-     * The method createCaseRequest is a method to create a case request. The
-     * method takes the different arguments and creates a case request and sends
-     * it to the PersistanceContact class. It also logs the activity that
-     * happens when the method is used.
+     * This method sends a case request to the database.
+     * It takes the information that a case request needs and create an instance
+     * of it and sends it to the database. It also logs activity with a
+     * description of the activity.
      *
-     * @param caseRequestID
-     * @param EmployeeID
-     * @param citizenCPR
-     * @param desc
-     * @param isMessageClear
-     * @param carePackage
-     * @param rehousingPackage
-     * @param contact
-     * @param isCitizenInformed
-     * @param citizenName
-     * @param citizenGender
-     * @param citizenBirthdate
-     * @param citizenAddress
-     * @param citizenPhoneNr
-     * @param citizenMail
+     * @param caseRequestID int
+     * @param EmployeeID int
+     * @param citizenCPR String
+     * @param citizenName String
+     * @param citizenGender char
+     * @param citizenBirthdate String
+     * @param citizenAddress String
+     * @param citizenPhoneNr Integer
+     * @param citizenMail String
+     * @param desc String
+     * @param isMessageClear boolean
+     * @param carePackage String[]
+     * @param rehousingPackage String
+     * @param contact String
+     * @param isCitizenInformed boolean
+     * @return (int) The id of the newly created CaseRequest. If the value is -1,
+     * a case request was not created correctly and therefore wasn't saved in
+     * the database
      */
     public int createCaseRequest(int caseRequestID, int EmployeeID, String citizenCPR, String citizenName, char citizenGender, String citizenBirthdate, String citizenAddress, Integer citizenPhoneNr, String citizenMail, String desc, boolean isMessageClear, String[] carePackage, String rehousingPackage, String contact, boolean isCitizenInformed) {
         
@@ -49,6 +52,13 @@ public class CaseEmployee extends Employee {
         return returnInt;
     }
     
+    /**
+     * This method is used to retrieve all cases and case requests as
+     * CaseObjects that affect a citizen with the specific CPR.
+     * @param citizenCPR String
+     * @return (List<CaseObject) Returns all the CaseObjects that responds to
+     * the citizen's CPR
+     */
     public List<CaseObject> getCaseObjects(String citizenCPR) {
         DomainContact dc = DomainContact.getInstance();
         PersistanceContact pc = PersistanceContact.getInstance();

@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import Acquaintance.ICaseObject;
 import java.util.Date;
 
-/**
- *
- * @author ander
- */
 public class CaseObject implements ICaseObject{
+    
+    // Information stored on a CaseObject
     private int id; 
     private int employeeID;
     private String type;
     private String desc; 
     private Date dateCreated; 
 
+    // *******************************
+    // ********* Constructor *********
+    // *******************************
     public CaseObject(int id, int employeeID, String type, String desc, Date dateCreated) {
         this.id = id;
         this.employeeID = employeeID;
@@ -27,6 +23,9 @@ public class CaseObject implements ICaseObject{
         this.dateCreated = dateCreated;
     }
 
+    // *******************************
+    // *********   Getters   *********
+    // *******************************
     @Override
     public int getID() {
         return id;
@@ -52,6 +51,9 @@ public class CaseObject implements ICaseObject{
         return dateCreated;
     }
     
+    // *******************************
+    // *********    Misc    **********
+    // *******************************
     @Override
     public String toString() {
         return "id: " + id + " employeeID: " + employeeID + " type: " + type + " desc: " + desc + " datecreated: " + dateCreated;

@@ -4,13 +4,18 @@ import java.util.Date;
 
 public class SocialWorker extends CaseEmployee {
 
+    // *******************************
+    // ********* Constructor *********
+    // *******************************
     public SocialWorker(String cpr, String name, char gender, String birthDate, String address, Integer phoneNumber, String mail, int id, String userName, String password) {
         super(cpr, name, gender, birthDate, address, phoneNumber, mail, id, userName, password);
     }
 
     /**
-     * This method creates a case and logs the activity with a description with
-     * what happened.
+     * This method sends a case to the database.
+     * It takes the information that a case needs and create an instance
+     * of it and sends it to the database. It also logs activity with a
+     * description of the activity.
      *
      * @param ID
      * @param employeeID
@@ -27,7 +32,9 @@ public class SocialWorker extends CaseEmployee {
      * @param consentType
      * @param differentCommune
      * @param state
-     * @return int, id of the case creater
+     * @return (int) The id of the newly created Case. If the value is -1, a 
+     * case was not created correctly and therefore wasn't saved in
+     * the database
      */
     public int saveCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
@@ -58,26 +65,29 @@ public class SocialWorker extends CaseEmployee {
     
     
     /**
-     * This method creates a case and logs the activity with a description with
-     * what happened.
+     * This method sends an edited case to the database.
+     * It takes the information that a case needs and create an instance
+     * of it and sends it to the database. It also logs activity with a
+     * description of the activity.
      *
-     * @param ID
-     * @param employeeID
-     * @param caseRequestID
-     * @param nextAppointment
-     * @param guardianship
-     * @param personalHelperPowerOfAttorney
-     * @param personalHelper
-     * @param citizenRights
-     * @param citizenInformedElectronic
-     * @param consent
-     * @param specialCircumstances
-     * @param collectCitizenInfo
-     * @param consentType
-     * @param differentCommune
-     * @param state
-     * @param dateCreated
-     * @return int, id of the case creater
+     * @param ID int
+     * @param employeeID int
+     * @param caseRequestID int
+     * @param nextAppointment String
+     * @param guardianship String
+     * @param personalHelper String
+     * @param personalHelperPowerOfAttorney String
+     * @param citizenRights String
+     * @param citizenInformedElectronic boolean
+     * @param consent boolean
+     * @param consentType String
+     * @param collectCitizenInfo String[]
+     * @param specialCircumstances String
+     * @param differentCommune String
+     * @param state String
+     * @param dateCreated Date
+     * @return (int) The id of the edited Case. If the value is -1, a 
+     * case was stored correctly and therefore wasn't saved in the database
      */
     public int saveEditedCase(int ID, int employeeID, int caseRequestID, String nextAppointment,
             String guardianship, String personalHelper, String personalHelperPowerOfAttorney,
@@ -107,10 +117,11 @@ public class SocialWorker extends CaseEmployee {
     
 
     /**
-     * This method edits a case and logs the activity with a description.
+     * This method ask the database for a case with a specific id and logs the 
+     * activity with a description.
      *
-     * @param caseID
-     * @return Case, the case that was edited
+     * @param caseID int
+     * @return (Case) The case if any with the specific id
      */
     public Case editCase(int caseID) {
         DomainContact dc = DomainContact.getInstance();
