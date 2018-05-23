@@ -60,6 +60,7 @@ public class WriteTXT implements IWriter {
     * Stores all the relevant information about an employee.
     * cpr, name gender, date, address, phonenumber, mail, id, username, password
     * @param employee, position
+    * @return employee id
      */
     @Override
     public int writeEmployee(IEmployee employee, int position) {
@@ -145,6 +146,7 @@ public class WriteTXT implements IWriter {
     * Writes a case to a case file.
     * Stores all the relevant information about a case.
     * @param cases
+    * @return case id
      */
     @Override
     public int writeCase(ICase cases) {
@@ -236,11 +238,12 @@ public class WriteTXT implements IWriter {
         return cases.getID();
     }
 
-    /*
+    /**
     * Writes a case request to a case requests file.
     * Stores all the relevant information about a case request.
     * @param caseRequests
-     */
+    * @return caserequest id
+    **/
     @Override
     public int writeCaseRequest(ICaseRequest caseRequests) {
         String ID = Integer.toString(caseRequests.getID());

@@ -10,6 +10,14 @@ import java.sql.SQLException;
 
 public class WriteDB extends AbstractDB implements IWriter {
 
+    /**
+     * This method writes a caserequest to the database. The sql query
+     * is a simple insert into, where it uses a preparedstatment to
+     * put all the information in from the caserequest, which the method
+     * takes as an arugment. 
+     * @param ICR
+     * @return caserequest id
+     */
     @Override
     public int writeCaseRequest(ICaseRequest ICR) {
         try {
@@ -51,6 +59,14 @@ public class WriteDB extends AbstractDB implements IWriter {
         return -1;
     }
 
+    /**
+     * This method starts by deleting a case with the id from the case
+     * that is given with the method as an argument. This is because 
+     * this method also works as an edit case method. It then inserts
+     * all the information from the case with an sql query, 
+     * @param cases
+     * @return case id
+     */
     @Override
     public int writeCase(ICase cases) {
         try {
@@ -95,6 +111,14 @@ public class WriteDB extends AbstractDB implements IWriter {
         return -1;
     }
 
+    /**
+     * This method writes all the information about an employee to the database.
+     * The method takes an Iemployee as argument and sends all the information
+     * to the database.
+     * @param employee
+     * @param position
+     * @return employee id
+     */
     @Override
     public int writeEmployee(IEmployee employee, int position) {
         try {
@@ -123,6 +147,14 @@ public class WriteDB extends AbstractDB implements IWriter {
         return -1;
     }
 
+    /**
+     * This method deletes an employee from the database. Because there is
+     * a foreign key between the Log table and the Employee table then it is
+     * not possible to simply delete an employee. All the logs in the database 
+     * with the employee id must be deleted first. 
+     * @param id
+     * @return emplyoee id 
+     */
     @Override
     public int deleteEmployee(int id) {
         try {
@@ -144,6 +176,11 @@ public class WriteDB extends AbstractDB implements IWriter {
         return -1;
     }
 
+    /**
+     * This method takes all the information about a log and writes it to the
+     * database. 
+     * @param log 
+     */
     @Override
     public void writeLog(ILog log) {
         try {
