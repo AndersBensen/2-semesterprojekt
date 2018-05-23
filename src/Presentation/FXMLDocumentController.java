@@ -329,6 +329,15 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void HandleOS(ActionEvent event) {
         ScrollTest.setContent(VBox2);
     }
+    
+    /**
+     * When this handler is called, there will be checked for
+     * which information is written and selected in the formular.
+     * These information will be sended to this classes reference
+     * to the commandconverter which handles the communication to the next
+     * layer.
+     * @param event 
+     */
 
     @FXML
     private void HandleOpretHenvendelse(ActionEvent event) {        //Knappen
@@ -361,6 +370,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This eventhandler, changes the stage to a new scene which contains
+     * vBox stage showing a formular for creating an employee in the system.
+     * The nested changed method is used to keep track of which toggleButton
+     * is the currently selected.
+     * @param event 
+     */
     @FXML
     private void HandleOA(ActionEvent event) {
 
@@ -396,7 +412,14 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         });
 
     }
+    
 
+    /**
+     * disables the prompt fields  in the stage create employee,
+     * makng them uneditable and invisible.Is used to controll which fields
+     * should be shown as there are different kinds of employees which can be
+     * created.
+     */
     private void disableOpretFields() {
         opretCPR.setVisible(false);
         opretNavn.setVisible(false);
@@ -410,9 +433,16 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         deleteEmployeeID.setVisible(false);
         opretAnsat.setVisible(false);
 
-        //
+        
     }
+    
 
+    /**
+     * enables the prompt fields  in the stage create employee,
+     * makng them editable and visible. Is used to controll which fields
+     * should be shown as there are different kinds of employees which can be
+     * created.
+     */
     private void enableOpretAnsat() {
         opretCPR.setVisible(true);
         opretNavn.setVisible(true);
@@ -428,6 +458,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * clears the prompt fields  in the stage create employee
+     */
     private void clearOpretFields() {
         opretCPR.clear();
         opretNavn.clear();
@@ -440,7 +473,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         opretAdgangskode.clear();
         deleteEmployeeID.clear();
     }
+    
 
+    /**
+     * This eventhandler assures that only one checkbox can be selceted
+     * at a time. 
+     * @param event 
+     */
     @FXML
     private void handleindforståetJa(ActionEvent event) {
         if (indforståetJa.isSelected()) {
@@ -449,6 +488,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler assures that only one checkbox can be selceted
+     * at a time. 
+     * @param event 
+     */
     @FXML
     private void handleindforståetNej(ActionEvent event) {
         if (indforståetNej.isSelected()) {
@@ -456,6 +500,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler enables all the necessary fields in the formular
+     * making them editable. This aciton occurs when the checkbox værgemål is 
+     * selected.
+     * @param event 
+     */
     @FXML
     private void handleVærgemål(ActionEvent event) {
 
@@ -497,6 +547,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler checks if the checkbox fuldmagtMedMere is selected.
+     * if the checkbox in the formular is selected, the textfield for
+     * writing information is enabbled and editable.
+     * @param event 
+     */
     @FXML
     private void handleFuldmagt(ActionEvent event) {
         if (fuldmagtMedMere.isSelected()) {
@@ -507,6 +563,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler assures that only one checkbox can be selceted
+     * at a time. 
+     * @param event 
+     */
     @FXML
     private void handleIndforståetElektroniskJa(ActionEvent event) {
         if (indforståetElektroniskJa.isSelected()) {
@@ -515,6 +576,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler assures that only one checkbox can be selceted
+     * at a time. 
+     * @param event 
+     */
     @FXML
     private void handleIndforståetElektronisknej(ActionEvent event) {
         if (indforståetElektroniskNej.isSelected()) {
@@ -522,6 +588,14 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This eventhandler assures that only one checkbox can be selected at
+     * a time. It also assures if the checkbox is selected is 'ja', then 
+     * two additional checkboxes, 'mundtlig skriftlig' and 'skriftlig samtykke' 
+     * will be enabled and editable. One of these two checkboxes can only be
+     * selected at a time.
+     * @param event 
+     */
     @FXML
     private void handleJaSamtykke_sag(ActionEvent event) {
         if (jaSamtykke_sag.isSelected()) {
@@ -540,6 +614,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This eventhandler assures that if the checkbox 'nej' is selected the
+     * two additional checkboxes 'mundtlig samtykke' and 'skriftlig samtykke'
+     * is diasbled and uneditable.
+     * @param event 
+     */
     @FXML
     private void handleNejSamtykke_sag(ActionEvent event) {
         if (nejSamtykke_sag.isSelected()) {
@@ -555,6 +635,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * Assures that only 'mundtligSamtykke' and 'skriftligsamtykke' can be 
+     * slected at a time.
+     * @param event 
+     */
     @FXML
     private void handleMundtligSamtykke(ActionEvent event) {
         if (mundtligSamtykke.isSelected()) {
@@ -563,6 +648,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * Assures that only 'mundtligSamtykke' and 'skriftligsamtykke' can be 
+     * selected at a time.
+     * @param event 
+     */
     @FXML
     private void handleSkriftligSamtykke(ActionEvent event) {
         if (skriftligSamtykke.isSelected()) {
@@ -571,6 +661,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected. In this case if the checkbox
+     * 'checkEgenLæge' is selected the textfield 'AEL' will be enabled.
+     * @param event 
+     */
     @FXML
     private void handleEgenLæge(ActionEvent event) {
         if (checkEgenLæge.isSelected()) {
@@ -581,6 +677,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleSpecialLæge(ActionEvent event) {
         if (checkSpecialLæge.isSelected()) {
@@ -591,6 +692,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleHospital(ActionEvent event) {
         if (checkHospital.isSelected()) {
@@ -601,6 +707,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleAkasse(ActionEvent event) {
         if (checkAkasse.isSelected()) {
@@ -611,6 +722,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleTilbud(ActionEvent event) {
         if (checkTilbud.isSelected()) {
@@ -621,6 +737,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleArbejdsgiver(ActionEvent event) {
         if (checkArbejdsgiver.isSelected()) {
@@ -631,6 +752,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleOPkomune(ActionEvent event) {
         if (checkOPkomune.isSelected()) {
@@ -641,6 +767,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleAndre(ActionEvent event) {
         if (checkAndre.isSelected()) {
@@ -651,6 +782,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleEgenKomune(ActionEvent event) {
         if (checkEgenKomune.isSelected()) {
@@ -662,6 +798,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This handler enables its assoicated textfield making it editable if
+     * its assoicated chekbox is selected.
+     * @param event 
+     */
     @FXML
     private void handleHandleKomune(ActionEvent event) {
         if (checkHandleKomune.isSelected()) {
@@ -672,6 +813,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    
     private void handleSøgSag(ActionEvent event) {
 
         dropDown.getItems().add(søgInput.getText());
@@ -679,6 +821,15 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This method handles the searchbare 'søg' when the Enter is pressed. 
+     * When pressed, the eventlistener changes the stage to a new scene with 
+     * a dropDown menu, showing caserequests and cases. This class has a list 
+     * 'icb' which contains objects of ICaseObject. getCaseObject is called with
+     * the CPR number entered in the search bar. All the existing cases will
+     * then be added to an observable list in the javaFX dropDown menu. 
+     * @param event 
+     */
     @FXML
     private void handleSøg(KeyEvent event) {
         dropDown.getItems().removeAll(dropDown.getItems());
@@ -698,6 +849,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * assures that only one of 'bisidder' and 'partsrepræsentant' checkbox 
+     * can be selected at a time.
+     * @param event 
+     */
     @FXML
     private void handleCheckBisidder(ActionEvent event) {
         if (bisidder.isSelected()) {
@@ -705,6 +861,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * assures that only one of 'bisidder' and 'partsrepræsentant' checkbox 
+     * can be selected at a time.
+     * @param event 
+     */
     @FXML
     private void handleCheckPartsRepræsentant(ActionEvent event) {
         if (partsrepræsentant.isSelected()) {
@@ -712,6 +873,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * clears all the checkboxes and disables them. Is used in initalize()
+     */
     private void clearHenvendelseFields() {
         klarHenvendelseJa.setSelected(false);
         klarHenvendelseNej.setSelected(false);
@@ -726,6 +890,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+     /**
+     * clears all the checkboxes and disables them. Is used in initalize()
+     */
     private void clearSagFields() {
         værgemål.setSelected(false);
         værgeMedMere.setSelected(false);
@@ -769,6 +936,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         logout();
     }
 
+    /**
+     * This method is used for the button with fxid 'HandleLogOut'. 
+     * The method loads the parentroot as the 'logInScreen.fxml' and injects
+     * a the stage, IDomainContact and CommandConverter.
+     */
     @Override
     public void logout() {
         try {
@@ -792,6 +964,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This method is used for sending a pop-up message, alerting the user if
+     * the user has ben inactive for a certain amount of time. If the user 
+     * clicks 'OK' on the alertMenu, resetTimer() is called in IDomainContact
+     * to reset the timed thread.
+     */
     @Override
     public void alert()
     {
@@ -820,6 +998,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     
     
 
+    /**
+     * This handler is used for quickly fill out the textfields automatically.
+     * If the CPR number entered, is found in the CPR register, the textfields
+     * name, gender, birthday and adress will be auto-filled. This method
+     * can be used upon creating an case reqeust.
+     * @param event 
+     */
     @FXML
     private void HandleCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -836,6 +1021,15 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This controller handles the create case button. The method checks the
+     * which values in the gui formular is selceted and stores them in local
+     * variables. When all the information is gathered, the method 
+     * performCommand is called, with the reference to CommandConveter. 
+     * All the stored information in the local varbiales are sent to the 
+     * perfomCommand call.
+     * @param event 
+     */
     @FXML
     private void HandleOSButton(ActionEvent event) {
         String personalHelper = "";
@@ -920,6 +1114,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     }
 
+    /**
+     * This controller handles the create employee button. The methoder checks
+     * for which radio button is selceted, to controll which type of employee
+     * and positon number must be given upon create.
+     * @param event 
+     */
     @FXML
     private void HandleopretAnsat(ActionEvent event) {
         int i = 0;
@@ -952,6 +1152,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This handler is used for quickly fill out the textfields automatically.
+     * If the CPR number entered, is found in the CPR register, the textfields
+     * name, gender, birthday and adress will be auto-filled. This method
+     * can be used upon creating an employee.
+     * @param event 
+     */
     @FXML
     private void HandleopretCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -969,6 +1176,18 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    
+    /**
+     * This controller is used for the button 'handleGåtTil' dropDown scene 
+     * when searching for an CPR number. If the CPR has have any caserequests 
+     * a case can be created with the associated caserequest.  The button 
+     * changes the scene to the create case stage, where the formular is shown.
+     * 
+     * If the CPR has cases which can be shown, the button will set the
+     * scene to 'create case formular', showing all the information the  case
+     * has. It is possible to change the information by editing them.
+     * @param event 
+     */
     @FXML
     private void HandleGåTil(ActionEvent event) {
         ICase c = DomainContact.getInstance().editCase(c1.getID());
@@ -1131,6 +1350,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * This method handles the ''search'' stage and controlls which information
+     * should be displayed when clicking on the dropdown menu. The items displ-
+     * ayed in the dropdown uses an observablelist, where the cases and employe
+     * id are updated upon clicking on a new case or caserequest.
+     * @param event 
+     */
     @FXML
     private void handDropDown(MouseEvent event) {
         beskrivelse.setVisible(true);
@@ -1154,23 +1380,41 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         });
     }
 
+    /**
+     * Overirreden method from IIjectableController
+     * @param stage 
+     */
     @Override
     public void injectStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Overirreden method from IIjectableController
+     * @param stage 
+     */
     @Override
     public void injectDomainContact(IDomainContact IDC)
     {
         this.IDC = IDC;
     }
 
+    /**
+     * Overirreden method from IIjectableController
+     * @param stage 
+     */
     @Override
     public void injectCommandConverter(CommandConverter commandConverter) {
 
         this.CC = commandConverter;
     }
 
+    /**
+     * This method handles the delete button under 'opret ansat' scene. 
+     * It enables some of the informationfields, so that the user can keep
+     * track of which person was deleted.
+     * @param event 
+     */
     @FXML
     private void HandleDeleteEmployee(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -1189,6 +1433,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
     }
 
+    /**
+     * this method is almost identical to create case, but the method is called
+     * editCase in CommandConverter. This method assures that the existing case
+     * is replaced with the new case which has been edited.
+     * @param event 
+     */
     @FXML
     private void HandleRedigerSagButton(ActionEvent event) {
         ICase ic = DomainContact.getInstance().editCase(c1.getID());
