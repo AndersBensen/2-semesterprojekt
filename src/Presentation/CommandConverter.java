@@ -1,7 +1,6 @@
 package Presentation;
 
 import Acquaintance.IDomainContact;
-import Domain.DomainContact;
 import java.util.Date;
 
 public class CommandConverter {

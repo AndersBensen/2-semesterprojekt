@@ -64,7 +64,6 @@ public class PersistanceContact {
      * the database
      */
     public int saveCaseRequest(CaseRequest caseRequest) {
-        System.out.println("PersistenceContact: saveCaseRequest");
         return writer.writeCaseRequest(caseRequest);
     }
 
@@ -76,7 +75,6 @@ public class PersistanceContact {
      * case was not created correctly and therefore wasn't saved in the database
      */
     public int saveCase(Case c) {
-        System.out.println("PersistenceContact: saveCase");
         return writer.writeCase(c);
     }
 
@@ -88,9 +86,7 @@ public class PersistanceContact {
      * employee was not created correctly and therefore wasn't saved in the
      * database
      */
-    public int saveEmployee(Employee employee) {
-        System.out.println("PersistenceContact: saveEmployee");
-        
+    public int saveEmployee(Employee employee) {   
         int returnInt = -1;
         if (employee instanceof Secretary) {
             returnInt = writer.writeEmployee(employee, 1);
@@ -115,7 +111,6 @@ public class PersistanceContact {
      * database
      */
     public int deleteEmployee(int id) {
-        System.out.println("PersistenceContact: deleteEmployee");
         return writer.deleteEmployee(id);
     }
 
@@ -127,9 +122,7 @@ public class PersistanceContact {
      * @param action LogAction
      * @param desc String
      */
-    public void logAction(int employeeID, LogAction action, String desc) {
-        System.out.println("PersistenceContact: logAction");
-        
+    public void logAction(int employeeID, LogAction action, String desc) {       
         Log log = new Log(employeeID, action, desc);
         writer.writeLog(log);
     }
@@ -143,9 +136,7 @@ public class PersistanceContact {
      * @return (Employee) Returns the employee if any with the specific username
      *  and password
      */
-    public Employee login(String username, String password) {
-        System.out.println("PersistenceContact: login");
-        
+    public Employee login(String username, String password) {       
         String[] e = reader.login(username, password);
         if (e[0] == null) {
             System.out.println("User doesn't exist");

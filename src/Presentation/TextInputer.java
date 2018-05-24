@@ -231,7 +231,5 @@ public final class TextInputer implements IVisualController {
     public void alert()
     {
         System.out.println("Alert Logout");
-    }
-    
-    
+    }  
 }
