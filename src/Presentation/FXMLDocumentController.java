@@ -285,6 +285,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleOH(ActionEvent event) {      //checkbox i OH
         ScrollTest.setContent(testVbox);
+        clearSagFields();
+        redigerSag.setVisible(false);
+        opretSag.setVisible(true);
     }
 
     @FXML
@@ -325,6 +328,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleOS(ActionEvent event) {
         ScrollTest.setContent(VBox2);
+        
     }
     
     /**
@@ -888,6 +892,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         repræsentationLabel.setDisable(true);
         mundtligSamtykke.setDisable(true);
         skriftligSamtykke.setDisable(true);
+        indforståetElektroniskJa.setSelected(false);
+        indforståetElektroniskNej.setSelected(false);
+        videreForløbAftale.clear();
+        jaSamtykke_sag.setSelected(false);
+        nejSamtykke_sag.setSelected(false);
         AEL.setDisable(true);
         ASL.setDisable(true);
         AH.setDisable(true);
@@ -952,7 +961,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 alertMenu.setHeaderText("Du bliver logget ud i løbet af 1 minut\nKlik på OK for at undgå dette");
                 alertMenu.getButtonTypes().setAll(OKBtn);
                 
-                alertMenu.getDialogPane().setPrefSize(340, 80);
+                alertMenu.getDialogPane().setPrefSize(390, 80);
                 
                 Optional<ButtonType> result = alertMenu.showAndWait();
                 
@@ -1078,16 +1087,20 @@ public class FXMLDocumentController implements Initializable, IVisualController,
      */
     @FXML
     private void HandleopretAnsat(ActionEvent event) {
+        
         int i = 0;
         if (sagsbehandlerRadio.isSelected()) {
             i = 2;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+            clearOpretFields();
         } else if (sekretærRadio.isSelected()) {
             i = 1;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+            clearOpretFields();
         } else if (adminRadio.isSelected()) {
             i = 3;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
+            clearOpretFields();
         } else if (sletAnsatRadio.isSelected()) {
             if (Integer.parseInt(deleteEmployeeID.getText()) != DomainContact.getInstance().getCurrentUser().getId()) {
                 CC.performCommand("deleteemployee", deleteEmployeeID.getText());
@@ -1097,9 +1110,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 opretAdresse.setVisible(false);
                 opretBrugernavn.setVisible(false);
             }
-            opretNavn.clear();
-            opretAdresse.clear();
-            opretBrugernavn.clear();
+            clearOpretFields();
         }
     }
 
@@ -1183,6 +1194,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             if (c.getPersonalHelperPowerOfAttorney().contains("Bisidder")) {
                 bi = true;
                 this.bisidder.setSelected(bi);
+                if (PHPOAReturnString.length() > 8) 
                 PHPOAReturnString = PHPOAReturnString.substring(9, PHPOAReturnString.length());
             } else if (c.getPersonalHelperPowerOfAttorney().contains("Partsrepræsentant")) {
                 pr = true;
@@ -1296,6 +1308,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void handDropDown(MouseEvent event) {
         beskrivelse.setVisible(true);
         oprettetAf.setVisible(true);
+        if (!(IDC.getCurrentUser() instanceof Secretary)) 
         gåTil.setVisible(true);
         dropDown.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override

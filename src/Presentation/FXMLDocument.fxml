@@ -102,7 +102,7 @@
                   <ChoiceBox fx:id="dropDown" onMouseClicked="#handDropDown" prefHeight="25.0" prefWidth="733.0" />
                   <TextArea fx:id="beskrivelse" editable="false" layoutX="19.0" layoutY="61.0" prefHeight="200.0" prefWidth="695.0" wrapText="true" />
                   <Label fx:id="oprettetAf" layoutX="270.0" layoutY="293.0" prefHeight="21.0" prefWidth="200.0" textAlignment="CENTER" />
-                  <JFXButton fx:id="gåTil" layoutX="334.0" layoutY="369.0" onAction="#HandleGåTil" style="-fx-border-color: #BBBB;" text="Gå til...">
+                  <JFXButton fx:id="gåTil" layoutX="334.0" layoutY="369.0" onAction="#HandleGåTil" style="-fx-border-color: #BBBB;" text="Gå til sag">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>

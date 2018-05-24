@@ -139,7 +139,6 @@ public class PersistanceContact {
     public Employee login(String username, String password) {       
         String[] e = reader.login(username, password);
         if (e[0] == null) {
-            System.out.println("User doesn't exist");
             return null;
         }
         Employee employee = createEmployee(e);
