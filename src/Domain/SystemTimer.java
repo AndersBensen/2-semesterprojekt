@@ -80,9 +80,7 @@ public final class SystemTimer implements Runnable {
             public void run() {
                 IVC.logout();
             }
-        });
-        
+        });      
         clearThread();
     }
-
 }

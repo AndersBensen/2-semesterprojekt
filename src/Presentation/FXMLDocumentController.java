@@ -280,12 +280,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             OS.setVisible(false);
             søgSide.setVisible(false);
         }
-
     }
 
     @FXML
     private void HandleOH(ActionEvent event) {      //checkbox i OH
-
         ScrollTest.setContent(testVbox);
     }
 
@@ -308,7 +306,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             støtteTIlPraktiskOpgave.setSelected(false);
             støtteTIlPersonligPleje.setSelected(false);
             støtteTilAndet.clear();
-
         }
     }
 
@@ -367,7 +364,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
         CC.performCommand("caserequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
                 hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
-
     }
 
     /**
@@ -379,12 +375,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
      */
     @FXML
     private void HandleOA(ActionEvent event) {
-
         clearOpretFields();
         opretToggle.selectToggle(null);
         disableOpretFields();
         ScrollTest.setContent(VBoxAnsat);
-
         Object source = event.getSource();
         opretToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
@@ -407,10 +401,8 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                     enableOpretAnsat();
                     opretAnsat.setText("Opret Ansat");
                 }
-
             }
         });
-
     }
     
 
@@ -431,9 +423,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         opretBrugernavn.setVisible(false);
         opretAdgangskode.setVisible(false);
         deleteEmployeeID.setVisible(false);
-        opretAnsat.setVisible(false);
-
-        
+        opretAnsat.setVisible(false);       
     }
     
 
@@ -455,7 +445,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         opretAdgangskode.setVisible(true);
         opretAnsat.setVisible(true);
         deleteEmployeeID.setVisible(false);
-
     }
 
     /**
@@ -484,7 +473,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void handleindforståetJa(ActionEvent event) {
         if (indforståetJa.isSelected()) {
             indforståetNej.setSelected(false);
-
         }
     }
 
@@ -508,7 +496,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
      */
     @FXML
     private void handleVærgemål(ActionEvent event) {
-
         if (værgemål.isSelected()) {
             værgeMedMere.setDisable(false);
             samværgemål.setDisable(false);
@@ -543,7 +530,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             bisidder.setSelected(false);
             partsrepræsentant.setSelected(false);
             fuldmagtMedMere.setSelected(false);
-
         }
     }
 
@@ -572,7 +558,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     private void handleIndforståetElektroniskJa(ActionEvent event) {
         if (indforståetElektroniskJa.isSelected()) {
             indforståetElektroniskNej.setSelected(false);
-
         }
     }
 
@@ -602,16 +587,13 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             nejSamtykke_sag.setSelected(false);
             mundtligSamtykke.setDisable(false);
             skriftligSamtykke.setDisable(false);
-
         } else if (!jaSamtykke_sag.isSelected()) {
 
             mundtligSamtykke.setDisable(true);
             skriftligSamtykke.setDisable(true);
             mundtligSamtykke.setSelected(false);
             skriftligSamtykke.setSelected(false);
-
         }
-
     }
 
     /**
@@ -631,7 +613,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             skriftligSamtykke.setDisable(true);
             mundtligSamtykke.setSelected(false);
             skriftligSamtykke.setSelected(false);
-
         }
     }
 
@@ -645,7 +626,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (mundtligSamtykke.isSelected()) {
             skriftligSamtykke.setSelected(false);
         }
-
     }
 
     /**
@@ -658,7 +638,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (skriftligSamtykke.isSelected()) {
             mundtligSamtykke.setSelected(false);
         }
-
     }
 
     /**
@@ -815,10 +794,8 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     
     private void handleSøgSag(ActionEvent event) {
-
         dropDown.getItems().add(søgInput.getText());
         dropDown.setValue(søgInput.getText());
-
     }
 
     /**
@@ -837,7 +814,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             if (!ScrollTest.getContent().equals(vboxSøg)) {
                 ScrollTest.setContent(vboxSøg);
             }
-
             this.icb = DomainContact.getInstance().getCaseObject(søgSide.getText()); // returnerer cases og caserequests hvis sagsbehandler, caserequests hvis sekretær 
             for (ICaseObject c : icb) {
                 dropDown.getItems().add(c.getType() + ":  " + c.getDateCreated() + ": " + c.getDesc());
@@ -845,7 +821,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             }
             ScrollTest.setVvalue(xOffset);
             søgSide.clear();
-
         }
     }
 
@@ -882,12 +857,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         støtteTIlPersonligPleje.setSelected(false);
         støtteTIlPraktiskOpgave.setSelected(false);
         støtteTilAndet.clear();
-
         støtteTilIndkøb.setDisable(true);
         støtteTIlPraktiskOpgave.setDisable(true);
         støtteTIlPersonligPleje.setDisable(true);
         støtteTilAndet.setDisable(true);
-
     }
 
      /**
@@ -904,7 +877,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         fuldmagtTekst.clear();
         mundtligSamtykke.setSelected(false);
         skriftligSamtykke.setSelected(false);
-
         værgeMedMere.setDisable(true);
         samværgemål.setDisable(true);
         værgeInfo.setDisable(true);
@@ -914,10 +886,8 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         fuldmagtTekst.setDisable(true);
         værgeLabel.setDisable(true);
         repræsentationLabel.setDisable(true);
-
         mundtligSamtykke.setDisable(true);
         skriftligSamtykke.setDisable(true);
-
         AEL.setDisable(true);
         ASL.setDisable(true);
         AH.setDisable(true);
@@ -926,7 +896,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         AA.setDisable(true);
         AK.setDisable(true);
         Andre.setDisable(true);
-
         EK.setDisable(true);
         HK.setDisable(true);
     }
@@ -961,7 +930,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
@@ -981,7 +949,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             {
                 Alert alertMenu = new Alert(Alert.AlertType.WARNING);
                 alertMenu.setTitle("Advarsel - Logout!");
-                alertMenu.setHeaderText("Du bliver logget ud i løbet af 1 minut");
+                alertMenu.setHeaderText("Du bliver logget ud i løbet af 1 minut\nKlik på OK for at undgå dette");
                 alertMenu.getButtonTypes().setAll(OKBtn);
                 
                 alertMenu.getDialogPane().setPrefSize(340, 80);
@@ -992,11 +960,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                     IDC.resetTimer();
             }
         });
-        
-        
-    }
-    
-    
+    }  
 
     /**
      * This handler is used for quickly fill out the textfields automatically.
@@ -1042,7 +1006,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (!(værgeInfo.getText().equals(""))) {
             personalHelper += værgeInfo.getText() + "#";
         }
-
         String PHPOA = "";
         if (bisidder.isSelected()) {
             PHPOA += "Bisidder#";
@@ -1058,24 +1021,20 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (!PHPOA.isEmpty()) {
             PHPOA = PHPOA.substring(0, PHPOA.length() - 1);
         }
-
         String electronic = "false";
         if (indforståetElektroniskJa.isSelected()) {
             electronic = "true";
         }
-
         String consent = "false";
         if (jaSamtykke_sag.isSelected()) {
             consent = "true";
         }
-
         String consentType = "";
         if (mundtligSamtykke.isSelected()) {
             consentType += "mundtligSamtykke";
         } else if (skriftligSamtykke.isSelected()) {
             consentType += "skriftligSamtykke";
         }
-
         String collectCitizenInfo = "";
         if (checkEgenLæge.isSelected()) {
             collectCitizenInfo += (char) 945 + AEL.getText() + "#";
@@ -1101,7 +1060,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkAndre.isSelected()) {
             collectCitizenInfo += (char) 952 + Andre.getText() + "#";
         }
-
         String communeInfo = "";
         if (checkEgenKomune.isSelected()) {
             communeInfo += EK.getText() + "#";
@@ -1109,9 +1067,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkHandleKomune.isSelected()) {
             communeInfo += HK.getText() + "#";
         }
-
         CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open");
-
     }
 
     /**
@@ -1126,15 +1082,12 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (sagsbehandlerRadio.isSelected()) {
             i = 2;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
-
         } else if (sekretærRadio.isSelected()) {
             i = 1;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
-
         } else if (adminRadio.isSelected()) {
             i = 3;
             CC.performCommand("addemployee", opretCPR.getText(), opretNavn.getText(), opretKøn.getText(), opretFødselsdag.getText(), opretAdresse.getText(), opretTelefon.getText(), opretEmail.getText(), opretBrugernavn.getText(), opretAdgangskode.getText(), Integer.toString(i));
-
         } else if (sletAnsatRadio.isSelected()) {
             if (Integer.parseInt(deleteEmployeeID.getText()) != DomainContact.getInstance().getCurrentUser().getId()) {
                 CC.performCommand("deleteemployee", deleteEmployeeID.getText());
@@ -1144,11 +1097,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 opretAdresse.setVisible(false);
                 opretBrugernavn.setVisible(false);
             }
-
             opretNavn.clear();
             opretAdresse.clear();
             opretBrugernavn.clear();
-
         }
     }
 
@@ -1162,7 +1113,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleopretCPR(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-
             IPerson p = DomainContact.getInstance().getPerson(opretCPR.getText());
             if (opretCPR.getText().trim().equals(p.getCpr().trim())) {
                 opretNavn.setText(p.getName());
@@ -1172,7 +1122,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             } else {
                 System.out.println("intet");
             }
-
         }
     }
 
@@ -1193,7 +1142,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         ICase c = DomainContact.getInstance().editCase(c1.getID());
         if (c1.getType().equals("CaseRequest")) {
             caseRequestID.setText(Integer.toString(c1.getID()));
-
             beskrivelse.setVisible(false);
             oprettetAf.setVisible(false);
             gåTil.setVisible(false);
@@ -1206,12 +1154,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             oprettetAf.setVisible(false);
             gåTil.setVisible(false);
             ScrollTest.setContent(VBox2);
-
             boolean bol = false;
             if (c.getGuardianship().equalsIgnoreCase("værgemål")) {
                 bol = true;
             }
-
             boolean samværgemål1 = false;
             boolean værgemedmere = false;
             String andetString = c.getPersonalHelper();
@@ -1228,11 +1174,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 andetString.trim();
             }
             værgeInfo.setText(andetString);
-
             værgemål.setSelected(bol);
             værgeMedMere.setSelected(værgemedmere);
             this.samværgemål.setSelected(samværgemål1);
-
             String PHPOAReturnString = c.getPersonalHelperPowerOfAttorney();
             boolean bi = false;
             boolean pr = false;
@@ -1254,9 +1198,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 fuldmagtTekst.setDisable(false);
             }
             fuldmagtTekst.setText(PHPOAReturnString);
-
             rettighederMedMere.setText(c.getCitizenRights());
-
             if (c.isCitizenInformedElectronic()) {
                 indforståetElektroniskJa.setSelected(true);
             } else {
@@ -1309,9 +1251,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                     Andre.setText(s.substring(1, s.length()));
                     Andre.setDisable(false);
                 }
-
             }
-
             BorgerInddragelse.setText(c.getSpecialCircumstances());
             String DifferentCommuneStatus = c.getDifferentCommune();
             int communeIndex = 0;
@@ -1321,7 +1261,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             int lastWordLength = 0;
             for (char communeChar : DifferentCommuneStatus.toCharArray()) {
                 communeLengthIndex++;
-
                 if (communeChar == '#') {
                     communeIndex++;
                 } else if (communeIndex == 0) {
@@ -1330,21 +1269,17 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                     secondWordLength++;
                 }
             }
-
             String communeFinalString = c.getDifferentCommune();
-
             if (communeIndex > 0) {
                 checkEgenKomune.setSelected(true);
                 EK.setText(communeFinalString.substring(0, firstWordLength));
                 EK.setDisable(false);
             }
-
             if (communeIndex > 1) {
                 checkHandleKomune.setSelected(true);
                 HK.setText(communeFinalString.substring(firstWordLength + 1, firstWordLength + secondWordLength + 1));
                 HK.setDisable(false);
             }
-
             caseRequestID.setDisable(true);
             handleVærgemål(event);
         }
@@ -1375,7 +1310,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                         i++;
                     }
                 }
-
             }
         });
     }
@@ -1391,7 +1325,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     /**
      * Overirreden method from IIjectableController
-     * @param stage 
+     * @param IDC 
      */
     @Override
     public void injectDomainContact(IDomainContact IDC)
@@ -1401,11 +1335,10 @@ public class FXMLDocumentController implements Initializable, IVisualController,
 
     /**
      * Overirreden method from IIjectableController
-     * @param stage 
+     * @param commandConverter 
      */
     @Override
     public void injectCommandConverter(CommandConverter commandConverter) {
-
         this.CC = commandConverter;
     }
 
@@ -1418,7 +1351,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
     @FXML
     private void HandleDeleteEmployee(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-
             IEmployee e = DomainContact.getInstance().getEmployee(Integer.parseInt(deleteEmployeeID.getText()));
             if (Integer.parseInt(deleteEmployeeID.getText().trim()) == e.getId()) {
                 opretNavn.setVisible(true);
@@ -1453,7 +1385,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (!(værgeInfo.getText().equals(""))) {
             personalHelper += værgeInfo.getText() + "#";
         }
-
         String PHPOA = "";
         if (bisidder.isSelected()) {
             PHPOA += "Bisidder#";
@@ -1469,24 +1400,20 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (!PHPOA.isEmpty()) {
             PHPOA = PHPOA.substring(0, PHPOA.length() - 1);
         }
-
         String electronic = "false";
         if (indforståetElektroniskJa.isSelected()) {
             electronic = "true";
         }
-
         String consent = "false";
         if (jaSamtykke_sag.isSelected()) {
             consent = "true";
         }
-
         String consentType = "";
         if (mundtligSamtykke.isSelected()) {
             consentType += "mundtligSamtykke";
         } else if (skriftligSamtykke.isSelected()) {
             consentType += "skriftligSamtykke";
         }
-
         String collectCitizenInfo = "";
         if (checkEgenLæge.isSelected()) {
             collectCitizenInfo += (char) 945 + AEL.getText() + "#";
@@ -1512,7 +1439,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         if (checkAndre.isSelected()) {
             collectCitizenInfo += (char) 952 + Andre.getText() + "#";
         }
-
         String communeInfo = "";
         if (checkEgenKomune.isSelected()) {
             communeInfo += EK.getText() + "#";
@@ -1522,5 +1448,4 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
         CC.performCommand("editcase", Integer.toString(ic.getID()), Integer.toString(ic.getEmployeeID()), Integer.toString(ic.getCaseRequest().getID()), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open", Long.toString(ic.getDateCreated().getTime()));
     }
-
 }
