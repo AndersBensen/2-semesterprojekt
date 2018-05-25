@@ -45,7 +45,7 @@
                   <JFXTextField fx:id="address" focusColor="#0f9d58" layoutX="380.0" layoutY="184.0" promptText="Adresse" />
                   <JFXTextField fx:id="phone" focusColor="#0f9d58" layoutX="63.0" layoutY="237.0" promptText="Telefon Nr." />
                   <JFXTextField fx:id="email" focusColor="#0f9d58" layoutX="380.0" layoutY="237.0" promptText="E-mail" />
-                  <TextArea fx:id="videreForløbTarea" layoutX="32.0" layoutY="358.0" prefHeight="200.0" prefWidth="527.0" promptText="Indtast information" />
+                  <TextArea fx:id="videreForløbTarea" layoutX="32.0" layoutY="358.0" prefHeight="200.0" prefWidth="527.0" promptText="Indtast information" wrapText="true" />
                   <JFXCheckBox fx:id="klarHenvendelseJa" layoutX="32.0" layoutY="607.0" onAction="#HandleklarHenvendelseJa" text="Ja" />
                   <JFXCheckBox fx:id="klarHenvendelseNej" checkedColor="#cc0000" layoutX="182.0" layoutY="607.0" onAction="#handleKlarHenvendelseNej" text="Nej" />
                </children>
@@ -201,7 +201,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="videreForløbAftale" layoutX="55.0" layoutY="66.0" prefHeight="141.0" prefWidth="527.0" />
+                        <TextArea fx:id="videreForløbAftale" layoutX="55.0" layoutY="66.0" prefHeight="141.0" prefWidth="527.0" wrapText="true" />
                         <Label layoutX="55.0" layoutY="235.0" text="Værgemål og representation">
                            <font>
                               <Font name="System Bold" size="15.0" />
@@ -269,7 +269,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="BorgerInddragelse" layoutX="45.0" layoutY="800.0" prefHeight="154.0" prefWidth="465.0" promptText="Eventuelle særlige forhold der skal adresseres for at borgeren kan inddrages i sagsbehandlingen" />
+                        <TextArea fx:id="BorgerInddragelse" layoutX="45.0" layoutY="800.0" prefHeight="154.0" prefWidth="465.0" promptText="Eventuelle særlige forhold der skal adresseres for at borgeren kan inddrages i sagsbehandlingen" wrapText="true" />
                         <Label layoutX="44.0" layoutY="976.0" text="Handle- og betalingskommune">
                            <font>
                               <Font name="System Bold" size="15.0" />
