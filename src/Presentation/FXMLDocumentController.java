@@ -893,8 +893,41 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         partsrepræsentant.setSelected(false);
         fuldmagtMedMere.setSelected(false);
         fuldmagtTekst.clear();
+        rettighederMedMere.clear();
         mundtligSamtykke.setSelected(false);
         skriftligSamtykke.setSelected(false);
+        checkEgenLæge.setSelected(false);
+        AEL.clear();
+        AEL.setDisable(true);
+        checkSpecialLæge.setSelected(false);
+        ASL.clear();
+        ASL.setDisable(true);
+        checkHospital.setSelected(false);
+        AH.clear();
+        AH.setDisable(true);
+        checkAkasse.setSelected(false);
+        AAK.clear();
+        AAK.setDisable(true);
+        checkTilbud.setSelected(false);
+        AT.clear();
+        AT.setDisable(true);
+        checkArbejdsgiver.setSelected(false);
+        AA.clear();
+        AA.setDisable(true);
+        checkOPkomune.setSelected(false);
+        AK.clear();
+        AK.setDisable(true);
+        checkAndre.setSelected(false);
+        Andre.clear();
+        Andre.setDisable(true);
+        BorgerInddragelse.clear();
+        checkEgenKomune.setSelected(false);
+        EK.clear();
+        EK.setDisable(true);
+        checkHandleKomune.setSelected(false);
+        HK.clear();
+        HK.setDisable(true);
+        caseRequestID.clear();
         værgeMedMere.setDisable(true);
         samværgemål.setDisable(true);
         værgeInfo.setDisable(true);
@@ -911,16 +944,6 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         videreForløbAftale.clear();
         jaSamtykke_sag.setSelected(false);
         nejSamtykke_sag.setSelected(false);
-        AEL.setDisable(true);
-        ASL.setDisable(true);
-        AH.setDisable(true);
-        AAK.setDisable(true);
-        AT.setDisable(true);
-        AA.setDisable(true);
-        AK.setDisable(true);
-        Andre.setDisable(true);
-        EK.setDisable(true);
-        HK.setDisable(true);
     }
 
     @FXML
