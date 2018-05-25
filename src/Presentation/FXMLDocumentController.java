@@ -965,8 +965,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 
                 Optional<ButtonType> result = alertMenu.showAndWait();
                 
-                if (result.get() == OKBtn)
-                    IDC.resetTimer();
+                IDC.resetTimer();
             }
         });
     }  

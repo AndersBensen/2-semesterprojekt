@@ -6,8 +6,8 @@ import javafx.application.Platform;
 public final class SystemTimer implements Runnable {
 
     // Timer constants
-    private final int DEFAULT_TIMER = 600;
-    private final int ALERT_TIMER = 60;
+    private final int DEFAULT_TIMER = 10;
+    private final int ALERT_TIMER = 5;
     
     // Information stored on the SystemTimer
     private int currentTimer;
@@ -67,13 +67,14 @@ public final class SystemTimer implements Runnable {
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
+                
+                if (timerThread == null)
+                    return;
+                
                 currentTimer--;
                 
                 if (currentTimer == ALERT_TIMER)
                     IVC.alert();
-                
-                if (timerThread == null)
-                    return;
             }
             break;
         }
