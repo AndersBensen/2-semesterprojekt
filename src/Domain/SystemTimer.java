@@ -6,8 +6,8 @@ import javafx.application.Platform;
 public final class SystemTimer implements Runnable {
 
     // Timer constants
-    private final int DEFAULT_TIMER = 10;
-    private final int ALERT_TIMER = 5;
+    private final int DEFAULT_TIMER = 600;
+    private final int ALERT_TIMER = 60;
     
     // Information stored on the SystemTimer
     private int currentTimer;
