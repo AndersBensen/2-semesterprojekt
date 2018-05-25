@@ -368,6 +368,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         }
         CC.performCommand("caserequest", CPR.getText(), name.getText(), gender.getText(), birthday.getText(), address.getText(), phone.getText(), email.getText(), videreForløbTarea.getText(), msc,
                 hbdso, angivTilbud.getText(), henvendelsesPerson.getText(), indforstået);
+        clearHenvendelseFields();
     }
 
     /**
@@ -856,6 +857,14 @@ public class FXMLDocumentController implements Initializable, IVisualController,
      * clears all the checkboxes and disables them. Is used in initalize()
      */
     private void clearHenvendelseFields() {
+        CPR.clear();
+        name.clear();
+        gender.clear();
+        birthday.clear();
+        address.clear();
+        phone.clear();
+        email.clear();
+        videreForløbTarea.clear();
         klarHenvendelseJa.setSelected(false);
         klarHenvendelseNej.setSelected(false);
         støtteTIlPersonligPleje.setSelected(false);
@@ -865,6 +874,11 @@ public class FXMLDocumentController implements Initializable, IVisualController,
         støtteTIlPraktiskOpgave.setDisable(true);
         støtteTIlPersonligPleje.setDisable(true);
         støtteTilAndet.setDisable(true);
+        angivTilbud.clear();
+        henvendelsesPerson.clear();
+        indforståetJa.setSelected(false);
+        indforståetNej.setSelected(false);
+        
     }
 
      /**
@@ -1076,6 +1090,7 @@ public class FXMLDocumentController implements Initializable, IVisualController,
             communeInfo += HK.getText() + "#";
         }
         CC.performCommand("case", caseRequestID.getText(), videreForløbAftale.getText(), værgemål.getText(), personalHelper, PHPOA, rettighederMedMere.getText(), electronic, consent, consentType, collectCitizenInfo, BorgerInddragelse.getText(), communeInfo, "open");
+        clearSagFields();
     }
 
     /**
