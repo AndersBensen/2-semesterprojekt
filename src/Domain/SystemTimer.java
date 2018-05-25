@@ -67,13 +67,14 @@ public final class SystemTimer implements Runnable {
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
+                
+                if (timerThread == null)
+                    return;
+                
                 currentTimer--;
                 
                 if (currentTimer == ALERT_TIMER)
                     IVC.alert();
-                
-                if (timerThread == null)
-                    return;
             }
             break;
         }

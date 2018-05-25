@@ -963,10 +963,9 @@ public class FXMLDocumentController implements Initializable, IVisualController,
                 
                 alertMenu.getDialogPane().setPrefSize(390, 80);
                 
-                Optional<ButtonType> result = alertMenu.showAndWait();
+                alertMenu.showAndWait();
                 
-                if (result.get() == OKBtn)
-                    IDC.resetTimer();
+                IDC.resetTimer();
             }
         });
     }  
