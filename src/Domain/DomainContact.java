@@ -233,8 +233,6 @@ public class DomainContact implements IDomainContact {
                     "User succesfully logged in with username: " + username + " and the password: " + password);
             return true;
         }
-        PS.logAction(-1, LogAction.LOG_IN,
-                    "User failed to log in with username: " + username + " and the password: " + password);
         return false;
     }
 
@@ -253,6 +251,7 @@ public class DomainContact implements IDomainContact {
                     + " and the password: " + currentUser.getPassWord() + " succesfully logged out");
             this.currentUser = null;
             timerThread = null;
+            timer.clearThread();
             return true;
         } else {
             System.out.println("You failed to log out: No user is logged in.");

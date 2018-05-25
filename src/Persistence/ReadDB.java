@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadDB extends AbstractDB implements IReader {
@@ -205,14 +206,28 @@ public class ReadDB extends AbstractDB implements IReader {
         int[] idArray = new int[3];
         try {
             Statement st = db.createStatement();
-            String query = "SELECT MAX(Cases.id), MAX(CaseRequest.id), MAX(Employee.id)\n"
-                    + "FROM CaseRequest, Cases, Employee";
-            ResultSet rs = st.executeQuery(query);
+            
+            String query1 = "SELECT MAX(Cases.id)\n"
+                    + "FROM Cases";
+            ResultSet rs = st.executeQuery(query1);
             while (rs.next()) {
                 idArray[0] = rs.getString(1) == null? 0 : Integer.parseInt(rs.getString(1));
-                idArray[1] = rs.getString(2) == null? 0 : Integer.parseInt(rs.getString(2));
-                idArray[2] = rs.getString(3) == null? 0 : Integer.parseInt(rs.getString(3));
             }
+            
+            String query2 = "SELECT MAX(Caserequest.id)\n"
+                    + "FROM Caserequest";
+            rs = st.executeQuery(query2);
+            while (rs.next()) {
+                idArray[1] = rs.getString(1) == null? 0 : Integer.parseInt(rs.getString(1));
+            }
+            
+            String query3 = "SELECT MAX(Employee.id)\n"
+                    + "FROM Employee";
+            rs = st.executeQuery(query3);
+            while (rs.next()) {
+                idArray[2] = rs.getString(1) == null? 0 : Integer.parseInt(rs.getString(1));
+            }
+            
             rs.close();
             st.close();
         } catch (SQLException e) {

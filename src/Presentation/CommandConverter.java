@@ -16,11 +16,6 @@ public class CommandConverter {
     }
 
     public int performCommand(String command, String... args) {
-        int i = 0;
-        for (String s : args) {
-            System.out.println("arg: " + i + " har: " + s);
-            i++;
-        }
         switch (command.toLowerCase()) {
             case "caserequest":
                 try {
