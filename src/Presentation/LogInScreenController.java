@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class LogInScreenController implements Initializable, IInjectableController {
@@ -100,6 +101,16 @@ public class LogInScreenController implements Initializable, IInjectableControll
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
                 Parent root = loader.load();
+                
+                root.addEventFilter(KeyEvent.KEY_PRESSED, event ->
+                {
+                    IDC.resetTimer();
+                });
+
+                root.addEventFilter(MouseEvent.MOUSE_MOVED, event ->
+                {
+                    IDC.resetTimer();
+                });
                 
                 IInjectableController controller = loader.getController();
                 controller.injectCommandConverter(CC);
